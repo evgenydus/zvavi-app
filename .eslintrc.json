@@ -1,5 +1,19 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript", "eslint:recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:tailwindcss/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["prettier", "sort-keys-fix"],
   "rules": {
     "@typescript-eslint/no-var-requires": "off",
     "import/extensions": "off",
