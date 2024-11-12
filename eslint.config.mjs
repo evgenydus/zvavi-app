@@ -1,4 +1,4 @@
-// eslint-disable max-lines
+/* eslint-disable max-lines */
 import prettier from 'eslint-plugin-prettier'
 import sortKeysFix from 'eslint-plugin-sort-keys-fix'
 import path from 'node:path'
@@ -34,14 +34,12 @@ export default [
       prettier,
       'sort-keys-fix': sortKeysFix,
     },
-
     rules: {
       '@typescript-eslint/no-var-requires': 'off',
       'import/extensions': 'off',
       'import/no-cycle': 'off',
       'import/order': 'off',
       'import/prefer-default-export': 'off',
-
       'max-lines': [
         'error',
         {
@@ -50,10 +48,8 @@ export default [
           skipComments: true,
         },
       ],
-
       'no-param-reassign': 'off',
       'no-underscore-dangle': 'off',
-
       'padding-line-between-statements': [
         'error',
         {
@@ -72,47 +68,40 @@ export default [
           prev: '*',
         },
       ],
-
       'prettier/prettier': 'error',
+      'react/destructuring-assignment': 'off',
       'react/forbid-prop-types': 'off',
-
       'react/function-component-definition': [
         2,
         {
           namedComponents: 'arrow-function',
         },
       ],
-
       'react/jsx-filename-extension': [
         1,
         {
           extensions: ['.tsx'],
         },
       ],
-
       'react/jsx-props-no-spreading': [
         2,
         {
           html: 'ignore',
         },
       ],
-
       'react/jsx-sort-props': [
         'error',
         {
           reservedFirst: ['key', 'ref'],
         },
       ],
-
       'react/jsx-uses-react': 'off',
-
       'react/no-multi-comp': [
         'error',
         {
           ignoreStateless: false,
         },
       ],
-
       'react/react-in-jsx-scope': 'off',
       'react/require-default-props': 'off',
       semi: ['error', 'never'],
