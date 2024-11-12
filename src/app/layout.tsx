@@ -27,7 +27,11 @@ type LayoutProps = {
   params: { locale: Locale }
 }
 
-const Layout = async ({ children, params }: Readonly<LayoutProps>) => {
+const Layout = async (props: Readonly<LayoutProps>) => {
+  const params = await props.params
+
+  const { children } = props
+
   const messages = await getMessages()
   const { locale } = params
 
