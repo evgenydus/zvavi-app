@@ -1,4 +1,9 @@
 {
+  "navigation": {
+    "contact": "Contact",
+    "home": "Home",
+    "sponsors": "Sponsors"
+  },
   "home": {
     "title": "Welcome!"
   }

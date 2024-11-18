@@ -1,20 +1,13 @@
-import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import './globals.css'
-import { NextIntlClientProvider } from 'next-intl'
+import { ubuntuSans } from '@/fonts'
 import { getMessages } from 'next-intl/server'
-import type { Locale } from '../config'
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-})
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-})
+import { Header } from '@/[locale]/components/header'
+import { NextIntlClientProvider } from 'next-intl'
+
+import './globals.css'
+
+import type { Locale } from '../config'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   description:
@@ -37,8 +30,11 @@ const Layout = async (props: Readonly<LayoutProps>) => {
 
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+      <body className={`${ubuntuSans.className} antialiased`}>
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   )

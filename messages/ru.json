@@ -1,4 +1,9 @@
 {
+  "navigation": {
+    "contact": "Контакты",
+    "home": "Главная",
+    "sponsors": "Спонсоры"
+  },
   "home": {
     "title": "Алоха!"
   }
