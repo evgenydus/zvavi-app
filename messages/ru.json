@@ -1,5 +1,10 @@
 {
   "home": {
     "title": "Алоха!"
+  },
+  "navigation": {
+    "contact": "Контакты",
+    "home": "Главная",
+    "sponsors": "Спонсоры"
   }
 }

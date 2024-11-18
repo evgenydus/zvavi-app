@@ -1,5 +1,10 @@
 {
   "home": {
     "title": "Welcome!"
+  },
+  "navigation": {
+    "contact": "Contact",
+    "home": "Home",
+    "sponsors": "Sponsors"
   }
 }
