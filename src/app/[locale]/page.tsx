@@ -1,9 +1,9 @@
-import Test from './test'
+import { CurrentForecast } from '@/UI/home'
 
 const Home = () => (
-  <div>
-    <Test />
-  </div>
+  <main className="px-6">
+    <CurrentForecast />
+  </main>
 )
 
 export default Home
