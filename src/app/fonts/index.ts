@@ -1,7 +1,6 @@
-/* eslint-disable camelcase */
-import { Ubuntu_Sans_Mono } from 'next/font/google'
+import { Ubuntu_Sans_Mono as UbuntuSansMono } from 'next/font/google'
 
-export const ubuntuSans = Ubuntu_Sans_Mono({
+export const ubuntuSans = UbuntuSansMono({
   display: 'swap',
   subsets: ['latin'],
   variable: '--font-ubuntu-sans',
