@@ -1,7 +1,7 @@
 import { ubuntuSans } from '@/fonts'
 import { getMessages } from 'next-intl/server'
 
-import { Header } from '@/[locale]/components/header'
+import { Header } from '@/UI/header'
 import { NextIntlClientProvider } from 'next-intl'
 
 import './globals.css'

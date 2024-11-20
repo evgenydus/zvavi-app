@@ -1,2 +1,2 @@
-export const locales = ['en', 'ru', 'ka'] as const
-export type Locale = 'en' | 'ru' | 'ka'
+export const locales = ['en', 'ka'] as const
+export type Locale = 'en' | 'ka'
