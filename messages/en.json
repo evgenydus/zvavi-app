@@ -1,6 +1,12 @@
 {
+  "common": {
+    "description": "Description"
+  },
   "home": {
-    "title": "Welcome!"
+    "title": "Welcome!",
+    "currentForecast": {
+      "title": "Current Forecast"
+    }
   },
   "navigation": {
     "contact": "Contact",
