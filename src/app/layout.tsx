@@ -3,6 +3,8 @@ import { getMessages } from 'next-intl/server'
 
 import { Header } from '@/UI/header'
 import { NextIntlClientProvider } from 'next-intl'
+import { QueryClientProvider } from '@/data'
+import { SupabaseContextProvider } from '@/business/context'
 
 import './globals.css'
 
@@ -32,8 +34,12 @@ const Layout = async (props: Readonly<LayoutProps>) => {
     <html lang={locale}>
       <body className={`${ubuntuSans.className} antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          {children}
+          <QueryClientProvider>
+            <SupabaseContextProvider>
+              <Header />
+              {children}
+            </SupabaseContextProvider>
+          </QueryClientProvider>
         </NextIntlClientProvider>
       </body>
     </html>

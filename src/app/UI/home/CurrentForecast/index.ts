@@ -1,1 +1,1 @@
-export { default as CurrentForecast } from './CurrentForecast'
+export { default as CurrentForecastContainer } from './CurrentForecastContainer'
