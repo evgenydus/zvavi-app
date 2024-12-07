@@ -1,6 +1,13 @@
 {
   "common": {
-    "description": "Description"
+    "actions": {
+      "save": "Save"
+    },
+
+    "labels": {
+      "description": "Description",
+      "email": "Email"
+    }
   },
   "home": {
     "title": "Welcome!",
@@ -13,8 +20,26 @@
     "home": "Home",
     "sponsors": "Sponsors"
   },
-  "login": {
-    "title": "Login",
-    "signIn": "Sign in"
+  "auth": {
+    "labels": {
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+
+    "login": {
+      "title": "Login",
+      "signIn": "Sign In",
+      "forgotPassword": "Forgot Your Password?"
+    },
+
+    "forgotPassword": {
+      "title": "Forgot Your Password?",
+      "sendResetLink": "Send Reset Link"
+    },
+
+    "setNewPassword": {
+      "title": "Set New Password",
+      "setPassword": "Set Password"
+    }
   }
 }
