@@ -21,6 +21,9 @@
     "sponsors": "Sponsors"
   },
   "auth": {
+    "errors": {
+      "invalidSession": "Invalid or expired session. Please request a new password reset link."
+    },
     "labels": {
       "password": "Password",
       "confirmPassword": "Confirm Password"

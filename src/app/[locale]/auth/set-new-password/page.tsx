@@ -54,6 +54,7 @@ const SetNewPasswordPage = () => {
     }
   }
 
+  // TODO: Ensure that user is correct
   useEffect(() => {
     const checkAuth = async () => {
       const {
@@ -62,7 +63,7 @@ const SetNewPasswordPage = () => {
       } = await supabase.auth.getUser()
 
       if (!user || error) {
-        setErrorMessage('Invalid or expired session. Please request a new password reset link.')
+        setErrorMessage(t('auth.errors.invalidSession'))
       }
     }
 

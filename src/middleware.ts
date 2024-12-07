@@ -11,8 +11,8 @@ const intlMiddleware = createMiddleware({
   locales,
 })
 
-export default async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl
+export default async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
 
   // Skip static and API routes
   if (pathname.startsWith('/_next/static') || pathname.startsWith('/api')) {
@@ -25,33 +25,33 @@ export default async function middleware(req: NextRequest) {
   )
 
   if (!localeMatched) {
-    const redirectUrl = new URL(`/${defaultLocale}${pathname}`, req.url)
+    const redirectUrl = new URL(`/${defaultLocale}${pathname}`, request.url)
 
     return NextResponse.redirect(redirectUrl)
   }
 
   // Update the request locale
-  const intlResponse = intlMiddleware(req)
+  const intlResponse = intlMiddleware(request)
 
   if (intlResponse) {
     intlResponse.headers.set('x-locale-verified', 'true')
   }
 
   // Supabase auth check
-  const res = intlResponse || NextResponse.next()
-  const supabase = createMiddlewareClient({ req, res })
+  const response = intlResponse || NextResponse.next()
+  const supabase = createMiddlewareClient({ req: request, res: response })
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
   // Redirect if not authenticated
   if (!user && pathname.includes('/admin')) {
-    const loginUrl = new URL(`/${defaultLocale}${routes.login}`, req.url)
+    const loginUrl = new URL(`/${defaultLocale}${routes.login}`, request.url)
 
     return NextResponse.redirect(loginUrl)
   }
 
-  return res
+  return response
 }
 
 export const config = {
