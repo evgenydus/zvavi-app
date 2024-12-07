@@ -1,7 +1,11 @@
 import type { NavMenuItem } from './types'
 
-const routes = {
+export const routes = {
+  admin: '/admin',
   contact: '/contact',
+  forgotPassword: '/auth/forgot-password',
+  login: '/auth/login',
+  setNewPassword: '/auth/set-new-password',
   sponsors: '/sponsors',
 }
 
