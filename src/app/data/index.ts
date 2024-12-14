@@ -1,2 +1,2 @@
 export { default as QueryClientProvider } from './QueryClientProvider'
-export { supabase } from './supabaseClient'
+export { supabase } from '../../../utils/supabase/client'
