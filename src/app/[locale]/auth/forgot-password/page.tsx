@@ -2,14 +2,17 @@
 
 import { useCallback, useState } from 'react'
 
-import { supabase } from '@/data'
-import { Field, Fieldset, Label, Legend } from '@headlessui/react'
-import { Button, TextInput } from '@/UI/inputs'
-import { useTranslations } from 'next-intl'
 import { routes } from '@/UI/header/NavMenu/constants'
+import { supabase } from '@/data'
+import { useTranslations, useLocale } from 'next-intl'
+
+import { Button, TextInput } from '@/UI/inputs'
+import { Field, Fieldset, Label, Legend } from '@headlessui/react'
 
 const ForgotPasswordPage = () => {
   const t = useTranslations()
+  const locale = useLocale()
+
   const [email, setEmail] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -24,7 +27,7 @@ const ForgotPasswordPage = () => {
 
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         // TODO: Check if window.location.origin works on production
-        redirectTo: `${window.location.origin}${routes.setNewPassword}`,
+        redirectTo: `${window.location.origin}/${locale}${routes.setNewPassword}`,
       })
 
       if (error) {

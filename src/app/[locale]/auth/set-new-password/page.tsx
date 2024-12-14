@@ -54,7 +54,6 @@ const SetNewPasswordPage = () => {
     }
   }
 
-  // TODO: Ensure that user is correct
   useEffect(() => {
     const checkAuth = async () => {
       const {

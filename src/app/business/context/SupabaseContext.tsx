@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, type ReactNode } from 'react'
-import { supabase } from '@/data/supabaseClient'
+import { supabase } from '@/data'
 
 type SupabaseContextType = { supabase: typeof supabase }
 
