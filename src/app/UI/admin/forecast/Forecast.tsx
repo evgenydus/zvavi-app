@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 
-import { Button, TextInput } from '@/UI/inputs'
+import { Button, DatePicker, TextInput } from '@/UI/inputs'
 import { Field, Label } from '@headlessui/react'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import ProblemForm from './problems/ProblemForm'
@@ -29,7 +29,7 @@ const Forecast = () => {
               <Label className="w-32 font-semibold">
                 {tForecast('form.general.labels.validUntil')}
               </Label>
-              <p>Date Picker</p>
+              <DatePicker showTimeSelect />
             </Field>
           </div>
         </div>

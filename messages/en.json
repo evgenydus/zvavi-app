@@ -72,6 +72,7 @@
           "title": "Avalanche Problems",
           "labels": {
             "addProblem": "Add Problem",
+            "allDay": "All Day",
             "aspects": "Aspects",
             "avalancheSize": "Avalanche Size",
             "confidence": "Confidence",

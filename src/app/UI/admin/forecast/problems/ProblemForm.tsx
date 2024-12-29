@@ -5,7 +5,6 @@ import {
   confidenceLevels,
   distributionTypes,
   sensitivityLevels,
-  timeOfDay,
   trends,
 } from '@/business/constants'
 import { generateOptions } from '@/UI/admin/forecast/problems/helpers'
@@ -13,7 +12,7 @@ import { useTranslations } from 'next-intl'
 import _range from 'lodash/range'
 
 import { Field, Fieldset, Label } from '@headlessui/react'
-import { RadioGroup, Textarea } from '@/UI/inputs'
+import { DatePicker, RadioGroup, Textarea, Checkbox } from '@/UI/inputs'
 import ElevationZone from './ElevationZone'
 import Select from 'react-select'
 
@@ -36,7 +35,8 @@ const ProblemForm = () => {
     'options.distribution',
     tProblems,
   )
-  const timeOfDayOptions = generateOptions(Object.values(timeOfDay), 'options.timeOfDay', tProblems)
+  // TODO: Should we remove this options?
+  // const timeOfDayOptions = generateOptions(Object.values(timeOfDay), 'options.timeOfDay', tProblems)
   const trendOptions = generateOptions(Object.values(trends), 'options.trend', tProblems)
   const confidenceOptions = generateOptions(
     Object.values(confidenceLevels),
@@ -87,7 +87,11 @@ const ProblemForm = () => {
 
           <div className="flex items-center gap-4">
             <h4 className="w-28 font-semibold">{tProblems('labels.timeOfDay')}</h4>
-            <RadioGroup name="timeOfDay" options={timeOfDayOptions} />
+            <Field>
+              <Checkbox label={tProblems('labels.allDay')} onChange={() => {}} />
+            </Field>
+            {/* TODO: hide if allDay is checked */}
+            <DatePicker showTimeSelect showTimeSelectOnly />
           </div>
 
           <div className="flex items-center gap-4">
