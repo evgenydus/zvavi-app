@@ -1,10 +1,6 @@
-const generateOptions = (
-  values: string[],
-  namespace: string,
-  translator: (key: string) => string,
-) =>
+const generateOptions = (values: string[], scope: string, translator: (key: string) => string) =>
   values.map((value) => ({
-    label: translator(`${namespace}.${value}`),
+    label: translator(`${scope}.${value}`),
     value,
   }))
 

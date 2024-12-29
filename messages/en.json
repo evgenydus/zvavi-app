@@ -77,7 +77,6 @@
             "confidence": "Confidence",
             "description": "Description",
             "distribution": "Distribution",
-            "likelihood": "Likelihood",
             "problemType": "Problem Type",
             "sensitivity": "Sensitivity",
             "timeOfDay": "Time of Day",
