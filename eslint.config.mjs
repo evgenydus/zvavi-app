@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import prettier from 'eslint-plugin-prettier'
 import sortKeysFix from 'eslint-plugin-sort-keys-fix'
+import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import js from '@eslint/js'
@@ -32,6 +33,7 @@ export default [
   {
     plugins: {
       prettier,
+      'sort-destructure-keys': sortDestructureKeys,
       'sort-keys-fix': sortKeysFix,
     },
     rules: {
@@ -105,6 +107,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/require-default-props': 'off',
       semi: ['error', 'never'],
+      'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: true }],
       'sort-keys': ['error', 'asc'],
       'sort-keys-fix/sort-keys-fix': 'error',
       'tailwindcss/no-custom-classname': 'off',
