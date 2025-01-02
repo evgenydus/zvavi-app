@@ -1,7 +1,8 @@
 'use client'
 
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
+import { initialProblemData } from './constants'
 import { useBoolean } from '@/UI/hooks'
 import { useTranslations } from 'next-intl'
 
@@ -10,14 +11,19 @@ import { Field, Label } from '@headlessui/react'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { ProblemForm } from './ProblemForm'
 
+import type { Problem } from '@/business/types'
+
 const ForecastForm = () => {
   const tForecast = useTranslations('admin.forecast')
   const [isProblemFormOpen, { setFalse: closeProblemForm, setTrue: openProblemForm }] =
     useBoolean(false)
 
+  const [problemData, setProblemData] = useState<Problem>(initialProblemData)
+
   const handleAddProblemClick = useCallback(() => {
+    console.log('problemData: ', problemData)
     closeProblemForm()
-  }, [closeProblemForm])
+  }, [closeProblemForm, problemData])
 
   return (
     <div className="flex min-w-[1005px] flex-col items-center gap-3">
@@ -50,7 +56,12 @@ const ForecastForm = () => {
           </Button>
 
           {isProblemFormOpen && (
-            <ProblemForm onProblemAdd={handleAddProblemClick} onProblemCancel={closeProblemForm} />
+            <ProblemForm
+              onProblemAdd={handleAddProblemClick}
+              onProblemCancel={closeProblemForm}
+              problemData={problemData}
+              setProblemData={setProblemData}
+            />
           )}
         </div>
       </form>

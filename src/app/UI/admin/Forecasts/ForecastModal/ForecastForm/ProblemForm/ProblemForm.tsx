@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 
 import { useProblemOptions } from './hooks'
 import { useTranslations } from 'next-intl'
@@ -13,27 +13,22 @@ import ProblemType from './ProblemType'
 
 import type { Problem } from '@/business/types'
 
-const initialProblemData: Problem = {
-  avalancheSize: 1,
-  confidence: 'low',
-  description: '',
-  distribution: 'isolated',
-  sensitivity: 'reactive',
-  timeOfDay: 'allDay',
-  trend: 'deteriorating',
-  type: null,
-}
-
 type ProblemFormProps = {
   onProblemAdd: () => void
   onProblemCancel: () => void
+  problemData: Problem
+  setProblemData: (value: React.SetStateAction<Problem>) => void
 }
 
-const ProblemForm = ({ onProblemAdd, onProblemCancel }: ProblemFormProps) => {
+const ProblemForm = ({
+  onProblemAdd,
+  onProblemCancel,
+  problemData,
+  setProblemData,
+}: ProblemFormProps) => {
   const tCommon = useTranslations('common')
   const tProblems = useTranslations('admin.forecast.form.problems')
 
-  const [problemData, setProblemData] = useState<Problem>(initialProblemData)
   const { avalancheSizeOptions } = useProblemOptions()
 
   const handleDescriptionChange = useCallback(
