@@ -1,6 +1,7 @@
 {
   "common": {
     "actions": {
+      "add": "Add",
       "cancel": "Cancel",
       "save": "Save",
       "submit": "Submit"
@@ -119,11 +120,6 @@
               "stormSlab": "Storm Slab",
               "wetSlab": "Wet Slab",
               "windSlab": "Wind Slab"
-            },
-            "timeOfDay": {
-              "afternoon": "Afternoon",
-              "allDay": "All Day",
-              "morning": "Morning"
             },
             "trend": {
               "improving": "Improving",

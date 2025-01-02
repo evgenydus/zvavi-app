@@ -3,7 +3,7 @@ import { timeFormat } from '@/business/constants'
 
 import Column from './Column'
 
-import type { Forecast } from '@/data/hooks'
+import type { Forecast } from '@/business/types'
 
 const ForecastItem = ({ forecast }: { forecast: Forecast }) => (
   <div className="flex items-center gap-4 px-4 py-1">

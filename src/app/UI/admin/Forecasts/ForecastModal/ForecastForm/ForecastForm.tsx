@@ -1,5 +1,8 @@
 'use client'
 
+import { useCallback } from 'react'
+
+import { useBoolean } from '@/UI/hooks'
 import { useTranslations } from 'next-intl'
 
 import { Button, DatePicker, TextInput } from '@/UI/components/inputs'
@@ -9,9 +12,15 @@ import { ProblemForm } from './ProblemForm'
 
 const ForecastForm = () => {
   const tForecast = useTranslations('admin.forecast')
+  const [isProblemFormOpen, { setTrue: openProblemForm, setFalse: closeProblemForm }] =
+    useBoolean(false)
+
+  const handleAddProblemClick = useCallback(() => {
+    closeProblemForm()
+  }, [closeProblemForm])
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex min-w-[1005px] flex-col items-center gap-3">
       <form className="flex w-full flex-col gap-12">
         <div className="flex flex-col gap-4">
           <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
@@ -35,13 +44,18 @@ const ForecastForm = () => {
         <div className="flex flex-col gap-4">
           <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-          <Button className="ml-auto">
+          <Button className="ml-auto" disabled={isProblemFormOpen} onClick={openProblemForm}>
             <PlusIcon className="size-5" />
             {tForecast('form.problems.labels.addProblem')}
           </Button>
 
           <div>
-            <ProblemForm />
+            {isProblemFormOpen && (
+              <ProblemForm
+                onProblemAdd={handleAddProblemClick}
+                onProblemCancel={closeProblemForm}
+              />
+            )}
           </div>
         </div>
       </form>

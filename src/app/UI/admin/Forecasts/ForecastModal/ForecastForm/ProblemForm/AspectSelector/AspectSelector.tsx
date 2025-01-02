@@ -10,12 +10,9 @@ const aspectOptions = Object.entries(aspects).map(([value, label]) => ({ label, 
 const AspectSelector = () => {
   const [selectedOptions, setSelectedOptions] = useState<AspectOptionType[]>([])
 
-  const handleChange = useCallback(
-    (updatedOptions: AspectOptionType[]) => {
-      setSelectedOptions(updatedOptions)
-    },
-    [selectedOptions],
-  )
+  const handleChange = useCallback((updatedOptions: AspectOptionType[]) => {
+    setSelectedOptions(updatedOptions)
+  }, [])
 
   return (
     <div className="inline-flex items-center gap-1 rounded bg-black/5 p-1 text-sm dark:bg-white/5">

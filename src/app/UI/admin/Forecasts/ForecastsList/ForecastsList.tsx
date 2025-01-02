@@ -7,7 +7,7 @@ import { PlusIcon } from '@heroicons/react/20/solid'
 import Column from './Column'
 import ForecastItem from './ForecastItem'
 
-import type { Forecast } from '@/data/hooks'
+import type { Forecast } from '@/business/types'
 
 const ForecastsList = ({ forecasts }: { forecasts: Forecast[] }) => {
   const tAdmin = useTranslations('admin')

@@ -25,7 +25,7 @@ export const avalancheProblemTypes = {
   stormSlab: 'stormSlab',
   wetSlab: 'wetSlab',
   windSlab: 'windSlab',
-} as const
+}
 
 export const aspects = {
   e: 'E',
@@ -36,26 +36,20 @@ export const aspects = {
   se: 'SE',
   sw: 'SW',
   w: 'W',
-} as const
+}
 
 export const sensitivityLevels = {
   reactive: 'reactive',
   stubborn: 'stubborn',
   touchy: 'touchy',
   unreactive: 'unreactive',
-} as const
+}
 
 export const distributionTypes = {
   isolated: 'isolated',
   specific: 'specific',
   widespread: 'widespread',
-} as const
-
-export const timeOfDay = {
-  afternoon: 'afternoon',
-  allDay: 'allDay',
-  morning: 'morning',
-} as const
+}
 
 export const trends = {
   deteriorating: 'deteriorating',

@@ -1,48 +1,84 @@
 'use client'
 
-import {
-  avalancheProblemTypes,
-  confidenceLevels,
-  distributionTypes,
-  sensitivityLevels,
-  trends,
-} from '@/business/constants'
-import { generateOptions } from './helpers'
+import { useCallback, useState } from 'react'
+
+import { useProblemOptions } from './hooks'
 import { useTranslations } from 'next-intl'
-import _range from 'lodash/range'
 
 import { Field, Fieldset, Label } from '@headlessui/react'
-import { DatePicker, RadioGroup, Textarea, Checkbox } from '@/UI/components/inputs'
+import { Button, RadioGroup, Textarea } from '@/UI/components/inputs'
 import ElevationZone from './ElevationZone'
 import Select from 'react-select'
+import TimeOfDay from './TimeOfDay'
 
-const ProblemForm = () => {
+import type { AvalancheProblemTypes, Problem } from '@/business/types'
+
+const initialProblemData: Problem = {
+  avalancheSize: 1,
+  confidence: 'low',
+  description: '',
+  distribution: 'isolated',
+  sensitivity: 'reactive',
+  timeOfDay: 'allDay',
+  trend: 'deteriorating',
+  type: null,
+}
+
+type ProblemFormProps = {
+  onProblemAdd: () => void
+  onProblemCancel: () => void
+}
+
+const ProblemForm = ({ onProblemAdd, onProblemCancel }: ProblemFormProps) => {
+  const tCommon = useTranslations('common')
   const tProblems = useTranslations('admin.forecast.form.problems')
 
-  const problemOptions = generateOptions(
-    Object.values(avalancheProblemTypes),
-    'options.problemType',
-    tProblems,
+  const [problemData, setProblemData] = useState<Problem>(initialProblemData)
+  const {
+    avalancheSizeOptions,
+    confidenceOptions,
+    distributionOptions,
+    problemTypeOptions,
+    sensitivityOptions,
+    trendOptions,
+  } = useProblemOptions()
+
+  const handleDescriptionChange = useCallback(
+    ({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setProblemData((prev) => ({
+        ...prev,
+        description: target.value,
+      }))
+    },
+    [],
   )
-  const avalancheSizeOptions = _range(1, 6).map((level) => ({ label: level, value: level }))
-  const sensitivityOptions = generateOptions(
-    Object.values(sensitivityLevels),
-    'options.sensitivityLevel',
-    tProblems,
+
+  const handleRadioChange = useCallback(
+    (field: keyof Problem) => (value: string | number) => {
+      setProblemData((prev) => ({
+        ...prev,
+        [field]: value,
+      }))
+    },
+    [],
   )
-  const distributionOptions = generateOptions(
-    Object.values(distributionTypes),
-    'options.distribution',
-    tProblems,
+
+  const handleTypeChange = useCallback(
+    (value: { label: string; value: AvalancheProblemTypes } | null) => {
+      setProblemData((prev) => ({
+        ...prev,
+        type: value?.value || null,
+      }))
+    },
+    [],
   )
-  // TODO: Should we remove this options?
-  // const timeOfDayOptions = generateOptions(Object.values(timeOfDay), 'options.timeOfDay', tProblems)
-  const trendOptions = generateOptions(Object.values(trends), 'options.trend', tProblems)
-  const confidenceOptions = generateOptions(
-    Object.values(confidenceLevels),
-    'options.confidence',
-    tProblems,
-  )
+
+  const problemTypeValue = problemData.type
+    ? {
+        label: tProblems(`options.problemType.${problemData.type}`),
+        value: problemData.type,
+      }
+    : null
 
   return (
     <Fieldset className="flex flex-col gap-10">
@@ -50,12 +86,23 @@ const ProblemForm = () => {
         <div className="flex flex-col gap-3">
           <Field className="flex items-center gap-3">
             <Label className="w-32 font-semibold">{tProblems('labels.problemType')}</Label>
-            <Select className="flex-1" options={problemOptions} />
+            <Select
+              className="flex-1"
+              isClearable
+              onChange={handleTypeChange}
+              options={problemTypeOptions}
+              value={problemTypeValue}
+            />
           </Field>
 
           <div className="flex items-center gap-4">
             <h4 className="w-32 font-semibold">{tProblems('labels.avalancheSize')}</h4>
-            <RadioGroup name="avalancheSize" options={avalancheSizeOptions} />
+            <RadioGroup
+              name="avalancheSize"
+              onChange={handleRadioChange('avalancheSize')}
+              options={avalancheSizeOptions}
+              value={problemData.avalancheSize}
+            />
           </div>
         </div>
 
@@ -71,39 +118,57 @@ const ProblemForm = () => {
       <div className="grid grid-cols-2 gap-x-14">
         <Field className="flex flex-col gap-4 pt-1.5">
           <Label className="w-32 font-semibold">{tProblems('labels.description')}</Label>
-          <Textarea className="w-full" rows={9} />
+          <Textarea className="w-full" onChange={handleDescriptionChange} rows={9} />
         </Field>
 
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-4">
             <h4 className="w-28 font-semibold">{tProblems('labels.sensitivity')}</h4>
-            <RadioGroup name="sensitivity" options={sensitivityOptions} />
+            <RadioGroup
+              name="sensitivity"
+              onChange={handleRadioChange('sensitivity')}
+              options={sensitivityOptions}
+              value={problemData.sensitivity}
+            />
           </div>
 
           <div className="flex items-center gap-4">
             <h4 className="w-28 font-semibold">{tProblems('labels.distribution')}</h4>
-            <RadioGroup name="distribution" options={distributionOptions} />
+            <RadioGroup
+              name="distribution"
+              onChange={handleRadioChange('distribution')}
+              options={distributionOptions}
+              value={problemData.distribution}
+            />
           </div>
 
-          <div className="flex items-center gap-4">
-            <h4 className="w-28 font-semibold">{tProblems('labels.timeOfDay')}</h4>
-            <Field>
-              <Checkbox label={tProblems('labels.allDay')} onChange={() => {}} />
-            </Field>
-            {/* TODO: hide if allDay is checked */}
-            <DatePicker showTimeSelect showTimeSelectOnly />
-          </div>
+          <TimeOfDay onTimeChange={setProblemData} problemData={problemData} />
 
           <div className="flex items-center gap-4">
             <h4 className="w-28 font-semibold">{tProblems('labels.trend')}</h4>
-            <RadioGroup name="trend" options={trendOptions} />
+            <RadioGroup
+              name="trend"
+              onChange={handleRadioChange('trend')}
+              options={trendOptions}
+              value={problemData.trend}
+            />
           </div>
 
           <div className="flex items-center gap-4">
             <h4 className="w-28 font-semibold">{tProblems('labels.confidence')}</h4>
-            <RadioGroup name="confidence" options={confidenceOptions} />
+            <RadioGroup
+              name="confidence"
+              onChange={handleRadioChange('confidence')}
+              options={confidenceOptions}
+              value={problemData.confidence}
+            />
           </div>
         </div>
+      </div>
+
+      <div className="flex items-center justify-end gap-4">
+        <Button onClick={onProblemCancel}>{tCommon('actions.cancel')}</Button>
+        <Button onClick={onProblemAdd}>{tCommon('actions.save')}</Button>
       </div>
     </Fieldset>
   )

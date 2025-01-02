@@ -4,19 +4,22 @@ import { Checkbox as HeadlessUICheckbox, Label } from '@headlessui/react'
 
 type CheckboxProps = {
   className?: string
-  onChange: (checked: boolean) => void
+  isChecked: boolean
   label?: string
+  onChange: (checked: boolean) => void
 }
 
-const Checkbox = ({ onChange, className, label }: CheckboxProps) => (
+const Checkbox = ({ className, isChecked, label, onChange }: CheckboxProps) => (
   <div className="flex items-center gap-2">
     {label && <Label className="cursor-pointer">{label}</Label>}
 
     <HeadlessUICheckbox
+      checked={isChecked}
       className={classnames(
-        'group size-5 cursor-pointer rounded-md bg-white p-0.5 ring-1',
+        'group size-5 cursor-pointer rounded-md p-0.5 ring-1',
         'ring-inset ring-white/15 data-[hover]:ring-primary',
         'transition-[background-color,box-shadow] data-[checked]:bg-primary',
+        { 'bg-white': !className?.includes('bg-') },
         className,
       )}
       onChange={onChange}

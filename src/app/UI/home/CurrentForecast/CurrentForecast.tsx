@@ -4,7 +4,7 @@ import { hazardLevelsByScale } from '@/business/constants'
 import Image from 'next/image'
 import Description from './Description'
 
-import type { Forecast } from '@/data/hooks'
+import type { Forecast } from '@/business/types'
 
 const CurrentForecast = ({ forecast }: { forecast: Forecast }) => {
   const { description, hazardLevel, snowCondition } = forecast
