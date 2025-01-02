@@ -1,14 +1,14 @@
 import { useCallback } from 'react'
 import classnames from 'classnames'
-import type { AspectOption as AspectOptionType } from './types'
+import type { Option } from '@/UI/components/inputs'
 
 type AspectOptionProps = {
-  option: AspectOptionType
-  onChange: (value: AspectOptionType[]) => void
-  selectedOptions: AspectOptionType[]
+  option: Option
+  onChange: (value: Option[]) => void
+  selectedOptions: Option[]
 }
 
-const AspectOption = ({ option, onChange, selectedOptions }: AspectOptionProps) => {
+const AspectOption = ({ onChange, option, selectedOptions }: AspectOptionProps) => {
   const isSelected = selectedOptions.includes(option)
 
   const handleToggle = useCallback(() => {

@@ -1,15 +1,15 @@
 import classnames from 'classnames'
 import { Radio, RadioGroup as HeadlessUIRadioGroup } from '@headlessui/react'
+import type { Option } from './types'
 
-type Option = { value: string | number; label: string | number }
 type RadioGroupProps = {
-  options: Option[]
-  name: string
+  name?: string
   onChange: (value: string | number) => void
+  options: Option[]
   value: string | number
 }
 
-const RadioGroup = ({ options, name, onChange, value }: RadioGroupProps) => {
+const RadioGroup = ({ name, onChange, options, value }: RadioGroupProps) => {
   const handleChange = (selectedValue: string | number) => {
     onChange(selectedValue)
   }

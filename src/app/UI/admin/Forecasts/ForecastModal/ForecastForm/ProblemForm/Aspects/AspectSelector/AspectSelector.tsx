@@ -3,14 +3,14 @@ import { aspects } from '@/business/constants'
 
 import AspectOption from './AspectOption'
 
-import type { AspectOption as AspectOptionType } from './types'
+import type { Option } from '@/UI/components/inputs'
 
 const aspectOptions = Object.entries(aspects).map(([value, label]) => ({ label, value }))
 
 const AspectSelector = () => {
-  const [selectedOptions, setSelectedOptions] = useState<AspectOptionType[]>([])
+  const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
 
-  const handleChange = useCallback((updatedOptions: AspectOptionType[]) => {
+  const handleChange = useCallback((updatedOptions: Option[]) => {
     setSelectedOptions(updatedOptions)
   }, [])
 

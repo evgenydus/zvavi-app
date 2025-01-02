@@ -12,7 +12,7 @@ import { ProblemForm } from './ProblemForm'
 
 const ForecastForm = () => {
   const tForecast = useTranslations('admin.forecast')
-  const [isProblemFormOpen, { setTrue: openProblemForm, setFalse: closeProblemForm }] =
+  const [isProblemFormOpen, { setFalse: closeProblemForm, setTrue: openProblemForm }] =
     useBoolean(false)
 
   const handleAddProblemClick = useCallback(() => {
@@ -49,14 +49,9 @@ const ForecastForm = () => {
             {tForecast('form.problems.labels.addProblem')}
           </Button>
 
-          <div>
-            {isProblemFormOpen && (
-              <ProblemForm
-                onProblemAdd={handleAddProblemClick}
-                onProblemCancel={closeProblemForm}
-              />
-            )}
-          </div>
+          {isProblemFormOpen && (
+            <ProblemForm onProblemAdd={handleAddProblemClick} onProblemCancel={closeProblemForm} />
+          )}
         </div>
       </form>
     </div>
