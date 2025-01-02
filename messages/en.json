@@ -1,7 +1,9 @@
 {
   "common": {
     "actions": {
-      "save": "Save"
+      "cancel": "Cancel",
+      "save": "Save",
+      "submit": "Submit"
     },
 
     "labels": {
@@ -59,7 +61,16 @@
   },
   "admin": {
     "forecasts": {
-      "title": "Forecasts"
+      "title": "Forecasts",
+      "list": {
+        "columns": {
+          "createdAt": "Created At",
+          "forecaster": "Forecaster",
+          "hazardLevel": "Hazard Level",
+          "status": "Status",
+          "validTo": "Valid To"
+        }
+      }
     },
     "forecast": {
       "title": "Create New Forecast",

@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { Field, Fieldset, Label, Legend } from '@headlessui/react'
-import { TextInput, Button } from '@/UI/inputs'
+import { TextInput, Button } from '@/UI/components/inputs'
 import Link from 'next/link'
 
 // TODO: Add placeholders

@@ -7,12 +7,12 @@ import {
   sensitivityLevels,
   trends,
 } from '@/business/constants'
-import { generateOptions } from '@/UI/admin/Forecasts/Forecast/problems/helpers'
+import { generateOptions } from './helpers'
 import { useTranslations } from 'next-intl'
 import _range from 'lodash/range'
 
 import { Field, Fieldset, Label } from '@headlessui/react'
-import { DatePicker, RadioGroup, Textarea, Checkbox } from '@/UI/inputs'
+import { DatePicker, RadioGroup, Textarea, Checkbox } from '@/UI/components/inputs'
 import ElevationZone from './ElevationZone'
 import Select from 'react-select'
 
