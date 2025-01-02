@@ -7,7 +7,7 @@ import {
   sensitivityLevels,
   trends,
 } from '@/business/constants'
-import { generateOptions } from '@/UI/admin/forecast/problems/helpers'
+import { generateOptions } from '@/UI/admin/Forecasts/Forecast/problems/helpers'
 import { useTranslations } from 'next-intl'
 import _range from 'lodash/range'
 

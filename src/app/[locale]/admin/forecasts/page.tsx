@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useGetForecasts } from '@/data/hooks'
 
-import { ForecastsList } from '@/UI/admin/ForecastsList'
+import { ForecastsList } from '../../../UI/admin/Forecasts/ForecastsList'
 import { PageWrapper } from '@/UI/containers/PageWrapper'
 
 const ForecastPage = () => {
