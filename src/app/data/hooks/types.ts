@@ -1,11 +1,12 @@
-import type { DanderLevelScale, SnowCondition } from '@/business/types'
+import type { HazardLevelScale, SnowCondition } from '@/business/types'
 
 export type Forecast = {
   createdAt: string
-  dangerLevel: DanderLevelScale
+  forecaster: string
+  hazardLevel: HazardLevelScale
   description: string
-  forecast: string
   id: number
   snowCondition: SnowCondition
   validTo: string
+  status: 'draft' | 'published'
 }

@@ -3,7 +3,7 @@ import type { NavMenuItem } from './types'
 export const routes = {
   admin: '/admin',
   contact: '/contact',
-  forecast: 'admin/forecast',
+  forecasts: 'admin/forecasts',
   forgotPassword: '/auth/forgot-password',
   login: '/auth/login',
   setNewPassword: '/auth/set-new-password',

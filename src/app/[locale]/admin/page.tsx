@@ -2,17 +2,19 @@
 
 import { routes } from '@/UI/header/NavMenu/constants'
 import { useTranslations } from 'next-intl'
+
+import { PageWrapper } from '@/UI/containers/PageWrapper'
 import Link from 'next/link'
 
 const AdminPage = () => {
   const t = useTranslations()
 
   return (
-    <div>
-      <Link className="flex h-12 items-center px-3.5" href={routes.forecast}>
-        {t('admin.forecast.title')}
+    <PageWrapper>
+      <Link className="flex h-12 items-center px-3.5" href={routes.forecasts}>
+        {t('admin.forecasts.title')}
       </Link>
-    </div>
+    </PageWrapper>
   )
 }
 

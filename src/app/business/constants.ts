@@ -1,18 +1,18 @@
-import type { DanderLevelScale, DangerLevel } from './types'
+import type { HazardLevelScale, HazardLevel } from './types'
 
-export const dangerLevels: Record<DangerLevel, string> = {
+export const hazardLevels: Record<HazardLevel, string> = {
   considerable: 'Considerable',
   high: 'High',
   low: 'Low',
   moderate: 'Moderate',
 }
 
-export const dangerLevelsByScale: Record<DanderLevelScale, string> = {
-  1: dangerLevels.low,
-  2: dangerLevels.moderate,
-  3: dangerLevels.considerable,
-  4: dangerLevels.high,
-  5: dangerLevels.high,
+export const hazardLevelsByScale: Record<HazardLevelScale, string> = {
+  1: hazardLevels.low,
+  2: hazardLevels.moderate,
+  3: hazardLevels.considerable,
+  4: hazardLevels.high,
+  5: hazardLevels.high,
 }
 
 export const avalancheProblemTypes = {
@@ -68,3 +68,5 @@ export const confidenceLevels = {
   low: 'low',
   moderate: 'moderate',
 }
+
+export const timeFormat = 'dd MMM yyyy'

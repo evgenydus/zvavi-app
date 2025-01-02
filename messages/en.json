@@ -58,6 +58,9 @@
     }
   },
   "admin": {
+    "forecasts": {
+      "title": "Forecasts"
+    },
     "forecast": {
       "title": "Create New Forecast",
       "form": {
