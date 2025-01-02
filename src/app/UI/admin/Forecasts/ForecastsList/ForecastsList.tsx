@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { useBoolean } from '@/UI/hooks'
 
-import { Button } from '../../../components/inputs'
+import { Button } from '@/UI/components/inputs'
 import { ForecastModal } from '../ForecastModal'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import Column from './Column'

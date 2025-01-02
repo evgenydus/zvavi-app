@@ -2,7 +2,6 @@ import { useCallback } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { Button } from '@/UI/components/inputs'
 import { ForecastForm } from './ForecastForm'
 import { Modal } from '@/UI/components/Modal'
 
@@ -23,13 +22,13 @@ const ForecastModal = ({ isOpen, onClose }: ForecastModalProps) => {
   }, [onClose])
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title={t('admin.forecast.title')}>
+    <Modal
+      isOpen={isOpen}
+      onClose={handleClose}
+      onSubmit={handleSubmit}
+      title={t('admin.forecast.title')}
+    >
       <ForecastForm />
-
-      <div className="mt-8 flex justify-end gap-4">
-        <Button onClick={handleClose}>{t('common.actions.cancel')}</Button>
-        <Button onClick={handleSubmit}>{t('common.actions.submit')}</Button>
-      </div>
     </Modal>
   )
 }

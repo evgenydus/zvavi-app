@@ -2,16 +2,16 @@
 
 import { useTranslations } from 'next-intl'
 
-import { Button, DatePicker, TextInput } from '../../../../components/inputs'
+import { Button, DatePicker, TextInput } from '@/UI/components/inputs'
 import { Field, Label } from '@headlessui/react'
 import { PlusIcon } from '@heroicons/react/20/solid'
-import ProblemForm from './problems/ProblemForm'
+import { ProblemForm } from './ProblemForm'
 
 const ForecastForm = () => {
   const tForecast = useTranslations('admin.forecast')
 
   return (
-    <div className="flex flex-col items-center gap-3 rounded px-4">
+    <div className="flex flex-col items-center gap-3">
       <form className="flex w-full flex-col gap-12">
         <div className="flex flex-col gap-4">
           <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
@@ -35,12 +35,10 @@ const ForecastForm = () => {
         <div className="flex flex-col gap-4">
           <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-          <div>
-            <Button>
-              <PlusIcon className="size-5" />
-              {tForecast('form.problems.labels.addProblem')}
-            </Button>
-          </div>
+          <Button className="ml-auto">
+            <PlusIcon className="size-5" />
+            {tForecast('form.problems.labels.addProblem')}
+          </Button>
 
           <div>
             <ProblemForm />
