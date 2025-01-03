@@ -52,7 +52,7 @@ const ProblemForm = ({
   )
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 rounded border p-3">
       <section className="grid grid-cols-2 items-start gap-x-14">
         <div className="flex flex-col gap-3">
           <ProblemType onTypeChange={setProblemData} problemData={problemData} />

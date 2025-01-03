@@ -35,7 +35,7 @@ const Modal = ({
           <DialogPanel
             className={classnames(
               'data-[closed]:transform-[scale(95%)] duration-300 ease-out data-[closed]:opacity-0',
-              'rounded-md bg-white',
+              'rounded-md bg-white max-w-screen-lg',
             )}
             transition
           >

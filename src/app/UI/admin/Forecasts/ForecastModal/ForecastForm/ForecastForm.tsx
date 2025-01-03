@@ -10,6 +10,7 @@ import { Button, DatePicker, TextInput } from '@/UI/components/inputs'
 import { Field, Label } from '@headlessui/react'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { ProblemForm } from './ProblemForm'
+import { ProblemItem } from './ProblemItem'
 
 import type { Problem } from '@/business/types'
 
@@ -19,19 +20,21 @@ const ForecastForm = () => {
     useBoolean(false)
 
   const [problemData, setProblemData] = useState<Problem>(initialProblemData)
+  const [problems, setProblems] = useState<Problem[]>([])
 
   const handleAddProblemClick = useCallback(() => {
-    setProblemData(initialProblemData)
+    setProblems((prev) => [...prev, problemData])
     closeProblemForm()
-  }, [closeProblemForm])
+    setProblemData(initialProblemData)
+  }, [closeProblemForm, problemData])
 
   const handleProblemCancel = useCallback(() => {
-    setProblemData(initialProblemData)
     closeProblemForm()
+    setProblemData(initialProblemData)
   }, [closeProblemForm])
 
   return (
-    <div className="flex min-w-[1005px] flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-3">
       <form className="flex w-full flex-col gap-12">
         <div className="flex flex-col gap-4">
           <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
@@ -59,6 +62,14 @@ const ForecastForm = () => {
             <PlusIcon className="size-5" />
             {tForecast('form.problems.labels.addProblem')}
           </Button>
+
+          <ul className="space-y-4">
+            {problems.map((problem) => (
+              <li key={problem.type}>
+                <ProblemItem problem={problem} />
+              </li>
+            ))}
+          </ul>
 
           {isProblemFormOpen && (
             <ProblemForm
