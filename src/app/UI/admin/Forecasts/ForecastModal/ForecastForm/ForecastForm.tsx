@@ -21,9 +21,14 @@ const ForecastForm = () => {
   const [problemData, setProblemData] = useState<Problem>(initialProblemData)
 
   const handleAddProblemClick = useCallback(() => {
-    console.log('problemData: ', problemData)
+    setProblemData(initialProblemData)
     closeProblemForm()
-  }, [closeProblemForm, problemData])
+  }, [closeProblemForm])
+
+  const handleProblemCancel = useCallback(() => {
+    setProblemData(initialProblemData)
+    closeProblemForm()
+  }, [closeProblemForm])
 
   return (
     <div className="flex min-w-[1005px] flex-col items-center gap-3">
@@ -58,7 +63,7 @@ const ForecastForm = () => {
           {isProblemFormOpen && (
             <ProblemForm
               onProblemAdd={handleAddProblemClick}
-              onProblemCancel={closeProblemForm}
+              onProblemCancel={handleProblemCancel}
               problemData={problemData}
               setProblemData={setProblemData}
             />

@@ -1,4 +1,5 @@
 import {
+  aspects,
   avalancheProblemTypes,
   confidenceLevels,
   distributionTypes,
@@ -25,6 +26,7 @@ export type Confidence = keyof typeof confidenceLevels
 export type Distribution = keyof typeof distributionTypes
 export type Sensitivity = keyof typeof sensitivityLevels
 export type Trend = keyof typeof trends
+export type Aspect = keyof typeof aspects
 
 export type Forecast = {
   createdAt: string
@@ -38,6 +40,11 @@ export type Forecast = {
 }
 
 export type Problem = {
+  aspects: {
+    alpine: Aspect[]
+    highAlpine: Aspect[]
+    subAlpine: Aspect[]
+  }
   avalancheSize: AvalancheSize
   confidence: Confidence
   description: string

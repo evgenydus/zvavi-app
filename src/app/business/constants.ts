@@ -36,7 +36,7 @@ export const aspects = {
   se: 'SE',
   sw: 'SW',
   w: 'W',
-}
+} as const
 
 export const sensitivityLevels = {
   reactive: 'reactive',

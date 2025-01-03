@@ -1,6 +1,11 @@
 import type { Problem } from '@/business/types'
 
 export const initialProblemData: Problem = {
+  aspects: {
+    alpine: [],
+    highAlpine: [],
+    subAlpine: [],
+  },
   avalancheSize: 1,
   confidence: 'low',
   description: '',

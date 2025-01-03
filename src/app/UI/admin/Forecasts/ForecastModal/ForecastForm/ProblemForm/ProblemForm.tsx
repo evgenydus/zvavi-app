@@ -38,7 +38,7 @@ const ProblemForm = ({
         description: target.value,
       }))
     },
-    [],
+    [setProblemData],
   )
 
   const handleRadioChange = useCallback(
@@ -48,7 +48,7 @@ const ProblemForm = ({
         [field]: value,
       }))
     },
-    [],
+    [setProblemData],
   )
 
   return (
@@ -66,7 +66,7 @@ const ProblemForm = ({
           </InputBlock>
         </div>
 
-        <Aspects />
+        <Aspects problemData={problemData} setProblemData={setProblemData} />
       </section>
 
       <section className="grid grid-cols-2 gap-x-14">
