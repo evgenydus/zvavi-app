@@ -34,7 +34,7 @@ const ForecastForm = () => {
   }, [closeProblemForm])
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex w-[976px] flex-col items-center gap-3">
       <form className="flex w-full flex-col gap-12">
         <div className="flex flex-col gap-4">
           <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
@@ -56,12 +56,14 @@ const ForecastForm = () => {
         </div>
 
         <div className="flex flex-col gap-4">
-          <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-          <Button className="ml-auto" disabled={isProblemFormOpen} onClick={openProblemForm}>
-            <PlusIcon className="size-5" />
-            {tForecast('form.problems.labels.addProblem')}
-          </Button>
+            <Button className="ml-auto" disabled={isProblemFormOpen} onClick={openProblemForm}>
+              <PlusIcon className="size-5" />
+              {tForecast('form.problems.labels.addProblem')}
+            </Button>
+          </div>
 
           <ul className="space-y-4">
             {problems.map((problem) => (

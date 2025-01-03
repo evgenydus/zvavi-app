@@ -28,7 +28,7 @@ const ProblemItem = ({ problem }: { problem: Problem }) => {
       {description && (
         <div>
           <h4 className="mb-2 font-semibold">{tProblems('labels.description')}:</h4>
-          <p className="text-justify">{description}</p>
+          <p className="max-h-28 overflow-y-scroll text-justify">{description}</p>
         </div>
       )}
     </div>
