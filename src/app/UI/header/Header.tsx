@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import Logo from '@/assets/logo.png'
 
-import { Button } from '@/UI/inputs'
+import { Button } from '@/UI/components/inputs'
 import { NavMenu } from './NavMenu'
 import Image from 'next/image'
 import Link from 'next/link'

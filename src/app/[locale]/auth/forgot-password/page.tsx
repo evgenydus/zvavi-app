@@ -6,7 +6,7 @@ import { routes } from '@/UI/header/NavMenu/constants'
 import { supabase } from '@/data'
 import { useTranslations, useLocale } from 'next-intl'
 
-import { Button, TextInput } from '@/UI/inputs'
+import { Button, TextInput } from '@/UI/components/inputs'
 import { Field, Fieldset, Label, Legend } from '@headlessui/react'
 
 const ForgotPasswordPage = () => {
