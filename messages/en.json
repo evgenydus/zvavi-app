@@ -16,7 +16,10 @@
       "highAlpine": "High Alpine",
       "alpine": "Alpine",
       "subAlpine": "Sub Alpine"
-
+    },
+    "words": {
+      "from": "From",
+      "to": "To"
     }
   },
   "home": {

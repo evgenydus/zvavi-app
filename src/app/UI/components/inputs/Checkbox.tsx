@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { CheckIcon } from '@heroicons/react/16/solid'
-import { Checkbox as HeadlessUICheckbox, Label } from '@headlessui/react'
+import { Checkbox as HeadlessUICheckbox, Field, Label } from '@headlessui/react'
 
 type CheckboxProps = {
   className?: string
@@ -10,7 +10,7 @@ type CheckboxProps = {
 }
 
 const Checkbox = ({ className, isChecked, label, onChange }: CheckboxProps) => (
-  <div className="flex items-center gap-2">
+  <Field className="flex items-center gap-2 flex-none">
     {label && <Label className="cursor-pointer">{label}</Label>}
 
     <HeadlessUICheckbox
@@ -26,7 +26,7 @@ const Checkbox = ({ className, isChecked, label, onChange }: CheckboxProps) => (
     >
       <CheckIcon className="hidden size-4 fill-white group-data-[checked]:block" />
     </HeadlessUICheckbox>
-  </div>
+  </Field>
 )
 
 export default Checkbox

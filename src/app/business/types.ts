@@ -12,7 +12,7 @@ export type HazardLevel = 'low' | 'moderate' | 'considerable' | 'high'
 export type HazardLevelScale = 1 | 2 | 3 | 4 | 5
 export type SnowCondition = 'dry' | 'wet'
 export type ElevationZone = 'highAlpine' | 'alpine' | 'subAlpine'
-export type TimeRange = { start: string; end: string }
+export type TimeRange = { start: Date | null; end: Date | null }
 export type TimeOfDay = TimeRange | 'allDay' | null
 
 export type User = {
