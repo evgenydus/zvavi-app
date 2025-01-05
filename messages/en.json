@@ -82,8 +82,10 @@
           "title": "General Info",
           "labels": {
             "forecaster": "Forecaster",
+            "snowpack": "Snowpack",
             "summary": "Summary",
-            "validUntil": "Valid Until"
+            "validUntil": "Valid Until",
+            "weather": "Weather"
           }
         },
         "problems": {

@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl'
 import { Button, TextInput } from '@/UI/components/inputs'
 import { ProblemsSection } from './PropblemsSection'
 import InputBlock from './InputBlock'
-import Summary from './Summary'
+import TextAreaField from './TextAreaField'
 import ValidUntil from './ValidUntil'
 
 import type { Problem, ForecastFormData } from '@/business/types'
@@ -36,10 +36,14 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   )
 
   const handleSubmit = useCallback(async () => {
+    const { forecaster, snowpack, summary, validUntil, weather } = formData
     const payload = {
       forecast: {
-        forecaster: formData.forecaster,
-        validUntil: formData.validUntil ? formData.validUntil.toISOString() : null,
+        forecaster,
+        snowpack,
+        summary,
+        validUntil: validUntil ? validUntil.toISOString() : null,
+        weather,
       },
       problems,
     }
@@ -52,7 +56,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
     } catch (err) {
       console.error(error)
     }
-  }, [formData.forecaster, formData.validUntil, problems, createForecast, onClose, error])
+  }, [formData, problems, createForecast, onClose, error])
 
   return (
     <>
@@ -69,8 +73,29 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
             </div>
           </div>
 
-          <Summary formData={formData} onChange={handleTextFieldChange('summary')} />
+          <TextAreaField
+            formData={formData}
+            onChange={handleTextFieldChange('summary')}
+            type="summary"
+          />
+
           <ProblemsSection problems={problems} setProblems={setProblems} />
+
+          {/*  Recent Avalanches form  */}
+
+          <div className="flex items-center gap-6">
+            <TextAreaField
+              formData={formData}
+              onChange={handleTextFieldChange('snowpack')}
+              type="snowpack"
+            />
+
+            <TextAreaField
+              formData={formData}
+              onChange={handleTextFieldChange('weather')}
+              type="weather"
+            />
+          </div>
         </form>
       </section>
 

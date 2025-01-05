@@ -3,17 +3,7 @@ import { forecastsKeys } from '../../query-keys'
 import { supabase } from '@/data'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import type { Problem } from '@/business/types'
-
-type ForecastFormPayload = {
-  forecaster: string
-  validUntil: string | null
-}
-
-type ForecastCreatePayload = {
-  forecast: ForecastFormPayload
-  problems: Problem[]
-}
+import type { ForecastCreatePayload } from './types'
 
 const createForecast = async ({ forecast, problems }: ForecastCreatePayload): Promise<void> => {
   const { data: forecastData, error: forecastError } = await supabase
