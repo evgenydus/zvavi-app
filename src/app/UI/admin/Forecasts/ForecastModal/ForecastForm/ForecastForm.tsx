@@ -82,6 +82,9 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
           />
 
           <ProblemsSection problems={problems} setProblems={setProblems} />
+
+          <hr />
+
           <RecentAvalanchesSection
             avalanches={recentAvalanches}
             setAvalanches={setRecentAvalanches}
