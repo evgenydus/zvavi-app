@@ -7,12 +7,13 @@ import { useForecastCreate } from '@/data/hooks/forecasts'
 import { useTranslations } from 'next-intl'
 
 import { Button, TextInput } from '@/UI/components/inputs'
+import { InputBlock } from './common'
 import { ProblemsSection } from './ProblemsSection'
-import InputBlock from './InputBlock'
+import { RecentAvalanchesSection } from './RecentAvalanchesSection'
 import TextAreaField from './TextAreaField'
 import ValidUntil from './ValidUntil'
 
-import type { Problem, ForecastFormData } from '@/business/types'
+import type { Problem, ForecastFormData, Avalanche } from '@/business/types'
 
 // TODO: Implement Validations https://app.asana.com/0/1208747689500826/1209084695587061/f
 const ForecastForm = ({ onClose }: { onClose: () => void }) => {
@@ -21,6 +22,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
 
   const [formData, setFormData] = useState<ForecastFormData>(initialFormData)
   const [problems, setProblems] = useState<Problem[]>([])
+  const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>([])
 
   const { error, mutate: createForecast } = useForecastCreate()
 
@@ -80,8 +82,10 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
           />
 
           <ProblemsSection problems={problems} setProblems={setProblems} />
-
-          {/*  Recent Avalanches form  */}
+          <RecentAvalanchesSection
+            avalanches={recentAvalanches}
+            setAvalanches={setRecentAvalanches}
+          />
 
           <div className="flex items-center gap-6">
             <TextAreaField
