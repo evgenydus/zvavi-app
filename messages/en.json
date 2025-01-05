@@ -82,6 +82,7 @@
           "title": "General Info",
           "labels": {
             "forecaster": "Forecaster",
+            "summary": "Summary",
             "validUntil": "Valid Until"
           }
         },

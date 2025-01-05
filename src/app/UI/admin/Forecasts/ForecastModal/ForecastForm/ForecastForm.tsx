@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl'
 import { Button, TextInput } from '@/UI/components/inputs'
 import { ProblemsSection } from './PropblemsSection'
 import InputBlock from './InputBlock'
+import Summary from './Summary'
 import ValidUntil from './ValidUntil'
 
 import type { Problem, ForecastFormData } from '@/business/types'
@@ -25,7 +26,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
 
   const handleTextFieldChange = useCallback(
     (fieldName: keyof ForecastFormData) =>
-      ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+      ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData((prev) => ({
           ...prev,
           [fieldName]: target.value,
@@ -68,6 +69,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
             </div>
           </div>
 
+          <Summary formData={formData} onChange={handleTextFieldChange('summary')} />
           <ProblemsSection problems={problems} setProblems={setProblems} />
         </form>
       </section>

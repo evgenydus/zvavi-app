@@ -58,5 +58,6 @@ export type Problem = {
 
 export type ForecastFormData = {
   forecaster: string
+  summary: string
   validUntil: Date | null
 }
