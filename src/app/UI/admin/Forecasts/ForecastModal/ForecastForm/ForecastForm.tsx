@@ -61,7 +61,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <section className="flex w-[976px] flex-col items-center gap-3 p-6">
-        <form className="flex w-full flex-col gap-12">
+        <form className="flex w-full flex-col gap-6">
           <div className="flex flex-col gap-4">
             <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
             <div className="grid grid-cols-2 gap-x-6">

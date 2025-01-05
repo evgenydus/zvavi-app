@@ -6,8 +6,8 @@ import { useTranslations } from 'next-intl'
 
 import { Button } from '@/UI/components/inputs'
 import { PlusIcon } from '@heroicons/react/20/solid'
-import { ProblemItem } from './ProblemItem'
 import { ProblemForm } from './ProblemForm'
+import { ProblemsList } from './ProblemsList'
 
 import type { Problem } from '@/business/types'
 
@@ -35,7 +35,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
   }, [closeProblemForm])
 
   return (
-    <section className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4 border-y py-6">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
@@ -45,13 +45,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
         </Button>
       </div>
 
-      <ul className="space-y-4">
-        {problems.map((problem) => (
-          <li key={problem.type}>
-            <ProblemItem problem={problem} />
-          </li>
-        ))}
-      </ul>
+      <ProblemsList isAdding={isProblemFormOpen} problems={problems} />
 
       {isProblemFormOpen && (
         <ProblemForm

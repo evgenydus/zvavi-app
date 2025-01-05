@@ -90,6 +90,7 @@
         },
         "problems": {
           "title": "Avalanche Problems",
+          "noProblems": "No problems have been added yet.",
           "labels": {
             "addProblem": "Add Problem",
             "allDay": "All Day",
