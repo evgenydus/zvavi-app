@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { timeFormat } from '@/business/constants'
 import { useTranslations } from 'next-intl'
 
-import PropertyWrapper from './PropertyWrapper'
+import { PropertyWrapper } from '../../../common/listItem'
 
 import type { TimeRange } from '@/business/types'
 
