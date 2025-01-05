@@ -14,13 +14,12 @@ type TimeOfDayProps = {
 const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
   const t = useTranslations()
   const tProblems = useTranslations('admin.forecast.form.problems')
-  const isAllDay = problemData.timeOfDay === 'allDay'
 
   const handleCheckboxChange = useCallback(
     (value: boolean) => {
       onTimeChange((prev) => ({
         ...prev,
-        timeOfDay: value ? 'allDay' : null, // TODO: Don't reset selected time
+        isAllDay: value,
       }))
     },
     [onTimeChange],
@@ -31,8 +30,8 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
       onTimeChange((prev) => ({
         ...prev,
         timeOfDay: {
-          end: (prev.timeOfDay as TimeRange | null)?.end || null,
-          start: time,
+          end: (prev.timeOfDay as TimeRange)?.end || null,
+          start: time ? time.toISOString() : null,
         },
       }))
     },
@@ -44,7 +43,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
       onTimeChange((prev) => ({
         ...prev,
         timeOfDay: {
-          end: time,
+          end: time ? time.toISOString() : null,
           start: (prev.timeOfDay as TimeRange | null)?.start || null,
         },
       }))
@@ -58,12 +57,12 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
       <div className="flex flex-1 items-center justify-between gap-4">
         <Checkbox
           className="bg-black/5"
-          isChecked={isAllDay}
+          isChecked={problemData.isAllDay}
           label={tProblems('labels.allDay')}
           onChange={handleCheckboxChange}
         />
 
-        {!isAllDay && (
+        {!problemData.isAllDay && (
           <div className="flex items-center gap-1">
             <div>
               <DatePicker
@@ -72,7 +71,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
                 isClearable
                 onChange={handleStartTimeChange}
                 placeholderText={t('common.words.from')}
-                selected={(problemData.timeOfDay as TimeRange | null)?.start}
+                selected={(problemData.timeOfDay as TimeRange | null)?.start as Date}
                 showTimeSelect
                 showTimeSelectOnly
                 timeFormat="HH:mm"
@@ -86,7 +85,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
                 isClearable
                 onChange={handleEndTimeChange}
                 placeholderText={t('common.words.to')}
-                selected={(problemData.timeOfDay as TimeRange | null)?.end}
+                selected={(problemData.timeOfDay as TimeRange | null)?.end as Date}
                 showTimeSelect
                 showTimeSelectOnly
                 timeFormat="HH:mm"

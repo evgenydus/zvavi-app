@@ -1,31 +1,16 @@
-import { useTranslations } from 'next-intl'
 import classnames from 'classnames'
 
-import { Button } from '@/UI/components/inputs'
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 
 type ModalProps = {
-  cancelTextKey?: string
   children: React.ReactNode
   isOpen: boolean
   onClose: () => void
-  onSubmit: (data?: unknown) => void
-  submitTextKey?: string
   title?: string
 }
 
-const Modal = ({
-  isOpen,
-  onClose,
-  children,
-  title,
-  onSubmit,
-  submitTextKey = 'common.actions.submit',
-  cancelTextKey = 'common.actions.cancel',
-}: ModalProps) => {
-  const t = useTranslations()
-
+const Modal = ({ children, isOpen, onClose, title }: ModalProps) => {
   return (
     <Dialog as="div" className="relative z-10 focus:outline-none" onClose={onClose} open={isOpen}>
       <DialogBackdrop className="fixed inset-0 bg-black/30" transition />
@@ -35,7 +20,7 @@ const Modal = ({
           <DialogPanel
             className={classnames(
               'data-[closed]:transform-[scale(95%)] duration-300 ease-out data-[closed]:opacity-0',
-              'rounded-md bg-white max-w-screen-lg',
+              'max-w-screen-lg rounded-md bg-white',
             )}
             transition
           >
@@ -59,12 +44,7 @@ const Modal = ({
               </CloseButton>
             </header>
 
-            <div className="p-6">{children}</div>
-
-            <footer className="flex h-16 items-center justify-end gap-4 border-t px-6">
-              <Button onClick={onClose}>{t(cancelTextKey)}</Button>
-              <Button onClick={onSubmit}>{t(submitTextKey)}</Button>
-            </footer>
+            {children}
           </DialogPanel>
         </div>
       </div>

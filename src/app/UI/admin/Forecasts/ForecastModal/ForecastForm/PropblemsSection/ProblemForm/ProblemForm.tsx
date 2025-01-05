@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { Aspects } from './Aspects'
 import { Button, RadioGroup, Textarea } from '@/UI/components/inputs'
 import { PropertiesSection } from './PropertiesSection'
-import InputBlock from './InputBlock'
+import InputBlock from '../../InputBlock'
 import ProblemType from './ProblemType'
 
 import type { Problem } from '@/business/types'
@@ -53,7 +53,7 @@ const ProblemForm = ({
 
   return (
     <div className="flex flex-col gap-10 rounded border p-3">
-      <section className="grid grid-cols-2 items-start gap-x-14">
+      <section className="grid grid-cols-2 items-start gap-x-6">
         <div className="flex flex-col gap-3">
           <ProblemType onTypeChange={setProblemData} problemData={problemData} />
 
@@ -69,7 +69,7 @@ const ProblemForm = ({
         <Aspects problemData={problemData} setProblemData={setProblemData} />
       </section>
 
-      <section className="grid grid-cols-2 gap-x-14">
+      <section className="grid grid-cols-2 gap-x-6">
         <div className="flex flex-col gap-4 pt-1.5">
           <h4 className="w-32 font-semibold">{tProblems('labels.description')}</h4>
           <Textarea className="w-full" onChange={handleDescriptionChange} rows={9} />

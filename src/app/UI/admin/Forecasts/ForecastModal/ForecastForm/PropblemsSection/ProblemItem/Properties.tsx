@@ -7,7 +7,8 @@ import type { Problem } from '@/business/types'
 
 const Properties = ({ problem }: { problem: Problem }) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
-  const { avalancheSize, confidence, distribution, sensitivity, timeOfDay, trend } = problem
+  const { avalancheSize, confidence, distribution, isAllDay, sensitivity, timeOfDay, trend } =
+    problem
 
   return (
     <>
@@ -16,7 +17,7 @@ const Properties = ({ problem }: { problem: Problem }) => {
           <p>{avalancheSize}</p>
         </PropertyWrapper>
 
-        <TimeOfDay timeOfDay={timeOfDay} />
+        <TimeOfDay isAllDay={isAllDay} timeOfDay={timeOfDay} />
 
         <PropertyWrapper title={tProblems('labels.sensitivity')}>
           <p>{tProblems(`options.sensitivityLevel.${sensitivity}`)}</p>

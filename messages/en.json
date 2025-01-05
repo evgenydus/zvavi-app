@@ -70,9 +70,8 @@
         "columns": {
           "createdAt": "Created At",
           "forecaster": "Forecaster",
-          "hazardLevel": "Hazard Level",
           "status": "Status",
-          "validTo": "Valid To"
+          "validUntil": "Valid Until"
         }
       }
     },

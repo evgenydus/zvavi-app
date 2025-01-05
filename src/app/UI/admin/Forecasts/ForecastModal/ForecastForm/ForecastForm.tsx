@@ -2,89 +2,81 @@
 
 import { useCallback, useState } from 'react'
 
-import { initialProblemData } from './constants'
-import { useBoolean } from '@/UI/hooks'
+import { initialFormData } from './constants'
+import { useForecastCreate } from '@/data/hooks/forecasts'
 import { useTranslations } from 'next-intl'
 
-import { Button, DatePicker, TextInput } from '@/UI/components/inputs'
-import { Field, Label } from '@headlessui/react'
-import { PlusIcon } from '@heroicons/react/20/solid'
-import { ProblemForm } from './ProblemForm'
-import { ProblemItem } from './ProblemItem'
+import { Button, TextInput } from '@/UI/components/inputs'
+import { ProblemsSection } from './PropblemsSection'
+import InputBlock from './InputBlock'
+import ValidUntil from './ValidUntil'
 
-import type { Problem } from '@/business/types'
+import type { Problem, ForecastFormData } from '@/business/types'
 
-// TODO: Implement Validations
-const ForecastForm = () => {
+// TODO: Implement Validations https://app.asana.com/0/1208747689500826/1209084695587061/f
+const ForecastForm = ({ onClose }: { onClose: () => void }) => {
+  const t = useTranslations()
   const tForecast = useTranslations('admin.forecast')
-  const [isProblemFormOpen, { setFalse: closeProblemForm, setTrue: openProblemForm }] =
-    useBoolean(false)
 
-  const [problemData, setProblemData] = useState<Problem>(initialProblemData)
+  const [formData, setFormData] = useState<ForecastFormData>(initialFormData)
   const [problems, setProblems] = useState<Problem[]>([])
 
-  const handleAddProblemClick = useCallback(() => {
-    setProblems((prev) => [...prev, problemData])
-    closeProblemForm()
-    setProblemData(initialProblemData)
-  }, [closeProblemForm, problemData])
+  const { error, mutate: createForecast } = useForecastCreate()
 
-  const handleProblemCancel = useCallback(() => {
-    closeProblemForm()
-    setProblemData(initialProblemData)
-  }, [closeProblemForm])
+  const handleTextFieldChange = useCallback(
+    (fieldName: keyof ForecastFormData) =>
+      ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData((prev) => ({
+          ...prev,
+          [fieldName]: target.value,
+        }))
+      },
+    [],
+  )
+
+  const handleSubmit = useCallback(async () => {
+    const payload = {
+      forecast: {
+        forecaster: formData.forecaster,
+        validUntil: formData.validUntil ? formData.validUntil.toISOString() : null,
+      },
+      problems,
+    }
+
+    // TODO: Handle errors https://app.asana.com/0/1208747689500826/1209084695587061/f
+    try {
+      await createForecast(payload)
+      console.log('Forecast saved successfully')
+      onClose()
+    } catch (err) {
+      console.error(error)
+    }
+  }, [formData.forecaster, formData.validUntil, problems, createForecast, onClose, error])
 
   return (
-    <div className="flex w-[976px] flex-col items-center gap-3">
-      <form className="flex w-full flex-col gap-12">
-        <div className="flex flex-col gap-4">
-          <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
-          <div className="grid grid-cols-2 gap-x-14">
-            <Field className="flex items-center gap-3">
-              <Label className="w-32 font-semibold">
-                {tForecast('form.general.labels.forecaster')}
-              </Label>
-              <TextInput className="flex-1" name="forecaster_name" />
-            </Field>
+    <>
+      <section className="flex w-[976px] flex-col items-center gap-3 p-6">
+        <form className="flex w-full flex-col gap-12">
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
+            <div className="grid grid-cols-2 gap-x-6">
+              <InputBlock label={tForecast('form.general.labels.forecaster')}>
+                <TextInput className="flex-1" onChange={handleTextFieldChange('forecaster')} />
+              </InputBlock>
 
-            <Field className="flex items-center gap-3">
-              <Label className="w-32 font-semibold">
-                {tForecast('form.general.labels.validUntil')}
-              </Label>
-              <DatePicker showTimeSelect />
-            </Field>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
-
-            <Button className="ml-auto" disabled={isProblemFormOpen} onClick={openProblemForm}>
-              <PlusIcon className="size-5" />
-              {tForecast('form.problems.labels.addProblem')}
-            </Button>
+              <ValidUntil formData={formData} setFormData={setFormData} />
+            </div>
           </div>
 
-          <ul className="space-y-4">
-            {problems.map((problem) => (
-              <li key={problem.type}>
-                <ProblemItem problem={problem} />
-              </li>
-            ))}
-          </ul>
+          <ProblemsSection problems={problems} setProblems={setProblems} />
+        </form>
+      </section>
 
-          {isProblemFormOpen && (
-            <ProblemForm
-              onProblemAdd={handleAddProblemClick}
-              onProblemCancel={handleProblemCancel}
-              problemData={problemData}
-              setProblemData={setProblemData}
-            />
-          )}
-        </div>
-      </form>
-    </div>
+      <footer className="flex h-16 items-center justify-end gap-4 border-t px-6">
+        <Button onClick={onClose}>{t('common.actions.cancel')}</Button>
+        <Button onClick={handleSubmit}>{t('common.actions.submit')}</Button>
+      </footer>
+    </>
   )
 }
 

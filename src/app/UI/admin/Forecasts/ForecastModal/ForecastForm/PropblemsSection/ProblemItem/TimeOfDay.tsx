@@ -6,9 +6,13 @@ import PropertyWrapper from './PropertyWrapper'
 
 import type { TimeOfDay } from '@/business/types'
 
-const TimeOfDay = ({ timeOfDay }: { timeOfDay: TimeOfDay }) => {
+type TimeOfDayProps = {
+  timeOfDay: TimeOfDay
+  isAllDay: boolean
+}
+
+const TimeOfDay = ({ isAllDay, timeOfDay }: TimeOfDayProps) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
-  const isAllDay = timeOfDay === 'allDay'
 
   return (
     <PropertyWrapper title={tProblems('labels.timeOfDay')}>

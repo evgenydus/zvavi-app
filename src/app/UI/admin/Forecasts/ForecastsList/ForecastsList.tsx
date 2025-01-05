@@ -11,7 +11,7 @@ import type { Forecast } from '@/business/types'
 
 const ForecastsList = ({ forecasts }: { forecasts: Forecast[] }) => {
   const tAdmin = useTranslations('admin')
-  const [isModalOpen, { setTrue: openModal, setFalse: closeModal }] = useBoolean(false)
+  const [isModalOpen, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false)
 
   return (
     <>
@@ -22,11 +22,10 @@ const ForecastsList = ({ forecasts }: { forecasts: Forecast[] }) => {
 
       <div className="w-full">
         <div className="flex w-full items-center gap-4 rounded-t bg-black/5 px-4 py-1.5">
-          <Column className="font-semibold">{tAdmin('forecasts.list.columns.createdAt')}</Column>
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.forecaster')}</Column>
-          <Column className="font-semibold">{tAdmin('forecasts.list.columns.hazardLevel')}</Column>
+          <Column className="font-semibold">{tAdmin('forecasts.list.columns.createdAt')}</Column>
+          <Column className="font-semibold">{tAdmin('forecasts.list.columns.validUntil')}</Column>
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.status')}</Column>
-          <Column className="font-semibold">{tAdmin('forecasts.list.columns.validTo')}</Column>
         </div>
 
         <ul className="flex flex-col">

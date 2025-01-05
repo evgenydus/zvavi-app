@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
-import InputBlock from '../InputBlock'
+import InputBlock from '../../../InputBlock'
 import { AspectSelector } from './AspectSelector'
 
 import type { Aspect, ElevationZone as ElevationZoneType, Problem } from '@/business/types'

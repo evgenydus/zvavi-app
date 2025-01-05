@@ -1,1 +1,2 @@
-export { convertSnakeToCamel } from './convertToCamelCase'
+export { default as convertSnakeToCamel } from './convertSnakeToCamel'
+export { default as convertCamelToSnake } from './convertCamelToSnake'

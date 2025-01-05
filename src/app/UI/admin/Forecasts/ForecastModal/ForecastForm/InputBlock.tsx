@@ -7,8 +7,8 @@ type InputBlockProps = {
 }
 
 const InputBlock = ({ children, label, labelClassName = 'w-28' }: InputBlockProps) => (
-  <div className="flex flex-none items-center gap-4">
-    <h4 className={classnames('font-semibold', labelClassName)}>{label}</h4>
+  <div className="flex items-center gap-3">
+    <h4 className={classnames('flex-none font-semibold', labelClassName)}>{label}</h4>
     {children}
   </div>
 )

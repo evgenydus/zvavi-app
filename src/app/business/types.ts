@@ -12,8 +12,8 @@ export type HazardLevel = 'low' | 'moderate' | 'considerable' | 'high'
 export type HazardLevelScale = 1 | 2 | 3 | 4 | 5
 export type SnowCondition = 'dry' | 'wet'
 export type ElevationZone = 'highAlpine' | 'alpine' | 'subAlpine'
-export type TimeRange = { start: Date | null; end: Date | null }
-export type TimeOfDay = TimeRange | 'allDay' | null
+export type TimeRange = { start: Date | string | null; end: Date | string | null }
+export type TimeOfDay = TimeRange | null
 
 export type User = {
   id: string
@@ -35,7 +35,7 @@ export type Forecast = {
   description: string
   id: number
   snowCondition: SnowCondition
-  validTo: string
+  validUntil: string
   status: 'draft' | 'published'
 }
 
@@ -49,8 +49,14 @@ export type Problem = {
   confidence: Confidence
   description: string
   distribution: Distribution
+  isAllDay: boolean
   sensitivity: Sensitivity
   timeOfDay: TimeOfDay
   trend: Trend
   type: AvalancheProblemTypes | null
+}
+
+export type ForecastFormData = {
+  forecaster: string
+  validUntil: Date | null
 }

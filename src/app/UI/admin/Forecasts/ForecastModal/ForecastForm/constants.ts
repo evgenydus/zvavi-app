@@ -1,4 +1,9 @@
-import type { Problem } from '@/business/types'
+import type { Problem, ForecastFormData } from '@/business/types'
+
+export const initialFormData: ForecastFormData = {
+  forecaster: '',
+  validUntil: null,
+}
 
 export const initialProblemData: Problem = {
   aspects: {
@@ -10,8 +15,9 @@ export const initialProblemData: Problem = {
   confidence: 'low',
   description: '',
   distribution: 'isolated',
+  isAllDay: true,
   sensitivity: 'reactive',
-  timeOfDay: 'allDay',
+  timeOfDay: { end: null, start: null },
   trend: 'deteriorating',
   type: null,
 }
