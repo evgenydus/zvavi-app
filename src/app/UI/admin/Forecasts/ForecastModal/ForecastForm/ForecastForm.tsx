@@ -48,6 +48,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
         weather,
       },
       problems,
+      recentAvalanches,
     }
 
     // TODO: Handle errors https://app.asana.com/0/1208747689500826/1209084695587061/f
@@ -58,7 +59,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
     } catch (err) {
       console.error(error)
     }
-  }, [formData, problems, createForecast, onClose, error])
+  }, [formData, problems, recentAvalanches, createForecast, onClose, error])
 
   return (
     <>
