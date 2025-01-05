@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl'
 
 import PropertyWrapper from './PropertyWrapper'
 
-import type { TimeOfDay } from '@/business/types'
+import type { TimeRange } from '@/business/types'
 
 type TimeOfDayProps = {
-  timeOfDay: TimeOfDay
+  timeOfDay: TimeRange
   isAllDay: boolean
 }
 

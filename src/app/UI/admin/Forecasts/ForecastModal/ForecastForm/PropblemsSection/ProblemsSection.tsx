@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react'
 import { initialProblemData } from '../constants'
 import { useBoolean } from '@/UI/hooks'
 import { useTranslations } from 'next-intl'
+import prepareTimeOfDay from './prepareTimeOfDay'
 
 import { Button } from '@/UI/components/inputs'
 import { PlusIcon } from '@heroicons/react/20/solid'
@@ -24,7 +25,12 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
     useBoolean(false)
 
   const handleAddProblemClick = useCallback(() => {
-    setProblems((prev) => [...prev, problemData])
+    const preparedProblem = {
+      ...problemData,
+      timeOfDay: prepareTimeOfDay(problemData.timeOfDay),
+    }
+
+    setProblems((prev) => [...prev, preparedProblem])
     closeProblemForm()
     setProblemData(initialProblemData)
   }, [closeProblemForm, problemData, setProblems])

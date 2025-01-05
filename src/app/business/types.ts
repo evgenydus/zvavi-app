@@ -13,7 +13,6 @@ export type HazardLevelScale = 1 | 2 | 3 | 4 | 5
 export type SnowCondition = 'dry' | 'wet'
 export type ElevationZone = 'highAlpine' | 'alpine' | 'subAlpine'
 export type TimeRange = { start: Date | string | null; end: Date | string | null }
-export type TimeOfDay = TimeRange | null
 
 export type User = {
   id: string
@@ -51,7 +50,7 @@ export type Problem = {
   distribution: Distribution
   isAllDay: boolean
   sensitivity: Sensitivity
-  timeOfDay: TimeOfDay
+  timeOfDay: TimeRange
   trend: Trend
   type: AvalancheProblemTypes | null
 }

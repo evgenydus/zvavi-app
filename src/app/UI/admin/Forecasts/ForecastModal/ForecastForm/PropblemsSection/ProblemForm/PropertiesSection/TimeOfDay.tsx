@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 
 import { Checkbox, DatePicker } from '@/UI/components/inputs'
 
-import type { Problem, TimeRange } from '@/business/types'
+import type { Problem } from '@/business/types'
 
 type TimeOfDayProps = {
   onTimeChange: (value: React.SetStateAction<Problem>) => void
@@ -30,8 +30,8 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
       onTimeChange((prev) => ({
         ...prev,
         timeOfDay: {
-          end: (prev.timeOfDay as TimeRange)?.end || null,
-          start: time ? time.toISOString() : null,
+          end: prev.timeOfDay.end,
+          start: time,
         },
       }))
     },
@@ -43,8 +43,8 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
       onTimeChange((prev) => ({
         ...prev,
         timeOfDay: {
-          end: time ? time.toISOString() : null,
-          start: (prev.timeOfDay as TimeRange | null)?.start || null,
+          end: time,
+          start: prev.timeOfDay.start,
         },
       }))
     },
@@ -71,7 +71,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
                 isClearable
                 onChange={handleStartTimeChange}
                 placeholderText={t('common.words.from')}
-                selected={(problemData.timeOfDay as TimeRange | null)?.start as Date}
+                selected={problemData.timeOfDay.start as Date | null}
                 showTimeSelect
                 showTimeSelectOnly
                 timeFormat="HH:mm"
@@ -85,7 +85,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
                 isClearable
                 onChange={handleEndTimeChange}
                 placeholderText={t('common.words.to')}
-                selected={(problemData.timeOfDay as TimeRange | null)?.end as Date}
+                selected={problemData.timeOfDay.end as Date | null}
                 showTimeSelect
                 showTimeSelectOnly
                 timeFormat="HH:mm"
