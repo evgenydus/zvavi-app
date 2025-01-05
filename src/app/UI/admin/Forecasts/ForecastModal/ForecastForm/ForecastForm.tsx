@@ -7,7 +7,7 @@ import { useForecastCreate } from '@/data/hooks/forecasts'
 import { useTranslations } from 'next-intl'
 
 import { Button, TextInput } from '@/UI/components/inputs'
-import { ProblemsSection } from './PropblemsSection'
+import { ProblemsSection } from './ProblemsSection'
 import InputBlock from './InputBlock'
 import TextAreaField from './TextAreaField'
 import ValidUntil from './ValidUntil'
