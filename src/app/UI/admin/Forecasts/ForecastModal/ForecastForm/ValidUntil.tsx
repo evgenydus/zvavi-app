@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { DatePicker } from '@/UI/components/inputs'
-import InputBlock from './InputBlock'
+import { InputBlock } from './common'
 
 import type { ForecastFormData } from '@/business/types'
 
