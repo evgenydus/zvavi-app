@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import PropertyWrapper from './PropertyWrapper'
-import type { Aspect, Problem } from '@/business/types'
+import type { Aspect, Avalanche, Problem } from '@/business/types'
 
 const getAspectsString = (aspects: Aspect[]) => {
   if (!aspects || aspects.length === 0) return '—'
@@ -8,9 +8,9 @@ const getAspectsString = (aspects: Aspect[]) => {
   return aspects.map((aspect) => aspect.toUpperCase()).join(', ')
 }
 
-const Aspects = ({ problem }: { problem: Problem }) => {
+const Aspects = ({ item }: { item: Problem | Avalanche }) => {
   const t = useTranslations()
-  const { alpine, highAlpine, subAlpine } = problem.aspects
+  const { alpine, highAlpine, subAlpine } = item.aspects
 
   return (
     <div className="w-[355px]">
