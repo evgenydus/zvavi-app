@@ -1,12 +1,25 @@
 {
   "common": {
     "actions": {
-      "save": "Save"
+      "add": "Add",
+      "cancel": "Cancel",
+      "save": "Save",
+      "submit": "Submit"
     },
 
     "labels": {
       "description": "Description",
       "email": "Email"
+    },
+
+    "elevationZones": {
+      "highAlpine": "High Alpine",
+      "alpine": "Alpine",
+      "subAlpine": "Sub Alpine"
+    },
+    "words": {
+      "from": "From",
+      "to": "To"
     }
   },
   "home": {
@@ -48,6 +61,85 @@
     "setNewPassword": {
       "title": "Set New Password",
       "setPassword": "Set Password"
+    }
+  },
+  "admin": {
+    "forecasts": {
+      "title": "Forecasts",
+      "list": {
+        "columns": {
+          "createdAt": "Created At",
+          "forecaster": "Forecaster",
+          "status": "Status",
+          "validUntil": "Valid Until"
+        }
+      }
+    },
+    "forecast": {
+      "title": "Create New Forecast",
+      "form": {
+        "general": {
+          "title": "General Info",
+          "labels": {
+            "forecaster": "Forecaster",
+            "snowpack": "Snowpack",
+            "summary": "Summary",
+            "validUntil": "Valid Until",
+            "weather": "Weather"
+          }
+        },
+        "problems": {
+          "title": "Avalanche Problems",
+          "noProblems": "No problems have been added yet.",
+          "labels": {
+            "addProblem": "Add Problem",
+            "allDay": "All Day",
+            "aspects": "Aspects",
+            "avalancheSize": "Avalanche Size",
+            "confidence": "Confidence",
+            "description": "Description",
+            "distribution": "Distribution",
+            "problemType": "Problem Type",
+            "sensitivity": "Sensitivity",
+            "timeOfDay": "Time of Day",
+            "trend": "Trend"
+          },
+          "options": {
+            "distribution": {
+              "isolated": "Isolated",
+              "specific": "Specific",
+              "widespread": "Widespread"
+            },
+            "sensitivityLevel": {
+              "reactive": "Reactive",
+              "stubborn": "Stubborn",
+              "touchy": "Touchy",
+              "unreactive": "Unreactive"
+            },
+            "problemType": {
+              "cornice": "Cornice",
+              "deepSlab": "Deep Slab",
+              "glide": "Glide",
+              "looseDry": "Loose Dry",
+              "looseWet": "Loose Wet",
+              "persistentSlab": "Persistent Slab",
+              "stormSlab": "Storm Slab",
+              "wetSlab": "Wet Slab",
+              "windSlab": "Wind Slab"
+            },
+            "trend": {
+              "improving": "Improving",
+              "deteriorating": "Deteriorating",
+              "noChange": "No Change"
+            },
+            "confidence": {
+              "high": "High",
+              "moderate": "Moderate",
+              "low": "Low"
+            }
+          }
+        }
+      }
     }
   }
 }

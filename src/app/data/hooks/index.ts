@@ -1,2 +1,1 @@
-export { default as useGetForecasts } from './useGetForecasts'
-export * from './types'
+export { default as useGetForecasts } from './forecasts/useGetForecasts'

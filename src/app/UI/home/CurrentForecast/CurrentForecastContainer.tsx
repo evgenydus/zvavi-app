@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { type Forecast, useGetForecasts } from '@/data/hooks'
+import { useGetForecasts } from '@/data/hooks'
 
 import CurrentForecast from './CurrentForecast'
+
+import type { Forecast } from '@/business/types'
 
 const CurrentForecastContainer = () => {
   const { data: forecasts } = useGetForecasts()

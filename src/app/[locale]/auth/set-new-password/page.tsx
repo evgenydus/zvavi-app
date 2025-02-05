@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { Field, Fieldset, Label, Legend } from '@headlessui/react'
-import { Button, TextInput } from '@/UI/inputs'
+import { Button, TextInput } from '@/UI/components/inputs'
 
 const validatePasswords = (password: string, passwordConfirm: string) => {
   return passwordConfirm === password
