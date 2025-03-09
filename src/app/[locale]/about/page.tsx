@@ -4,7 +4,7 @@ import { PageWrapper } from '@/UI/containers/PageWrapper'
 const Page = () => {
   const t = useTranslations()
 
-  return <PageWrapper title={t('about.title')}>About Us Page</PageWrapper>
+  return <PageWrapper title={t('navigation.about')}>About Us Page</PageWrapper>
 }
 
 export default Page

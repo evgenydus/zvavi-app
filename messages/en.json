@@ -27,9 +27,11 @@
   },
 
   "navigation": {
+    "about": "About Us",
     "contact": "Contact",
     "home": "Home",
-    "sponsors": "Sponsors"
+    "joinUs": "Join Us",
+    "partners": "Partners"
   },
 
   "partners": {
