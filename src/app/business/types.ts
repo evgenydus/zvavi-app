@@ -9,8 +9,7 @@ import {
 
 export type HazardLevel = 'low' | 'moderate' | 'considerable' | 'high'
 
-export type HazardLevelScale = 1 | 2 | 3 | 4 | 5
-export type SnowCondition = 'dry' | 'wet'
+export type HazardLevelScale = '1' | '2' | '3' | '4' | '5'
 export type ElevationZone = 'highAlpine' | 'alpine' | 'subAlpine'
 export type TimeRange = { start: Date | string | null; end: Date | string | null }
 
@@ -31,9 +30,8 @@ export type Forecast = {
   createdAt: string
   forecaster: string
   hazardLevel: HazardLevelScale
-  description: string
+  summary: string
   id: number
-  snowCondition: SnowCondition
   validUntil: string
   status: 'draft' | 'published'
 }

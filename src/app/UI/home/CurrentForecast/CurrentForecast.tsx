@@ -1,25 +1,15 @@
-import { hazardIconsBySnowCondition } from '@/UI/constants'
-import { hazardLevelsByScale } from '@/business/constants'
-
-import Image from 'next/image'
-import Description from './Description'
+import { HazardLevelBanner } from '@/UI/components/HazardLevelBanner'
+import Summary from './Summary'
 
 import type { Forecast } from '@/business/types'
 
 const CurrentForecast = ({ forecast }: { forecast: Forecast }) => {
-  const { description, hazardLevel, snowCondition } = forecast
-  const hazardLevelTitle = hazardLevelsByScale[hazardLevel]
-  const icon = hazardIconsBySnowCondition[snowCondition][hazardLevel]
+  const { hazardLevel, summary } = forecast
 
   return (
     <section className="space-y-4">
-      <h3 className="text-center text-2xl font-bold">Current forecast</h3>
-      <div className="flex items-center justify-center gap-4">
-        <Image alt="Logo" src={icon} width={96} />
-        <h4 className="text-2xl font-semibold">{hazardLevelTitle}</h4>
-      </div>
-
-      <Description description={description} />
+      <HazardLevelBanner hazardLevel={hazardLevel} />
+      <Summary summary={summary} />
     </section>
   )
 }
