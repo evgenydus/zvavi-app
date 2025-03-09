@@ -10,7 +10,7 @@ const AdminPage = () => {
   const t = useTranslations()
 
   return (
-    <PageWrapper>
+    <PageWrapper title="Admin Page">
       <Link className="flex h-12 items-center px-3.5" href={routes.forecasts}>
         {t('admin.forecasts.title')}
       </Link>

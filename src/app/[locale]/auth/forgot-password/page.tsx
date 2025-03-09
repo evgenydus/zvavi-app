@@ -36,7 +36,7 @@ const ForgotPasswordPage = () => {
         setErrorMessage('')
       }
     },
-    [email],
+    [email, locale],
   )
 
   return (

@@ -67,7 +67,7 @@ const SetNewPasswordPage = () => {
     }
 
     checkAuth()
-  }, [])
+  }, [t])
 
   return (
     <form className="w-full max-w-lg px-4" onSubmit={handleNewPasswordSubmit}>
