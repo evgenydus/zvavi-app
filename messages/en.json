@@ -25,17 +25,14 @@
     }
   },
 
-  "home": {
-    "title": "Welcome!",
-    "currentForecast": {
-      "title": "Current Forecast"
-    }
-  },
-
   "navigation": {
     "contact": "Contact",
     "home": "Home",
     "sponsors": "Sponsors"
+  },
+
+  "partners": {
+    "title": "Our Partners"
   },
 
   "auth": {
