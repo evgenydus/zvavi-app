@@ -1,10 +1,11 @@
-import { CurrentForecastContainer } from '@/UI/home/CurrentForecast'
-import { Partners } from '@/UI/home/Partners'
+import { AboutUs, CurrentForecastContainer, Partners, JoinUs } from '@/UI/home'
 
 const Home = () => (
   <main className="space-y-8 px-4">
     <CurrentForecastContainer />
     <Partners />
+    <AboutUs />
+    <JoinUs />
   </main>
 )
 
