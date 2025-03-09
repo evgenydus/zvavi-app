@@ -1,6 +1,7 @@
 import type { NavMenuItem } from './types'
 
 export const routes = {
+  about: '/about',
   admin: '/admin',
   contact: '/contact',
   forecasts: 'admin/forecasts',
