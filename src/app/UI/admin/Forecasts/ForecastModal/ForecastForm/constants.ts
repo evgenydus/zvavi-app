@@ -2,7 +2,10 @@ import type { Problem, ForecastFormData } from '@/business/types'
 
 export const initialFormData: ForecastFormData = {
   forecaster: '',
+  snowpack: '',
+  summary: '',
   validUntil: null,
+  weather: '',
 }
 
 export const initialProblemData: Problem = {
