@@ -8,8 +8,9 @@
     },
 
     "labels": {
-      "description": "Description",
-      "email": "Email"
+      "email": "Email",
+      "overallRiskLevel": "Overall risk level",
+      "summary": "Summary"
     },
 
     "elevationZones": {
@@ -17,22 +18,26 @@
       "alpine": "Alpine",
       "subAlpine": "Sub Alpine"
     },
+
     "words": {
       "from": "From",
       "to": "To"
     }
   },
+
   "home": {
     "title": "Welcome!",
     "currentForecast": {
       "title": "Current Forecast"
     }
   },
+
   "navigation": {
     "contact": "Contact",
     "home": "Home",
     "sponsors": "Sponsors"
   },
+
   "auth": {
     "errors": {
       "invalidSession": "Invalid or expired session. Please request a new password reset link."

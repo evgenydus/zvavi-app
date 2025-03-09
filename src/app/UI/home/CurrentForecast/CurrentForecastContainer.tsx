@@ -1,21 +1,21 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useGetForecasts } from '@/data/hooks'
+import { useGetCurrentForecast } from '@/data/hooks/forecasts'
 
 import CurrentForecast from './CurrentForecast'
 
 import type { Forecast } from '@/business/types'
 
 const CurrentForecastContainer = () => {
-  const { data: forecasts } = useGetForecasts()
+  const { data: forecast } = useGetCurrentForecast()
   const [currentForecast, setCurrentForecast] = useState<Forecast>()
 
   useEffect(() => {
-    if (!forecasts) return
+    if (!forecast) return
 
-    setCurrentForecast(forecasts[0])
-  }, [forecasts])
+    setCurrentForecast(forecast)
+  }, [forecast])
 
   if (!currentForecast) return null
 
