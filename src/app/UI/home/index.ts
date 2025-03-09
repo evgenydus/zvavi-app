@@ -1,1 +1,3 @@
-export { CurrentForecast } from './CurrentForecast'
+export { CurrentForecastContainer } from './CurrentForecast'
+export { JoinUs } from './JoinUs'
+export { Partners } from './Partners'
