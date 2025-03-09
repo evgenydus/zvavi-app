@@ -6,7 +6,7 @@ import { useAuth } from '@/UI/hooks'
 import { useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import Logo from '@/assets/logo.png'
+import Logo from '@/assets/images/logo.png'
 
 import { Button } from '@/UI/components/inputs'
 import { NavMenu } from './NavMenu'

@@ -30,7 +30,7 @@ const HazardLevelBanner = ({ hazardLevel }: { hazardLevel: HazardLevelScale }) =
         <h4 className="text-3xl font-semibold">{title}</h4>
       </div>
 
-      <Image alt="Logo" height={80} src={icon} />
+      <Image alt="Risk level" height={80} src={icon} />
     </div>
   )
 }
