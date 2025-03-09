@@ -1,12 +1,15 @@
 import { AboutUs, CurrentForecastContainer, Partners, JoinUs } from '@/UI/home'
+import { PageWrapper } from '../UI/containers/PageWrapper'
 
 const Home = () => (
-  <main className="space-y-8 px-4">
-    <CurrentForecastContainer />
-    <Partners />
-    <AboutUs />
-    <JoinUs />
-  </main>
+  <PageWrapper>
+    <main className="space-y-8">
+      <CurrentForecastContainer />
+      <Partners />
+      <AboutUs />
+      <JoinUs />
+    </main>
+  </PageWrapper>
 )
 
 export default Home

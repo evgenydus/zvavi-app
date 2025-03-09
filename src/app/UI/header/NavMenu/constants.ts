@@ -8,26 +8,39 @@ export const routes = {
   forgotPassword: '/auth/forgot-password',
   joinUs: '/join-us',
   login: '/auth/login',
+  partners: '/partners',
   setNewPassword: '/auth/set-new-password',
-  sponsors: '/sponsors',
 }
 
 export const navMenuItems: NavMenuItem[] = [
   {
-    icon: 'homeModern',
+    icon: 'home',
     id: 'home',
     path: '/',
     titleId: 'navigation.home',
   },
   {
     icon: 'star',
-    id: 'sponsors',
-    path: routes.sponsors,
-    titleId: 'navigation.sponsors',
+    id: 'partners',
+    path: routes.partners,
+    titleId: 'navigation.partners',
+  },
+  {
+    icon: 'userGroup',
+    id: 'about',
+    path: routes.about,
+    titleId: 'navigation.about',
+  },
+  {
+    icon: 'userPlus',
+    id: 'joinUs',
+    path: routes.joinUs,
+    titleId: 'navigation.joinUs',
   },
   {
     icon: 'envelope',
     id: 'contact',
+    isHidden: true,
     path: routes.contact,
     titleId: 'navigation.contact',
   },
