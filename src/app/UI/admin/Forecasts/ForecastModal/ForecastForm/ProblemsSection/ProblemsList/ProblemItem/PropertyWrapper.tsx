@@ -8,7 +8,7 @@ type PropertyWrapperProps = {
 
 const PropertyWrapper = ({ children, title, titleClassname }: PropertyWrapperProps) => (
   <div className="flex items-center gap-2">
-    <h4 className={classnames('font-semibold flex-none', titleClassname)}>{title}:</h4>
+    <h4 className={classnames('flex-none font-semibold', titleClassname)}>{title}:</h4>
     {children}
   </div>
 )

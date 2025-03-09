@@ -51,8 +51,8 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
     // TODO: Handle errors https://app.asana.com/0/1208747689500826/1209084695587061/f
     try {
       await createForecast(payload)
-      console.log('Forecast saved successfully')
       onClose()
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       console.error(error)
     }

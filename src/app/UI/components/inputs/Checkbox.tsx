@@ -10,7 +10,7 @@ type CheckboxProps = {
 }
 
 const Checkbox = ({ className, isChecked, label, onChange }: CheckboxProps) => (
-  <Field className="flex items-center gap-2 flex-none">
+  <Field className="flex flex-none items-center gap-2">
     {label && <Label className="cursor-pointer">{label}</Label>}
 
     <HeadlessUICheckbox
