@@ -10,6 +10,7 @@ import { Button, TextInput } from '@/UI/components/inputs'
 import { InputBlock } from './common'
 import { ProblemsSection } from './ProblemsSection'
 import { RecentAvalanchesSection } from './RecentAvalanchesSection'
+import AdditionalTextFields from './AdditionalTextFields'
 import TextAreaField from './TextAreaField'
 import ValidUntil from './ValidUntil'
 
@@ -38,10 +39,11 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   )
 
   const handleSubmit = useCallback(async () => {
-    const { forecaster, snowpack, summary, validUntil, weather } = formData
+    const { forecaster, otherHazards, snowpack, summary, validUntil, weather } = formData
     const payload = {
       forecast: {
         forecaster,
+        otherHazards,
         snowpack,
         summary,
         validUntil: validUntil ? validUntil.toISOString() : null,
@@ -91,19 +93,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
             setAvalanches={setRecentAvalanches}
           />
 
-          <div className="flex items-center gap-6">
-            <TextAreaField
-              formData={formData}
-              onChange={handleTextFieldChange('snowpack')}
-              type="snowpack"
-            />
-
-            <TextAreaField
-              formData={formData}
-              onChange={handleTextFieldChange('weather')}
-              type="weather"
-            />
-          </div>
+          <AdditionalTextFields formData={formData} onChange={handleTextFieldChange} />
         </form>
       </section>
 

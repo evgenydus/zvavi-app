@@ -5,7 +5,7 @@ import type { ForecastFormData } from '@/business/types'
 type SummaryProps = {
   formData: ForecastFormData
   onChange: (value: React.ChangeEvent<HTMLTextAreaElement>) => void
-  type: 'summary' | 'snowpack' | 'weather'
+  type: 'otherHazards' | 'snowpack' | 'summary' | 'weather'
 }
 
 const TextAreaField = ({ formData, onChange, type }: SummaryProps) => {
