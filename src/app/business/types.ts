@@ -52,6 +52,7 @@ export type Problem = {
 
 export type ForecastFormData = {
   forecaster: string
+  otherHazards: string
   snowpack: string
   summary: string
   validUntil: Date | null

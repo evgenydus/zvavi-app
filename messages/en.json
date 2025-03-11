@@ -107,6 +107,7 @@
           "title": "General Info",
           "labels": {
             "forecaster": "Forecaster",
+            "otherHazards": "Other Hazards",
             "snowpack": "Snowpack",
             "summary": "Summary",
             "validUntil": "Valid Until",

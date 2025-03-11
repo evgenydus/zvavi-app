@@ -38,10 +38,11 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   )
 
   const handleSubmit = useCallback(async () => {
-    const { forecaster, snowpack, summary, validUntil, weather } = formData
+    const { forecaster, otherHazards, snowpack, summary, validUntil, weather } = formData
     const payload = {
       forecast: {
         forecaster,
+        otherHazards,
         snowpack,
         summary,
         validUntil: validUntil ? validUntil.toISOString() : null,
@@ -104,6 +105,12 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
               type="weather"
             />
           </div>
+
+          <TextAreaField
+            formData={formData}
+            onChange={handleTextFieldChange('otherHazards')}
+            type="otherHazards"
+          />
         </form>
       </section>
 
