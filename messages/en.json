@@ -113,14 +113,19 @@
             "weather": "Weather"
           }
         },
+        "common": {
+          "labels": {
+            "aspects": "Aspects",
+            "avalancheSize": "Avalanche Size",
+            "description": "Description"
+          }
+        },
         "problems": {
           "title": "Avalanche Problems",
           "noProblems": "No problems have been added yet.",
           "labels": {
             "addProblem": "Add Problem",
             "allDay": "All Day",
-            "aspects": "Aspects",
-            "avalancheSize": "Avalanche Size",
             "confidence": "Confidence",
             "description": "Description",
             "distribution": "Distribution",
@@ -162,6 +167,14 @@
               "moderate": "Moderate",
               "low": "Low"
             }
+          }
+        },
+        "recentAvalanches": {
+          "title": "Recent Avalanches",
+          "noAvalanches": "No avalanches have been added yet.",
+          "labels": {
+            "addAvalanche": "Add Avalanche",
+            "date": "Date"
           }
         }
       }

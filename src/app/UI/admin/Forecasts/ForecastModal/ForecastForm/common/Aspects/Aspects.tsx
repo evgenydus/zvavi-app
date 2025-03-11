@@ -1,22 +1,24 @@
 import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
-import InputBlock from '../../../InputBlock'
 import { AspectSelector } from './AspectSelector'
+import InputBlock from '../InputBlock'
 
-import type { Aspect, ElevationZone as ElevationZoneType, Problem } from '@/business/types'
+import type { Aspect, Avalanche, ElevationZone, Problem } from '@/business/types'
+
+export type SetAspectsData = (value: React.SetStateAction<Problem | Avalanche>) => void
 
 type AspectsProps = {
-  problemData: Problem
-  setProblemData: (value: React.SetStateAction<Problem>) => void
+  data: Problem | Avalanche
+  setData: SetAspectsData
 }
 
-const Aspects = ({ problemData, setProblemData }: AspectsProps) => {
+const Aspects = ({ data, setData }: AspectsProps) => {
   const t = useTranslations()
 
   const handleAspectsSelect = useCallback(
-    (zone: ElevationZoneType) => (values: Aspect[]) => {
-      setProblemData((prev) => ({
+    (zone: ElevationZone) => (values: Aspect[]) => {
+      setData((prev) => ({
         ...prev,
         aspects: {
           ...prev.aspects,
@@ -24,7 +26,7 @@ const Aspects = ({ problemData, setProblemData }: AspectsProps) => {
         },
       }))
     },
-    [setProblemData],
+    [setData],
   )
 
   return (
@@ -32,19 +34,19 @@ const Aspects = ({ problemData, setProblemData }: AspectsProps) => {
       <InputBlock label={t('common.elevationZones.highAlpine')}>
         <AspectSelector
           onChange={handleAspectsSelect('highAlpine')}
-          selectedAspects={problemData.aspects.highAlpine}
+          selectedAspects={data.aspects.highAlpine}
         />
       </InputBlock>
       <InputBlock label={t('common.elevationZones.alpine')}>
         <AspectSelector
           onChange={handleAspectsSelect('alpine')}
-          selectedAspects={problemData.aspects.alpine}
+          selectedAspects={data.aspects.alpine}
         />
       </InputBlock>
       <InputBlock label={t('common.elevationZones.subAlpine')}>
         <AspectSelector
           onChange={handleAspectsSelect('subAlpine')}
-          selectedAspects={problemData.aspects.subAlpine}
+          selectedAspects={data.aspects.subAlpine}
         />
       </InputBlock>
     </div>

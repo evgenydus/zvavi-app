@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const convertCamelToSnake = (object: Record<string, any>): Record<string, any> => {
-  if (Array.isArray(object)) {
-    return object.map((item) => convertCamelToSnake(item))
+const convertCamelToSnake = (input: any): any => {
+  if (Array.isArray(input)) {
+    return input.map((item) => convertCamelToSnake(item))
   }
 
-  if (object !== null && typeof object === 'object') {
-    return Object.keys(object).reduce(
+  if (input !== null && typeof input === 'object' && !(input instanceof Date)) {
+    return Object.keys(input).reduce(
       (acc, key) => {
         const snakeKey = key.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
 
-        acc[snakeKey] = convertCamelToSnake(object[key])
+        acc[snakeKey] = convertCamelToSnake(input[key])
 
         return acc
       },
@@ -17,7 +17,7 @@ const convertCamelToSnake = (object: Record<string, any>): Record<string, any> =
     )
   }
 
-  return object
+  return input
 }
 
 export default convertCamelToSnake
