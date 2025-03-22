@@ -13,3 +13,5 @@ export type ForecastCreatePayload = {
   problems: Problem[]
   recentAvalanches: Avalanche[]
 }
+
+export type GetForecastQueryVariables = { forecastId: number }
