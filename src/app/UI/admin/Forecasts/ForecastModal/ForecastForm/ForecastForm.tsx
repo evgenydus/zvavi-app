@@ -86,18 +86,16 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
             onChange={handleTextFieldChange('summary')}
             type="summary"
           />
-
-          <HazardLevels setFormData={setFormData} value={formData.hazardLevels} />
-
-          <ProblemsSection problems={problems} setProblems={setProblems} />
-
           <hr />
-
+          <HazardLevels setFormData={setFormData} value={formData.hazardLevels} />
+          <hr />
+          <ProblemsSection problems={problems} setProblems={setProblems} />
+          <hr />
           <RecentAvalanchesSection
             avalanches={recentAvalanches}
             setAvalanches={setRecentAvalanches}
           />
-
+          <hr />
           <AdditionalTextFields formData={formData} onChange={handleTextFieldChange} />
         </form>
       </section>

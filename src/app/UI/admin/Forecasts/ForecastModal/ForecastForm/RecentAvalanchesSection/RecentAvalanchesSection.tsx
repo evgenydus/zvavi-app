@@ -34,7 +34,7 @@ const RecentAvalanchesSection = ({ avalanches, setAvalanches }: RecentAvalanches
   }, [closeForm])
 
   return (
-    <section className="flex flex-col gap-4 border-b pb-6">
+    <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tAvalanches('title')}</h3>
 

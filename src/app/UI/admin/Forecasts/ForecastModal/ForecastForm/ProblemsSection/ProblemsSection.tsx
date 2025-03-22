@@ -41,7 +41,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
   }, [closeProblemForm])
 
   return (
-    <section className="flex flex-col gap-4 border-t pt-6">
+    <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
