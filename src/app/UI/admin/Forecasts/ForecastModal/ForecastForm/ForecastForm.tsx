@@ -7,6 +7,7 @@ import { useForecastCreate } from '@/data/hooks/forecasts'
 import { useTranslations } from 'next-intl'
 
 import { Button, TextInput } from '@/UI/components/inputs'
+import { HazardLevels } from './HazardLevels'
 import { InputBlock } from './common'
 import { ProblemsSection } from './ProblemsSection'
 import { RecentAvalanchesSection } from './RecentAvalanchesSection'
@@ -39,10 +40,12 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   )
 
   const handleSubmit = useCallback(async () => {
-    const { forecaster, otherHazards, snowpack, summary, validUntil, weather } = formData
+    const { forecaster, hazardLevels, otherHazards, snowpack, summary, validUntil, weather } =
+      formData
     const payload = {
       forecast: {
         forecaster,
+        hazardLevels,
         otherHazards,
         snowpack,
         summary,
@@ -83,6 +86,8 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
             onChange={handleTextFieldChange('summary')}
             type="summary"
           />
+
+          <HazardLevels setFormData={setFormData} value={formData.hazardLevels} />
 
           <ProblemsSection problems={problems} setProblems={setProblems} />
 

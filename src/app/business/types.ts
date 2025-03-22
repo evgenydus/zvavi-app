@@ -25,6 +25,7 @@ export type Distribution = keyof typeof distributionTypes
 export type Sensitivity = keyof typeof sensitivityLevels
 export type Trend = keyof typeof trends
 export type Aspect = keyof typeof aspects
+export type ElevationKey = ElevationZone | 'overall'
 type Aspects = Record<ElevationZone, Aspect[]>
 
 export type Forecast = {
@@ -52,6 +53,7 @@ export type Problem = {
 
 export type ForecastFormData = {
   forecaster: string
+  hazardLevels: Record<ElevationKey, HazardLevelScale>
   otherHazards: string
   snowpack: string
   summary: string
