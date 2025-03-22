@@ -2,6 +2,12 @@ import type { Problem, ForecastFormData, Avalanche } from '@/business/types'
 
 export const initialFormData: ForecastFormData = {
   forecaster: '',
+  hazardLevels: {
+    alpine: '1',
+    highAlpine: '1',
+    overall: '1',
+    subAlpine: '1',
+  },
   otherHazards: '',
   snowpack: '',
   summary: '',

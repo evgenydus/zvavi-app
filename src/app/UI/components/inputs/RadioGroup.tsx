@@ -4,14 +4,14 @@ import type { Option } from './types'
 
 type RadioGroupProps = {
   name?: string
-  onChange: (value: string | number) => void
+  onChange: (value: string | number, name?: string) => void
   options: Option[]
   value: string | number
 }
 
 const RadioGroup = ({ name, onChange, options, value }: RadioGroupProps) => {
   const handleChange = (selectedValue: string | number) => {
-    onChange(selectedValue)
+    onChange(selectedValue, name)
   }
 
   return (
