@@ -1,15 +1,9 @@
-import { convertCamelToSnake } from '../../helpers'
+import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
 import { forecastsKeys } from '../../query-keys'
 import { supabase } from '@/data'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import type { ForecastCreatePayload } from './types'
-
-const handleSupabaseError = (error: { message: string } | null) => {
-  if (error) {
-    throw new Error(error.message)
-  }
-}
 
 const attachItemsToForecast = async <T>(
   tableName: string,

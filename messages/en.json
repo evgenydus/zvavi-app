@@ -93,6 +93,7 @@
       "title": "Forecasts",
       "list": {
         "columns": {
+          "actions": "Actions",
           "createdAt": "Created At",
           "forecaster": "Forecaster",
           "status": "Status",
