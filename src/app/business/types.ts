@@ -33,7 +33,7 @@ export type Forecast = {
   createdAt: string
   forecaster: string
   hazardLevels: HazardLevels
-  id: number
+  id: string
   status: 'draft' | 'published'
   summary: string
   validUntil: string

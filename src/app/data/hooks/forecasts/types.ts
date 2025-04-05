@@ -1,4 +1,4 @@
-import type { Avalanche, Problem } from '@/business/types'
+import type { Avalanche, Forecast, Problem } from '@/business/types'
 
 type ForecastFormPayload = {
   forecaster: string
@@ -14,4 +14,4 @@ export type ForecastCreatePayload = {
   recentAvalanches: Avalanche[]
 }
 
-export type GetForecastQueryVariables = { forecastId: number }
+export type GetForecastQueryVariables = { forecastId: Forecast['id'] }

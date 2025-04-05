@@ -12,7 +12,7 @@ type Response = Forecast | undefined
 type QueryOptions = Omit<
   UseQueryOptions<Response, unknown, Response, QueryKey>,
   'queryKey' | 'queryFn'
-> & { forecastId: number }
+> & { forecastId: Forecast['id'] }
 
 const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Promise<Response> => {
   const [, , variables] = queryKey

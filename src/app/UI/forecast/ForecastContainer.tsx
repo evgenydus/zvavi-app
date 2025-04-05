@@ -7,7 +7,7 @@ import Forecast from './Forecast'
 
 import type { Forecast as ForecastType } from '@/business/types'
 
-const ForecastContainer = ({ forecastId }: { forecastId: number }) => {
+const ForecastContainer = ({ forecastId }: { forecastId: ForecastType['id'] }) => {
   const { data: forecastData } = useGetForecast({ forecastId })
   const [forecast, setForecast] = useState<ForecastType>()
 
