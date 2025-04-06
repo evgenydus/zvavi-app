@@ -7,7 +7,7 @@ import type { ProblemFormProps } from '../ProblemForm'
 
 type ProblemsListProps = Omit<ProblemFormProps, 'problemData'> & {
   isOpenNewProblem: boolean
-  problemsFormData: Problem[]
+  problems: Problem[]
   onDelete: (id?: number | string) => void
 }
 
@@ -16,11 +16,11 @@ const ProblemList = ({
   onCancel,
   onDelete,
   onSave,
-  problemsFormData,
+  problems,
 }: ProblemsListProps) => {
   const t = useTranslations()
 
-  if (problemsFormData.length === 0 && !isOpenNewProblem) {
+  if (problems.length === 0 && !isOpenNewProblem) {
     return (
       <p className="text-center text-gray-500">{t('admin.forecast.form.problems.noProblems')}</p>
     )
@@ -28,7 +28,7 @@ const ProblemList = ({
 
   return (
     <ul className="space-y-4">
-      {problemsFormData.map((problemData) => (
+      {problems.map((problemData) => (
         <li key={problemData.type}>
           <ProblemItem
             onCancel={onCancel}

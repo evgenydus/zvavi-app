@@ -14,15 +14,15 @@ import type { Problem } from '@/business/types'
 import { ProblemForm } from './ProblemForm'
 
 type ProblemsSectionProps = {
-  problemsFormData: Problem[]
+  problems: Problem[]
   setProblems: Dispatch<SetStateAction<Problem[]>>
 }
 
-const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSectionProps) => {
+const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
   const tForecast = useTranslations('admin.forecast')
 
   const [problemData, setProblemData] = useState<Problem>(initialProblemData)
-  const [isOpenNewProblem, { setFalse: handleCloseNewProblem, setTrue: handleOpenNewProblem }] =
+  const [isOpenNewProblem, { setFalse: closeNewProblem, setTrue: openNewProblem }] =
     useBoolean(false)
 
   const handleResetProblemData = () => {
@@ -51,26 +51,26 @@ const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSectionProps
       }
 
       handleResetProblemData()
-      handleCloseNewProblem()
+      closeNewProblem()
     },
-    [handleCloseNewProblem, setProblems],
+    [closeNewProblem, setProblems],
   )
 
   const handleCancel = useCallback(() => {
-    handleCloseNewProblem()
+    closeNewProblem()
     setProblemData(initialProblemData)
-  }, [handleCloseNewProblem])
+  }, [closeNewProblem])
 
   const handleDelete = useCallback(
     (id?: number | string) => {
       if (!id) return
-      const newData = [...problemsFormData]
+      const newData = [...problems]
       const index = newData.findIndex((el) => el.id === id)
 
       newData.splice(index, 1)
       setProblems(newData)
     },
-    [problemsFormData, setProblems],
+    [problems, setProblems],
   )
 
   return (
@@ -78,7 +78,7 @@ const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSectionProps
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-        <Button className="ml-auto" disabled={isOpenNewProblem} onClick={handleOpenNewProblem}>
+        <Button className="ml-auto" disabled={isOpenNewProblem} onClick={openNewProblem}>
           <PlusIcon className="size-5" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
@@ -93,7 +93,7 @@ const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSectionProps
         onCancel={handleCancel}
         onDelete={handleDelete}
         onSave={handleSubmit}
-        problemsFormData={problemsFormData}
+        problems={problems}
       />
     </section>
   )
