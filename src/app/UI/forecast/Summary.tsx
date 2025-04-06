@@ -3,11 +3,16 @@ import { useTranslations } from 'next-intl'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Disclosure, DisclosureButton, DisclosurePanel, Transition } from '@headlessui/react'
 
-const Summary = ({ summary }: { summary: string }) => {
+type SummaryProps = {
+  isInitiallyOpen?: boolean
+  summary: string
+}
+
+const Summary = ({ isInitiallyOpen = false, summary }: SummaryProps) => {
   const t = useTranslations()
 
   return (
-    <Disclosure as="div" className="rounded-2xl bg-black/5">
+    <Disclosure as="div" className="rounded-2xl bg-black/5" defaultOpen={isInitiallyOpen}>
       {({ open: isOpen }) => (
         <>
           <DisclosureButton className="group flex w-full items-center justify-between p-4">
