@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { InputBlock, useProblemOptions } from '../../../common'
+import { InputBlock, useProblemOptions } from '../../../../common'
 import { RadioGroup } from '@/UI/components/inputs'
 import TimeOfDay from './TimeOfDay'
 

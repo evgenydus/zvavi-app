@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 
 import { initialProblemData } from '../constants'
 import { useBoolean } from '@/UI/hooks'
@@ -7,62 +7,98 @@ import prepareTimeOfDay from './prepareTimeOfDay'
 
 import { Button } from '@/UI/components/inputs'
 import { PlusIcon } from '@heroicons/react/20/solid'
-import { ProblemForm } from './ProblemForm'
-import { ProblemsList } from './ProblemsList'
+import { ProblemList } from './ProblemList'
 
 import type { Problem } from '@/business/types'
+import { ProblemItemEdit } from './ProblemList/ProblemItemEdit'
+
+export type SubmitProblemDto = { data: Problem; index?: number }
 
 type ProblemsSectionProps = {
-  problems: Problem[]
-  setProblems: (value: React.SetStateAction<Problem[]>) => void
+  problemsFormData: Problem[]
+  setProblems: Dispatch<SetStateAction<Problem[]>>
 }
 
-const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
+export const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSectionProps) => {
   const tForecast = useTranslations('admin.forecast')
 
   const [problemData, setProblemData] = useState<Problem>(initialProblemData)
-  const [isProblemFormOpen, { setFalse: closeProblemForm, setTrue: openProblemForm }] =
+  const [isOpenNewProblem, { setFalse: handleCloseNewProblem, setTrue: handleOpenNewProblem }] =
     useBoolean(false)
 
-  const handleAddProblemClick = useCallback(() => {
-    const preparedProblem = {
-      ...problemData,
-      timeOfDay: prepareTimeOfDay(problemData.timeOfDay),
-    }
-
-    setProblems((prev) => [...prev, preparedProblem])
-    closeProblemForm()
+  const handleResetProblemData = () => {
     setProblemData(initialProblemData)
-  }, [closeProblemForm, problemData, setProblems])
+  }
 
-  const handleProblemCancel = useCallback(() => {
-    closeProblemForm()
+  const handleSubmit = useCallback(
+    ({ data, index }: SubmitProblemDto) => {
+      const preparedProblem = {
+        ...data,
+        timeOfDay: prepareTimeOfDay(data.timeOfDay),
+      }
+
+      if (typeof index === 'number') {
+        setProblems((prev) => {
+          const newData = [...prev]
+
+          newData[index] = data
+
+          return newData
+        })
+      } else {
+        setProblems((prev) => [...prev, preparedProblem])
+      }
+
+      handleResetProblemData()
+
+      handleCloseNewProblem()
+    },
+    [handleCloseNewProblem, setProblems],
+  )
+
+  const handleCancel = useCallback(() => {
+    handleCloseNewProblem()
     setProblemData(initialProblemData)
-  }, [closeProblemForm])
+  }, [handleCloseNewProblem])
+
+  const handleDelete = useCallback(
+    (index: number) => {
+      const newData = [...problemsFormData]
+
+      newData.splice(index, 1)
+      setProblems(newData)
+    },
+    [problemsFormData, setProblems],
+  )
 
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-        <Button className="ml-auto" disabled={isProblemFormOpen} onClick={openProblemForm}>
+        <Button className="ml-auto" disabled={isOpenNewProblem} onClick={handleOpenNewProblem}>
           <PlusIcon className="size-5" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
       </div>
 
-      <ProblemsList isAdding={isProblemFormOpen} problems={problems} />
+      <ProblemList
+        editProps={{
+          onCancel: handleCancel,
+          onSubmit: handleSubmit,
+        }}
+        isOpenNewProblem={isOpenNewProblem}
+        onDelete={handleDelete}
+        problemsFormData={problemsFormData}
+      />
 
-      {isProblemFormOpen && (
-        <ProblemForm
-          onProblemAdd={handleAddProblemClick}
-          onProblemCancel={handleProblemCancel}
+      {isOpenNewProblem && (
+        <ProblemItemEdit
+          onCancel={handleCancel}
+          onSubmit={handleSubmit}
           problemData={problemData}
-          setProblemData={setProblemData}
         />
       )}
     </section>
   )
 }
-
-export default ProblemsSection

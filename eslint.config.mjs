@@ -85,12 +85,7 @@ export default [
           extensions: ['.tsx'],
         },
       ],
-      'react/jsx-props-no-spreading': [
-        2,
-        {
-          html: 'ignore',
-        },
-      ],
+      'react/jsx-props-no-spreading': 'off',
       'react/jsx-sort-props': [
         'error',
         {
