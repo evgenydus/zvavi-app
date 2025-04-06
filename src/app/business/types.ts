@@ -63,7 +63,7 @@ export type ForecastFormData = {
 }
 
 export type Avalanche = {
-  id: string
+  id?: string
   aspects: Aspects
   date: Date | null
   description: string
