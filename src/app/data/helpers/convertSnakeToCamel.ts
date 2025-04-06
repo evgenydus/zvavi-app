@@ -1,13 +1,24 @@
-import _mapKeys from 'lodash/mapKeys'
 import _camelCase from 'lodash/camelCase'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const convertSnakeToCamel = (data: any) => {
-  if (Array.isArray(data)) {
-    return data.map((item) => _mapKeys(item, (_: unknown, key: string) => _camelCase(key)))
+const convertSnakeToCamel = (input: unknown): unknown => {
+  if (Array.isArray(input)) {
+    return input.map(convertSnakeToCamel)
   }
 
-  return _mapKeys(data, (_: unknown, key: string) => _camelCase(key))
+  if (input !== null && typeof input === 'object') {
+    return Object.entries(input).reduce(
+      (acc, [key, value]) => {
+        const newKey = _camelCase(key)
+
+        acc[newKey] = convertSnakeToCamel(value)
+
+        return acc
+      },
+      {} as Record<string, unknown>,
+    )
+  }
+
+  return input
 }
 
 export default convertSnakeToCamel

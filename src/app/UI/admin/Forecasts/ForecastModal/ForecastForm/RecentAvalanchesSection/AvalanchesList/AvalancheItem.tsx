@@ -24,7 +24,7 @@ const AvalancheItem = ({ avalanche }: { avalanche: Avalanche }) => {
           </PropertyWrapper>
         </div>
 
-        <Aspects item={avalanche} />
+        <Aspects className="w-[355px]" item={avalanche} />
       </div>
 
       {description && (

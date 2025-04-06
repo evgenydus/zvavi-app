@@ -5,11 +5,11 @@ import { useGetForecast } from '@/data/hooks/forecasts'
 
 import Forecast from './Forecast'
 
-import type { Forecast as ForecastType } from '@/business/types'
+import type { FullForecast } from '@/business/types'
 
-const ForecastContainer = ({ forecastId }: { forecastId: ForecastType['id'] }) => {
+const ForecastContainer = ({ forecastId }: { forecastId: FullForecast['id'] }) => {
   const { data: forecastData } = useGetForecast({ forecastId })
-  const [forecast, setForecast] = useState<ForecastType>()
+  const [forecast, setForecast] = useState<FullForecast>()
 
   useEffect(() => {
     if (!forecastData) return

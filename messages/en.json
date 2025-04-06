@@ -36,6 +36,18 @@
     "partners": "Partners"
   },
 
+  "forecast": {
+    "sections": {
+      "recentAvalanches": {
+        "title": "Recent Avalanches",
+        "noAvalanches": "Nothing reported yet",
+        "labels": {
+          "size": "Size"
+        }
+      }
+    }
+  },
+
   "partners": {
     "title": "Our Partners"
   },

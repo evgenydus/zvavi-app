@@ -1,5 +1,5 @@
 import ZoneTitle from './ZoneTitle'
-import Pyramid from '@/UI/forecast/HazardLevelsByElevation/Pyramid'
+import Pyramid from './Pyramid'
 import type { HazardLevels as HazardLevelsType } from '@/business/types'
 
 const HazardLevelsByElevation = ({ hazardLevels }: { hazardLevels: HazardLevelsType }) => (
