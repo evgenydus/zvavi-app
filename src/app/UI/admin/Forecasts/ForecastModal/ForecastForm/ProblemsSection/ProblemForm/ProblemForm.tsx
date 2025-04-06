@@ -3,22 +3,20 @@
 import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { AvalancheSize, Aspects, Footer, type SetAspectsData } from '../../../common'
+import { AvalancheSize, Aspects, Footer, type SetAspectsData } from '../../common'
 import { PropertiesSection } from './PropertiesSection'
 import { Textarea } from '@/UI/components/inputs'
 import ProblemType from './ProblemType'
 
 import type { Problem } from '@/business/types'
-import type { SubmitProblemDto } from '../../ProblemsSection'
 
 export type ProblemFormProps = {
-  index?: number
-  onSubmit: (data: SubmitProblemDto) => void
+  onSave: (data: Problem) => void
   onCancel: () => void
   problemData: Problem
 }
 
-export const ProblemItemEdit = ({ index, onCancel, onSubmit, problemData }: ProblemFormProps) => {
+const ProblemForm = ({ onCancel, onSave, problemData }: ProblemFormProps) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
 
   const [data, setData] = useState(problemData)
@@ -43,8 +41,8 @@ export const ProblemItemEdit = ({ index, onCancel, onSubmit, problemData }: Prob
     [setData],
   )
 
-  const handleSubmit = () => {
-    onSubmit({ data, index })
+  const handleSave = () => {
+    onSave(data)
     onCancel()
   }
 
@@ -72,7 +70,9 @@ export const ProblemItemEdit = ({ index, onCancel, onSubmit, problemData }: Prob
         />
       </section>
 
-      <Footer onCancel={onCancel} onSave={handleSubmit} />
+      <Footer onCancel={onCancel} onSave={handleSave} />
     </div>
   )
 }
+
+export default ProblemForm

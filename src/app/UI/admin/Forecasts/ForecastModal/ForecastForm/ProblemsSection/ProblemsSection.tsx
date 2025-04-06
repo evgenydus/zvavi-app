@@ -1,3 +1,4 @@
+import _uniqueId from 'lodash/uniqueId'
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 
 import { initialProblemData } from '../constants'
@@ -10,16 +11,14 @@ import { PlusIcon } from '@heroicons/react/20/solid'
 import { ProblemList } from './ProblemList'
 
 import type { Problem } from '@/business/types'
-import { ProblemItemEdit } from './ProblemList/ProblemItemEdit'
-
-export type SubmitProblemDto = { data: Problem; index?: number }
+import { ProblemForm } from './ProblemForm'
 
 type ProblemsSectionProps = {
   problemsFormData: Problem[]
   setProblems: Dispatch<SetStateAction<Problem[]>>
 }
 
-export const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSectionProps) => {
+const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSectionProps) => {
   const tForecast = useTranslations('admin.forecast')
 
   const [problemData, setProblemData] = useState<Problem>(initialProblemData)
@@ -31,17 +30,19 @@ export const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSecti
   }
 
   const handleSubmit = useCallback(
-    ({ data, index }: SubmitProblemDto) => {
-      const preparedProblem = {
+    (data: Problem) => {
+      const preparedProblem: Problem = {
+        id: _uniqueId('problem-'),
         ...data,
         timeOfDay: prepareTimeOfDay(data.timeOfDay),
       }
 
-      if (typeof index === 'number') {
+      if (data.id) {
         setProblems((prev) => {
           const newData = [...prev]
+          const index = newData.findIndex((el) => el.id === data.id)
 
-          newData[index] = data
+          newData[index] = preparedProblem
 
           return newData
         })
@@ -50,7 +51,6 @@ export const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSecti
       }
 
       handleResetProblemData()
-
       handleCloseNewProblem()
     },
     [handleCloseNewProblem, setProblems],
@@ -62,8 +62,10 @@ export const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSecti
   }, [handleCloseNewProblem])
 
   const handleDelete = useCallback(
-    (index: number) => {
+    (id?: number | string) => {
+      if (!id) return
       const newData = [...problemsFormData]
+      const index = newData.findIndex((el) => el.id === id)
 
       newData.splice(index, 1)
       setProblems(newData)
@@ -82,23 +84,19 @@ export const ProblemsSection = ({ problemsFormData, setProblems }: ProblemsSecti
         </Button>
       </div>
 
+      {isOpenNewProblem && (
+        <ProblemForm onCancel={handleCancel} onSave={handleSubmit} problemData={problemData} />
+      )}
+
       <ProblemList
-        editProps={{
-          onCancel: handleCancel,
-          onSubmit: handleSubmit,
-        }}
         isOpenNewProblem={isOpenNewProblem}
+        onCancel={handleCancel}
         onDelete={handleDelete}
+        onSave={handleSubmit}
         problemsFormData={problemsFormData}
       />
-
-      {isOpenNewProblem && (
-        <ProblemItemEdit
-          onCancel={handleCancel}
-          onSubmit={handleSubmit}
-          problemData={problemData}
-        />
-      )}
     </section>
   )
 }
+
+export default ProblemsSection

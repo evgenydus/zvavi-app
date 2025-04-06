@@ -42,8 +42,3 @@ next-env.d.ts
 
 # other
 .idea/
-
-# env
-.env
-.env.development
-.env.production

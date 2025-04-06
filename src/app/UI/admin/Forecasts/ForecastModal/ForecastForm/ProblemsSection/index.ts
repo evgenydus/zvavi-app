@@ -1,1 +1,1 @@
-export { ProblemsSection } from './ProblemsSection'
+export { default as ProblemsSection } from './ProblemsSection'

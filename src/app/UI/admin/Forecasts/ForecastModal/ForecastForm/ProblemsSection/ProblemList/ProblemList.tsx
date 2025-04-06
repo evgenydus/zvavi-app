@@ -1,19 +1,21 @@
 import { useTranslations } from 'next-intl'
-import { ProblemItemToggleable } from './ProblemItemToggleable'
-import type { Problem } from '@/business/types'
-import { ProblemFormProps } from './ProblemItemEdit/ProblemItemEdit'
 
-type ProblemsListProps = {
+import type { Problem } from '@/business/types'
+import { ProblemItem } from './ProblemItem'
+
+import type { ProblemFormProps } from '../ProblemForm'
+
+type ProblemsListProps = Omit<ProblemFormProps, 'problemData'> & {
   isOpenNewProblem: boolean
   problemsFormData: Problem[]
-  onDelete: (index: number) => void
-  editProps: Omit<ProblemFormProps, 'problemData' | 'onCloseEditMode' | 'index'>
+  onDelete: (id?: number | string) => void
 }
 
-export const ProblemList = ({
-  editProps,
+const ProblemList = ({
   isOpenNewProblem,
+  onCancel,
   onDelete,
+  onSave,
   problemsFormData,
 }: ProblemsListProps) => {
   const t = useTranslations()
@@ -26,11 +28,12 @@ export const ProblemList = ({
 
   return (
     <ul className="space-y-4">
-      {problemsFormData.map((problemData, index) => (
+      {problemsFormData.map((problemData) => (
         <li key={problemData.type}>
-          <ProblemItemToggleable
-            editProps={{ ...editProps, index }}
-            onDelete={() => onDelete(index)}
+          <ProblemItem
+            onCancel={onCancel}
+            onDelete={() => onDelete(problemData.id)}
+            onSave={onSave}
             problemData={problemData}
           />
         </li>
@@ -38,3 +41,5 @@ export const ProblemList = ({
     </ul>
   )
 }
+
+export default ProblemList
