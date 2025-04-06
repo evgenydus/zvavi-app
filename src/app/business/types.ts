@@ -63,8 +63,13 @@ export type ForecastFormData = {
 }
 
 export type Avalanche = {
+  id: string
   aspects: Aspects
   date: Date | null
   description: string
   size: AvalancheSize
+}
+
+export type FullForecast = Forecast & {
+  recentAvalanches: Avalanche[]
 }

@@ -3,33 +3,46 @@ import { forecastsKeys } from '../../query-keys'
 import { supabase } from '@/data'
 import { useQuery } from '@/tanstack-query/hooks'
 
-import type { Forecast } from '@/business/types'
+import type { FullForecast } from '@/business/types'
 import type { QueryFunctionContext, UseQueryOptions } from '@tanstack/react-query'
 
 type QueryKey = ReturnType<typeof forecastsKeys.item>
-type Response = Forecast | undefined
+type Response = FullForecast | undefined
 
 type QueryOptions = Omit<
   UseQueryOptions<Response, unknown, Response, QueryKey>,
   'queryKey' | 'queryFn'
-> & { forecastId: Forecast['id'] }
+> & { forecastId: FullForecast['id'] }
 
 const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Promise<Response> => {
   const [, , variables] = queryKey
 
-  const { data, error } = await supabase
+  const { data: forecastData, error: forecastError } = await supabase
     .from('forecasts')
     .select()
     .match({ id: variables.forecastId, status: 'published' })
     .single()
 
-  if (error) {
-    throw new Error(error.message)
+  if (forecastError) {
+    throw new Error(forecastError.message)
   }
 
-  if (!data) return undefined
+  if (!forecastData) return undefined
 
-  return convertSnakeToCamel(data) as Response
+  const { data: recentAvalanches, error: avalanchesError } = await supabase
+    .from('recent_avalanches')
+    .select()
+    .match({ forecast_id: variables.forecastId })
+    .order('date', { ascending: false })
+
+  if (avalanchesError) {
+    throw new Error(avalanchesError.message)
+  }
+
+  return convertSnakeToCamel({
+    ...forecastData,
+    recentAvalanches: recentAvalanches ?? [],
+  }) as Response
 }
 
 const useGetForecast = ({ forecastId, ...options }: QueryOptions) => {

@@ -8,12 +8,12 @@ const getAspectsString = (aspects: Aspect[]) => {
   return aspects.map((aspect) => aspect.toUpperCase()).join(', ')
 }
 
-const Aspects = ({ item }: { item: Problem | Avalanche }) => {
+const Aspects = ({ className, item }: { item: Problem | Avalanche; className?: string }) => {
   const t = useTranslations()
   const { alpine, highAlpine, subAlpine } = item.aspects
 
   return (
-    <div className="w-[355px]">
+    <div className={className}>
       <PropertyWrapper title={t('common.elevationZones.highAlpine')} titleClassname="w-28">
         <p>{getAspectsString(highAlpine)}</p>
       </PropertyWrapper>
