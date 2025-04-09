@@ -30,6 +30,7 @@ export type HazardLevels = Record<ElevationKey, HazardLevelScale>
 type Aspects = Record<ElevationZone, Aspect[]>
 
 export type Forecast = {
+  additionalHazards: string
   createdAt: string
   forecaster: string
   hazardLevels: HazardLevels
@@ -38,6 +39,7 @@ export type Forecast = {
   status: 'draft' | 'published'
   summary: string
   validUntil: string
+  weather: string
 }
 
 export type Problem = {
@@ -56,7 +58,7 @@ export type Problem = {
 export type ForecastFormData = {
   forecaster: string
   hazardLevels: HazardLevels
-  otherHazards: string
+  additionalHazards: string
   snowpack: string
   summary: string
   validUntil: Date | null

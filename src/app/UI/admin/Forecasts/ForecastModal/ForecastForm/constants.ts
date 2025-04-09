@@ -1,6 +1,7 @@
 import type { Problem, ForecastFormData, Avalanche } from '@/business/types'
 
 export const initialFormData: ForecastFormData = {
+  additionalHazards: '',
   forecaster: '',
   hazardLevels: {
     alpine: '1',
@@ -8,7 +9,6 @@ export const initialFormData: ForecastFormData = {
     overall: '1',
     subAlpine: '1',
   },
-  otherHazards: '',
   snowpack: '',
   summary: '',
   validUntil: null,

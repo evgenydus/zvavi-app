@@ -15,7 +15,11 @@ const AdditionalTextFields = ({ formData, onChange }: AdditionalTextFieldsProps)
         <TextAreaField formData={formData} onChange={onChange('snowpack')} type="snowpack" />
         <TextAreaField formData={formData} onChange={onChange('weather')} type="weather" />
       </div>
-      <TextAreaField formData={formData} onChange={onChange('otherHazards')} type="otherHazards" />
+      <TextAreaField
+        formData={formData}
+        onChange={onChange('additionalHazards')}
+        type="additionalHazards"
+      />
     </>
   )
 }

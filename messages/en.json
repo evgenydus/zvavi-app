@@ -38,6 +38,9 @@
 
   "forecast": {
     "sections": {
+      "additionalHazards": {
+        "title": "Additional hazards"
+      },
       "recentAvalanches": {
         "title": "Recent Avalanches",
         "noAvalanches": "Nothing reported yet",
@@ -47,6 +50,9 @@
       },
       "snowpack": {
         "title": "Snowpack"
+      },
+      "weather": {
+        "title": "Weather"
       }
     }
   },
@@ -124,9 +130,9 @@
         "general": {
           "title": "General Info",
           "labels": {
+            "additionalHazards": "Additional Hazards",
             "forecaster": "Forecaster",
             "hazardLevels": "Hazard Levels",
-            "otherHazards": "Other Hazards",
             "snowpack": "Snowpack",
             "summary": "Summary",
             "validUntil": "Valid Until",
