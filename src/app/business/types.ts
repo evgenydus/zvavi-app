@@ -34,6 +34,7 @@ export type Forecast = {
   forecaster: string
   hazardLevels: HazardLevels
   id: string
+  snowpack: string
   status: 'draft' | 'published'
   summary: string
   validUntil: string
