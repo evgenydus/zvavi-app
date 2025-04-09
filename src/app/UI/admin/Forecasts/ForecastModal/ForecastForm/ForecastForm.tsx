@@ -40,13 +40,13 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   )
 
   const handleSubmit = useCallback(async () => {
-    const { forecaster, hazardLevels, otherHazards, snowpack, summary, validUntil, weather } =
+    const { additionalHazards, forecaster, hazardLevels, snowpack, summary, validUntil, weather } =
       formData
     const payload = {
       forecast: {
+        additionalHazards,
         forecaster,
         hazardLevels,
-        otherHazards,
         snowpack,
         summary,
         validUntil: validUntil ? validUntil.toISOString() : null,
