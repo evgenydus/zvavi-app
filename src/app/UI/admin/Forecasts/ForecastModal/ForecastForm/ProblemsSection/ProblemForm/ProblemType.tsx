@@ -17,10 +17,10 @@ const ProblemType = ({ onTypeChange, problemData }: ProblemTypeProps) => {
   const { problemTypeOptions } = useProblemOptions()
 
   const handleTypeChange = useCallback(
-    (value: { label: string; value: AvalancheProblemTypes } | null) => {
+    (value: { value: AvalancheProblemTypes } | null) => {
       onTypeChange((prev) => ({
         ...prev,
-        type: value?.value || null,
+        type: value?.value as AvalancheProblemTypes,
       }))
     },
     [onTypeChange],
@@ -37,7 +37,6 @@ const ProblemType = ({ onTypeChange, problemData }: ProblemTypeProps) => {
     <InputBlock label={tProblems('labels.problemType')} labelClassName="w-32">
       <Select
         className="flex-1"
-        isClearable
         onChange={handleTypeChange}
         options={problemTypeOptions}
         value={problemTypeValue}
