@@ -1,1 +1,1 @@
-export { default as ProblemForm } from './ProblemForm'
+export { default as ProblemForm, type ProblemFormProps } from './ProblemForm'

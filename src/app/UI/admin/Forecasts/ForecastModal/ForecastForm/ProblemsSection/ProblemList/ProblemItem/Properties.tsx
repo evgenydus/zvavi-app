@@ -5,11 +5,11 @@ import TimeOfDay from './TimeOfDay'
 
 import type { Problem } from '@/business/types'
 
-const Properties = ({ problem }: { problem: Problem }) => {
+const Properties = ({ problemData }: { problemData: Problem }) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
   const tForm = useTranslations('admin.forecast.form')
   const { avalancheSize, confidence, distribution, isAllDay, sensitivity, timeOfDay, trend } =
-    problem
+    problemData
 
   return (
     <>
