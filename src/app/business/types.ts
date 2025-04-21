@@ -52,7 +52,7 @@ export type Problem = {
   sensitivity: Sensitivity
   timeOfDay: TimeRange
   trend: Trend
-  type: AvalancheProblemTypes | null
+  type: AvalancheProblemTypes
 }
 
 export type ForecastFormData = {
@@ -74,5 +74,6 @@ export type Avalanche = {
 }
 
 export type FullForecast = Forecast & {
+  problems: Problem[]
   recentAvalanches: Avalanche[]
 }

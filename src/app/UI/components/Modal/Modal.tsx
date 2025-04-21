@@ -3,14 +3,15 @@ import classnames from 'classnames'
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 
-type ModalProps = {
+export type ModalProps = {
   children: React.ReactNode
+  className?: string
   isOpen: boolean
   onClose: () => void
   title?: string
 }
 
-const Modal = ({ children, isOpen, onClose, title }: ModalProps) => {
+const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
   return (
     <Dialog as="div" className="relative z-10 focus:outline-none" onClose={onClose} open={isOpen}>
       <DialogBackdrop className="fixed inset-0 bg-black/30" transition />
@@ -21,12 +22,13 @@ const Modal = ({ children, isOpen, onClose, title }: ModalProps) => {
             className={classnames(
               'data-[closed]:transform-[scale(95%)] duration-300 ease-out data-[closed]:opacity-0',
               'max-w-screen-lg rounded-md bg-white',
+              className,
             )}
             transition
           >
-            <header className="flex h-16 items-center border-b px-6">
+            <header className="flex h-14 items-center border-b px-4 lg:h-16 lg:px-6">
               {title && (
-                <DialogTitle as="h3" className="flex-1 text-center text-2xl font-semibold">
+                <DialogTitle as="h4" className="flex-1 text-xl font-semibold">
                   {title}
                 </DialogTitle>
               )}
@@ -44,7 +46,7 @@ const Modal = ({ children, isOpen, onClose, title }: ModalProps) => {
               </CloseButton>
             </header>
 
-            {children}
+            <div className="p-4 lg:p-6">{children}</div>
           </DialogPanel>
         </div>
       </div>

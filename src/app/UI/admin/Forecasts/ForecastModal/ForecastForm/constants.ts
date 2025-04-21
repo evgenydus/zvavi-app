@@ -29,7 +29,7 @@ export const initialProblemData: Problem = {
   sensitivity: 'reactive',
   timeOfDay: { end: null, start: null },
   trend: 'deteriorating',
-  type: null,
+  type: 'persistentSlab',
 }
 
 export const initialAvalancheData: Avalanche = {

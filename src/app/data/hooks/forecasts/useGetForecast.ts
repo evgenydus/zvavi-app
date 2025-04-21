@@ -39,8 +39,18 @@ const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Prom
     throw new Error(avalanchesError.message)
   }
 
+  const { data: problems, error: problemsError } = await supabase
+    .from('avalanche_problems')
+    .select()
+    .match({ forecast_id: variables.forecastId })
+
+  if (problemsError) {
+    throw new Error(problemsError.message)
+  }
+
   return convertSnakeToCamel({
     ...forecastData,
+    problems: problems ?? [],
     recentAvalanches: recentAvalanches ?? [],
   }) as Response
 }

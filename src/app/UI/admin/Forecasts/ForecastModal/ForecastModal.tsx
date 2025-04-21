@@ -1,12 +1,9 @@
 import { useTranslations } from 'next-intl'
 
 import { ForecastForm } from './ForecastForm'
-import { Modal } from '@/UI/components/Modal'
+import { Modal, type ModalProps } from '@/UI/components/Modal'
 
-type ForecastModalProps = {
-  isOpen: boolean
-  onClose: () => void
-}
+type ForecastModalProps = Pick<ModalProps, 'isOpen' | 'onClose'>
 
 const ForecastModal = ({ isOpen, onClose }: ForecastModalProps) => {
   const t = useTranslations()
