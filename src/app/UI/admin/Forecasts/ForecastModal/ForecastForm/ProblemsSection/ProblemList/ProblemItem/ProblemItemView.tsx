@@ -28,7 +28,7 @@ export const ProblemItemView = ({ onDelete, onEdit, problemData }: ProblemItemPr
 
       <div className="mb-6 flex items-center justify-between gap-6">
         <Properties problemData={problemData} />
-        <Aspects item={problemData} />
+        <Aspects className="w-[355px]" item={problemData} />
       </div>
 
       {description && (

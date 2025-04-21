@@ -6,13 +6,13 @@ import { ProblemItem } from './ProblemItem'
 import type { ProblemFormProps } from '../ProblemForm'
 
 type ProblemsListProps = Omit<ProblemFormProps, 'problemData'> & {
-  isOpenNewProblem: boolean
+  isNewProblemOpen: boolean
   problems: Problem[]
-  onDelete: (id?: number | string) => void
+  onDelete: (id?: string) => void
 }
 
 const ProblemList = ({
-  isOpenNewProblem,
+  isNewProblemOpen,
   onCancel,
   onDelete,
   onSave,
@@ -20,7 +20,7 @@ const ProblemList = ({
 }: ProblemsListProps) => {
   const t = useTranslations()
 
-  if (problems.length === 0 && !isOpenNewProblem) {
+  if (problems.length === 0 && !isNewProblemOpen) {
     return (
       <p className="text-center text-gray-500">{t('admin.forecast.form.problems.noProblems')}</p>
     )

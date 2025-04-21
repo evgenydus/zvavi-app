@@ -1,5 +1,5 @@
 import _uniqueId from 'lodash/uniqueId'
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { type Dispatch, type SetStateAction, useCallback, useState } from 'react'
 
 import { initialProblemData } from '../constants'
 import { useBoolean } from '@/UI/hooks'
@@ -8,10 +8,10 @@ import prepareTimeOfDay from './prepareTimeOfDay'
 
 import { Button } from '@/UI/components/inputs'
 import { PlusIcon } from '@heroicons/react/20/solid'
+import { ProblemForm } from './ProblemForm'
 import { ProblemList } from './ProblemList'
 
 import type { Problem } from '@/business/types'
-import { ProblemForm } from './ProblemForm'
 
 type ProblemsSectionProps = {
   problems: Problem[]
@@ -22,7 +22,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
   const tForecast = useTranslations('admin.forecast')
 
   const [problemData, setProblemData] = useState<Problem>(initialProblemData)
-  const [isOpenNewProblem, { setFalse: closeNewProblem, setTrue: openNewProblem }] =
+  const [isNewProblemOpen, { setFalse: closeNewProblem, setTrue: openNewProblem }] =
     useBoolean(false)
 
   const handleResetProblemData = () => {
@@ -78,18 +78,18 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-        <Button className="ml-auto" disabled={isOpenNewProblem} onClick={openNewProblem}>
+        <Button className="ml-auto" disabled={isNewProblemOpen} onClick={openNewProblem}>
           <PlusIcon className="size-5" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
       </div>
 
-      {isOpenNewProblem && (
+      {isNewProblemOpen && (
         <ProblemForm onCancel={handleCancel} onSave={handleSubmit} problemData={problemData} />
       )}
 
       <ProblemList
-        isOpenNewProblem={isOpenNewProblem}
+        isNewProblemOpen={isNewProblemOpen}
         onCancel={handleCancel}
         onDelete={handleDelete}
         onSave={handleSubmit}

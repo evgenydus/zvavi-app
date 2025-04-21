@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback } from 'react'
+import { type Dispatch, type SetStateAction, useCallback } from 'react'
 import { useProblemOptions } from '../../common/hooks'
 import { useTranslations } from 'next-intl'
 
