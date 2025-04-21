@@ -18,7 +18,7 @@ const ProblemModal = ({ isOpen, onClose, problem }: ProblemModalProps) => {
       title={t(`admin.forecast.form.problems.options.problemType.${type}`)}
     >
       <div>
-        <p className="mb-2 ">{description}</p>
+        <p className="mb-2 text-sm">{description}</p>
       </div>
     </Modal>
   )
