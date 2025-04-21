@@ -41,6 +41,38 @@
       "additionalHazards": {
         "title": "Additional Hazards"
       },
+      "avalancheProblems": {
+        "modal": {
+          "info": {
+            "size": {
+              "1": "Unlikely to bury a person",
+              "2": "Can bury a person",
+              "3": "Can destroy a house",
+              "4": "Can destroy part or all of a village",
+              "5": "Can destroy part or all of a village"
+            },
+            "sensitivity": {
+              "touchy": "Avalanches are very sensitive to triggers. Touchy avalanche conditions mean that human triggering is almost certain, and natural avalanches are numerous. Small explosives or triggers will produce numerous avalanche results.",
+              "reactive": "Avalanches are sensitive to triggers. Reactive avalanche conditions mean that humans can easily trigger avalanches with slope cuts. Several natural avalanches are expected. Single hand shots or medium-sized cornice drops will result in many avalanches.",
+              "stubborn": "Avalanches are tougher to trigger. Stubborn avalanche conditions mean that it is difficult for humans to trigger avalanches, and only a few natural avalanches are expected. Large explosives, airblasts, and large cornice falls, often in several locations, will result in some avalanches.",
+              "unreactive": "Avalanches can’t be triggered.  Unreactive avalanche conditions mean that human and natural avalanches are not expected. Very large explosives or very large cornice falls in several locations result in no slab avalanches."
+            },
+            "distribution": {
+              "isolated": "Isolated distribution means that the avalanche problem is spotty and found in only a few terrain features. Evidence of the problem is rare and hard to find.",
+              "specific": "Specific distribution means that the avalanche problem exists in terrain features with common characteristics. Evidence of the problem exists but is not always obvious. Instabilities in this graphic are specific to a certain aspect.",
+              "widespread": "Widespread distribution means that the avalanche problem is found in many locations and terrain features. Evidence of the problem is everywhere and easy to find."
+            }
+          },
+          "labels": {
+            "aspects": "Aspects",
+            "distribution": "Distribution",
+            "sensitivity": "Sensitivity",
+            "size": "Size",
+            "timeOfDay": "Time of Day",
+            "trend": "Trend"
+          }
+        }
+      },
       "recentAvalanches": {
         "title": "Recent Avalanches",
         "noAvalanches": "Nothing reported yet",

@@ -1,25 +1,20 @@
 import { useTranslations } from 'next-intl'
 import { Modal, type ModalProps } from '@/UI/components/Modal'
-import type { Problem } from '@/business/types'
+import { ModalContent, type ModalContentProps } from './ModalContent'
 
-type ProblemModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
-  problem: Problem
-}
+type ProblemModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & ModalContentProps
 
 const ProblemModal = ({ isOpen, onClose, problem }: ProblemModalProps) => {
   const t = useTranslations()
-  const { description, type } = problem
 
   return (
     <Modal
       className="w-full"
       isOpen={isOpen}
       onClose={onClose}
-      title={t(`admin.forecast.form.problems.options.problemType.${type}`)}
+      title={t(`admin.forecast.form.problems.options.problemType.${problem.type}`)}
     >
-      <div>
-        <p className="mb-2 text-sm">{description}</p>
-      </div>
+      <ModalContent problem={problem} />
     </Modal>
   )
 }
