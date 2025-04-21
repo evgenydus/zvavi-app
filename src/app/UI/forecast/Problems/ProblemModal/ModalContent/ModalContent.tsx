@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl'
 
 import { SizeScale } from './Icons'
+import AspectRose from './Icons/AspectRose'
 import PropertyTile from './PropertyTile'
 
 import type { Problem } from '@/business/types'
@@ -44,9 +45,7 @@ const ModalContent = ({ problem }: ModalContentProps) => {
             name: 'aspects',
           }}
         >
-          {Object.entries(aspects).map(([elevation, aspectValues]) => (
-            <p key={elevation} className="text-xs">{`${elevation}: ${aspectValues}`}</p>
-          ))}
+          <AspectRose selectedAspects={aspects} />
         </PropertyTile>
 
         <PropertyTile

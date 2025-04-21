@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
-import { aspects } from '@/business/constants'
+import { aspects, sortedAspects } from '@/business/constants'
 
 import AspectOption from './AspectOption'
 
 import type { Aspect } from '@/business/types'
 import type { Option } from '@/UI/components/inputs'
 
-const aspectOptions = Object.entries(aspects).map(([value, label]) => ({ label, value }))
+const aspectOptions = sortedAspects.map((aspect) => ({ label: aspects[aspect], value: aspect }))
 
 type AspectSelectorProps = {
   onChange: (value: Aspect[]) => void

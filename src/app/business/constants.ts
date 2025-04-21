@@ -1,4 +1,4 @@
-import type { HazardLevelScale, HazardLevel } from './types'
+import type { Aspect, HazardLevel, HazardLevelScale } from './types'
 
 export const hazardLevels: Record<HazardLevel, string> = {
   considerable: 'Considerable',
@@ -37,6 +37,8 @@ export const aspects = {
   sw: 'SW',
   w: 'W',
 } as const
+
+export const sortedAspects: Aspect[] = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw']
 
 export const sensitivityLevels = {
   reactive: 'reactive',
