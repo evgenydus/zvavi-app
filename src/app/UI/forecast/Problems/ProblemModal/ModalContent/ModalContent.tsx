@@ -41,7 +41,7 @@ const ModalContent = ({ problem }: ModalContentProps) => {
 
         <PropertyTile
           property={{
-            info: t(`forecast.sections.avalancheProblems.modal.info.size.${avalancheSize}`),
+            info: t('forecast.sections.avalancheProblems.modal.info.aspects'),
             name: 'aspects',
           }}
         >

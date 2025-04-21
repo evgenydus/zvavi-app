@@ -44,6 +44,7 @@
       "avalancheProblems": {
         "modal": {
           "info": {
+            "aspects": "*Add some info about the aspects pyramid",
             "size": {
               "1": "Unlikely to bury a person",
               "2": "Can bury a person",

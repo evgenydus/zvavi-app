@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import type { AvalancheSize } from '@/business/types'
 
 const SizeScale = ({ size }: { size: AvalancheSize }) => {
@@ -12,7 +12,7 @@ const SizeScale = ({ size }: { size: AvalancheSize }) => {
         return (
           <div
             key={height}
-            className={classNames(
+            className={classnames(
               'w-4 rounded-sm',
               isActive ? 'bg-violet-600' : 'bg-violet-300 opacity-30',
             )}
