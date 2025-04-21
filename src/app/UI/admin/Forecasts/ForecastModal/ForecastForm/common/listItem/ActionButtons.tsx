@@ -1,4 +1,5 @@
-// TODO: Implement Icon Buttons https://app.asana.com/0/1208747689500826/1209084695587066/f
+import { IconButton } from '@/UI/components'
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 type ActionButtonsProps = {
   onEdit?: () => void
@@ -8,12 +9,17 @@ type ActionButtonsProps = {
 const ActionButtons = ({ onDelete, onEdit }: ActionButtonsProps) => {
   return (
     <div className="flex items-center gap-3">
-      <button className="text-primary" onClick={onEdit} type="button">
-        Edit
-      </button>
-      <button className="text-red-500" onClick={onDelete} type="button">
-        Delete
-      </button>
+      <IconButton
+        className="inline-flex size-7"
+        icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
+        onClick={onEdit}
+      />
+
+      <IconButton
+        className="inline-flex size-7"
+        icon={<TrashIcon className="size-5 stroke-inherit" />}
+        onClick={onDelete}
+      />
     </div>
   )
 }
