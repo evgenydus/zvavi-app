@@ -8,7 +8,7 @@ type ActionButtonsProps = {
 }
 
 const ActionButtons = ({ canEdit = true, onDelete, onEdit }: ActionButtonsProps) => (
-  <div className="flex items-center gap-3">
+  <div className="flex items-center gap-2">
     <IconButton
       className="inline-flex size-7"
       disabled={!canEdit}

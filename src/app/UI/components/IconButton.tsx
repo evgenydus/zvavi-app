@@ -8,10 +8,10 @@ type IconButtonProps = {
 const IconButton = ({ className, disabled, icon, ...props }: IconButtonProps) => (
   <button
     className={classnames(
-      'items-center justify-center rounded stroke-gray-500 transition-colors hover:bg-black/[0.05] hover:stroke-gray-900',
-      {
-        'cursor-not-allowed opacity-50': disabled,
-      },
+      'items-center justify-center rounded transition-colors',
+      disabled
+        ? 'cursor-not-allowed stroke-gray-400'
+        : 'stroke-gray-500 hover:bg-black/[0.05] hover:stroke-gray-900',
       className,
     )}
     disabled={disabled}
