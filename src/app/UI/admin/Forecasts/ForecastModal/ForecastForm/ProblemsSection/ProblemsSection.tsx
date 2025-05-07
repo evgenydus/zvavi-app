@@ -1,8 +1,8 @@
-import _uniqueId from 'lodash/uniqueId'
 import { type Dispatch, type SetStateAction, useCallback, useState } from 'react'
 
 import { initialProblemData } from '../constants'
 import { useTranslations } from 'next-intl'
+import _uniqueId from 'lodash/uniqueId'
 import prepareTimeOfDay from './prepareTimeOfDay'
 
 import { Button } from '@/UI/components/inputs'

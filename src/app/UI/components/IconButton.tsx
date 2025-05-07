@@ -14,6 +14,7 @@ const IconButton = ({ className, disabled, icon, ...props }: IconButtonProps) =>
       },
       className,
     )}
+    disabled={disabled}
     type="button"
     {...props}
   >
