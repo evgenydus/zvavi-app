@@ -1,5 +1,3 @@
-import classnames from 'classnames'
-
 import { IconButton } from '@/UI/components'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 
@@ -13,9 +11,7 @@ const ActionButtons = ({ canEdit, onDelete, onEdit }: ActionButtonsProps) => {
   return (
     <div className="flex items-center gap-3">
       <IconButton
-        className={classnames('inline-flex size-7', {
-          'cursor-not-allowed opacity-50': !canEdit,
-        })}
+        className="inline-flex size-7"
         disabled={!canEdit}
         icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
         onClick={onEdit}

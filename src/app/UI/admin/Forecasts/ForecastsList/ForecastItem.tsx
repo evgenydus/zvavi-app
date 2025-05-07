@@ -27,6 +27,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
       <Column>{format(forecast.validUntil, dateFormat)}</Column>
       <Column>{forecast.status}</Column>
       <Column className="pr-4 text-right">
+        {/* TODO: Replace with IconButton */}
         <button
           className={classnames(
             'inline-flex size-7 items-center justify-center rounded',
