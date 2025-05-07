@@ -1,66 +1,89 @@
-import { useCallback, useState } from 'react'
+import { type Dispatch, type SetStateAction, useCallback, useState } from 'react'
 
 import { initialProblemData } from '../constants'
-import { useBoolean } from '@/UI/hooks'
 import { useTranslations } from 'next-intl'
+import _uniqueId from 'lodash/uniqueId'
 import prepareTimeOfDay from './prepareTimeOfDay'
 
 import { Button } from '@/UI/components/inputs'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { ProblemForm } from './ProblemForm'
-import { ProblemsList } from './ProblemsList'
+import { ProblemList } from './ProblemList'
 
 import type { Problem } from '@/business/types'
 
+export type FormState = {
+  id?: string
+  mode: 'create' | 'edit'
+} | null
+
 type ProblemsSectionProps = {
   problems: Problem[]
-  setProblems: (value: React.SetStateAction<Problem[]>) => void
+  setProblems: Dispatch<SetStateAction<Problem[]>>
 }
 
 const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
   const tForecast = useTranslations('admin.forecast')
+  const [formState, setFormState] = useState<FormState>(null)
 
-  const [problemData, setProblemData] = useState<Problem>(initialProblemData)
-  const [isProblemFormOpen, { setFalse: closeProblemForm, setTrue: openProblemForm }] =
-    useBoolean(false)
+  const handleCreateFormOpen = useCallback(() => {
+    setFormState({ mode: 'create' })
+  }, [])
 
-  const handleAddProblemClick = useCallback(() => {
-    const preparedProblem = {
-      ...problemData,
-      timeOfDay: prepareTimeOfDay(problemData.timeOfDay),
-    }
+  const handleFormClose = useCallback(() => {
+    setFormState(null)
+  }, [])
 
-    setProblems((prev) => [...prev, preparedProblem])
-    closeProblemForm()
-    setProblemData(initialProblemData)
-  }, [closeProblemForm, problemData, setProblems])
+  const handleSubmit = useCallback(
+    (data: Problem) => {
+      const preparedProblem: Problem = {
+        id: data.id || _uniqueId('problem-'),
+        ...data,
+        timeOfDay: prepareTimeOfDay(data.timeOfDay),
+      }
 
-  const handleProblemCancel = useCallback(() => {
-    closeProblemForm()
-    setProblemData(initialProblemData)
-  }, [closeProblemForm])
+      setProblems((prev) => {
+        const isProblemExists = prev.some((problem) => problem.id === data.id)
+
+        if (isProblemExists) {
+          return prev.map((problem) => (problem.id === data.id ? preparedProblem : problem))
+        }
+
+        return [...prev, preparedProblem]
+      })
+
+      handleFormClose()
+    },
+    [handleFormClose, setProblems],
+  )
 
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-        <Button className="ml-auto" disabled={isProblemFormOpen} onClick={openProblemForm}>
+        <Button className="ml-auto" disabled={formState !== null} onClick={handleCreateFormOpen}>
           <PlusIcon className="size-5" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
       </div>
 
-      <ProblemsList isAdding={isProblemFormOpen} problems={problems} />
-
-      {isProblemFormOpen && (
+      {formState?.mode === 'create' && (
         <ProblemForm
-          onProblemAdd={handleAddProblemClick}
-          onProblemCancel={handleProblemCancel}
-          problemData={problemData}
-          setProblemData={setProblemData}
+          onClose={handleFormClose}
+          onSave={handleSubmit}
+          problemData={initialProblemData}
         />
       )}
+
+      <ProblemList
+        formState={formState}
+        onDelete={setProblems}
+        onFormClose={handleFormClose}
+        onFormOpen={setFormState}
+        onFormSave={handleSubmit}
+        problems={problems}
+      />
     </section>
   )
 }

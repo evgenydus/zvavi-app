@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { type Dispatch, type SetStateAction, useCallback } from 'react'
 import { useProblemOptions } from '../../common/hooks'
 import { useTranslations } from 'next-intl'
 
@@ -8,7 +8,7 @@ import Select from 'react-select'
 import type { AvalancheProblemTypes, Problem } from '@/business/types'
 
 type ProblemTypeProps = {
-  onTypeChange: (value: React.SetStateAction<Problem>) => void
+  onTypeChange: Dispatch<SetStateAction<Problem>>
   problemData: Problem
 }
 

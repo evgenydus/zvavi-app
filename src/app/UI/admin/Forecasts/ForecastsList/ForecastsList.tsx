@@ -26,7 +26,7 @@ const ForecastsList = ({ forecasts }: { forecasts: Forecast[] }) => {
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.createdAt')}</Column>
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.validUntil')}</Column>
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.status')}</Column>
-          <Column className="text-right font-semibold pr-4">
+          <Column className="pr-4 text-right font-semibold">
             {tAdmin('forecasts.list.columns.actions')}
           </Column>
         </div>

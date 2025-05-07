@@ -43,6 +43,7 @@ export type Forecast = {
 }
 
 export type Problem = {
+  id?: string
   aspects: Aspects
   avalancheSize: AvalancheSize
   confidence: Confidence

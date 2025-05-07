@@ -1,15 +1,27 @@
-// TODO: Implement Icon Buttons https://app.asana.com/0/1208747689500826/1209084695587066/f
-const ActionButtons = () => {
-  return (
-    <div className="flex items-center gap-3">
-      <button className="text-primary" onClick={() => {}} type="button">
-        Edit
-      </button>
-      <button className="text-red-500" onClick={() => {}} type="button">
-        Delete
-      </button>
-    </div>
-  )
+import { IconButton } from '@/UI/components'
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+
+type ActionButtonsProps = {
+  canEdit?: boolean
+  onDelete: VoidFunction
+  onEdit: VoidFunction
 }
+
+const ActionButtons = ({ canEdit = true, onDelete, onEdit }: ActionButtonsProps) => (
+  <div className="flex items-center gap-2">
+    <IconButton
+      className="inline-flex size-7"
+      disabled={!canEdit}
+      icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
+      onClick={onEdit}
+    />
+
+    <IconButton
+      className="inline-flex size-7"
+      icon={<TrashIcon className="size-5 stroke-inherit" />}
+      onClick={onDelete}
+    />
+  </div>
+)
 
 export default ActionButtons

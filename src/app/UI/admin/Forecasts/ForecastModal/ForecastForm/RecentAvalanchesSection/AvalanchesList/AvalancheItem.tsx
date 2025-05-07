@@ -14,7 +14,7 @@ const AvalancheItem = ({ avalanche }: { avalanche: Avalanche }) => {
     <div className="w-full rounded bg-black/[0.03] p-3">
       <div className="mb-3 flex items-center justify-between">
         {date && <h3 className="text-xl font-semibold">{format(date, dateFormat)}</h3>}
-        <ActionButtons />
+        <ActionButtons onDelete={() => {}} onEdit={() => {}} />
       </div>
 
       <div className="flex items-start gap-6">
