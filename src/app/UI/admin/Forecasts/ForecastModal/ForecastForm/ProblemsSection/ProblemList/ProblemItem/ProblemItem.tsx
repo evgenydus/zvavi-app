@@ -1,43 +1,53 @@
-import { ProblemItemView } from './ProblemItemView'
-import { ProblemForm } from '../../ProblemForm'
+import { useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 
-import type { ProblemFormProps } from '../../ProblemForm'
+import { ActionButtons, Aspects } from '../../../common/listItem'
+import Properties from './Properties'
+
 import type { Problem } from '@/business/types'
 
 type ProblemItemProps = {
   canEdit: boolean
-  closeEditForm: ProblemFormProps['onClose']
-  isEditFormOpen: boolean
   onDelete: (id: string) => void
-  onEditFormOpen: (id: string) => void
-  onFormSave: ProblemFormProps['onSave']
+  onEdit: (id: string) => void
   problemData: Problem
-  problemToEdit: ProblemFormProps['problemData'] | null
 }
 
-const ProblemItem = ({
-  canEdit,
-  closeEditForm,
-  isEditFormOpen,
-  onDelete,
-  onEditFormOpen,
-  onFormSave,
-  problemData,
-  problemToEdit,
-}: ProblemItemProps) => {
-  const isEditMode = problemToEdit && problemToEdit.id === problemData.id && isEditFormOpen
+const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProps) => {
+  const tForm = useTranslations('admin.forecast.form')
 
-  if (isEditMode) {
-    return <ProblemForm onClose={closeEditForm} onSave={onFormSave} problemData={problemToEdit} />
-  }
+  const handleDelete = useCallback(() => {
+    onDelete(problemData.id!)
+  }, [onDelete, problemData.id])
+
+  const handleEdit = useCallback(() => {
+    onEdit(problemData.id!)
+  }, [onEdit, problemData])
+
+  const { description } = problemData
 
   return (
-    <ProblemItemView
-      canEdit={canEdit}
-      onDelete={onDelete}
-      onEdit={onEditFormOpen}
-      problemData={problemData}
-    />
+    <div className="w-full rounded bg-black/[0.03] p-3">
+      <div className="mb-3 flex items-center justify-between">
+        <h3 className="text-xl font-semibold">
+          {tForm(`problems.options.problemType.${problemData.type}`)}
+        </h3>
+
+        <ActionButtons canEdit={canEdit} onDelete={handleDelete} onEdit={handleEdit} />
+      </div>
+
+      <div className="mb-6 flex items-center justify-between gap-6">
+        <Properties problemData={problemData} />
+        <Aspects className="w-[355px]" item={problemData} />
+      </div>
+
+      {description && (
+        <div>
+          <h4 className="mb-2 font-semibold">{tForm('common.labels.description')}:</h4>
+          <p className="max-h-28 overflow-y-auto text-justify">{description}</p>
+        </div>
+      )}
+    </div>
   )
 }
 

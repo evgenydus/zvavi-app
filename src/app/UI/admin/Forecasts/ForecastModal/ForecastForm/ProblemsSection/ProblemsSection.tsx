@@ -2,7 +2,6 @@ import _uniqueId from 'lodash/uniqueId'
 import { type Dispatch, type SetStateAction, useCallback, useState } from 'react'
 
 import { initialProblemData } from '../constants'
-import { useBoolean } from '@/UI/hooks'
 import { useTranslations } from 'next-intl'
 import prepareTimeOfDay from './prepareTimeOfDay'
 
@@ -13,6 +12,11 @@ import { ProblemList } from './ProblemList'
 
 import type { Problem } from '@/business/types'
 
+export type FormState = {
+  id?: string
+  mode: 'create' | 'edit'
+} | null
+
 type ProblemsSectionProps = {
   problems: Problem[]
   setProblems: Dispatch<SetStateAction<Problem[]>>
@@ -20,12 +24,15 @@ type ProblemsSectionProps = {
 
 const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
   const tForecast = useTranslations('admin.forecast')
+  const [formState, setFormState] = useState<FormState>(null)
 
-  const [problemData, setProblemData] = useState<Problem>(initialProblemData)
-  const [isCreateFormOpen, { setFalse: closeCreateForm, setTrue: openCreateForm }] =
-    useBoolean(false)
-  const [isEditFormOpen, { setFalse: closeEditForm, setTrue: openEditForm }] = useBoolean(false)
-  const [problemIdToEdit, setProblemIdToEdit] = useState('')
+  const handleCreateFormOpen = useCallback(() => {
+    setFormState({ mode: 'create' })
+  }, [])
+
+  const handleFormClose = useCallback(() => {
+    setFormState(null)
+  }, [])
 
   const handleSubmit = useCallback(
     (data: Problem) => {
@@ -45,38 +52,9 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
         return [...prev, preparedProblem]
       })
 
-      setProblemData(initialProblemData)
-      closeCreateForm()
+      handleFormClose()
     },
-    [closeCreateForm, setProblems],
-  )
-
-  const handleCancel = useCallback(() => {
-    // TODO: Close corresponding form
-    closeCreateForm()
-    setProblemData(initialProblemData)
-  }, [closeCreateForm])
-
-  const handleDelete = useCallback(
-    (id?: number | string) => {
-      if (!id) return
-      const newData = [...problems]
-      const index = newData.findIndex((el) => el.id === id)
-
-      newData.splice(index, 1)
-      setProblems(newData)
-    },
-    [problems, setProblems],
-  )
-
-  const canOpenForm = !isCreateFormOpen && !isEditFormOpen
-
-  const handleEditFormOpen = useCallback(
-    (id: string) => {
-      openEditForm()
-      setProblemIdToEdit(id)
-    },
-    [openEditForm],
+    [handleFormClose, setProblems],
   )
 
   return (
@@ -84,26 +62,26 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-        <Button className="ml-auto" disabled={!canOpenForm} onClick={openCreateForm}>
+        <Button className="ml-auto" disabled={formState !== null} onClick={handleCreateFormOpen}>
           <PlusIcon className="size-5" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
       </div>
 
-      {isCreateFormOpen && (
-        <ProblemForm onClose={handleCancel} onSave={handleSubmit} problemData={problemData} />
+      {formState?.mode === 'create' && (
+        <ProblemForm
+          onClose={handleFormClose}
+          onSave={handleSubmit}
+          problemData={initialProblemData}
+        />
       )}
 
       <ProblemList
-        canOpenEditForm={canOpenForm}
-        closeEditForm={closeEditForm}
-        isCreateFormOpen={isCreateFormOpen}
-        isEditFormOpen={isEditFormOpen}
-        onClose={handleCancel}
-        onDelete={handleDelete}
-        onEditFormOpen={handleEditFormOpen}
-        onSave={handleSubmit}
-        problemIdToEdit={problemIdToEdit}
+        formState={formState}
+        onDelete={setProblems}
+        onFormClose={handleFormClose}
+        onFormOpen={setFormState}
+        onFormSave={handleSubmit}
         problems={problems}
       />
     </section>
