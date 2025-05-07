@@ -11,12 +11,12 @@ import ProblemType from './ProblemType'
 import type { Problem } from '@/business/types'
 
 export type ProblemFormProps = {
+  onClose: VoidFunction
   onSave: (data: Problem) => void
-  onCancel: () => void
   problemData: Problem
 }
 
-const ProblemForm = ({ onCancel, onSave, problemData }: ProblemFormProps) => {
+const ProblemForm = ({ onClose, onSave, problemData }: ProblemFormProps) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
 
   const [data, setData] = useState(problemData)
@@ -43,7 +43,7 @@ const ProblemForm = ({ onCancel, onSave, problemData }: ProblemFormProps) => {
 
   const handleSave = () => {
     onSave(data)
-    onCancel()
+    onClose()
   }
 
   return (
@@ -70,7 +70,7 @@ const ProblemForm = ({ onCancel, onSave, problemData }: ProblemFormProps) => {
         />
       </section>
 
-      <Footer onCancel={onCancel} onSave={handleSave} />
+      <Footer onCancel={onClose} onSave={handleSave} />
     </div>
   )
 }

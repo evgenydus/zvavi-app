@@ -1,16 +1,22 @@
+import classnames from 'classnames'
+
 import { IconButton } from '@/UI/components'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 type ActionButtonsProps = {
-  onEdit?: () => void
-  onDelete?: () => void
+  canEdit: boolean
+  onDelete: VoidFunction
+  onEdit: VoidFunction
 }
 
-const ActionButtons = ({ onDelete, onEdit }: ActionButtonsProps) => {
+const ActionButtons = ({ canEdit, onDelete, onEdit }: ActionButtonsProps) => {
   return (
     <div className="flex items-center gap-3">
       <IconButton
-        className="inline-flex size-7"
+        className={classnames('inline-flex size-7', {
+          'cursor-not-allowed opacity-50': !canEdit,
+        })}
+        disabled={!canEdit}
         icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
         onClick={onEdit}
       />

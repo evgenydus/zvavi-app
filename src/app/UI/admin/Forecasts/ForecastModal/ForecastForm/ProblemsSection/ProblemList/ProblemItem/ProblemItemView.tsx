@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { ActionButtons, Aspects } from '../../../common/listItem'
@@ -6,13 +7,22 @@ import Properties from './Properties'
 import type { Problem } from '@/business/types'
 
 type ProblemItemProps = {
+  canEdit: boolean
+  onDelete: (id: string) => void
+  onEdit: (id: string) => void
   problemData: Problem
-  onEdit: () => void
-  onDelete: () => void
 }
 
-export const ProblemItemView = ({ onDelete, onEdit, problemData }: ProblemItemProps) => {
+export const ProblemItemView = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProps) => {
   const tForm = useTranslations('admin.forecast.form')
+
+  const handleDelete = useCallback(() => {
+    onDelete(problemData.id!)
+  }, [onDelete, problemData.id])
+
+  const handleEdit = useCallback(() => {
+    onEdit(problemData.id!)
+  }, [onEdit, problemData])
 
   const { description } = problemData
 
@@ -23,7 +33,7 @@ export const ProblemItemView = ({ onDelete, onEdit, problemData }: ProblemItemPr
           {tForm(`problems.options.problemType.${problemData.type}`)}
         </h3>
 
-        <ActionButtons onDelete={onDelete} onEdit={onEdit} />
+        <ActionButtons canEdit={canEdit} onDelete={handleDelete} onEdit={handleEdit} />
       </div>
 
       <div className="mb-6 flex items-center justify-between gap-6">
