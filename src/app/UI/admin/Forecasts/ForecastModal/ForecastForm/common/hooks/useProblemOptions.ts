@@ -2,7 +2,7 @@ import {
   avalancheProblemTypes,
   confidenceLevels,
   distributionTypes,
-  sensitivityLevels,
+  sensitivityLevelsSorted,
   trends,
 } from '@/business/constants'
 import { generateOptions } from '../helpers'
@@ -22,7 +22,7 @@ const useProblemOptions = () => {
 
   const avalancheSizeOptions = _range(1, 6).map((level) => ({ label: level, value: level }))
   const sensitivityOptions = generateOptions(
-    Object.values(sensitivityLevels),
+    sensitivityLevelsSorted,
     'options.sensitivityLevel',
     tProblems,
   )

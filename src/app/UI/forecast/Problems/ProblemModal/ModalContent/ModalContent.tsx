@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { SizeScale } from './Icons'
-import AspectRose from './Icons/AspectRose'
+import { AspectRose, SensitivityGauge, SizeScale } from './Icons'
 import PropertyTile from './PropertyTile'
 
 import type { Problem } from '@/business/types'
@@ -54,9 +53,17 @@ const ModalContent = ({ problem }: ModalContentProps) => {
             name: 'sensitivity',
           }}
         >
-          <p className="font-semibold">
-            {t(`admin.forecast.form.problems.options.sensitivityLevel.${sensitivity}`)}
-          </p>
+          <div className="flex h-full flex-col justify-between">
+            <p className="font-semibold">
+              {t(`admin.forecast.form.problems.options.sensitivityLevel.${sensitivity}`)}
+            </p>
+            <SensitivityGauge
+              className="ml-auto w-24"
+              diameter={85}
+              strokeWidth={14}
+              value={sensitivity}
+            />
+          </div>
         </PropertyTile>
 
         <PropertyTile
