@@ -16,7 +16,7 @@ const WIPBanner = () => {
       }}
     >
       <button
-        className="items center inline-flex flex-col rounded-lg bg-black/80 px-5 py-1 text-white"
+        className="inline-flex flex-col items-center rounded-lg bg-black/80 px-5 py-1 text-white"
         onClick={openModal}
         type="button"
       >
