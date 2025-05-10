@@ -5,6 +5,7 @@ import { Header } from '@/UI/header'
 import { NextIntlClientProvider } from 'next-intl'
 import { QueryClientProvider } from '@/data'
 import { SupabaseContextProvider } from '@/business/context'
+import WIPBanner from '@/UI/components/WIPBanner'
 
 import './globals.css'
 
@@ -37,6 +38,7 @@ const Layout = async (props: Readonly<LayoutProps>) => {
           <QueryClientProvider>
             <SupabaseContextProvider>
               <Header />
+              <WIPBanner />
               {children}
             </SupabaseContextProvider>
           </QueryClientProvider>
