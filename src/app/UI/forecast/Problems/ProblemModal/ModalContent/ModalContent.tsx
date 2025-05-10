@@ -24,7 +24,7 @@ const ModalContent = ({ problem }: ModalContentProps) => {
 
   return (
     <div>
-      <p className="mb-4 text-sm">{description}</p>
+      {description && <p className="mb-4 text-justify text-sm">{description}</p>}
       <div className="grid grid-cols-2 gap-2">
         <PropertyTile
           property={{
