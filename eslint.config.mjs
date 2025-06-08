@@ -1,11 +1,13 @@
 /* eslint-disable max-lines */
+
+import { FlatCompat } from '@eslint/eslintrc'
+import js from '@eslint/js'
+import importPlugin from 'eslint-plugin-import'
 import prettier from 'eslint-plugin-prettier'
-import sortKeysFix from 'eslint-plugin-sort-keys-fix'
 import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys'
+import sortKeysFix from 'eslint-plugin-sort-keys-fix'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -32,6 +34,7 @@ export default [
   ),
   {
     plugins: {
+      import: importPlugin,
       prettier,
       'sort-destructure-keys': sortDestructureKeys,
       'sort-keys-fix': sortKeysFix,
@@ -40,7 +43,90 @@ export default [
       '@typescript-eslint/no-var-requires': 'off',
       'import/extensions': 'off',
       'import/no-cycle': 'off',
-      'import/order': 'off',
+      'import/order': [
+        'error',
+        {
+          alphabetize: {
+            caseInsensitive: true,
+            order: 'asc',
+          },
+          groups: [
+            ['builtin', 'external'], // 1. Nodejs modules, external modules
+            'internal', // 2. Constants, helpers, hooks, components and other internal
+            ['sibling', 'parent', 'index'], // 3. Inner modules
+            'type', // 4. Types
+          ],
+          'newlines-between': 'always',
+          pathGroups: [
+            {
+              group: 'internal',
+              pattern: '@/UI/constants/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '@/data/constants/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '**/constants/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '@/data/helpers/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '**/helpers/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '@/UI/hooks/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '**/hooks/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '@/UI/components/**',
+              position: 'after',
+            },
+            {
+              group: 'internal',
+              pattern: '**/components/**',
+              position: 'after',
+            },
+            {
+              group: 'type',
+              pattern: '@/business/types',
+              position: 'after',
+            },
+            {
+              group: 'type',
+              pattern: '@/app/types',
+              position: 'after',
+            },
+            {
+              group: 'type',
+              pattern: '**/types',
+              position: 'after',
+            },
+            {
+              group: 'type',
+              pattern: '**/types/**',
+              position: 'after',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['type'],
+        },
+      ],
       'import/prefer-default-export': 'off',
       'max-lines': [
         'error',
