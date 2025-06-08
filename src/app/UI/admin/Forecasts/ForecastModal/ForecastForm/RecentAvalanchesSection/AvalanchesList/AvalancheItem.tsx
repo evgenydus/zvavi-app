@@ -7,7 +7,7 @@ import { ActionButtons, Aspects, PropertyWrapper } from '../../common/listItem'
 
 import type { Avalanche } from '@/business/types'
 
-interface AvalancheItemProps {
+type AvalancheItemProps = {
   avalanche: Avalanche
   canEdit: boolean
   onDelete: (id: string) => void

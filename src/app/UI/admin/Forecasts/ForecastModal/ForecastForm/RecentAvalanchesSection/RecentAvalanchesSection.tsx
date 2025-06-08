@@ -10,12 +10,7 @@ import { Button } from '@/UI/components/inputs'
 import { PlusIcon } from '@heroicons/react/20/solid'
 
 import type { Avalanche } from '@/business/types'
-
-// TODO: move type FormState to upper component and share it with ProblemsSection
-export type FormState = {
-  id?: string
-  mode: 'create' | 'edit'
-} | null
+import { FormState } from '../common'
 
 type RecentAvalanchesSectionProps = {
   avalanches: Avalanche[]

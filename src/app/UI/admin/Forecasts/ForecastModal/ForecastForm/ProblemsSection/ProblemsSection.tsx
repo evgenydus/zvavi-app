@@ -11,11 +11,7 @@ import { ProblemForm } from './ProblemForm'
 import { ProblemList } from './ProblemList'
 
 import type { Problem } from '@/business/types'
-
-export type FormState = {
-  id?: string
-  mode: 'create' | 'edit'
-} | null
+import type { FormState } from '../common'
 
 type ProblemsSectionProps = {
   problems: Problem[]
