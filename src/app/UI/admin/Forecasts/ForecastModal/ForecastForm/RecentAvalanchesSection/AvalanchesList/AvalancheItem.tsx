@@ -1,11 +1,11 @@
 import { dateFormat } from '@/business/constants'
 import { format } from 'date-fns'
+import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { ActionButtons, Aspects, PropertyWrapper } from '../../common/listItem'
 
 import type { Avalanche } from '@/business/types'
-import { useCallback } from 'react'
 
 interface AvalancheItemProps {
   avalanche: Avalanche

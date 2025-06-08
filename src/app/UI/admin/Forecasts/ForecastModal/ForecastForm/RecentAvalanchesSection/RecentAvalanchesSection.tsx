@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
+import _uniqueId from 'lodash/uniqueId'
 
 import { initialAvalancheData } from '../constants'
-import _uniqueId from 'lodash/uniqueId'
 import { useTranslations } from 'next-intl'
 
 import { AvalancheForm } from './AvalancheForm'
