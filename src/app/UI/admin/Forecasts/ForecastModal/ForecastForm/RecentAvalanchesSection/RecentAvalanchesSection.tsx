@@ -10,7 +10,7 @@ import { Button } from '@/UI/components/inputs'
 import { PlusIcon } from '@heroicons/react/20/solid'
 
 import type { Avalanche } from '@/business/types'
-import { FormState } from '../common'
+import type { FormState } from '../common'
 
 type RecentAvalanchesSectionProps = {
   avalanches: Avalanche[]

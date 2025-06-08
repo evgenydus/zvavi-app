@@ -4,6 +4,6 @@ export { Footer } from './Footer'
 
 export { default as InputBlock } from './InputBlock'
 
-export type { FormState } from './types'
+export * from './types'
 
 export * from './hooks'
