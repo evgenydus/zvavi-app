@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { InputBlock, Footer, AvalancheSize, Aspects, type SetAspectsData } from '../../common'
@@ -6,50 +6,51 @@ import { DatePicker, Textarea } from '@/UI/components/inputs'
 
 import type { Avalanche, AvalancheSize as AvalancheSizeType } from '@/business/types'
 
-type AvalancheFormProps = {
+export type AvalancheFormProps = {
   avalancheData: Avalanche
-  onAvalancheAdd: () => void
-  onCancel: () => void
-  setAvalancheData: (value: React.SetStateAction<Avalanche>) => void
+  onClose: VoidFunction
+  onSave: (data: Avalanche) => void
 }
 
-const AvalancheForm = ({
-  avalancheData,
-  onAvalancheAdd,
-  onCancel,
-  setAvalancheData,
-}: AvalancheFormProps) => {
+const AvalancheForm = ({ avalancheData, onClose, onSave }: AvalancheFormProps) => {
   const tForm = useTranslations('admin.forecast.form')
+
+  const [data, setData] = useState(avalancheData)
 
   const handleDateChange = useCallback(
     (value: Date | null) => {
-      setAvalancheData((prev) => ({
+      setData((prev) => ({
         ...prev,
         date: value,
       }))
     },
-    [setAvalancheData],
+    [setData],
   )
 
   const handleSizeChange = useCallback(
     (value: AvalancheSizeType) => {
-      setAvalancheData((prev) => ({
+      setData((prev) => ({
         ...prev,
         size: value,
       }))
     },
-    [setAvalancheData],
+    [setData],
   )
 
   const handleDescriptionChange = useCallback(
     ({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setAvalancheData((prev) => ({
+      setData((prev) => ({
         ...prev,
         description: target.value,
       }))
     },
-    [setAvalancheData],
+    [setData],
   )
+
+  const handleSave = () => {
+    onSave(data)
+    onClose()
+  }
 
   return (
     <div className="flex flex-col gap-6 rounded border p-3">
@@ -60,15 +61,15 @@ const AvalancheForm = ({
               className="h-8 rounded bg-black/5 px-2"
               dateFormat="dd.MM.yyyy HH:mm"
               onChange={handleDateChange}
-              selected={avalancheData.date}
+              selected={data.date}
               showTimeSelect
             />
           </InputBlock>
 
-          <AvalancheSize onChange={handleSizeChange} value={avalancheData.size} />
+          <AvalancheSize onChange={handleSizeChange} value={data.size} />
         </div>
 
-        <Aspects data={avalancheData} setData={setAvalancheData as SetAspectsData} />
+        <Aspects data={data} setData={setData as SetAspectsData} />
       </section>
 
       <div className="flex flex-col gap-4 pt-1.5">
@@ -76,7 +77,7 @@ const AvalancheForm = ({
         <Textarea className="w-full" onChange={handleDescriptionChange} rows={4} />
       </div>
 
-      <Footer onCancel={onCancel} onSave={onAvalancheAdd} />
+      <Footer onCancel={onClose} onSave={handleSave} />
     </div>
   )
 }

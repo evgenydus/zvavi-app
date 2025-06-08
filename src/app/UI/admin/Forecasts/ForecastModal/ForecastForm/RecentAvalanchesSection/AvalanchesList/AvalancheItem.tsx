@@ -1,20 +1,36 @@
 import { dateFormat } from '@/business/constants'
 import { format } from 'date-fns'
+import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { ActionButtons, Aspects, PropertyWrapper } from '../../common/listItem'
 
 import type { Avalanche } from '@/business/types'
 
-const AvalancheItem = ({ avalanche }: { avalanche: Avalanche }) => {
+type AvalancheItemProps = {
+  avalanche: Avalanche
+  canEdit: boolean
+  onDelete: (id: string) => void
+  onEdit: (id: string) => void
+}
+
+const AvalancheItem = ({ avalanche, canEdit, onDelete, onEdit }: AvalancheItemProps) => {
   const tForm = useTranslations('admin.forecast.form')
   const { date, description, size } = avalanche
+
+  const handleDelete = useCallback(() => {
+    onDelete(avalanche.id!)
+  }, [onDelete, avalanche])
+
+  const handleEdit = useCallback(() => {
+    onEdit(avalanche.id!)
+  }, [onEdit, avalanche])
 
   return (
     <div className="w-full rounded bg-black/[0.03] p-3">
       <div className="mb-3 flex items-center justify-between">
         {date && <h3 className="text-xl font-semibold">{format(date, dateFormat)}</h3>}
-        <ActionButtons onDelete={() => {}} onEdit={() => {}} />
+        <ActionButtons canEdit={canEdit} onDelete={handleDelete} onEdit={handleEdit} />
       </div>
 
       <div className="flex items-start gap-6">

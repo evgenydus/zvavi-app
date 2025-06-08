@@ -1,19 +1,47 @@
 import { useTranslations } from 'next-intl'
+import { useCallback } from 'react'
 import _uniqueId from 'lodash/uniqueId'
 
+import { AvalancheForm, type AvalancheFormProps } from '../AvalancheForm'
 import AvalancheItem from './AvalancheItem'
 
 import type { Avalanche } from '@/business/types'
+import type { FormState } from '../../common'
 
 type AvalanchesListProps = {
   avalanches: Avalanche[]
-  isAdding: boolean
+  formState: FormState
+  onDelete: (avalanches: Avalanche[]) => void
+  onFormClose: AvalancheFormProps['onClose']
+  onFormOpen: (state: { mode: 'edit'; id: string }) => void
+  onFormSave: AvalancheFormProps['onSave']
 }
 
-const AvalanchesList = ({ avalanches, isAdding }: AvalanchesListProps) => {
+const AvalanchesList = ({
+  avalanches,
+  formState,
+  onDelete,
+  onFormClose,
+  onFormOpen,
+  onFormSave,
+}: AvalanchesListProps) => {
   const t = useTranslations()
 
-  if (avalanches.length === 0 && !isAdding) {
+  const handleEdit = useCallback(
+    (id: string) => {
+      onFormOpen({ id, mode: 'edit' })
+    },
+    [onFormOpen],
+  )
+
+  const handleDelete = useCallback(
+    (id: string) => {
+      onDelete(avalanches.filter((el) => el.id !== id))
+    },
+    [onDelete, avalanches],
+  )
+
+  if (avalanches.length === 0 && formState === null) {
     return (
       <p className="text-center text-gray-500">
         {t('admin.forecast.form.recentAvalanches.noAvalanches')}
@@ -25,7 +53,16 @@ const AvalanchesList = ({ avalanches, isAdding }: AvalanchesListProps) => {
     <ul className="space-y-4">
       {avalanches.map((avalanche) => (
         <li key={_uniqueId('avalanche-')}>
-          <AvalancheItem avalanche={avalanche} />
+          {formState?.mode === 'edit' && formState.id === avalanche.id ? (
+            <AvalancheForm avalancheData={avalanche} onClose={onFormClose} onSave={onFormSave} />
+          ) : (
+            <AvalancheItem
+              avalanche={avalanche}
+              canEdit={formState === null}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
+          )}
         </li>
       ))}
     </ul>
