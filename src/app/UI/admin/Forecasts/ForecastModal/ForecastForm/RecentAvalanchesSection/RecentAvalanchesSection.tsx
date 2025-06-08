@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
 import { initialAvalancheData } from '../constants'
-import { useBoolean } from '@/UI/hooks'
+import _uniqueId from 'lodash/uniqueId'
 import { useTranslations } from 'next-intl'
 
 import { AvalancheForm } from './AvalancheForm'
@@ -11,6 +11,12 @@ import { PlusIcon } from '@heroicons/react/20/solid'
 
 import type { Avalanche } from '@/business/types'
 
+// TODO: move type FormState to upper component and share it with ProblemsSection
+export type FormState = {
+  id?: string
+  mode: 'create' | 'edit'
+} | null
+
 type RecentAvalanchesSectionProps = {
   avalanches: Avalanche[]
   setAvalanches: (value: React.SetStateAction<Avalanche[]>) => void
@@ -19,41 +25,65 @@ type RecentAvalanchesSectionProps = {
 const RecentAvalanchesSection = ({ avalanches, setAvalanches }: RecentAvalanchesSectionProps) => {
   const tAvalanches = useTranslations('admin.forecast.form.recentAvalanches')
 
-  const [avalancheData, setAvalancheData] = useState<Avalanche>(initialAvalancheData)
-  const [isFormOpen, { setFalse: closeForm, setTrue: openForm }] = useBoolean(false)
+  const [formState, setFormState] = useState<FormState>(null)
 
-  const handleAvalancheAdd = useCallback(() => {
-    setAvalanches((prev) => [...prev, avalancheData])
-    closeForm()
-    setAvalancheData(initialAvalancheData)
-  }, [avalancheData, closeForm, setAvalanches])
+  const handleCreateFormOpen = useCallback(() => {
+    setFormState({ mode: 'create' })
+  }, [])
 
-  const handleCancel = useCallback(() => {
-    closeForm()
-    setAvalancheData(initialAvalancheData)
-  }, [closeForm])
+  const handleFormClose = useCallback(() => {
+    setFormState(null)
+  }, [])
+
+  const handleSubmit = useCallback(
+    (data: Avalanche) => {
+      const preparedAvalanche: Avalanche = {
+        id: data.id || _uniqueId('avalanche-'),
+        ...data,
+      }
+
+      setAvalanches((prev) => {
+        const isAvalancheExists = prev.some((a) => a.id === data.id)
+
+        if (isAvalancheExists) {
+          return prev.map((avalanche) => (avalanche.id === data.id ? preparedAvalanche : avalanche))
+        }
+
+        return [...prev, preparedAvalanche]
+      })
+
+      handleFormClose()
+    },
+    [setAvalanches, handleFormClose],
+  )
 
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tAvalanches('title')}</h3>
 
-        <Button className="ml-auto" disabled={isFormOpen} onClick={openForm}>
+        <Button className="ml-auto" disabled={formState !== null} onClick={handleCreateFormOpen}>
           <PlusIcon className="size-5" />
           {tAvalanches('labels.addAvalanche')}
         </Button>
       </div>
 
-      <AvalanchesList avalanches={avalanches} isAdding={isFormOpen} />
-
-      {isFormOpen && (
+      {formState?.mode === 'create' && (
         <AvalancheForm
-          avalancheData={avalancheData}
-          onAvalancheAdd={handleAvalancheAdd}
-          onCancel={handleCancel}
-          setAvalancheData={setAvalancheData}
+          avalancheData={initialAvalancheData}
+          onClose={handleFormClose}
+          onSave={handleSubmit}
         />
       )}
+
+      <AvalanchesList
+        avalanches={avalanches}
+        formState={formState}
+        onDelete={setAvalanches}
+        onFormClose={handleFormClose}
+        onFormOpen={setFormState}
+        onFormSave={handleSubmit}
+      />
     </section>
   )
 }

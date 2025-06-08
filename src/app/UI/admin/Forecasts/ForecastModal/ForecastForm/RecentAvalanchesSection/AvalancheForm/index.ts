@@ -1,1 +1,1 @@
-export { default as AvalancheForm } from './AvalancheForm'
+export { default as AvalancheForm, type AvalancheFormProps } from './AvalancheForm'
