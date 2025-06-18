@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { InputBlock, useProblemOptions } from '../common'
 import { RadioGroup } from '@/UI/components/inputs'
+import { InputBlock, useProblemOptions } from '../common'
 
 import type {
   ElevationKey,

@@ -1,10 +1,11 @@
 import { useCallback } from 'react'
+
 import { aspects, sortedAspects } from '@/business/constants'
 
+import type { Option } from '@/UI/components/inputs'
 import AspectOption from './AspectOption'
 
 import type { Aspect } from '@/business/types'
-import type { Option } from '@/UI/components/inputs'
 
 const aspectOptions = sortedAspects.map((aspect) => ({ label: aspects[aspect], value: aspect }))
 

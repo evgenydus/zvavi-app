@@ -1,21 +1,21 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-
+import { MenuItem as Item } from '@headlessui/react'
 import {
-  HomeIcon,
   EnvelopeIcon,
+  HomeIcon,
   StarIcon,
   UserGroupIcon,
   UserPlusIcon,
 } from '@heroicons/react/20/solid'
-import { MenuItem as Item } from '@headlessui/react'
+import classnames from 'classnames'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+
+import type { NavMenuItem } from './types'
 
 import type { HeroIcon } from '@/types'
-import type { NavMenuItem } from './types'
-import classnames from 'classnames'
-import { usePathname } from 'next/navigation'
 
 const iconRenderers: Record<string, HeroIcon> = {
   envelope: EnvelopeIcon,

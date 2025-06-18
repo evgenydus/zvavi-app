@@ -1,6 +1,7 @@
-import { backgroundColorByHazardLevel } from '@/UI/constants'
-import { hazardLevelsByScale } from '@/business/constants'
 import classnames from 'classnames'
+
+import { hazardLevelsByScale } from '@/business/constants'
+import { backgroundColorByHazardLevel } from '@/UI/constants'
 
 import type { HazardLevels as HazardLevelsType } from '@/business/types'
 

@@ -1,11 +1,11 @@
 import { useTranslations } from 'next-intl'
 
+import { Spoiler } from '@/UI/components'
 import { HazardLevelBanner } from '@/UI/components/HazardLevelBanner'
+import AdditionalHazards from './AdditionalHazards'
 import { HazardLevelsByElevation } from './HazardLevelsByElevation'
 import { Problems } from './Problems'
 import { RecentAvalanches } from './RecentAvalanches'
-import { Spoiler } from '@/UI/components'
-import AdditionalHazards from './AdditionalHazards'
 import Snowpack from './Snowpack'
 import Weather from './Weather'
 

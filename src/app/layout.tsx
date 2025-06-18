@@ -1,16 +1,15 @@
-import { ubuntuSans } from '@/fonts'
+import type { Metadata } from 'next'
+import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
-import { Header } from '@/UI/header'
-import { NextIntlClientProvider } from 'next-intl'
-import { QueryClientProvider } from '@/data'
-import { SupabaseContextProvider } from '@/business/context'
 import WIPBanner from '@/UI/components/WIPBanner'
-
 import './globals.css'
-
 import type { Locale } from '../config'
-import type { Metadata } from 'next'
+
+import { SupabaseContextProvider } from '@/business/context'
+import { QueryClientProvider } from '@/data'
+import { ubuntuSans } from '@/fonts'
+import { Header } from '@/UI/header'
 
 export const metadata: Metadata = {
   description:

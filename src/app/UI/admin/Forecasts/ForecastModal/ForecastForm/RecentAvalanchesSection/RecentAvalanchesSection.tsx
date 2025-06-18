@@ -1,16 +1,15 @@
 import { useCallback, useState } from 'react'
+import { PlusIcon } from '@heroicons/react/20/solid'
 import _uniqueId from 'lodash/uniqueId'
-
-import { initialAvalancheData } from '../constants'
 import { useTranslations } from 'next-intl'
 
+import { Button } from '@/UI/components/inputs'
 import { AvalancheForm } from './AvalancheForm'
 import { AvalanchesList } from './AvalanchesList'
-import { Button } from '@/UI/components/inputs'
-import { PlusIcon } from '@heroicons/react/20/solid'
+import type { FormState } from '../common'
+import { initialAvalancheData } from '../constants'
 
 import type { Avalanche } from '@/business/types'
-import type { FormState } from '../common'
 
 type RecentAvalanchesSectionProps = {
   avalanches: Avalanche[]

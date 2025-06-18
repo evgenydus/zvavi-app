@@ -1,3 +1,6 @@
+import _range from 'lodash/range'
+import { useTranslations } from 'next-intl'
+
 import {
   avalancheProblemTypes,
   confidenceLevels,
@@ -5,9 +8,8 @@ import {
   sensitivityLevelsSorted,
   trends,
 } from '@/business/constants'
+
 import { generateOptions } from '../helpers'
-import { useTranslations } from 'next-intl'
-import _range from 'lodash/range'
 
 import type { AvalancheProblemTypes } from '@/business/types'
 

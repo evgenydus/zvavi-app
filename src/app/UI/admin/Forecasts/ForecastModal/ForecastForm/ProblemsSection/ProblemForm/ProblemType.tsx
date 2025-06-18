@@ -1,9 +1,9 @@
 import { type Dispatch, type SetStateAction, useCallback } from 'react'
-import { useProblemOptions } from '../../common/hooks'
 import { useTranslations } from 'next-intl'
+import Select from 'react-select'
 
 import { InputBlock } from '../../common'
-import Select from 'react-select'
+import { useProblemOptions } from '../../common/hooks'
 
 import type { AvalancheProblemTypes, Problem } from '@/business/types'
 

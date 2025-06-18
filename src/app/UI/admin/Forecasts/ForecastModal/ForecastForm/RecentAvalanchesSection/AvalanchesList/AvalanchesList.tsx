@@ -1,12 +1,12 @@
-import { useTranslations } from 'next-intl'
 import { useCallback } from 'react'
 import _uniqueId from 'lodash/uniqueId'
+import { useTranslations } from 'next-intl'
 
-import { AvalancheForm, type AvalancheFormProps } from '../AvalancheForm'
 import AvalancheItem from './AvalancheItem'
+import type { FormState } from '../../common'
+import { AvalancheForm, type AvalancheFormProps } from '../AvalancheForm'
 
 import type { Avalanche } from '@/business/types'
-import type { FormState } from '../../common'
 
 type AvalanchesListProps = {
   avalanches: Avalanche[]

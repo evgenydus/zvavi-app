@@ -1,13 +1,14 @@
 'use client'
 
 import { useCallback, useState } from 'react'
+import { Field, Fieldset, Label, Legend } from '@headlessui/react'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { routes } from '@/UI/header/NavMenu/constants'
-import { supabase } from '@/data'
-import { useTranslations, useLocale } from 'next-intl'
 
 import { Button, TextInput } from '@/UI/components/inputs'
-import { Field, Fieldset, Label, Legend } from '@headlessui/react'
+
+import { supabase } from '@/data'
 
 const ForgotPasswordPage = () => {
   const t = useTranslations()
@@ -41,7 +42,7 @@ const ForgotPasswordPage = () => {
 
   return (
     <form className="w-full max-w-lg px-4" onSubmit={handleSendResetLinkClick}>
-      <Fieldset className="space-y-6 rounded p-6 sm:p-10 dark:text-white">
+      <Fieldset className="space-y-6 rounded p-6 dark:text-white sm:p-10">
         <Legend className="text-center text-2xl font-semibold">
           {t('auth.forgotPassword.title')}
         </Legend>

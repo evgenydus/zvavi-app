@@ -1,5 +1,6 @@
-import { Button } from '@/UI/components/inputs'
 import { useTranslations } from 'next-intl'
+
+import { Button } from '@/UI/components/inputs'
 
 type FooterProps = {
   onCancel: () => void

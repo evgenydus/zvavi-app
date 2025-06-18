@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 
-import AvalancheItem from './AvalancheItem'
 import Spoiler from '@/UI/components/Spoiler'
+import AvalancheItem from './AvalancheItem'
 
 import type { Avalanche } from '@/business/types'
 

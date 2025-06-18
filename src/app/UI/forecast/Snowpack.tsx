@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+
 import { Spoiler } from '@/UI/components'
 
 const Snowpack = ({ snowpack }: { snowpack: string }) => {

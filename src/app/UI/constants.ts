@@ -1,16 +1,16 @@
-import drySnow1 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-1.png'
-import drySnow2 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-2.png'
-import drySnow3 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-3.png'
-import drySnow45 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-4-5.png'
+import type { StaticImageData } from 'next/image'
 
 import glide from '@/assets/icons/avalancheProblems/glide.jpg'
 import looseWet from '@/assets/icons/avalancheProblems/looseWet.jpg'
 import persistentSlab from '@/assets/icons/avalancheProblems/persistentSlab.jpg'
 import stormSlab from '@/assets/icons/avalancheProblems/stormSlab.jpg'
 import windSlab from '@/assets/icons/avalancheProblems/windSlab.jpg'
+import drySnow1 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-1.png'
+import drySnow2 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-2.png'
+import drySnow3 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-3.png'
+import drySnow45 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-4-5.png'
 
 import type { AvalancheProblemTypes, HazardLevelScale } from '@/business/types'
-import type { StaticImageData } from 'next/image'
 
 type HazardIcons = Record<HazardLevelScale, StaticImageData>
 

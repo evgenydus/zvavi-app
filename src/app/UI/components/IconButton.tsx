@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import type { DetailedHTMLProps, ButtonHTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
 
 type IconButtonProps = {
   icon: React.ReactNode

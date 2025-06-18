@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import classnames from 'classnames'
 import { Input } from '@headlessui/react'
-
+import classnames from 'classnames'
 import type { InputHTMLAttributes } from 'react'
 
 const TextInput = (props: InputHTMLAttributes<HTMLInputElement>) => (

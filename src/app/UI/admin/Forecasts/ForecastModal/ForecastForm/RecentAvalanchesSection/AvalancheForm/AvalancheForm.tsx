@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { InputBlock, Footer, AvalancheSize, Aspects, type SetAspectsData } from '../../common'
 import { DatePicker, Textarea } from '@/UI/components/inputs'
+import { Aspects, AvalancheSize, Footer, InputBlock, type SetAspectsData } from '../../common'
 
 import type { Avalanche, AvalancheSize as AvalancheSizeType } from '@/business/types'
 

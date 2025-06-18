@@ -1,5 +1,7 @@
 import { useTranslations } from 'next-intl'
+
 import Problem from './Problem'
+
 import type { Problem as ProblemType } from '@/business/types'
 
 const Problems = ({ problems }: { problems: ProblemType[] }) => {

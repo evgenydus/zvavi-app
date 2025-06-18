@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import { useGetForecast } from '@/data/hooks/forecasts'
 
 import Forecast from './Forecast'

@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import classnames from 'classnames'
+
 import type { Option } from '@/UI/components/inputs'
 
 type AspectOptionProps = {

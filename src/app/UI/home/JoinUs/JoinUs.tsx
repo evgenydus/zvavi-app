@@ -1,5 +1,6 @@
-import { routes } from '@/UI/header/NavMenu/constants'
 import { useTranslations } from 'next-intl'
+
+import { routes } from '@/UI/header/NavMenu/constants'
 
 import { ButtonLink, PageSection } from '@/UI/components'
 

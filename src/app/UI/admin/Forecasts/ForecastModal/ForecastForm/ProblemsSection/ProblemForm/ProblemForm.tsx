@@ -3,10 +3,10 @@
 import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { AvalancheSize, Aspects, Footer, type SetAspectsData } from '../../common'
-import { PropertiesSection } from './PropertiesSection'
 import { Textarea } from '@/UI/components/inputs'
 import ProblemType from './ProblemType'
+import { PropertiesSection } from './PropertiesSection'
+import { Aspects, AvalancheSize, Footer, type SetAspectsData } from '../../common'
 
 import type { Problem } from '@/business/types'
 

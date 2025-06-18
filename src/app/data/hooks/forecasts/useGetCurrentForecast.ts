@@ -1,9 +1,10 @@
-import { convertSnakeToCamel } from '../../helpers'
-import { forecastsKeys } from '../../query-keys'
-import { supabase } from '@/data'
 import { useQuery } from '@/tanstack-query/hooks'
 
+import { convertSnakeToCamel } from '../../helpers'
+import { forecastsKeys } from '../../query-keys'
+
 import type { Forecast } from '@/business/types'
+import { supabase } from '@/data'
 
 const fetchCurrentForecast = async (): Promise<Forecast | null> => {
   // Get latest published forecast

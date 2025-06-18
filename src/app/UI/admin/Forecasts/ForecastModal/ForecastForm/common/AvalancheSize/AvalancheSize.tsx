@@ -1,7 +1,7 @@
-import { useProblemOptions } from '../hooks'
 import { useTranslations } from 'next-intl'
 
 import { RadioGroup } from '@/UI/components/inputs'
+import { useProblemOptions } from '../hooks'
 import InputBlock from '../InputBlock'
 
 import type { AvalancheSize as AvalancheSizeType } from '@/business/types'

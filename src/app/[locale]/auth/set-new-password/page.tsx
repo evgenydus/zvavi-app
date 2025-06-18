@@ -1,14 +1,15 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-
-import { routes } from '@/UI/header/NavMenu/constants'
-import { supabase } from '@/data'
+import { Field, Fieldset, Label, Legend } from '@headlessui/react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
-import { Field, Fieldset, Label, Legend } from '@headlessui/react'
+import { routes } from '@/UI/header/NavMenu/constants'
+
 import { Button, TextInput } from '@/UI/components/inputs'
+
+import { supabase } from '@/data'
 
 const validatePasswords = (password: string, passwordConfirm: string) => {
   return passwordConfirm === password
@@ -71,7 +72,7 @@ const SetNewPasswordPage = () => {
 
   return (
     <form className="w-full max-w-lg px-4" onSubmit={handleNewPasswordSubmit}>
-      <Fieldset className="space-y-6 rounded p-6 sm:p-10 dark:text-white">
+      <Fieldset className="space-y-6 rounded p-6 dark:text-white sm:p-10">
         <Legend className="text-center text-2xl font-semibold">
           {t('auth.setNewPassword.title')}
         </Legend>

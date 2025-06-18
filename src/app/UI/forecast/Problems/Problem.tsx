@@ -1,10 +1,11 @@
-import { type ExistingIcons, problemIcons } from '@/UI/constants'
-import { useBoolean } from '@/UI/hooks'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { type ExistingIcons, problemIcons } from '@/UI/constants'
+import { useBoolean } from '@/UI/hooks'
+
 import { ProblemModal } from './ProblemModal'
-import Image from 'next/image'
 
 import type { Problem as ProblemType } from '@/business/types'
 

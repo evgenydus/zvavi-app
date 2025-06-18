@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react'
-
-import { navMenuItems } from './constants'
+import { Menu, MenuButton, MenuItems } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import classnames from 'classnames'
 
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
-import { Menu, MenuButton, MenuItems } from '@headlessui/react'
+import { navMenuItems } from './constants'
+
 import MenuItem from './MenuItem'
 
 const NavMenu = () => (

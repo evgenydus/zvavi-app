@@ -1,9 +1,10 @@
-import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
-import { forecastsKeys } from '../../query-keys'
-import { supabase } from '@/data'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import type { ForecastCreatePayload } from './types'
+import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
+import { forecastsKeys } from '../../query-keys'
+
+import { supabase } from '@/data'
 
 const attachItemsToForecast = async <T>(
   tableName: string,

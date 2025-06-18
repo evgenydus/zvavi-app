@@ -1,9 +1,9 @@
+import { type StaticImageData } from 'next/image'
+
 import adrenalineLogo from '@/assets/images/partnersLogo/adrenaline.png'
 import drunkCherryLogo from '@/assets/images/partnersLogo/drunkcherry.png'
 import snowLabLogo from '@/assets/images/partnersLogo/snowlab.png'
 import xtremeLogo from '@/assets/images/partnersLogo/xtreme.png'
-
-import type { StaticImageData } from 'next/image'
 
 export type Partner = {
   url: string

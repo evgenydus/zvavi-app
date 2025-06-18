@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 
-import { ForecastForm } from './ForecastForm'
 import { Modal, type ModalProps } from '@/UI/components/Modal'
+import { ForecastForm } from './ForecastForm'
 
 type ForecastModalProps = Pick<ModalProps, 'isOpen' | 'onClose'>
 

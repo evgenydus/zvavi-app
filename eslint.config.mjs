@@ -2,8 +2,9 @@
 
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
-import importPlugin from 'eslint-plugin-import'
+// import importPlugin from 'eslint-plugin-import'
 import prettier from 'eslint-plugin-prettier'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys'
 import sortKeysFix from 'eslint-plugin-sort-keys-fix'
 import path from 'node:path'
@@ -34,99 +35,18 @@ export default [
   ),
   {
     plugins: {
-      import: importPlugin,
+      // import: importPlugin,
       prettier,
+      'simple-import-sort': simpleImportSort,
       'sort-destructure-keys': sortDestructureKeys,
       'sort-keys-fix': sortKeysFix,
     },
     rules: {
+      '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-var-requires': 'off',
       'import/extensions': 'off',
       'import/no-cycle': 'off',
-      'import/order': [
-        'error',
-        {
-          alphabetize: {
-            caseInsensitive: true,
-            order: 'asc',
-          },
-          groups: [
-            ['builtin', 'external'], // 1. Nodejs modules, external modules
-            'internal', // 2. Constants, helpers, hooks, components and other internal
-            ['sibling', 'parent', 'index'], // 3. Inner modules
-            'type', // 4. Types
-          ],
-          'newlines-between': 'always',
-          pathGroups: [
-            {
-              group: 'internal',
-              pattern: '@/UI/constants/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '@/data/constants/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '**/constants/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '@/data/helpers/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '**/helpers/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '@/UI/hooks/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '**/hooks/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '@/UI/components/**',
-              position: 'after',
-            },
-            {
-              group: 'internal',
-              pattern: '**/components/**',
-              position: 'after',
-            },
-            {
-              group: 'type',
-              pattern: '@/business/types',
-              position: 'after',
-            },
-            {
-              group: 'type',
-              pattern: '@/app/types',
-              position: 'after',
-            },
-            {
-              group: 'type',
-              pattern: '**/types',
-              position: 'after',
-            },
-            {
-              group: 'type',
-              pattern: '**/types/**',
-              position: 'after',
-            },
-          ],
-          pathGroupsExcludedImportTypes: ['type'],
-        },
-      ],
+      'import/order': 'off',
       'import/prefer-default-export': 'off',
       'max-lines': [
         'error',
@@ -193,6 +113,23 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/require-default-props': 'off',
       semi: ['error', 'never'],
+      'simple-import-sort/exports': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['^react$', '^@?\\w'],
+            ['^@/.*(constants|helpers|hooks)(/.*|$)', '^\\.\\/.*(constants|helpers|hooks)(/.*|$)'],
+            [
+              '^@/.*(common|components|assets)(/.*|$)',
+              '^\\.\\/.*(common|components|assets)(/.*|$)',
+              '^\\.\\/.*',
+              '^../.*',
+            ],
+            ['^import\\s+type', '^import.*\\{.*type.*\\}.*from'],
+          ],
+        },
+      ],
       'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: true }],
       'sort-keys': ['error', 'asc'],
       'sort-keys-fix/sort-keys-fix': 'error',
