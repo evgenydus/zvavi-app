@@ -1,11 +1,13 @@
 /* eslint-disable max-lines */
+
+import { FlatCompat } from '@eslint/eslintrc'
+import js from '@eslint/js'
 import prettier from 'eslint-plugin-prettier'
-import sortKeysFix from 'eslint-plugin-sort-keys-fix'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys'
+import sortKeysFix from 'eslint-plugin-sort-keys-fix'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -33,10 +35,12 @@ export default [
   {
     plugins: {
       prettier,
+      'simple-import-sort': simpleImportSort,
       'sort-destructure-keys': sortDestructureKeys,
       'sort-keys-fix': sortKeysFix,
     },
     rules: {
+      '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-var-requires': 'off',
       'import/extensions': 'off',
       'import/no-cycle': 'off',
@@ -107,6 +111,23 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/require-default-props': 'off',
       semi: ['error', 'never'],
+      'simple-import-sort/exports': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['^react$', '^@?\\w'],
+            ['^@/.*(constants|helpers|hooks)(/.*|$)', '^\\.\\/.*(constants|helpers|hooks)(/.*|$)'],
+            [
+              '^@/.*(common|components|assets)(/.*|$)',
+              '^\\.\\/.*(common|components|assets)(/.*|$)',
+              '^\\.\\/.*',
+              '^../.*',
+            ],
+            ['^import\\s+type', '^import.*\\{.*type.*\\}.*from'],
+          ],
+        },
+      ],
       'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: true }],
       'sort-keys': ['error', 'asc'],
       'sort-keys-fix/sort-keys-fix': 'error',

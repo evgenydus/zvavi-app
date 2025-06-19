@@ -1,5 +1,5 @@
-import { ForecastContainer } from '@/UI/forecast'
 import { PageWrapper } from '@/UI/containers/PageWrapper'
+import { ForecastContainer } from '@/UI/forecast'
 
 const ForecastPage = async (props: { params: Promise<{ id: string }> }) => {
   const params = await props.params

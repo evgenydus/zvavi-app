@@ -1,5 +1,5 @@
-import { useTranslations } from 'next-intl'
 import { InformationCircleIcon } from '@heroicons/react/24/outline'
+import { useTranslations } from 'next-intl'
 
 type PropertyTileProps = {
   children: React.ReactNode

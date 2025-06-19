@@ -1,17 +1,19 @@
 'use client'
 
-import { routes } from '@/UI/header/NavMenu/constants'
-import { supabase } from '@/data'
-import { useAuth } from '@/UI/hooks'
 import { useCallback } from 'react'
-import { useRouter } from 'next/navigation'
-import { useTranslations } from 'next-intl'
-import Logo from '@/assets/images/logo.png'
-
-import { Button } from '@/UI/components/inputs'
-import { NavMenu } from './NavMenu'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+
+import { routes } from '@/UI/header/NavMenu/constants'
+import { useAuth } from '@/UI/hooks'
+
+import Logo from '@/assets/images/logo.png'
+import { Button } from '@/UI/components/inputs'
+import { NavMenu } from './NavMenu'
+
+import { supabase } from '@/data'
 
 const Header = () => {
   const router = useRouter()

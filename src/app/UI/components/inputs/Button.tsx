@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Button as HeadlessUIButton } from '@headlessui/react'
 import classnames from 'classnames'
-
 import type { ButtonHTMLAttributes } from 'react'
 
 const Button = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (

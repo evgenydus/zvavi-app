@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { supabase } from '@/data'
 
 import type { User } from '@/business/types'
+import { supabase } from '@/data'
 
 const useAuth = () => {
   const [user, setUser] = useState<User | null>(null)

@@ -1,4 +1,5 @@
 import TextAreaField from './TextAreaField'
+
 import type { ForecastFormData } from '@/business/types'
 
 type AdditionalTextFieldsProps = {

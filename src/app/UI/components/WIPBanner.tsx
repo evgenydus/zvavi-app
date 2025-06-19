@@ -1,8 +1,9 @@
 'use client'
 
 import { useBoolean } from '@/UI/hooks'
-import { Button } from './inputs'
+
 import { Modal } from '@/UI/components/Modal'
+import { Button } from './inputs'
 
 const WIPBanner = () => {
   const [isModalOpen, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false)

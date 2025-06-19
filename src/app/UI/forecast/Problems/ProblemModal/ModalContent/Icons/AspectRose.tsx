@@ -1,6 +1,8 @@
-import { getLabelTransform, getRosePoints, nonRotatingLabels } from './helpers'
-import { sortedAspects } from '@/business/constants'
 import classnames from 'classnames'
+
+import { sortedAspects } from '@/business/constants'
+import { getLabelTransform, getRosePoints, nonRotatingLabels } from './helpers'
+
 import type { ElevationZone, Problem } from '@/business/types'
 
 const zones: ElevationZone[] = ['highAlpine', 'alpine', 'subAlpine']

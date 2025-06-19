@@ -1,1 +1,1 @@
-export { useSupabase, SupabaseContextProvider } from './SupabaseContext'
+export { SupabaseContextProvider, useSupabase } from './SupabaseContext'

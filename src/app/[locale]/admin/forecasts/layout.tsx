@@ -1,5 +1,6 @@
-import { PageWrapper } from '@/UI/containers/PageWrapper'
 import { getTranslations } from 'next-intl/server'
+
+import { PageWrapper } from '@/UI/containers/PageWrapper'
 
 type LayoutProps = {
   children: React.ReactNode

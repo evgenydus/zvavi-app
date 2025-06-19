@@ -1,11 +1,12 @@
+import { PlusIcon } from '@heroicons/react/20/solid'
 import { useTranslations } from 'next-intl'
+
 import { useBoolean } from '@/UI/hooks'
 
 import { Button } from '@/UI/components/inputs'
-import { ForecastModal } from '../ForecastModal'
-import { PlusIcon } from '@heroicons/react/20/solid'
 import Column from './Column'
 import ForecastItem from './ForecastItem'
+import { ForecastModal } from '../ForecastModal'
 
 import type { Forecast } from '@/business/types'
 

@@ -1,21 +1,21 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-
-import { initialFormData } from './constants'
-import { useForecastCreate } from '@/data/hooks/forecasts'
 import { useTranslations } from 'next-intl'
 
+import { useForecastCreate } from '@/data/hooks/forecasts'
+import { initialFormData } from './constants'
+
 import { Button, TextInput } from '@/UI/components/inputs'
-import { HazardLevels } from './HazardLevels'
 import { InputBlock } from './common'
+import AdditionalTextFields from './AdditionalTextFields'
+import { HazardLevels } from './HazardLevels'
 import { ProblemsSection } from './ProblemsSection'
 import { RecentAvalanchesSection } from './RecentAvalanchesSection'
-import AdditionalTextFields from './AdditionalTextFields'
 import TextAreaField from './TextAreaField'
 import ValidUntil from './ValidUntil'
 
-import type { Problem, ForecastFormData, Avalanche } from '@/business/types'
+import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
 
 // TODO: Implement Validations https://app.asana.com/0/1208747689500826/1209084695587061/f
 const ForecastForm = ({ onClose }: { onClose: () => void }) => {

@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-
 import { useTranslations } from 'next-intl'
 
 import { Checkbox, DatePicker } from '@/UI/components/inputs'

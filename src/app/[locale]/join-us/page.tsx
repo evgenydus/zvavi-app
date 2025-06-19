@@ -1,5 +1,6 @@
-import { PageWrapper } from '@/UI/containers/PageWrapper'
 import { useTranslations } from 'next-intl'
+
+import { PageWrapper } from '@/UI/containers/PageWrapper'
 
 const JoinUsPage = () => {
   const t = useTranslations()

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import type { Partner } from '@/data/constants/partners'
 
 const PartnerBadge = ({ partner }: { partner: Partner }) => {

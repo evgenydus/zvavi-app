@@ -1,5 +1,6 @@
-import { IconButton } from '@/UI/components'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+
+import { IconButton } from '@/UI/components'
 
 type ActionButtonsProps = {
   canEdit?: boolean

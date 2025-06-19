@@ -1,6 +1,6 @@
-import classnames from 'classnames'
-import { CheckIcon } from '@heroicons/react/16/solid'
 import { Checkbox as HeadlessUICheckbox, Field, Label } from '@headlessui/react'
+import { CheckIcon } from '@heroicons/react/16/solid'
+import classnames from 'classnames'
 
 type CheckboxProps = {
   className?: string

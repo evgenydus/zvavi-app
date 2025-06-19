@@ -1,4 +1,4 @@
-import type { Problem, ForecastFormData, Avalanche } from '@/business/types'
+import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
 
 export const initialFormData: ForecastFormData = {
   additionalHazards: '',

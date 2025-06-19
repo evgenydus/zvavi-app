@@ -1,5 +1,6 @@
-import classnames from 'classnames'
 import { Radio, RadioGroup as HeadlessUIRadioGroup } from '@headlessui/react'
+import classnames from 'classnames'
+
 import type { Option } from './types'
 
 type RadioGroupProps = {

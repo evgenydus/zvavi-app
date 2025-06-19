@@ -1,17 +1,16 @@
 import { type Dispatch, type SetStateAction, useCallback, useState } from 'react'
-
-import { initialProblemData } from '../constants'
-import { useTranslations } from 'next-intl'
+import { PlusIcon } from '@heroicons/react/20/solid'
 import _uniqueId from 'lodash/uniqueId'
-import prepareTimeOfDay from './prepareTimeOfDay'
+import { useTranslations } from 'next-intl'
 
 import { Button } from '@/UI/components/inputs'
-import { PlusIcon } from '@heroicons/react/20/solid'
+import prepareTimeOfDay from './prepareTimeOfDay'
 import { ProblemForm } from './ProblemForm'
 import { ProblemList } from './ProblemList'
+import type { FormState } from '../common'
+import { initialProblemData } from '../constants'
 
 import type { Problem } from '@/business/types'
-import type { FormState } from '../common'
 
 type ProblemsSectionProps = {
   problems: Problem[]

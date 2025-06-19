@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 
-import { PropertyWrapper } from '../../../common/listItem'
 import TimeOfDay from './TimeOfDay'
+import { PropertyWrapper } from '../../../common/listItem'
 
 import type { Problem } from '@/business/types'
 

@@ -1,9 +1,10 @@
-import { forecastsKeys } from '@/data/query-keys'
-import { handleSupabaseError } from '../../helpers'
-import { supabase } from '@/data'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
+import { handleSupabaseError } from '../../helpers'
+
 import type { Forecast } from '@/business/types'
+import { supabase } from '@/data'
+import { forecastsKeys } from '@/data/query-keys'
 
 const deleteForecast = async (id: Forecast['id']) => {
   const { error: forecastError } = await supabase.from('forecasts').delete().eq('id', id)

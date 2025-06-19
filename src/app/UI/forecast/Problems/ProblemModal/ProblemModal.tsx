@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+
 import { Modal, type ModalProps } from '@/UI/components/Modal'
 import { ModalContent, type ModalContentProps } from './ModalContent'
 

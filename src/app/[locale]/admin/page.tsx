@@ -1,10 +1,11 @@
 'use client'
 
-import { routes } from '@/UI/header/NavMenu/constants'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
+import { routes } from '@/UI/header/NavMenu/constants'
+
 import { PageWrapper } from '@/UI/containers/PageWrapper'
-import Link from 'next/link'
 
 const AdminPage = () => {
   const t = useTranslations()

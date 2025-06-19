@@ -1,5 +1,7 @@
 import { useTranslations } from 'next-intl'
+
 import PropertyWrapper from './PropertyWrapper'
+
 import type { Aspect, Avalanche, Problem } from '@/business/types'
 
 const getAspectsString = (aspects: Aspect[]) => {

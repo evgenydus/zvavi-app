@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import classnames from 'classnames'
 import { Textarea as HeadlessUITextarea } from '@headlessui/react'
+import classnames from 'classnames'
 import type { TextareaHTMLAttributes } from 'react'
 
 const Textarea = ({ rows = 3, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) => (

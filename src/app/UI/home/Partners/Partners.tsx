@@ -1,7 +1,9 @@
-import { partners } from '@/data/constants/partners'
 import { useTranslations } from 'next-intl'
 
+import { partners } from '@/data/constants/partners'
+
 import { PageSection } from '@/UI/components'
+
 import PartnerBadge from '@/UI/home/Partners/PartnerBadge'
 
 const Partners = () => {

@@ -1,9 +1,9 @@
-import { backgroundColorByHazardLevel, hazardIcons } from '@/UI/constants'
-import { hazardLevelsByScale } from '@/business/constants'
-import { useTranslations } from 'next-intl'
 import classnames from 'classnames'
-
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+
+import { hazardLevelsByScale } from '@/business/constants'
+import { backgroundColorByHazardLevel, hazardIcons } from '@/UI/constants'
 
 import type { HazardLevelScale } from '@/business/types'
 

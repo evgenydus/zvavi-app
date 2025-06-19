@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+
 import type { AvalancheSize } from '@/business/types'
 
 const SizeScale = ({ size }: { size: AvalancheSize }) => {

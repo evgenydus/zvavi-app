@@ -1,4 +1,5 @@
 import { sensitivityLevelsSorted } from '@/business/constants'
+
 import type { Sensitivity } from '@/business/types'
 
 interface SensitivityGaugeProps {
