@@ -2,7 +2,6 @@
 
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
-// import importPlugin from 'eslint-plugin-import'
 import prettier from 'eslint-plugin-prettier'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import sortDestructureKeys from 'eslint-plugin-sort-destructure-keys'
@@ -35,7 +34,6 @@ export default [
   ),
   {
     plugins: {
-      // import: importPlugin,
       prettier,
       'simple-import-sort': simpleImportSort,
       'sort-destructure-keys': sortDestructureKeys,
