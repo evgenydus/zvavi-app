@@ -1,6 +1,7 @@
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import classnames from 'classnames'
+import { IconButton } from '@/UI/components'
 
 export type ModalProps = {
   children: React.ReactNode
