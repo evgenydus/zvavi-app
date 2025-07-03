@@ -33,15 +33,11 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
               )}
 
               <CloseButton as="div">
-                <button
-                  className={classnames(
-                    'ml-auto flex size-8 items-center justify-center rounded',
-                    'fill-gray-500 transition-colors hover:bg-black/[0.05] hover:fill-gray-800',
-                  )}
+                <IconButton
+                  className={classnames('ml-auto flex size-7')}
                   type="button"
-                >
-                  <XMarkIcon className="size-6 fill-inherit" />
-                </button>
+                  icon={<XMarkIcon className="size-5 fill-inherit" />}
+                />
               </CloseButton>
             </header>
 
