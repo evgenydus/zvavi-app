@@ -34,8 +34,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
           icon={<TrashIcon className="size-5 stroke-inherit" />}
           onClick={handleDelete}
           type="button"
-        >
-        </IconButton>
+        />
       </Column>
     </div>
   )
