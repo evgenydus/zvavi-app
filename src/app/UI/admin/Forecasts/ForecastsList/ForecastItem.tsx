@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import { dateFormat } from '@/business/constants'
 import { useForecastDelete } from '@/data/hooks/forecasts'
 
+import { IconButton } from '@/UI/components'
 import Column from './Column'
 
 import type { Forecast } from '@/business/types'
@@ -28,17 +29,13 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
       <Column>{format(forecast.validUntil, dateFormat)}</Column>
       <Column>{forecast.status}</Column>
       <Column className="pr-4 text-right">
-        {/* TODO: Replace with IconButton */}
-        <button
-          className={classnames(
-            'inline-flex size-7 items-center justify-center rounded',
-            'stroke-gray-500 transition-colors hover:bg-black/[0.05] hover:stroke-gray-900',
-          )}
+        <IconButton
+          className={classnames('inline-flex size-7')}
+          icon={<TrashIcon className="size-5 stroke-inherit" />}
           onClick={handleDelete}
           type="button"
         >
-          <TrashIcon className="size-5 stroke-inherit" />
-        </button>
+        </IconButton>
       </Column>
     </div>
   )
