@@ -3,6 +3,8 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import classnames from 'classnames'
 
 import { IconButton } from '@/UI/components'
+import { Children, ReactElement } from 'react'
+import { ModalFooter } from './ModalFooter'
 
 export type ModalProps = {
   children: React.ReactNode
@@ -13,6 +15,15 @@ export type ModalProps = {
 }
 
 const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
+  const { footer, content } = Children.toArray(children).reduce(
+    (sortedChildren, child: ReactElement) => {
+      child.type === ModalFooter ? (sortedChildren.footer = child) : sortedChildren.content.push(child)
+
+      return sortedChildren;
+    },
+    { footer: null as ReactElement, content: []}
+  )
+
   return (
     <Dialog as="div" className="relative z-10 focus:outline-none" onClose={onClose} open={isOpen}>
       <DialogBackdrop className="fixed inset-0 bg-black/30" transition />
@@ -33,7 +44,6 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
                   {title}
                 </DialogTitle>
               )}
-
               <CloseButton as="div">
                 <IconButton
                   className="ml-auto flex size-7"
@@ -42,7 +52,8 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
               </CloseButton>
             </header>
 
-            <div className="p-4 lg:p-6">{children}</div>
+            <div className="p-4 lg:p-6">{content}</div>
+            {footer}
           </DialogPanel>
         </div>
       </div>
