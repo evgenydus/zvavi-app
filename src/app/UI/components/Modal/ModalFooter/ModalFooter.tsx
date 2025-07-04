@@ -34,9 +34,9 @@ const ModalFooter = ({ children }: ModalFooterProps) => {
   )
 
   return (
-    <div className="flex justify-between gap-2 pt-4 lg:pt-6 ">
-      <div className="flex justify-start gap-2">{leftChildren}</div>
-      <div className="flex justify-end gap-2">{rightChildren}</div>
+    <div className="flex justify-between gap-4 pt-4 lg:pt-6 ">
+      <div className="flex justify-start gap-4">{leftChildren}</div>
+      <div className="flex justify-end gap-4">{rightChildren}</div>
     </div>
   )
 }
