@@ -1,4 +1,8 @@
-import { Children, ReactElement } from 'react'
+import { Children, isValidElement } from 'react'
+
+type ModalFooterProps = {
+  children: React.ReactNode
+}
 
 /**
  * By default, elements in the ModalFooter stick to the right.
@@ -14,19 +18,22 @@ import { Children, ReactElement } from 'react'
  *     <button left> Second left button </button>
  *   </ModalFooter>
  * </Modal>
- **/
-const ModalFooter = ({ children }) => {
-  // sorting children by sides
+ * */
+const ModalFooter = ({ children }: ModalFooterProps) => {
+  // sort children by sides
   const { leftChildren, rightChildren } = Children.toArray(children).reduce(
-    (childrenSections, child: ReactElement) => {
-      child.props?.left ? childrenSections.leftChildren.push(child) : childrenSections.rightChildren.push(child)
+    (childrenSections, child) => {
+      if (isValidElement(child))
+        if (child.props.left) childrenSections.leftChildren.push(child)
+        else childrenSections.rightChildren.push(child)
+
       return childrenSections
     },
-    { leftChildren: [], rightChildren: [] }
+    { leftChildren: [], rightChildren: [] },
   )
 
   return (
-    <div className="tpt-4 lg:pt-6 flex justify-between gap-2">
+    <div className="flex justify-between gap-2 pt-4 lg:pt-6 ">
       <div className="flex justify-start gap-2">{leftChildren}</div>
       <div className="flex justify-end gap-2">{rightChildren}</div>
     </div>
