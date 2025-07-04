@@ -1,4 +1,5 @@
 import { Children, isValidElement } from 'react'
+import type { ReactElement } from 'react'
 
 type ModalFooterProps = {
   children: React.ReactNode
@@ -29,7 +30,7 @@ const ModalFooter = ({ children }: ModalFooterProps) => {
 
       return childrenSections
     },
-    { leftChildren: [], rightChildren: [] },
+    { leftChildren: [] as ReactElement[], rightChildren: [] as ReactElement[] },
   )
 
   return (
