@@ -33,6 +33,7 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
                   {title}
                 </DialogTitle>
               )}
+
               <CloseButton as="div">
                 <IconButton
                   className="ml-auto flex size-7"
