@@ -36,7 +36,7 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
 
               <CloseButton as="div">
                 <IconButton
-                  className={classnames('ml-auto flex size-7')}
+                  className="ml-auto flex size-7"
                   icon={<XMarkIcon className="size-5 fill-inherit" />}
                 />
               </CloseButton>
