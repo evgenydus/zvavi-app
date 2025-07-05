@@ -1,44 +1,11 @@
-import { Children, isValidElement } from 'react'
-import type { ReactElement } from 'react'
-
 type ModalFooterProps = {
   children: React.ReactNode
 }
 
-/**
- * By default, elements in the ModalFooter stick to the right.
- * To make an element stick to the left, just add 'left' property to the element.
- * Example:
- *
- * <Modal>
- *   <div> some content </div>
- *   <div> and a bit more content </div>
- *   <ModalFooter>
- *     <button left> Left button </button>
- *     <button> Right button </button>
- *     <button left> Second left button </button>
- *   </ModalFooter>
- * </Modal>
- * */
-const ModalFooter = ({ children }: ModalFooterProps) => {
-  // sort children by sides
-  const { leftChildren, rightChildren } = Children.toArray(children).reduce(
-    (childrenSections, child) => {
-      if (isValidElement(child))
-        if (child.props.left) childrenSections.leftChildren.push(child)
-        else childrenSections.rightChildren.push(child)
-
-      return childrenSections
-    },
-    { leftChildren: [] as ReactElement[], rightChildren: [] as ReactElement[] },
-  )
-
-  return (
-    <div className="flex justify-between gap-4 pt-4 lg:pt-6 ">
-      <div className="flex justify-start gap-4">{leftChildren}</div>
-      <div className="flex justify-end gap-4">{rightChildren}</div>
-    </div>
-  )
-}
+const ModalFooter = ({ children }: ModalFooterProps) => (
+  <footer className="border-t px-4 lg:px-6 py-2 lg:py-4 flex gap-2 lg:gap-4">
+    {children}
+  </footer>
+)
 
 export default ModalFooter
