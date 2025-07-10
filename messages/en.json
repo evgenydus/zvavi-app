@@ -2,6 +2,7 @@
   "common": {
     "actions": {
       "add": "Add",
+      "confirm": "Confirm",
       "cancel": "Cancel",
       "learnMore": "Learn More",
       "readFullForecast": "Read Full Forecast",
