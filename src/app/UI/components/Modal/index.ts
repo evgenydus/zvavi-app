@@ -1,4 +1,4 @@
 export type { ModalProps } from './Modal'
 export { default as Modal } from './Modal'
-export { ModalContent } from './ModalContent'
+export { ModalBody } from './ModalBody'
 export { ModalFooter } from './ModalFooter'
