@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 
 import { Button } from '@/UI/components/inputs'
 import type { ModalProps } from '@/UI/components/Modal'
-import { Modal, ModalBody, ModalFooter } from '@/UI/components/Modal'
+import { Modal, ModalFooter } from '@/UI/components/Modal'
 
 export type ConfirmationModalProps = ModalProps & {
   onConfirm: () => void
