@@ -42,7 +42,7 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
               </CloseButton>
             </header>
 
-            <div className="p-4 lg:p-6">{children}</div>
+            {children}
           </DialogPanel>
         </div>
       </div>
