@@ -15,8 +15,8 @@ const Forecast = ({ forecast }: { forecast: FullForecast }) => {
   const t = useTranslations()
   const {
     additionalHazards,
+    avalancheProblems,
     hazardLevels,
-    problems,
     recentAvalanches,
     snowpack,
     summary,
@@ -28,7 +28,7 @@ const Forecast = ({ forecast }: { forecast: FullForecast }) => {
       <HazardLevelBanner hazardLevel={hazardLevels.overall} />
       <Spoiler title={t('common.labels.summary')}>{summary}</Spoiler>
       <HazardLevelsByElevation hazardLevels={hazardLevels} />
-      <Problems problems={problems} />
+      <Problems problems={avalancheProblems} />
 
       <section className="space-y-4">
         <RecentAvalanches avalanches={recentAvalanches} />
