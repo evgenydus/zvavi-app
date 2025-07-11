@@ -18,6 +18,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
   const tForecasts = useTranslations('admin.forecasts')
   const { error, mutateAsync: deleteForecast } = useForecastDelete()
   const [isOpenDeletionModal, setIsOpenDeletionModal] = useState(false)
+
   const formattedCreationDate = format(forecast.createdAt, dateFormat)
   const formattedValidUntilDate = format(forecast.validUntil, dateFormat)
   const deleteForecastModalDescription = `
@@ -36,6 +37,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
   }
 
   const openDeletionModal = () => setIsOpenDeletionModal(true)
+
   const closeDeletionModal = () => setIsOpenDeletionModal(false)
 
   return (

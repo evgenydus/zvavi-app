@@ -18,7 +18,7 @@ type AvalancheItemProps = {
 
 const AvalancheItem = ({ avalanche, canEdit, onDelete, onEdit }: AvalancheItemProps) => {
   const tForm = useTranslations('admin.forecast.form')
-  const [isDeletionConfirmationModalOpen, setIsDeletionConfirmationModalOpen] = useState(false)
+  const [isOpenDeletionModal, setIsOpenDeletionModal] = useState(false)
   const { date, description, size } = avalanche
 
   const handleDelete = useCallback(() => {
@@ -29,19 +29,16 @@ const AvalancheItem = ({ avalanche, canEdit, onDelete, onEdit }: AvalancheItemPr
     onEdit(avalanche.id!)
   }, [onEdit, avalanche])
 
-  const closeDeletionConfirmationModal = () => setIsDeletionConfirmationModalOpen(false)
-  const openDeletionConfirmationModal = () => setIsDeletionConfirmationModalOpen(true)
+  const closeDeletionModal = () => setIsOpenDeletionModal(false)
+
+  const openDeletionModal = () => setIsOpenDeletionModal(true)
 
   return (
     <>
       <div className="w-full rounded bg-black/[0.03] p-3">
         <div className="mb-3 flex items-center justify-between">
           {date && <h3 className="text-xl font-semibold">{format(date, dateFormat)}</h3>}
-          <ActionButtons
-            canEdit={canEdit}
-            onDelete={openDeletionConfirmationModal}
-            onEdit={handleEdit}
-          />
+          <ActionButtons canEdit={canEdit} onDelete={openDeletionModal} onEdit={handleEdit} />
         </div>
 
         <div className="flex items-start gap-6">
@@ -63,8 +60,8 @@ const AvalancheItem = ({ avalanche, canEdit, onDelete, onEdit }: AvalancheItemPr
       </div>
 
       <ConfirmationModal
-        isOpen={isDeletionConfirmationModalOpen}
-        onClose={closeDeletionConfirmationModal}
+        isOpen={isOpenDeletionModal}
+        onClose={closeDeletionModal}
         onConfirm={handleDelete}
         title={tForm('recentAvalanches.labels.deleteAvalanche')}
         variant="delete"

@@ -18,7 +18,7 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
   const tActions = useTranslations('common.actions')
   const tForm = useTranslations('admin.forecast.form')
   const tProblemTypes = useTranslations('admin.forecast.form.problems.options.problemType')
-  const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] = useState(false)
+  const [isOpenDeletionModal, setIsOpenDeletionModal] = useState(false)
 
   const { description, type: problemType } = problemData
 
@@ -30,9 +30,9 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
     onEdit(problemData.id!)
   }, [onEdit, problemData])
 
-  const openDeleteConfirmationModal = () => setIsDeleteConfirmationModalOpen(true)
+  const openDeleteConfirmationModal = () => setIsOpenDeletionModal(true)
 
-  const closeDeleteConfirmationModal = () => setIsDeleteConfirmationModalOpen(false)
+  const closeDeleteConfirmationModal = () => setIsOpenDeletionModal(false)
 
   return (
     <>
@@ -61,7 +61,7 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
       </div>
 
       <ConfirmationModal
-        isOpen={isDeleteConfirmationModalOpen}
+        isOpen={isOpenDeletionModal}
         onClose={closeDeleteConfirmationModal}
         onConfirm={handleDelete}
         title={`${tActions('delete')} ${tProblemTypes(problemType)}?`}
