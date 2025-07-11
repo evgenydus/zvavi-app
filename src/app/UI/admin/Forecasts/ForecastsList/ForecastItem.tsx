@@ -1,17 +1,25 @@
+import { useState } from 'react'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import classnames from 'classnames'
 import { format } from 'date-fns'
+import { useTranslations } from 'next-intl'
 
 import { dateFormat } from '@/business/constants'
 import { useForecastDelete } from '@/data/hooks/forecasts'
 
 import { IconButton } from '@/UI/components'
+import { ConfirmationModal } from '@/UI/components/ConfirmationModal'
+import { ModalBody } from '@/UI/components/Modal'
 import Column from './Column'
 
 import type { Forecast } from '@/business/types'
 
 const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
+  const tForcasts = useTranslations('admin.forecasts')
   const { error, mutateAsync: deleteForecast } = useForecastDelete()
+  const [isOpenDeletionModal, setIsOpenDeletionModal] = useState(false)
+  const formattedCreationDate = format(forecast.createdAt, dateFormat)
+  const formattedValidUntilDate = format(forecast.validUntil, dateFormat)
 
   const handleDelete = async () => {
     try {
@@ -22,21 +30,33 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
     }
   }
 
+  const openDeletionModal = () => setIsOpenDeletionModal(true)
+  const closeDeletionModal = () => setIsOpenDeletionModal(false)
+
   return (
-    <div className="flex items-center gap-4 px-4 py-1">
-      <Column>{forecast.forecaster}</Column>
-      <Column>{format(forecast.createdAt, dateFormat)}</Column>
-      <Column>{format(forecast.validUntil, dateFormat)}</Column>
-      <Column>{forecast.status}</Column>
-      <Column className="pr-4 text-right">
-        <IconButton
-          className={classnames('inline-flex size-7')}
-          icon={<TrashIcon className="size-5 stroke-inherit" />}
-          onClick={handleDelete}
-          type="button"
-        />
-      </Column>
-    </div>
+    <>
+      <div className="flex items-center gap-4 px-4 py-1">
+        <Column>{forecast.forecaster}</Column>
+        <Column>{formattedCreationDate}</Column>
+        <Column>{formattedValidUntilDate}</Column>
+        <Column>{forecast.status}</Column>
+        <Column className="pr-4 text-right">
+          <IconButton
+            className={classnames('inline-flex size-7')}
+            icon={<TrashIcon className="size-5 stroke-inherit" />}
+            onClick={openDeletionModal}
+            type="button"
+          />
+        </Column>
+      </div>
+
+      <ConfirmationModal
+        isOpen={isOpenDeletionModal}
+        onClose={closeDeletionModal}
+        onConfirm={handleDelete}
+        variant="delete"
+      />
+    </>
   )
 }
 

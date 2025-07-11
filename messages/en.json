@@ -168,6 +168,10 @@
           "status": "Status",
           "validUntil": "Valid Until"
         }
+      },
+      "deleteForecastModal":  {
+        "title": "Delete forecast?",
+        "description": "Do you really want to delete forecast for the period"
       }
     },
     "forecast": {
