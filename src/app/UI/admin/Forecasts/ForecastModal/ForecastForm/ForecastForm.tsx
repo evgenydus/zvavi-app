@@ -1,10 +1,12 @@
+/* eslint-disable max-lines */
+
 'use client'
 
 import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { useForecastCreate } from '@/data/hooks/forecasts'
-import { initialFormData } from './constants'
+import { useForecastCreate, useUpdateForecast } from '@/data/hooks/forecasts'
+import type { ForecastCreateUpdatePayload } from '@/data/hooks/forecasts/types'
 
 import { Button, TextInput } from '@/UI/components/inputs'
 import { InputBlock } from './common'
@@ -17,16 +19,29 @@ import ValidUntil from './ValidUntil'
 
 import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
 
+type ForecastFormProps = {
+  initialFormData: ForecastFormData
+  initialProblems: Problem[]
+  initialRecentAvalanches: Avalanche[]
+  onClose: () => void
+}
+
 // TODO: Implement Validations https://app.asana.com/0/1208747689500826/1209084695587061/f
-const ForecastForm = ({ onClose }: { onClose: () => void }) => {
+const ForecastForm = ({
+  initialFormData,
+  initialProblems,
+  initialRecentAvalanches,
+  onClose,
+}: ForecastFormProps) => {
   const t = useTranslations()
   const tForecast = useTranslations('admin.forecast')
 
   const [formData, setFormData] = useState<ForecastFormData>(initialFormData)
-  const [problems, setProblems] = useState<Problem[]>([])
-  const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>([])
+  const [problems, setProblems] = useState<Problem[]>(initialProblems)
+  const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>(initialRecentAvalanches)
 
   const { error, mutate: createForecast } = useForecastCreate()
+  const { error: updateError, mutate: updateForecast } = useUpdateForecast()
 
   const handleTextFieldChange = useCallback(
     (fieldName: keyof ForecastFormData) =>
@@ -40,31 +55,44 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   )
 
   const handleSubmit = useCallback(async () => {
-    const { additionalHazards, forecaster, hazardLevels, snowpack, summary, validUntil, weather } =
-      formData
-    const payload = {
+    const payload: ForecastCreateUpdatePayload = {
+      avalancheProblems: problems,
       forecast: {
-        additionalHazards,
-        forecaster,
-        hazardLevels,
-        snowpack,
-        summary,
-        validUntil: validUntil ? validUntil.toISOString() : null,
-        weather,
+        ...formData,
+        validUntil: formData.validUntil ? formData.validUntil.toISOString() : null,
       },
-      problems,
       recentAvalanches,
     }
 
     // TODO: Handle errors https://app.asana.com/0/1208747689500826/1209084695587061/f
     try {
-      await createForecast(payload)
+      if (initialFormData.id) {
+        await updateForecast({
+          ...payload,
+          initialProblems,
+          initialRecentAvalanches,
+        })
+      } else {
+        await createForecast(payload)
+      }
+
       onClose()
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      console.error(error)
+    } catch {
+      console.error(updateError || error)
     }
-  }, [formData, problems, recentAvalanches, createForecast, onClose, error])
+  }, [
+    problems,
+    recentAvalanches,
+    formData,
+    initialFormData.id,
+    onClose,
+    initialProblems,
+    initialRecentAvalanches,
+    updateForecast,
+    createForecast,
+    updateError,
+    error,
+  ])
 
   return (
     <>
@@ -74,7 +102,11 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
             <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
             <div className="grid grid-cols-2 gap-x-6">
               <InputBlock label={tForecast('form.general.labels.forecaster')}>
-                <TextInput className="flex-1" onChange={handleTextFieldChange('forecaster')} />
+                <TextInput
+                  className="flex-1"
+                  onChange={handleTextFieldChange('forecaster')}
+                  value={formData.forecaster}
+                />
               </InputBlock>
 
               <ValidUntil formData={formData} setFormData={setFormData} />

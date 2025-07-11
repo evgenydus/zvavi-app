@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { useTranslations } from 'next-intl'
 
@@ -8,17 +9,28 @@ import Column from './Column'
 import ForecastItem from './ForecastItem'
 import { ForecastModal } from '../ForecastModal'
 
-import type { Forecast } from '@/business/types'
+import type { FullForecast } from '@/business/types'
 
-const ForecastsList = ({ forecasts }: { forecasts: Forecast[] }) => {
+const ForecastsList = ({ forecasts }: { forecasts: FullForecast[] }) => {
   const tAdmin = useTranslations('admin')
   const [isModalOpen, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false)
+  const [selectedForecast, setSelectedForecast] = useState<FullForecast | null>(null)
+
+  const handleEditForecast = (forecast: FullForecast) => {
+    setSelectedForecast(forecast)
+    openModal()
+  }
+
+  const handleCloseModal = () => {
+    closeModal()
+    setSelectedForecast(null)
+  }
 
   return (
     <>
       <Button className="my-4 ml-auto" onClick={openModal}>
         <PlusIcon className="size-5" />
-        {tAdmin('forecast.title')}
+        {tAdmin('forecast.titleCreate')}
       </Button>
 
       <div className="w-full">
@@ -35,13 +47,17 @@ const ForecastsList = ({ forecasts }: { forecasts: Forecast[] }) => {
         <ul className="flex flex-col">
           {forecasts.map((forecast) => (
             <li key={forecast.id} className="border-b last:border-0">
-              <ForecastItem forecast={forecast} />
+              <ForecastItem forecast={forecast} onEdit={handleEditForecast} />
             </li>
           ))}
         </ul>
       </div>
 
-      <ForecastModal isOpen={isModalOpen} onClose={closeModal} />
+      <ForecastModal
+        forecast={selectedForecast ?? null}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </>
   )
 }
