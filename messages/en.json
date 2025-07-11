@@ -4,6 +4,7 @@
       "add": "Add",
       "confirm": "Confirm",
       "cancel": "Cancel",
+      "delete": "Delete",
       "learnMore": "Learn More",
       "readFullForecast": "Read Full Forecast",
       "save": "Save",
@@ -35,6 +36,17 @@
     "home": "Home",
     "joinUs": "Join Us",
     "partners": "Partners"
+  },
+
+  "modal": {
+    "confirm": {
+      "title": "Confirmation required",
+      "description": "Do you want to proceed?"
+    },
+    "delete": {
+      "title": "Confirm delete?",
+      "description": "The deletion is permanent. Do you want to proceed anyway?"
+    }
   },
 
   "forecast": {
@@ -156,6 +168,10 @@
           "status": "Status",
           "validUntil": "Valid Until"
         }
+      },
+      "deleteForecastModal":  {
+        "title": "Delete forecast?",
+        "description": "Do you really want to delete forecast for the period"
       }
     },
     "forecast": {
