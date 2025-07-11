@@ -40,11 +40,11 @@
 
   "modal": {
     "confirm": {
-      "title": "Confirmation required",
+      "title": "Confirmation Required",
       "description": "Do you want to proceed and perform the action?"
     },
     "delete": {
-      "title": "Confirm delete?",
+      "title": "Confirm Deletion?",
       "description": "The deletion is permanent. Do you want to proceed anyway?"
     }
   },
@@ -170,8 +170,8 @@
         }
       },
       "deleteForecastModal":  {
-        "title": "Delete forecast?",
-        "description": "Do you really want to delete forecast for the period"
+        "title": "Delete Forecast?",
+        "description": "Do you want to permanently delete the forecast for the period"
       }
     },
     "forecast": {
