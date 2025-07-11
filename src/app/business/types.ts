@@ -34,7 +34,7 @@ export type Forecast = {
   createdAt: string
   forecaster: string
   hazardLevels: HazardLevels
-  id: string
+  id: number
   snowpack: string
   status: 'draft' | 'published'
   summary: string
@@ -57,9 +57,10 @@ export type Problem = {
 }
 
 export type ForecastFormData = {
+  id?: number
+  additionalHazards: string
   forecaster: string
   hazardLevels: HazardLevels
-  additionalHazards: string
   snowpack: string
   summary: string
   validUntil: Date | null
@@ -75,6 +76,6 @@ export type Avalanche = {
 }
 
 export type FullForecast = Forecast & {
-  problems: Problem[]
+  avalancheProblems: Problem[]
   recentAvalanches: Avalanche[]
 }

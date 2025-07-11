@@ -1,16 +1,19 @@
-import { TrashIcon } from '@heroicons/react/24/outline'
-import classnames from 'classnames'
 import { format } from 'date-fns'
 
 import { dateFormat } from '@/business/constants'
 import { useForecastDelete } from '@/data/hooks/forecasts'
 
-import { IconButton } from '@/UI/components'
+import { ActionButtons } from '@/UI/components'
 import Column from './Column'
 
-import type { Forecast } from '@/business/types'
+import type { FullForecast } from '@/business/types'
 
-const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
+type ForecastItemProps = {
+  forecast: FullForecast
+  onEdit: (forecast: FullForecast) => void
+}
+
+const ForecastItem = ({ forecast, onEdit }: ForecastItemProps) => {
   const { error, mutateAsync: deleteForecast } = useForecastDelete()
 
   const handleDelete = async () => {
@@ -22,19 +25,18 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
     }
   }
 
+  const handleEdit = () => {
+    onEdit(forecast)
+  }
+
   return (
     <div className="flex items-center gap-4 px-4 py-1">
       <Column>{forecast.forecaster}</Column>
       <Column>{format(forecast.createdAt, dateFormat)}</Column>
       <Column>{format(forecast.validUntil, dateFormat)}</Column>
       <Column>{forecast.status}</Column>
-      <Column className="pr-4 text-right">
-        <IconButton
-          className={classnames('inline-flex size-7')}
-          icon={<TrashIcon className="size-5 stroke-inherit" />}
-          onClick={handleDelete}
-          type="button"
-        />
+      <Column className="pr-4">
+        <ActionButtons className="justify-end" onDelete={handleDelete} onEdit={handleEdit} />
       </Column>
     </div>
   )

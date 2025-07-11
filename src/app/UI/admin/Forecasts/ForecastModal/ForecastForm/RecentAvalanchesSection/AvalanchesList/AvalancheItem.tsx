@@ -4,7 +4,8 @@ import { useTranslations } from 'next-intl'
 
 import { dateFormat } from '@/business/constants'
 
-import { ActionButtons, Aspects, PropertyWrapper } from '../../common/listItem'
+import { ActionButtons } from '@/UI/components'
+import { Aspects, PropertyWrapper } from '../../common/listItem'
 
 import type { Avalanche } from '@/business/types'
 

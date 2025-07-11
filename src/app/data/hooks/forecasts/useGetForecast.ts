@@ -2,6 +2,7 @@ import type { QueryFunctionContext, UseQueryOptions } from '@tanstack/react-quer
 
 import { useQuery } from '@/tanstack-query/hooks'
 
+import type { GetForecastQueryVariables } from './types'
 import { convertSnakeToCamel } from '../../helpers'
 import { forecastsKeys } from '../../query-keys'
 
@@ -14,15 +15,16 @@ type Response = FullForecast | undefined
 type QueryOptions = Omit<
   UseQueryOptions<Response, unknown, Response, QueryKey>,
   'queryKey' | 'queryFn'
-> & { forecastId: FullForecast['id'] }
+> &
+  GetForecastQueryVariables
 
 const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Promise<Response> => {
-  const [, , variables] = queryKey
+  const [, , { forecastId, ...rest }] = queryKey
 
   const { data: forecastData, error: forecastError } = await supabase
     .from('forecasts')
     .select()
-    .match({ id: variables.forecastId, status: 'published' })
+    .match({ id: forecastId, ...rest })
     .single()
 
   if (forecastError) {
@@ -34,7 +36,7 @@ const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Prom
   const { data: recentAvalanches, error: avalanchesError } = await supabase
     .from('recent_avalanches')
     .select()
-    .match({ forecast_id: variables.forecastId })
+    .match({ forecast_id: forecastId })
     .order('date', { ascending: false })
 
   if (avalanchesError) {
@@ -44,7 +46,7 @@ const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Prom
   const { data: problems, error: problemsError } = await supabase
     .from('avalanche_problems')
     .select()
-    .match({ forecast_id: variables.forecastId })
+    .match({ forecast_id: forecastId })
 
   if (problemsError) {
     throw new Error(problemsError.message)
@@ -57,11 +59,10 @@ const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Prom
   }) as Response
 }
 
-const useGetForecast = ({ forecastId, ...options }: QueryOptions) => {
+const useGetForecast = (options: QueryOptions) => {
   return useQuery({
     queryFn: fetchForecast,
-    queryKey: forecastsKeys.item({ forecastId }),
-    ...options,
+    queryKey: forecastsKeys.item(options),
   })
 }
 

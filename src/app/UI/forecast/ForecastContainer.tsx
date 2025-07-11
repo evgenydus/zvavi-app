@@ -9,7 +9,7 @@ import Forecast from './Forecast'
 import type { FullForecast } from '@/business/types'
 
 const ForecastContainer = ({ forecastId }: { forecastId: FullForecast['id'] }) => {
-  const { data: forecastData } = useGetForecast({ forecastId })
+  const { data: forecastData } = useGetForecast({ forecastId, status: 'published' })
   const [forecast, setForecast] = useState<FullForecast>()
 
   useEffect(() => {

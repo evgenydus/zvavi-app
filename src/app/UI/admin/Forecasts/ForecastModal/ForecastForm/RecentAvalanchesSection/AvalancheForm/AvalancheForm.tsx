@@ -74,7 +74,12 @@ const AvalancheForm = ({ avalancheData, onClose, onSave }: AvalancheFormProps) =
 
       <div className="flex flex-col gap-4 pt-1.5">
         <h4 className="w-32 font-semibold">{tForm('common.labels.description')}</h4>
-        <Textarea className="w-full" onChange={handleDescriptionChange} rows={4} />
+        <Textarea
+          className="w-full"
+          onChange={handleDescriptionChange}
+          rows={4}
+          value={data.description}
+        />
       </div>
 
       <Footer onCancel={onClose} onSave={handleSave} />
