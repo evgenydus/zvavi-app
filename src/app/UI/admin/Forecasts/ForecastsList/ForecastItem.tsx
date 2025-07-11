@@ -9,17 +9,22 @@ import { useForecastDelete } from '@/data/hooks/forecasts'
 
 import { IconButton } from '@/UI/components'
 import { ConfirmationModal } from '@/UI/components/ConfirmationModal'
-import { ModalBody } from '@/UI/components/Modal'
 import Column from './Column'
 
 import type { Forecast } from '@/business/types'
 
 const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
-  const tForcasts = useTranslations('admin.forecasts')
+  const tWords = useTranslations('common.words')
+  const tForecasts = useTranslations('admin.forecasts')
   const { error, mutateAsync: deleteForecast } = useForecastDelete()
   const [isOpenDeletionModal, setIsOpenDeletionModal] = useState(false)
   const formattedCreationDate = format(forecast.createdAt, dateFormat)
   const formattedValidUntilDate = format(forecast.validUntil, dateFormat)
+  const deleteForecastModalDescription = `
+    ${tForecasts('deleteForecastModal.description')}
+    ${tWords('from').toLowerCase()} ${formattedCreationDate}
+    ${tWords('to').toLowerCase()} ${formattedValidUntilDate}?
+  `
 
   const handleDelete = async () => {
     try {
@@ -51,9 +56,11 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
       </div>
 
       <ConfirmationModal
+        description={deleteForecastModalDescription}
         isOpen={isOpenDeletionModal}
         onClose={closeDeletionModal}
         onConfirm={handleDelete}
+        title={tForecasts('deleteForecastModal.title')}
         variant="delete"
       />
     </>
