@@ -27,7 +27,7 @@ const ConfirmationModal = ({
     <Modal isOpen={isOpen} onClose={onClose} title={title || tModal(`title`)}>
       <ModalBody>{description || tModal('description')}</ModalBody>
       <ModalFooter>
-        {/* TODO: Use proper colored buttons once they're available - <link to a task> */}
+        {/* TODO: Use proper colored buttons once they're available - https://app.asana.com/1/1208747886147296/project/1208747689500826/task/1210772206117399?focus=true */}
         <Button className="ml-auto" onClick={onCancel || onClose}>
           {tActions('cancel')}
         </Button>
