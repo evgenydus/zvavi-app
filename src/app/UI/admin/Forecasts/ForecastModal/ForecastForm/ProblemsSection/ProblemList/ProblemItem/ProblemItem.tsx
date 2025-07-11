@@ -1,5 +1,7 @@
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
+
+import { useBoolean } from '@/UI/hooks'
 
 import { ConfirmationDialog } from '@/UI/components/ConfirmationDialog'
 import Properties from './Properties'
@@ -18,7 +20,8 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
   const tActions = useTranslations('common.actions')
   const tForm = useTranslations('admin.forecast.form')
   const tProblemTypes = useTranslations('admin.forecast.form.problems.options.problemType')
-  const [isOpenDeletionModal, setIsOpenDeletionModal] = useState(false)
+  const [isOpenDeletionDialog, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
+    useBoolean(false)
 
   const { description, type: problemType } = problemData
 
@@ -30,21 +33,13 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
     onEdit(problemData.id!)
   }, [onEdit, problemData])
 
-  const openDeleteConfirmationModal = () => setIsOpenDeletionModal(true)
-
-  const closeDeleteConfirmationModal = () => setIsOpenDeletionModal(false)
-
   return (
     <>
       <div className="w-full rounded bg-black/[0.03] p-3">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-xl font-semibold">{tProblemTypes(problemType)}</h3>
 
-          <ActionButtons
-            canEdit={canEdit}
-            onDelete={openDeleteConfirmationModal}
-            onEdit={handleEdit}
-          />
+          <ActionButtons canEdit={canEdit} onDelete={openDeletionDialog} onEdit={handleEdit} />
         </div>
 
         <div className="mb-6 flex items-center justify-between gap-6">
@@ -61,8 +56,8 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
       </div>
 
       <ConfirmationDialog
-        isOpen={isOpenDeletionModal}
-        onClose={closeDeleteConfirmationModal}
+        isOpen={isOpenDeletionDialog}
+        onClose={closeDeletionDialog}
         onConfirm={handleDelete}
         title={`${tActions('delete')} ${tProblemTypes(problemType)}?`}
         variant="delete"
