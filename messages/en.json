@@ -2,7 +2,9 @@
   "common": {
     "actions": {
       "add": "Add",
+      "confirm": "Confirm",
       "cancel": "Cancel",
+      "delete": "Delete",
       "learnMore": "Learn More",
       "readFullForecast": "Read Full Forecast",
       "save": "Save",
@@ -34,6 +36,17 @@
     "home": "Home",
     "joinUs": "Join Us",
     "partners": "Partners"
+  },
+
+  "modal": {
+    "confirm": {
+      "title": "Confirmation required",
+      "description": "Do you want to proceed and perform the action?"
+    },
+    "delete": {
+      "title": "Confirm delete?",
+      "description": "The deletion is permanent. Do you want to proceed anyway?"
+    }
   },
 
   "forecast": {
