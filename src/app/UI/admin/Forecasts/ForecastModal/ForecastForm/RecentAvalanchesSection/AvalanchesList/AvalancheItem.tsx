@@ -1,9 +1,10 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { format } from 'date-fns'
 import { useTranslations } from 'next-intl'
 
 import { dateFormat } from '@/business/constants'
 
+import { ConfirmationModal } from '@/UI/components/ConfirmationModal'
 import { ActionButtons, Aspects, PropertyWrapper } from '../../common/listItem'
 
 import type { Avalanche } from '@/business/types'
@@ -17,6 +18,7 @@ type AvalancheItemProps = {
 
 const AvalancheItem = ({ avalanche, canEdit, onDelete, onEdit }: AvalancheItemProps) => {
   const tForm = useTranslations('admin.forecast.form')
+  const [isDeletionConfirmationModalOpen, setIsDeletionConfirmationModalOpen] = useState(false)
   const { date, description, size } = avalanche
 
   const handleDelete = useCallback(() => {
@@ -27,30 +29,47 @@ const AvalancheItem = ({ avalanche, canEdit, onDelete, onEdit }: AvalancheItemPr
     onEdit(avalanche.id!)
   }, [onEdit, avalanche])
 
+  const closeDeletionConfirmationModal = () => setIsDeletionConfirmationModalOpen(false)
+  const openDeletionConfirmationModal = () => setIsDeletionConfirmationModalOpen(true)
+
   return (
-    <div className="w-full rounded bg-black/[0.03] p-3">
-      <div className="mb-3 flex items-center justify-between">
-        {date && <h3 className="text-xl font-semibold">{format(date, dateFormat)}</h3>}
-        <ActionButtons canEdit={canEdit} onDelete={handleDelete} onEdit={handleEdit} />
-      </div>
-
-      <div className="flex items-start gap-6">
-        <div className="flex-1">
-          <PropertyWrapper title={tForm('common.labels.avalancheSize')}>
-            <p>{size}</p>
-          </PropertyWrapper>
+    <>
+      <div className="w-full rounded bg-black/[0.03] p-3">
+        <div className="mb-3 flex items-center justify-between">
+          {date && <h3 className="text-xl font-semibold">{format(date, dateFormat)}</h3>}
+          <ActionButtons
+            canEdit={canEdit}
+            onDelete={openDeletionConfirmationModal}
+            onEdit={handleEdit}
+          />
         </div>
 
-        <Aspects className="w-[355px]" item={avalanche} />
+        <div className="flex items-start gap-6">
+          <div className="flex-1">
+            <PropertyWrapper title={tForm('common.labels.avalancheSize')}>
+              <p>{size}</p>
+            </PropertyWrapper>
+          </div>
+
+          <Aspects className="w-[355px]" item={avalanche} />
+        </div>
+
+        {description && (
+          <div>
+            <h4 className="mb-2 font-semibold">{tForm('common.labels.description')}:</h4>
+            <p className="max-h-28 overflow-y-auto text-justify">{description}</p>
+          </div>
+        )}
       </div>
 
-      {description && (
-        <div>
-          <h4 className="mb-2 font-semibold">{tForm('common.labels.description')}:</h4>
-          <p className="max-h-28 overflow-y-auto text-justify">{description}</p>
-        </div>
-      )}
-    </div>
+      <ConfirmationModal
+        isOpen={isDeletionConfirmationModalOpen}
+        onClose={closeDeletionConfirmationModal}
+        onConfirm={handleDelete}
+        title={tForm('recentAvalanches.labels.deleteAvalanche')}
+        variant="delete"
+      />
+    </>
   )
 }
 

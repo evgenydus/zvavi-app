@@ -250,6 +250,7 @@
           "noAvalanches": "No avalanches have been added yet.",
           "labels": {
             "addAvalanche": "Add Avalanche",
+            "deleteAvalanche": "Delete Avalanche?",
             "date": "Date"
           }
         }
