@@ -19,7 +19,6 @@ type ProblemItemProps = {
 const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProps) => {
   const tActions = useTranslations('common.actions')
   const tForm = useTranslations('admin.forecast.form')
-  const tProblemTypes = useTranslations('admin.forecast.form.problems.options.problemType')
   const [isOpenDeletionDialog, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
     useBoolean(false)
 
@@ -37,7 +36,9 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
     <>
       <div className="w-full rounded bg-black/[0.03] p-3">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-xl font-semibold">{tProblemTypes(problemType)}</h3>
+          <h3 className="text-xl font-semibold">
+            {tForm(`problems.options.problemType.${problemType}`)}
+          </h3>
 
           <ActionButtons canEdit={canEdit} onDelete={openDeletionDialog} onEdit={handleEdit} />
         </div>
@@ -59,7 +60,7 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
         isOpen={isOpenDeletionDialog}
         onClose={closeDeletionDialog}
         onConfirm={handleDelete}
-        title={`${tActions('delete')} ${tProblemTypes(problemType)}?`}
+        title={`${tActions('delete')} ${tForm(`problems.options.problemType.${problemType}`)}?`}
         variant="delete"
       />
     </>
