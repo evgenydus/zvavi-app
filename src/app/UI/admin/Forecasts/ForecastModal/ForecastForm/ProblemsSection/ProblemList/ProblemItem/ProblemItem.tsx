@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { ConfirmationModal } from '@/UI/components/ConfirmationModal'
+import { ConfirmationDialog } from '@/UI/components/ConfirmationDialog'
 import Properties from './Properties'
 import { ActionButtons, Aspects } from '../../../common/listItem'
 
@@ -60,7 +60,7 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
         )}
       </div>
 
-      <ConfirmationModal
+      <ConfirmationDialog
         isOpen={isOpenDeletionModal}
         onClose={closeDeleteConfirmationModal}
         onConfirm={handleDelete}

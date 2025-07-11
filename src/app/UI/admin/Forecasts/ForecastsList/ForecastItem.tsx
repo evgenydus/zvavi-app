@@ -8,7 +8,7 @@ import { dateFormat } from '@/business/constants'
 import { useForecastDelete } from '@/data/hooks/forecasts'
 
 import { IconButton } from '@/UI/components'
-import { ConfirmationModal } from '@/UI/components/ConfirmationModal'
+import { ConfirmationDialog } from '@/UI/components/ConfirmationDialog'
 import Column from './Column'
 
 import type { Forecast } from '@/business/types'
@@ -57,7 +57,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
         </Column>
       </div>
 
-      <ConfirmationModal
+      <ConfirmationDialog
         description={deleteForecastModalDescription}
         isOpen={isOpenDeletionModal}
         onClose={closeDeletionModal}

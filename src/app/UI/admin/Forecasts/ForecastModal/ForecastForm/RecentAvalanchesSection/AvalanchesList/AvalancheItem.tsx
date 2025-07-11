@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 
 import { dateFormat } from '@/business/constants'
 
-import { ConfirmationModal } from '@/UI/components/ConfirmationModal'
+import { ConfirmationDialog } from '@/UI/components/ConfirmationDialog'
 import { ActionButtons, Aspects, PropertyWrapper } from '../../common/listItem'
 
 import type { Avalanche } from '@/business/types'
@@ -59,7 +59,7 @@ const AvalancheItem = ({ avalanche, canEdit, onDelete, onEdit }: AvalancheItemPr
         )}
       </div>
 
-      <ConfirmationModal
+      <ConfirmationDialog
         isOpen={isOpenDeletionModal}
         onClose={closeDeletionModal}
         onConfirm={handleDelete}
