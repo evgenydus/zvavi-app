@@ -19,7 +19,7 @@ type ProblemItemProps = {
 const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProps) => {
   const tActions = useTranslations('common.actions')
   const tForm = useTranslations('admin.forecast.form')
-  const [isOpenDeletionDialog, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
+  const [isDeletionDialogOpen, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
     useBoolean(false)
 
   const { description, type: problemType } = problemData
@@ -57,7 +57,7 @@ const ProblemItem = ({ canEdit, onDelete, onEdit, problemData }: ProblemItemProp
       </div>
 
       <ConfirmationDialog
-        isOpen={isOpenDeletionDialog}
+        isOpen={isDeletionDialogOpen}
         onClose={closeDeletionDialog}
         onConfirm={handleDelete}
         title={`${tActions('delete')} ${tForm(`problems.options.problemType.${problemType}`)}?`}
