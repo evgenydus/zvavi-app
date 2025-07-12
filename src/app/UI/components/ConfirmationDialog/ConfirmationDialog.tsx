@@ -4,14 +4,14 @@ import { Button } from '@/UI/components/inputs'
 import type { ModalProps } from '@/UI/components/Modal'
 import { Modal, ModalBody, ModalFooter } from '@/UI/components/Modal'
 
-export type ConfirmationModalProps = Omit<ModalProps, 'children'> & {
+export type ConfirmationDialogProps = Omit<ModalProps, 'children'> & {
   onConfirm: () => void
   onCancel?: () => void
   variant?: 'confirm' | 'delete'
   description?: string
 }
 
-const ConfirmationModal = ({
+const ConfirmationDialog = ({
   description,
   isOpen,
   onCancel,
@@ -19,7 +19,7 @@ const ConfirmationModal = ({
   onConfirm,
   title,
   variant = 'confirm',
-}: ConfirmationModalProps) => {
+}: ConfirmationDialogProps) => {
   const tActions = useTranslations('common.actions')
   const tModal = useTranslations(`modal.${variant}`)
 
@@ -37,4 +37,4 @@ const ConfirmationModal = ({
   )
 }
 
-export default ConfirmationModal
+export default ConfirmationDialog

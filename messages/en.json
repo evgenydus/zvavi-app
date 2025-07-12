@@ -40,11 +40,11 @@
 
   "modal": {
     "confirm": {
-      "title": "Confirmation required",
+      "title": "Confirmation Required",
       "description": "Do you want to proceed and perform the action?"
     },
     "delete": {
-      "title": "Confirm delete?",
+      "title": "Confirm Deletion?",
       "description": "The deletion is permanent. Do you want to proceed anyway?"
     }
   },
@@ -168,6 +168,10 @@
           "status": "Status",
           "validUntil": "Valid Until"
         }
+      },
+      "deleteForecastModal":  {
+        "title": "Delete Forecast?",
+        "description": "Do you want to permanently delete the forecast for the period"
       }
     },
     "forecast": {
@@ -246,6 +250,7 @@
           "noAvalanches": "No avalanches have been added yet.",
           "labels": {
             "addAvalanche": "Add Avalanche",
+            "deleteAvalanche": "Delete Avalanche?",
             "date": "Date"
           }
         }
