@@ -1,12 +1,10 @@
-/* eslint-disable max-lines */
-
 'use client'
 
 import { useCallback, useState } from 'react'
+import _omit from 'lodash/omit'
 import { useTranslations } from 'next-intl'
 
-import { useForecastCreate, useUpdateForecast } from '@/data/hooks/forecasts'
-import type { ForecastCreateUpdatePayload } from '@/data/hooks/forecasts/types'
+import { initialFormData } from './constants'
 
 import { Button, TextInput } from '@/UI/components/inputs'
 import { InputBlock } from './common'
@@ -15,33 +13,41 @@ import { HazardLevels } from './HazardLevels'
 import { ProblemsSection } from './ProblemsSection'
 import { RecentAvalanchesSection } from './RecentAvalanchesSection'
 import TextAreaField from './TextAreaField'
+import { useForecastSubmit } from './useForecastSubmit'
 import ValidUntil from './ValidUntil'
 
-import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
+import type { Avalanche, ForecastFormData, FullForecast, Problem } from '@/business/types'
 
 type ForecastFormProps = {
-  initialFormData: ForecastFormData
-  initialProblems: Problem[]
-  initialRecentAvalanches: Avalanche[]
+  forecast?: FullForecast
   onClose: () => void
 }
 
 // TODO: Implement Validations https://app.asana.com/0/1208747689500826/1209084695587061/f
-const ForecastForm = ({
-  initialFormData,
-  initialProblems,
-  initialRecentAvalanches,
-  onClose,
-}: ForecastFormProps) => {
+const ForecastForm = ({ forecast, onClose }: ForecastFormProps) => {
   const t = useTranslations()
   const tForecast = useTranslations('admin.forecast')
+  const formattedForecast = {
+    ..._omit(forecast, ['avalancheProblems', 'recentAvalanches', 'status', 'createdAt']),
+    validUntil: forecast?.validUntil ? new Date(forecast.validUntil) : null,
+  }
 
-  const [formData, setFormData] = useState<ForecastFormData>(initialFormData)
-  const [problems, setProblems] = useState<Problem[]>(initialProblems)
-  const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>(initialRecentAvalanches)
+  const [formData, setFormData] = useState<ForecastFormData>(
+    forecast ? formattedForecast : initialFormData,
+  )
+  const [problems, setProblems] = useState<Problem[]>(forecast?.avalancheProblems ?? [])
+  const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>(
+    forecast?.recentAvalanches ?? [],
+  )
 
-  const { error, mutate: createForecast } = useForecastCreate()
-  const { error: updateError, mutate: updateForecast } = useUpdateForecast()
+  const { handleSubmit } = useForecastSubmit({
+    avalancheProblems: problems,
+    formData,
+    initialProblems: forecast?.avalancheProblems ?? [],
+    initialRecentAvalanches: forecast?.recentAvalanches ?? [],
+    onClose,
+    recentAvalanches,
+  })
 
   const handleTextFieldChange = useCallback(
     (fieldName: keyof ForecastFormData) =>
@@ -53,46 +59,6 @@ const ForecastForm = ({
       },
     [],
   )
-
-  const handleSubmit = useCallback(async () => {
-    const payload: ForecastCreateUpdatePayload = {
-      avalancheProblems: problems,
-      forecast: {
-        ...formData,
-        validUntil: formData.validUntil ? formData.validUntil.toISOString() : null,
-      },
-      recentAvalanches,
-    }
-
-    // TODO: Handle errors https://app.asana.com/0/1208747689500826/1209084695587061/f
-    try {
-      if (initialFormData.id) {
-        await updateForecast({
-          ...payload,
-          initialProblems,
-          initialRecentAvalanches,
-        })
-      } else {
-        await createForecast(payload)
-      }
-
-      onClose()
-    } catch {
-      console.error(updateError || error)
-    }
-  }, [
-    problems,
-    recentAvalanches,
-    formData,
-    initialFormData.id,
-    onClose,
-    initialProblems,
-    initialRecentAvalanches,
-    updateForecast,
-    createForecast,
-    updateError,
-    error,
-  ])
 
   return (
     <>
@@ -109,14 +75,14 @@ const ForecastForm = ({
                 />
               </InputBlock>
 
-              <ValidUntil formData={formData} setFormData={setFormData} />
+              <ValidUntil setFormData={setFormData} value={formData.validUntil} />
             </div>
           </div>
 
           <TextAreaField
-            formData={formData}
             onChange={handleTextFieldChange('summary')}
             type="summary"
+            value={formData.summary}
           />
           <hr />
           <HazardLevels setFormData={setFormData} value={formData.hazardLevels} />

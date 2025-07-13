@@ -7,18 +7,18 @@ import { InputBlock } from './common'
 import type { ForecastFormData } from '@/business/types'
 
 type ValidUntilProps = {
-  formData: ForecastFormData
+  value: Date | null
   setFormData: (value: React.SetStateAction<ForecastFormData>) => void
 }
 
-const ValidUntil = ({ formData, setFormData }: ValidUntilProps) => {
+const ValidUntil = ({ setFormData, value }: ValidUntilProps) => {
   const tForecast = useTranslations('admin.forecast')
 
   const handleValidUntilChange = useCallback(
-    (value: Date | null) => {
+    (validUntil: Date | null) => {
       setFormData((prev) => ({
         ...prev,
-        validUntil: value,
+        validUntil,
       }))
     },
     [setFormData],
@@ -30,7 +30,7 @@ const ValidUntil = ({ formData, setFormData }: ValidUntilProps) => {
         className="h-8 rounded bg-black/5 px-2"
         dateFormat="dd.MM.yyyy HH:mm"
         onChange={handleValidUntilChange}
-        selected={formData.validUntil}
+        selected={value}
         showTimeSelect
       />
     </InputBlock>

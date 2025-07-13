@@ -13,24 +13,24 @@ import type { FullForecast } from '@/business/types'
 
 const ForecastsList = ({ forecasts }: { forecasts: FullForecast[] }) => {
   const tAdmin = useTranslations('admin')
-  const [isModalOpen, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false)
-  const [selectedForecast, setSelectedForecast] = useState<FullForecast | null>(null)
+  const [isForecastModalOpen, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false)
+  const [selectedForecast, setSelectedForecast] = useState<FullForecast | undefined>()
 
-  const handleEditForecast = (forecast: FullForecast) => {
+  const handleForecastEdit = (forecast: FullForecast) => {
     setSelectedForecast(forecast)
     openModal()
   }
 
   const handleCloseModal = () => {
     closeModal()
-    setSelectedForecast(null)
+    setSelectedForecast(undefined)
   }
 
   return (
     <>
       <Button className="my-4 ml-auto" onClick={openModal}>
         <PlusIcon className="size-5" />
-        {tAdmin('forecast.titleCreate')}
+        {tAdmin('forecast.createForecastButton')}
       </Button>
 
       <div className="w-full">
@@ -47,15 +47,15 @@ const ForecastsList = ({ forecasts }: { forecasts: FullForecast[] }) => {
         <ul className="flex flex-col">
           {forecasts.map((forecast) => (
             <li key={forecast.id} className="border-b last:border-0">
-              <ForecastItem forecast={forecast} onEdit={handleEditForecast} />
+              <ForecastItem forecast={forecast} onEdit={handleForecastEdit} />
             </li>
           ))}
         </ul>
       </div>
 
       <ForecastModal
-        forecast={selectedForecast ?? null}
-        isOpen={isModalOpen}
+        forecast={selectedForecast}
+        isOpen={isForecastModalOpen}
         onClose={handleCloseModal}
       />
     </>

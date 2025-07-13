@@ -1,7 +1,11 @@
-import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
+import type { Avalanche, ForecastFormData, FullForecast, Problem } from '@/business/types'
 
-export const initialFormData: ForecastFormData = {
+type InitialFormData = ForecastFormData &
+  Pick<FullForecast, 'avalancheProblems' | 'recentAvalanches'>
+
+export const initialFormData: InitialFormData = {
   additionalHazards: '',
+  avalancheProblems: [],
   forecaster: '',
   hazardLevels: {
     alpine: '1',
@@ -9,6 +13,7 @@ export const initialFormData: ForecastFormData = {
     overall: '1',
     subAlpine: '1',
   },
+  recentAvalanches: [],
   snowpack: '',
   summary: '',
   validUntil: null,

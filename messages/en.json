@@ -10,22 +10,26 @@
       "save": "Save",
       "submit": "Submit"
     },
+
     "labels": {
       "email": "Email",
       "overallRiskLevel": "Overall risk level",
       "summary": "Summary"
     },
+
     "elevationZones": {
       "highAlpine": "High Alpine",
       "alpine": "Alpine",
       "subAlpine": "Sub Alpine"
     },
+
     "words": {
       "from": "From",
       "overall": "Overall",
       "to": "To"
     }
   },
+
   "navigation": {
     "about": "About Us",
     "contact": "Contact",
@@ -33,6 +37,7 @@
     "joinUs": "Join Us",
     "partners": "Partners"
   },
+
   "modal": {
     "confirm": {
       "title": "Confirmation required",
@@ -43,6 +48,7 @@
       "description": "The deletion is permanent. Do you want to proceed anyway?"
     }
   },
+
   "forecast": {
     "sections": {
       "additionalHazards": {
@@ -96,9 +102,11 @@
       }
     }
   },
+
   "partners": {
     "title": "Our Partners"
   },
+
   "about": {
     "title": "About Us",
     "section": {
@@ -107,6 +115,7 @@
       }
     }
   },
+
   "joinUs": {
     "title": "Join Us",
     "section": {
@@ -117,26 +126,32 @@
       }
     }
   },
+
   "auth": {
     "errors": {
       "invalidSession": "Invalid or expired session. Please request a new password reset link."
     },
+
     "labels": {
       "password": "Password",
       "confirmPassword": "Confirm Password"
     },
+
     "login": {
       "title": "Login",
       "signIn": "Sign In",
       "forgotPassword": "Forgot Your Password?"
     },
+
     "logout": {
       "button": "Sign out"
     },
+
     "forgotPassword": {
       "title": "Forgot Your Password?",
       "sendResetLink": "Send Reset Link"
     },
+
     "setNewPassword": {
       "title": "Set New Password",
       "setPassword": "Set Password"
@@ -156,8 +171,11 @@
       }
     },
     "forecast": {
-      "titleCreate": "Create New Forecast",
-      "titleEdit": "Edit Forecast",
+      "createForecastButton": "Create Forecast",
+      "modalTitle": {
+        "create": "Create New Forecast",
+        "edit": "Edit Forecast"
+      },
       "form": {
         "general": {
           "title": "General Info",

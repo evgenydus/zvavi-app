@@ -1,30 +1,13 @@
 import { useTranslations } from 'next-intl'
 
-import { initialFormData } from './ForecastForm/constants'
-
 import type { ModalProps } from '@/UI/components/Modal'
 import { Modal } from '@/UI/components/Modal'
 import { ForecastForm } from './ForecastForm'
 
-import type { ForecastFormData, FullForecast } from '@/business/types'
-
-const getInitialFormData = (forecast: FullForecast | null): ForecastFormData => {
-  if (!forecast) return initialFormData
-
-  return {
-    additionalHazards: forecast.additionalHazards,
-    forecaster: forecast.forecaster,
-    hazardLevels: forecast.hazardLevels,
-    id: forecast.id,
-    snowpack: forecast.snowpack,
-    summary: forecast.summary,
-    validUntil: forecast.validUntil ? new Date(forecast.validUntil) : null,
-    weather: forecast.weather,
-  }
-}
+import type { FullForecast } from '@/business/types'
 
 type ForecastModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
-  forecast: FullForecast | null
+  forecast?: FullForecast
 }
 
 const ForecastModal = ({ forecast, isOpen, onClose }: ForecastModalProps) => {
@@ -34,14 +17,9 @@ const ForecastModal = ({ forecast, isOpen, onClose }: ForecastModalProps) => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={forecast ? t('admin.forecast.titleEdit') : t('admin.forecast.titleCreate')}
+      title={forecast ? t('admin.forecast.modalTitle.edit') : t('admin.forecast.modalTitle.create')}
     >
-      <ForecastForm
-        initialFormData={getInitialFormData(forecast)}
-        initialProblems={forecast?.avalancheProblems ?? []}
-        initialRecentAvalanches={forecast?.recentAvalanches ?? []}
-        onClose={onClose}
-      />
+      <ForecastForm forecast={forecast} onClose={onClose} />
     </Modal>
   )
 }

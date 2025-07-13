@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { dateFormat } from '@/business/constants'
 import { useForecastDelete } from '@/data/hooks/forecasts'
 
-import { ActionButtons } from '@/UI/components'
+import ActionButtons from './ActionButtons'
 import Column from './Column'
 
 import type { FullForecast } from '@/business/types'

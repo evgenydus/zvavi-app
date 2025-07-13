@@ -1,25 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
+import { attachItemsToForecast } from './helpers'
+
 import type { ForecastCreateUpdatePayload } from './types'
 import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
 import { forecastsKeys } from '../../query-keys'
 
 import { supabase } from '@/data'
-
-const attachItemsToForecast = async <T>(
-  tableName: string,
-  forecastId: number,
-  items: T[],
-): Promise<void> => {
-  const formattedItems = items.map((item) => ({
-    ...convertCamelToSnake(item),
-    forecast_id: forecastId,
-  }))
-
-  const { error } = await supabase.from(tableName).insert(formattedItems)
-
-  handleSupabaseError(error)
-}
 
 const createForecast = async ({
   avalancheProblems,

@@ -1,5 +1,5 @@
 export { default as useForecastCreate } from './useForecastCreate'
 export { default as useForecastDelete } from './useForecastDelete'
+export { default as useForecastUpdate } from './useForecastUpdate'
 export { default as useGetCurrentForecast } from './useGetCurrentForecast'
 export { default as useGetForecast } from './useGetForecast'
-export { default as useUpdateForecast } from './useUpdateForecast'

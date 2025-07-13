@@ -13,13 +13,13 @@ const AdditionalTextFields = ({ formData, onChange }: AdditionalTextFieldsProps)
   return (
     <>
       <div className="flex items-center gap-6">
-        <TextAreaField formData={formData} onChange={onChange('snowpack')} type="snowpack" />
-        <TextAreaField formData={formData} onChange={onChange('weather')} type="weather" />
+        <TextAreaField onChange={onChange('snowpack')} type="snowpack" value={formData.snowpack} />
+        <TextAreaField onChange={onChange('weather')} type="weather" value={formData.weather} />
       </div>
       <TextAreaField
-        formData={formData}
         onChange={onChange('additionalHazards')}
         type="additionalHazards"
+        value={formData.additionalHazards}
       />
     </>
   )

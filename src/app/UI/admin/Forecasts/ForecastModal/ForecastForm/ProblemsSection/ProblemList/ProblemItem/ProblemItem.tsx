@@ -1,9 +1,8 @@
 import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { ActionButtons } from '@/UI/components'
 import Properties from './Properties'
-import { Aspects } from '../../../common/listItem'
+import { ActionButtons, Aspects } from '../../../common/listItem'
 
 import type { Problem } from '@/business/types'
 

@@ -12,14 +12,12 @@ type ActionButtonsProps = {
 
 const ActionButtons = ({ canEdit = true, className, onDelete, onEdit }: ActionButtonsProps) => (
   <div className={classnames('flex items-center gap-2', className)}>
-    {onEdit && (
-      <IconButton
-        className="inline-flex size-7"
-        disabled={!canEdit}
-        icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
-        onClick={onEdit}
-      />
-    )}
+    <IconButton
+      className="inline-flex size-7"
+      disabled={!canEdit}
+      icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
+      onClick={onEdit}
+    />
 
     <IconButton
       className="inline-flex size-7"
