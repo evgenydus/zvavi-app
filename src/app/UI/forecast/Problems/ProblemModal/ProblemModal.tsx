@@ -1,9 +1,9 @@
 import { useTranslations } from 'next-intl'
 
-import { Modal, type ModalProps } from '@/UI/components/Modal'
-import { ModalContent, type ModalContentProps } from './ModalContent'
+import { Modal, ModalBody, type ModalProps } from '@/UI/components/Modal'
+import { ProblemDetails, type ProblemDetailsProps } from './ProblemDetails'
 
-type ProblemModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & ModalContentProps
+type ProblemModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & ProblemDetailsProps
 
 const ProblemModal = ({ isOpen, onClose, problem }: ProblemModalProps) => {
   const t = useTranslations()
@@ -15,7 +15,9 @@ const ProblemModal = ({ isOpen, onClose, problem }: ProblemModalProps) => {
       onClose={onClose}
       title={t(`admin.forecast.form.problems.options.problemType.${problem.type}`)}
     >
-      <ModalContent problem={problem} />
+      <ModalBody>
+        <ProblemDetails problem={problem} />
+      </ModalBody>
     </Modal>
   )
 }

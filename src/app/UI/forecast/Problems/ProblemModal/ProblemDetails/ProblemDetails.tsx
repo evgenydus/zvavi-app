@@ -5,11 +5,11 @@ import PropertyTile from './PropertyTile'
 
 import type { Problem } from '@/business/types'
 
-export type ModalContentProps = {
+export type ProblemDetailsProps = {
   problem: Problem
 }
 
-const ModalContent = ({ problem }: ModalContentProps) => {
+const ProblemDetails = ({ problem }: ProblemDetailsProps) => {
   const t = useTranslations()
   const {
     aspects,
@@ -25,7 +25,7 @@ const ModalContent = ({ problem }: ModalContentProps) => {
   return (
     <div>
       {description && <p className="mb-4 text-justify text-sm">{description}</p>}
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 justify-items-center gap-2">
         <PropertyTile
           property={{
             info: t(`forecast.sections.avalancheProblems.modal.info.size.${avalancheSize}`),
@@ -95,4 +95,4 @@ const ModalContent = ({ problem }: ModalContentProps) => {
   )
 }
 
-export default ModalContent
+export default ProblemDetails
