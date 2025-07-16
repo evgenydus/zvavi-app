@@ -1,21 +1,15 @@
 'use client'
 
-import { useEffect } from 'react'
-
 import { useGetForecasts } from '@/data/hooks'
 
-import { ForecastsList } from '../../../UI/admin/Forecasts/ForecastsList'
+import { Loader } from '@/UI/components'
 
-import { useLoader } from '@/UI/loader'
+import { ForecastsList } from '@/UI/admin/Forecasts/ForecastsList'
 
 const ForecastPage = () => {
   const { data: forecasts, isFetching } = useGetForecasts()
-  const { hideLoader, showLoader } = useLoader()
 
-  useEffect(() => {
-    if (isFetching) showLoader()
-    else hideLoader()
-  }, [isFetching, showLoader, hideLoader])
+  if (isFetching) return <Loader />
 
   if (!forecasts) return null
 

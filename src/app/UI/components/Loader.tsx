@@ -11,7 +11,7 @@ const Loader = ({ size = 100 }: LoaderProps) => {
   const strokeWidth = (size - circleRadius * 2) / 2
 
   return (
-    <div className="fixed left-0 top-0 z-10 size-full content-center bg-white/30 backdrop-blur-sm">
+    <div className="size-full content-center p-2">
       <svg
         className="m-auto animate-spin text-primary"
         fill="none"

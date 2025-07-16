@@ -4,15 +4,14 @@ import { useEffect, useState } from 'react'
 
 import { useGetCurrentForecast } from '@/data/hooks/forecasts'
 
+import { Loader } from '@/UI/components'
 import CurrentForecast from './CurrentForecast'
 
 import type { Forecast } from '@/business/types'
-import { useLoader } from '@/UI/loader'
 
 const CurrentForecastContainer = () => {
   const { data: forecast, isFetching } = useGetCurrentForecast()
   const [currentForecast, setCurrentForecast] = useState<Forecast>()
-  const { hideLoader, showLoader } = useLoader()
 
   useEffect(() => {
     if (!forecast) return
@@ -20,10 +19,7 @@ const CurrentForecastContainer = () => {
     setCurrentForecast(forecast)
   }, [forecast])
 
-  useEffect(() => {
-    if (isFetching) showLoader()
-    else hideLoader()
-  }, [isFetching, hideLoader, showLoader])
+  if (isFetching) return <Loader />
 
   if (!currentForecast) return null
 
