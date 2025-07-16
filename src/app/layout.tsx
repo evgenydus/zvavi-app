@@ -10,6 +10,7 @@ import { SupabaseContextProvider } from '@/business/context'
 import { QueryClientProvider } from '@/data'
 import { ubuntuSans } from '@/fonts'
 import { Header } from '@/UI/header'
+import { LoaderProvider } from '@/UI/loader'
 
 export const metadata: Metadata = {
   description:
@@ -36,9 +37,11 @@ const Layout = async (props: Readonly<LayoutProps>) => {
         <NextIntlClientProvider messages={messages}>
           <QueryClientProvider>
             <SupabaseContextProvider>
-              <Header />
-              <WIPBanner />
-              {children}
+              <LoaderProvider>
+                <Header />
+                <WIPBanner />
+                {children}
+              </LoaderProvider>
             </SupabaseContextProvider>
           </QueryClientProvider>
         </NextIntlClientProvider>
