@@ -10,7 +10,7 @@ import Forecast from './Forecast'
 import type { FullForecast } from '@/business/types'
 
 const ForecastContainer = ({ forecastId }: { forecastId: FullForecast['id'] }) => {
-  const { data: forecastData, isFetching } = useGetForecast({ forecastId })
+  const { data: forecastData, isPending } = useGetForecast({ forecastId })
   const [forecast, setForecast] = useState<FullForecast>()
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const ForecastContainer = ({ forecastId }: { forecastId: FullForecast['id'] }) =
     setForecast(forecastData)
   }, [forecastData])
 
-  if (isFetching) return <Loader />
+  if (isPending) return <Loader />
 
   if (!forecast) return null
 

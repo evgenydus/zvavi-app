@@ -10,7 +10,7 @@ import CurrentForecast from './CurrentForecast'
 import type { Forecast } from '@/business/types'
 
 const CurrentForecastContainer = () => {
-  const { data: forecast, isFetching } = useGetCurrentForecast()
+  const { data: forecast, isPending } = useGetCurrentForecast()
   const [currentForecast, setCurrentForecast] = useState<Forecast>()
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const CurrentForecastContainer = () => {
     setCurrentForecast(forecast)
   }, [forecast])
 
-  if (isFetching) return <Loader />
+  if (isPending) return <Loader />
 
   if (!currentForecast) return null
 

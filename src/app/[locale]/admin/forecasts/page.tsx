@@ -7,9 +7,9 @@ import { Loader } from '@/UI/components'
 import { ForecastsList } from '@/UI/admin/Forecasts/ForecastsList'
 
 const ForecastPage = () => {
-  const { data: forecasts, isFetching } = useGetForecasts()
+  const { data: forecasts, isPending } = useGetForecasts()
 
-  if (isFetching) return <Loader />
+  if (isPending) return <Loader />
 
   if (!forecasts) return null
 
