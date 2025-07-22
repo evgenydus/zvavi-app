@@ -2,10 +2,14 @@
 
 import { useGetForecasts } from '@/data/hooks'
 
-import { ForecastsList } from '../../../UI/admin/Forecasts/ForecastsList'
+import { Loader } from '@/UI/components'
+
+import { ForecastsList } from '@/UI/admin/Forecasts/ForecastsList'
 
 const ForecastPage = () => {
-  const { data: forecasts } = useGetForecasts()
+  const { data: forecasts, isPending } = useGetForecasts()
+
+  if (isPending) return <Loader />
 
   if (!forecasts) return null
 
