@@ -4,6 +4,7 @@ import { AspectRose, SensitivityGauge, SizeScale, Trend } from './Icons'
 import PropertyTile from './PropertyTile'
 
 import type { Problem } from '@/business/types'
+import TimeOfDay from './TimeOfDay'
 
 export type ProblemDetailsProps = {
   problem: Problem
@@ -87,11 +88,7 @@ const ProblemDetails = ({ problem }: ProblemDetailsProps) => {
         </PropertyTile>
 
         <PropertyTile property={{ name: 'timeOfDay' }}>
-          <p className="font-semibold">
-            {isAllDay
-              ? t('admin.forecast.form.problems.labels.allDay')
-              : `${timeOfDay.start} - ${timeOfDay.end}`}
-          </p>
+          <TimeOfDay isAllDay={isAllDay} timeOfDay={timeOfDay} />
         </PropertyTile>
       </div>
     </div>
