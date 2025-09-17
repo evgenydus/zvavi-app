@@ -1,10 +1,10 @@
 import { useTranslations } from 'next-intl'
 
-import { AspectRose, SensitivityGauge, SizeScale, Trend } from './Icons'
+import { AspectRose, DistributionIcon, SensitivityGauge, SizeScale, Trend } from './Icons'
 import PropertyTile from './PropertyTile'
+import TimeOfDay from './TimeOfDay'
 
 import type { Problem } from '@/business/types'
-import TimeOfDay from './TimeOfDay'
 
 export type ProblemDetailsProps = {
   problem: Problem
@@ -76,6 +76,10 @@ const ProblemDetails = ({ problem }: ProblemDetailsProps) => {
           <p className="font-semibold">
             {t(`admin.forecast.form.problems.options.distribution.${distribution}`)}
           </p>
+
+          <div className="ml-auto">
+            <DistributionIcon distribution={distribution} />
+          </div>
         </PropertyTile>
 
         <PropertyTile property={{ name: 'trend' }}>
