@@ -16,7 +16,7 @@ const DistributionIcon = ({ className, distribution }: DistributionIconProps) =>
       {dots.map(({ cx, cy, index, isFilled }) => (
         <circle
           key={index}
-          className={`fill-${isFilled ? 'violet-600' : 'violet-300/30'}`}
+          className={isFilled ? 'fill-violet-600' : 'fill-violet-200'}
           cx={cx}
           cy={cy}
           r={dotSize}

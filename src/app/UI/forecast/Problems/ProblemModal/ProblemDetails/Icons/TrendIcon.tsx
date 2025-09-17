@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+
 import type { Trend } from '@/business/types'
 
 const TrendIcon = ({ value }: { value: Trend }) => {

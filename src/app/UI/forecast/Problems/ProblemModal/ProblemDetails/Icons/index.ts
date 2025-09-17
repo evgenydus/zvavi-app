@@ -1,6 +1,6 @@
 export { default as AspectRose } from './AspectRose'
+export { DistributionIcon } from './Distribution'
 export { default as SensitivityGauge } from './SensitivityGauge'
 export { default as SizeScale } from './SizeScale'
-export { default as TimeOfDay } from './TimeOfDay'
+export { TimeOfDay } from './TimeOfDay'
 export { default as Trend } from './TrendIcon'
-export { DistributionIcon } from './Distribution'

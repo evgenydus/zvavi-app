@@ -1,8 +1,11 @@
-import type { TimeRange } from '@/business/types'
 import { format } from 'date-fns'
-import { timeFormat } from '@/business/constants'
 import { useTranslations } from 'next-intl'
-import { TimeOfDay as TimeOfDayIcon } from './Icons'
+
+import { timeFormat } from '@/business/constants'
+
+import TimeOfDayIcon from './TimeOfDayIcon'
+
+import type { TimeRange } from '@/business/types'
 
 export interface TimeOfDayProps {
   timeOfDay: TimeRange
@@ -16,14 +19,14 @@ const TimeOfDay = ({ isAllDay, timeOfDay }: TimeOfDayProps) => {
   const formattedEndTime = end ? format(end, timeFormat) : ''
 
   return (
-    <div className="flex items-start gap-2">
-      <p className="font-semibold ">
+    <div className="flex flex-col gap-1">
+      <p className="font-semibold leading-none">
         {isAllDay
           ? t('admin.forecast.form.problems.labels.allDay')
-          : `${formattedStartTime} - ${formattedEndTime}`}
+          : `${formattedStartTime}-${formattedEndTime}`}
       </p>
 
-      <div className="w-20 flex-1">
+      <div className="ml-auto w-16 flex-1">
         <TimeOfDayIcon
           isAllDay={isAllDay}
           timeOfDay={{ end: formattedEndTime, start: formattedStartTime }}

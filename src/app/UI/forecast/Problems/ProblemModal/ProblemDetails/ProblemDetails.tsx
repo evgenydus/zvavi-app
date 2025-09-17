@@ -1,8 +1,14 @@
 import { useTranslations } from 'next-intl'
 
-import { AspectRose, DistributionIcon, SensitivityGauge, SizeScale, Trend } from './Icons'
+import {
+  AspectRose,
+  DistributionIcon,
+  SensitivityGauge,
+  SizeScale,
+  TimeOfDay,
+  Trend,
+} from './Icons'
 import PropertyTile from './PropertyTile'
-import TimeOfDay from './TimeOfDay'
 
 import type { Problem } from '@/business/types'
 

@@ -1,7 +1,7 @@
-const size = 70
+export const size = 64
+export const center = size / 2
 const strokeWidth = 9
 const innerRadius = (size - strokeWidth) / 2
-const center = size / 2
 
 export const timeToAngle = (timeStr: string | null): number => {
   if (!timeStr) return 0

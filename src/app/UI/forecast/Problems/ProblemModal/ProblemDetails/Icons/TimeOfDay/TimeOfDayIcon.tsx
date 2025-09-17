@@ -1,14 +1,11 @@
-import { timeToAngle, createSectorPath, getTickCoordinates } from './utils'
-
-const size = 70
-const center = size / 2
+import { center, createSectorPath, getTickCoordinates, size, timeToAngle } from '../utils'
 
 interface TimeOfDayProps {
   timeOfDay: { start: string; end: string }
   isAllDay: boolean
 }
 
-const TimeOfDay = ({ isAllDay, timeOfDay }: TimeOfDayProps) => {
+const TimeOfDayIcon = ({ isAllDay, timeOfDay }: TimeOfDayProps) => {
   const hourTicks = Array.from({ length: 12 }, (_, i) => {
     const angle = (i / 12) * 2 * Math.PI
     const { x1, x2, y1, y2 } = getTickCoordinates(angle)
@@ -19,7 +16,7 @@ const TimeOfDay = ({ isAllDay, timeOfDay }: TimeOfDayProps) => {
   return (
     <svg height={size} viewBox={`0 0 ${size} ${size}`} width={size}>
       {/* Background circle */}
-      <circle className="fill-violet-300/30" cx={center} cy={center} r={size / 2} />
+      <circle className="fill-violet-200" cx={center} cy={center} r={size / 2} />
 
       {/* Active arc/sector */}
       {isAllDay ? (
@@ -40,4 +37,4 @@ const TimeOfDay = ({ isAllDay, timeOfDay }: TimeOfDayProps) => {
   )
 }
 
-export default TimeOfDay
+export default TimeOfDayIcon
