@@ -1,6 +1,13 @@
 import { useTranslations } from 'next-intl'
 
-import { AspectRose, SensitivityGauge, SizeScale } from './Icons'
+import {
+  AspectRose,
+  DistributionIcon,
+  SensitivityGauge,
+  SizeScale,
+  TimeOfDay,
+  Trend,
+} from './Icons'
 import PropertyTile from './PropertyTile'
 
 import type { Problem } from '@/business/types'
@@ -75,20 +82,23 @@ const ProblemDetails = ({ problem }: ProblemDetailsProps) => {
           <p className="font-semibold">
             {t(`admin.forecast.form.problems.options.distribution.${distribution}`)}
           </p>
+
+          <div className="ml-auto">
+            <DistributionIcon distribution={distribution} />
+          </div>
         </PropertyTile>
 
         <PropertyTile property={{ name: 'trend' }}>
           <p className="font-semibold">
             {t(`admin.forecast.form.problems.options.trend.${trend}`)}
           </p>
+          <div className="ml-auto">
+            <Trend value={trend} />
+          </div>
         </PropertyTile>
 
         <PropertyTile property={{ name: 'timeOfDay' }}>
-          <p className="font-semibold">
-            {isAllDay
-              ? t('admin.forecast.form.problems.labels.allDay')
-              : `${timeOfDay.start} - ${timeOfDay.end}`}
-          </p>
+          <TimeOfDay isAllDay={isAllDay} timeOfDay={timeOfDay} />
         </PropertyTile>
       </div>
     </div>
