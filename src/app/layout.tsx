@@ -1,7 +1,9 @@
+import { Toast } from '@base-ui-components/react/toast'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
+import { ToastList } from '@/UI/components'
 import WIPBanner from '@/UI/components/WIPBanner'
 import './globals.css'
 import type { Locale } from '../config'
@@ -33,15 +35,24 @@ const Layout = async (props: Readonly<LayoutProps>) => {
   return (
     <html lang={locale}>
       <body className={`${ubuntuSans.className} antialiased`}>
-        <NextIntlClientProvider messages={messages}>
-          <QueryClientProvider>
-            <SupabaseContextProvider>
-              <Header />
-              <WIPBanner />
-              {children}
-            </SupabaseContextProvider>
-          </QueryClientProvider>
-        </NextIntlClientProvider>
+        <div className="isolate">
+          <NextIntlClientProvider messages={messages}>
+            <QueryClientProvider>
+              <SupabaseContextProvider>
+                <Toast.Provider>
+                  <Toast.Portal>
+                    <Toast.Viewport className="fixed bottom-2 left-auto right-2 top-auto mx-0 my-auto w-[300px]">
+                      <ToastList />
+                    </Toast.Viewport>
+                  </Toast.Portal>
+                  <Header />
+                  <WIPBanner />
+                  {children}
+                </Toast.Provider>
+              </SupabaseContextProvider>
+            </QueryClientProvider>
+          </NextIntlClientProvider>
+        </div>
       </body>
     </html>
   )
