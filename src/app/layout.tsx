@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import { Toaster } from 'sonner'
 
 import WIPBanner from '@/UI/components/WIPBanner'
 import './globals.css'
@@ -38,6 +39,7 @@ const Layout = async (props: Readonly<LayoutProps>) => {
             <SupabaseContextProvider>
               <Header />
               <WIPBanner />
+              <Toaster />
               {children}
             </SupabaseContextProvider>
           </QueryClientProvider>
