@@ -15,9 +15,6 @@ const ForecastMeta = ({ forecast, isExtremeRisk }: ForecastMetaProps) => {
   const t = useTranslations()
   const { createdAt, forecaster, validUntil } = forecast
 
-  const formattedIssueDate = format(createdAt, dateFormat)
-  const formattedValidUntilDate = validUntil ? format(validUntil, dateFormat) : null
-
   return (
     <div
       className={classnames(
@@ -33,14 +30,12 @@ const ForecastMeta = ({ forecast, isExtremeRisk }: ForecastMetaProps) => {
       <div className="flex-none text-right">
         <div>
           <span className="font-medium">{t('common.labels.issued')}: </span>
-          <span>{formattedIssueDate}</span>
+          <span>{format(createdAt, dateFormat)}</span>
         </div>
-        {formattedValidUntilDate && (
-          <div>
-            <span className="font-medium">{t('common.labels.validUntil')}: </span>
-            <span>{formattedValidUntilDate}</span>
-          </div>
-        )}
+        <div>
+          <span className="font-medium">{t('common.labels.validUntil')}: </span>
+          <span>{format(validUntil, dateFormat)}</span>
+        </div>
       </div>
     </div>
   )
