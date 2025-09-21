@@ -8,12 +8,12 @@ import { HazardLevelBanner } from '@/UI/components/HazardLevelBanner'
 import type { Forecast } from '@/business/types'
 
 const CurrentForecast = ({ forecast }: { forecast: Forecast }) => {
-  const { hazardLevels, id, summary } = forecast
+  const { id, summary } = forecast
   const t = useTranslations()
 
   return (
     <section className="space-y-4">
-      <HazardLevelBanner hazardLevel={hazardLevels.overall} />
+      <HazardLevelBanner forecast={forecast} />
       <Spoiler isInitiallyOpen title={t('common.labels.summary')}>
         {summary}
       </Spoiler>

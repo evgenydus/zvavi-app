@@ -5,32 +5,42 @@ import { useTranslations } from 'next-intl'
 import { hazardLevelsByScale } from '@/business/constants'
 import { backgroundColorByHazardLevel, hazardIcons } from '@/UI/constants'
 
-import type { HazardLevelScale } from '@/business/types'
+import ForecastMeta from './ForecastMeta'
 
-const HazardLevelBanner = ({ hazardLevel }: { hazardLevel: HazardLevelScale }) => {
+import type { Forecast } from '@/business/types'
+
+const HazardLevelBanner = ({ forecast }: { forecast: Forecast }) => {
   const t = useTranslations()
-  const title = hazardLevelsByScale[hazardLevel]
-  const icon = hazardIcons[hazardLevel]
-  const isExtremeRisk = hazardLevel === '5'
+  const { hazardLevels } = forecast
+
+  const title = hazardLevelsByScale[hazardLevels.overall]
+  const icon = hazardIcons[hazardLevels.overall]
+  const isExtremeRisk = hazardLevels.overall === '5'
 
   return (
     <div
       className={classnames(
-        'flex items-center justify-between rounded-2xl p-4',
-        backgroundColorByHazardLevel[hazardLevel],
+        'flex flex-col gap-4 rounded-2xl p-4',
+        backgroundColorByHazardLevel[hazardLevels.overall],
       )}
     >
-      <div
-        className={classnames(
-          'flex h-20 flex-col justify-between',
-          isExtremeRisk ? 'text-white' : 'text-black',
-        )}
-      >
-        <p className="text-sm font-medium">{t('common.labels.overallRiskLevel')}</p>
-        <h4 className="text-3xl font-semibold">{title}</h4>
+      <div className="flex items-center justify-between">
+        <div
+          className={classnames(
+            'flex h-20 flex-col justify-between',
+            isExtremeRisk ? 'text-white' : 'text-black',
+          )}
+        >
+          <p className="text-sm font-medium">{t('common.labels.overallRiskLevel')}</p>
+          <h4 className="text-3xl font-semibold">{title}</h4>
+        </div>
+
+        <Image alt="Risk level" height={80} src={icon} />
       </div>
 
-      <Image alt="Risk level" height={80} src={icon} />
+      <hr className={isExtremeRisk ? 'border-white/20' : 'border-black/20'} />
+
+      <ForecastMeta forecast={forecast} isExtremeRisk={isExtremeRisk} />
     </div>
   )
 }
