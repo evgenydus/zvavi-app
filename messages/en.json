@@ -13,8 +13,11 @@
 
     "labels": {
       "email": "Email",
+      "forecaster": "Forecaster",
+      "issued": "Issued",
       "overallRiskLevel": "Overall risk level",
-      "summary": "Summary"
+      "summary": "Summary",
+      "validUntil": "Valid Until"
     },
 
     "elevationZones": {
