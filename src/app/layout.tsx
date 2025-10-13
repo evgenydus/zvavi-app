@@ -39,7 +39,7 @@ const Layout = async (props: Readonly<LayoutProps>) => {
             <SupabaseContextProvider>
               <Header />
               <WIPBanner />
-              <Toaster />
+              <Toaster position="top-center" />
               {children}
             </SupabaseContextProvider>
           </QueryClientProvider>

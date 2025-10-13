@@ -1,7 +1,7 @@
 const handleSupabaseError = (error: { message: string } | null) => {
-  if (error) {
-    throw new Error(error.message)
-  }
+  if (!error) return
+
+  throw new Error(error.message)
 }
 
 export default handleSupabaseError
