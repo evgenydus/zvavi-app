@@ -1,21 +1,21 @@
-import { TrashIcon } from '@heroicons/react/24/outline'
-import classnames from 'classnames'
 import { format } from 'date-fns'
 import { useTranslations } from 'next-intl'
 
 import { dateFormat } from '@/business/constants'
-import { useForecastDelete } from '@/data/hooks/forecasts'
+import { useForecastDelete, useForecastStatusToggle } from '@/data/hooks/forecasts'
 import { useBoolean, useToast } from '@/UI/hooks'
 
-import { IconButton } from '@/UI/components'
 import { ConfirmationDialog } from '@/UI/components/ConfirmationDialog'
+import ActionButtons from './ActionButtons'
 import Column from './Column'
 
 import type { Forecast } from '@/business/types'
 
 const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
   const t = useTranslations()
+
   const { mutateAsync: deleteForecast } = useForecastDelete()
+  const { mutateAsync: toggleStatus } = useForecastStatusToggle()
   const [isDeletionDialogOpen, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
     useBoolean(false)
 
@@ -24,8 +24,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
   const deleteForecastModalDescription = `
     ${t('admin.forecasts.deleteForecastModal.description')}
     ${t('common.words.from').toLowerCase()} ${formattedCreationDate}
-    ${t('common.words.to').toLowerCase()} ${formattedValidUntilDate}?
-  `
+    ${t('common.words.to').toLowerCase()} ${formattedValidUntilDate}`
 
   const { toastError } = useToast()
 
@@ -37,6 +36,19 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
     }
   }
 
+  const isPublished = forecast.status === 'published'
+
+  const handleStatusToggle = async () => {
+    try {
+      await toggleStatus({
+        forecastId: forecast.id,
+        status: isPublished ? 'draft' : 'published',
+      })
+    } catch (error) {
+      toastError('ForecastItem | handleStatusToggle', { error })
+    }
+  }
+
   return (
     <>
       <div className="flex items-center gap-4 px-4 py-1">
@@ -45,11 +57,10 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
         <Column>{formattedValidUntilDate}</Column>
         <Column>{forecast.status}</Column>
         <Column className="pr-4 text-right">
-          <IconButton
-            className={classnames('inline-flex size-7')}
-            icon={<TrashIcon className="size-5 stroke-inherit" />}
-            onClick={openDeletionDialog}
-            type="button"
+          <ActionButtons
+            isPublished={isPublished}
+            onDelete={openDeletionDialog}
+            onStatusToggle={handleStatusToggle}
           />
         </Column>
       </div>
