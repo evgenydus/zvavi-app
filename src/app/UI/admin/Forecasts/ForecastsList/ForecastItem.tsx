@@ -37,6 +37,7 @@ const ForecastItem = ({ forecast, onEdit }: ForecastItemProps) => {
   const handleDelete = async () => {
     try {
       await deleteForecast(forecast.id)
+      toastSuccess(t('admin.forecasts.messages.deleted'))
     } catch (error) {
       toastError('ForecastItem | handleDelete', { error })
     }
@@ -72,8 +73,8 @@ const ForecastItem = ({ forecast, onEdit }: ForecastItemProps) => {
           <ActionButtons
             isPublished={isPublished}
             onDelete={openDeletionDialog}
-            onStatusToggle={handleStatusToggle}
             onEdit={handleEdit}
+            onStatusToggle={handleStatusToggle}
           />
         </Column>
       </div>

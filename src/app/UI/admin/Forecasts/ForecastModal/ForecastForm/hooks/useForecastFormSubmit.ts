@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { useForecastCreate, useForecastUpdate } from '@/data/hooks/forecasts'
 import { useToast } from '@/UI/hooks'
@@ -20,10 +21,11 @@ const useForecastFormSubmit = ({
   onClose,
   recentAvalanches,
 }: UseForecastFormSubmitArgs) => {
+  const t = useTranslations()
   const { mutateAsync: createForecast } = useForecastCreate()
   const { mutateAsync: updateForecast } = useForecastUpdate()
 
-  const { toastError } = useToast()
+  const { toastError, toastSuccess } = useToast()
 
   const handleSubmit = useCallback(async () => {
     const { additionalHazards, forecaster, hazardLevels, snowpack, summary, validUntil, weather } =
@@ -49,8 +51,10 @@ const useForecastFormSubmit = ({
     try {
       if (isEditing) {
         await updateForecast(payload)
+        toastSuccess(t('admin.forecasts.messages.updated'))
       } else {
         await createForecast(payload)
+        toastSuccess(t('admin.forecasts.messages.created'))
       }
 
       onClose()
@@ -60,11 +64,14 @@ const useForecastFormSubmit = ({
   }, [
     formData,
     avalancheProblems,
-    recentAvalanches,
     initialForecastId,
-    createForecast,
+    recentAvalanches,
     onClose,
     updateForecast,
+    toastSuccess,
+    t,
+    createForecast,
+    toastError,
   ])
 
   return { handleSubmit }
