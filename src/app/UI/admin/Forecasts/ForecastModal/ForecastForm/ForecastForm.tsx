@@ -1,11 +1,8 @@
 'use client'
 
-import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { useForecastCreate } from '@/data/hooks/forecasts'
-import { useToast } from '@/UI/hooks'
-import { initialFormData } from './constants'
+import { useForecastFormState, useForecastFormSubmit } from './hooks'
 
 import { Button, TextInput } from '@/UI/components/inputs'
 import { InputBlock } from './common'
@@ -16,57 +13,35 @@ import { RecentAvalanchesSection } from './RecentAvalanchesSection'
 import TextAreaField from './TextAreaField'
 import ValidUntil from './ValidUntil'
 
-import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
+import type { ForecastFormData } from '@/business/types'
+
+type ForecastFormProps = {
+  initialFormData: ForecastFormData
+  onClose: VoidFunction
+}
 
 // TODO: Implement Validations https://app.asana.com/0/1208747689500826/1209084695587061/f
-const ForecastForm = ({ onClose }: { onClose: () => void }) => {
+const ForecastForm = ({ initialFormData, onClose }: ForecastFormProps) => {
   const t = useTranslations()
   const tForecast = useTranslations('admin.forecast')
 
-  const { toastError } = useToast()
+  const {
+    avalancheProblems,
+    formData,
+    handleTextFieldChange,
+    recentAvalanches,
+    setFormData,
+    setProblems,
+    setRecentAvalanches,
+  } = useForecastFormState(initialFormData)
 
-  const [formData, setFormData] = useState<ForecastFormData>(initialFormData)
-  const [problems, setProblems] = useState<Problem[]>([])
-  const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>([])
-
-  const { mutateAsync: createForecast } = useForecastCreate()
-
-  const handleTextFieldChange = useCallback(
-    (fieldName: keyof ForecastFormData) =>
-      ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData((prev) => ({
-          ...prev,
-          [fieldName]: target.value,
-        }))
-      },
-    [],
-  )
-
-  const handleSubmit = useCallback(async () => {
-    const { additionalHazards, forecaster, hazardLevels, snowpack, summary, validUntil, weather } =
-      formData
-    const payload = {
-      forecast: {
-        additionalHazards,
-        forecaster,
-        hazardLevels,
-        snowpack,
-        summary,
-        validUntil: validUntil ? validUntil.toISOString() : null,
-        weather,
-      },
-      problems,
-      recentAvalanches,
-    }
-
-    // TODO: Handle errors https://app.asana.com/0/1208747689500826/1209084695587061/f
-    try {
-      await createForecast(payload)
-      onClose()
-    } catch (error) {
-      toastError('ForecastForm | handleSubmit', { error })
-    }
-  }, [formData, problems, recentAvalanches, createForecast, onClose, toastError])
+  const { handleSubmit } = useForecastFormSubmit({
+    avalancheProblems,
+    formData,
+    initialForecastId: initialFormData.baseFormData.id,
+    onClose,
+    recentAvalanches,
+  })
 
   return (
     <>
@@ -76,7 +51,11 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
             <h3 className="text-xl font-semibold">{tForecast('form.general.title')}</h3>
             <div className="grid grid-cols-2 gap-x-6">
               <InputBlock label={tForecast('form.general.labels.forecaster')}>
-                <TextInput className="flex-1" onChange={handleTextFieldChange('forecaster')} />
+                <TextInput
+                  className="flex-1"
+                  onChange={handleTextFieldChange('forecaster')}
+                  value={formData.forecaster}
+                />
               </InputBlock>
 
               <ValidUntil formData={formData} setFormData={setFormData} />
@@ -91,7 +70,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
           <hr />
           <HazardLevels setFormData={setFormData} value={formData.hazardLevels} />
           <hr />
-          <ProblemsSection problems={problems} setProblems={setProblems} />
+          <ProblemsSection problems={avalancheProblems} setProblems={setProblems} />
           <hr />
           <RecentAvalanchesSection
             avalanches={recentAvalanches}

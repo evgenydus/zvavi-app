@@ -1,16 +1,25 @@
 import { useTranslations } from 'next-intl'
 
-import { Modal, type ModalProps } from '@/UI/components/Modal'
-import { ForecastForm } from './ForecastForm'
+import type { ModalProps } from '@/UI/components/Modal'
+import { Modal } from '@/UI/components/Modal'
+import { ForecastForm, getInitialFormData } from './ForecastForm'
 
-type ForecastModalProps = Pick<ModalProps, 'isOpen' | 'onClose'>
+import type { FullForecast } from '@/business/types'
 
-const ForecastModal = ({ isOpen, onClose }: ForecastModalProps) => {
+type ForecastModalProps = Pick<ModalProps, 'isOpen' | 'onClose'> & {
+  forecast: FullForecast | null
+}
+
+const ForecastModal = ({ forecast, isOpen, onClose }: ForecastModalProps) => {
   const t = useTranslations()
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={t('admin.forecast.title')}>
-      <ForecastForm onClose={onClose} />
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={t(`admin.forecast.title.${forecast ? 'edit' : 'create'}`)}
+    >
+      <ForecastForm initialFormData={getInitialFormData(forecast)} onClose={onClose} />
     </Modal>
   )
 }

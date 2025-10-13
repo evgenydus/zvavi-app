@@ -6,7 +6,7 @@ const ForecastPage = async (props: { params: Promise<{ id: string }> }) => {
 
   return (
     <PageWrapper>
-      <ForecastContainer forecastId={params.id} />
+      <ForecastContainer forecastId={Number(params.id)} />
     </PageWrapper>
   )
 }

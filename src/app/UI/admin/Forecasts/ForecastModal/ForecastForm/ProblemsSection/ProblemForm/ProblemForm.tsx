@@ -60,7 +60,12 @@ const ProblemForm = ({ onClose, onSave, problemData }: ProblemFormProps) => {
       <section className="grid grid-cols-2 gap-x-6">
         <div className="flex flex-col gap-4 pt-1.5">
           <h4 className="w-32 font-semibold">{tProblems('labels.description')}</h4>
-          <Textarea className="w-full" onChange={handleDescriptionChange} rows={9} />
+          <Textarea
+            className="w-full"
+            onChange={handleDescriptionChange}
+            rows={9}
+            value={data.description}
+          />
         </div>
 
         <PropertiesSection

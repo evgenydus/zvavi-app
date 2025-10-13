@@ -1,20 +1,21 @@
-import type { Avalanche, Forecast, Problem } from '@/business/types'
+import type { Forecast, ForecastDetails, HazardLevels } from '@/business/types'
 
-type ForecastFormPayload = {
+type ForecastBaseData = {
+  id?: Forecast['id']
+  additionalHazards: string
   forecaster: string
+  hazardLevels: HazardLevels
   snowpack: string
   summary: string
   validUntil: string | null
   weather: string
 }
 
-export type ForecastCreatePayload = {
-  forecast: ForecastFormPayload
-  problems: Problem[]
-  recentAvalanches: Avalanche[]
-}
+export type ForecastFormPayload = {
+  forecast: ForecastBaseData
+} & ForecastDetails
 
-export type GetForecastQueryVariables = { forecastId: Forecast['id'] }
+export type ForecastQueryVariables = { forecastId: Forecast['id'] }
 
 export type ForecastStatusToggleVariables = {
   forecastId: Forecast['id']

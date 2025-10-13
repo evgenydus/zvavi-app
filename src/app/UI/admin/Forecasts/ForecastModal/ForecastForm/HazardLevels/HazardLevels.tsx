@@ -4,14 +4,10 @@ import { useTranslations } from 'next-intl'
 import { RadioGroup } from '@/UI/components/inputs'
 import { InputBlock, useProblemOptions } from '../common'
 
-import type {
-  ElevationKey,
-  ForecastFormData,
-  HazardLevels as HazardLevelsType,
-} from '@/business/types'
+import type { BaseFormData, ElevationKey, HazardLevels as HazardLevelsType } from '@/business/types'
 
 type HazardLevelsProps = {
-  setFormData: (value: React.SetStateAction<ForecastFormData>) => void
+  setFormData: (value: React.SetStateAction<BaseFormData>) => void
   value: HazardLevelsType
 }
 
