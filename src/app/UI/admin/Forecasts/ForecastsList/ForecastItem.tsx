@@ -16,6 +16,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
 
   const { mutateAsync: deleteForecast } = useForecastDelete()
   const { mutateAsync: toggleStatus } = useForecastStatusToggle()
+
   const [isDeletionDialogOpen, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
     useBoolean(false)
 
@@ -24,7 +25,8 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
   const deleteForecastModalDescription = `
     ${t('admin.forecasts.deleteForecastModal.description')}
     ${t('common.words.from').toLowerCase()} ${formattedCreationDate}
-    ${t('common.words.to').toLowerCase()} ${formattedValidUntilDate}`
+    ${t('common.words.to').toLowerCase()} ${formattedValidUntilDate}?
+    `
 
   const { toastError, toastSuccess } = useToast()
 
@@ -44,10 +46,10 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
         forecastId: forecast.id,
         status: isPublished ? 'draft' : 'published',
       })
+
+      toastSuccess(t(`admin.forecasts.messages.${isPublished ? 'unpublished' : 'published'}`))
     } catch (error) {
       toastError('ForecastItem | handleStatusToggle', { error })
-    } finally {
-      toastSuccess(t(`admin.forecasts.messages.${isPublished ? 'unpublished' : 'published'}`))
     }
   }
 
