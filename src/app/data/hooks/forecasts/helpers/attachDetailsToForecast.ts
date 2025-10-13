@@ -2,7 +2,7 @@ import { convertCamelToSnake, handleSupabaseError } from '@/data/helpers'
 
 import { supabase } from '@/data'
 
-const insertItemsToForecast = async <T>(
+const attachDetailsToForecast = async <T>(
   tableName: string,
   forecastId: number,
   items: T[],
@@ -17,4 +17,4 @@ const insertItemsToForecast = async <T>(
   handleSupabaseError(error)
 }
 
-export default insertItemsToForecast
+export default attachDetailsToForecast

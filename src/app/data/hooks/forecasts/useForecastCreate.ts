@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { attachItemsToForecast } from '@/data/hooks/forecasts/helpers'
+import { attachDetailsToForecast } from '@/data/hooks/forecasts/helpers'
 
 import type { ForecastFormPayload } from './types'
 import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
@@ -25,11 +25,11 @@ const createForecast = async ({
   if (!forecastId) throw new Error('Failed to create forecast')
 
   if (avalancheProblems.length) {
-    await attachItemsToForecast('avalanche_problems', forecastId, avalancheProblems)
+    await attachDetailsToForecast('avalanche_problems', forecastId, avalancheProblems)
   }
 
   if (recentAvalanches.length) {
-    await attachItemsToForecast('recent_avalanches', forecastId, recentAvalanches)
+    await attachDetailsToForecast('recent_avalanches', forecastId, recentAvalanches)
   }
 }
 

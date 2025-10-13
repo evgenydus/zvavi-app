@@ -1,5 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
+import { attachDetailsToForecast, detachDetailsFromForecast } from './helpers'
+
 import type { ForecastFormPayload } from './types'
 import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
 import { forecastsKeys } from '../../query-keys'
@@ -21,45 +23,16 @@ const updateForecast = async ({
 
   // At this stage (MVP) we re-create all problems and avalanches intentionally
   // Delete old avalanche problems and recent avalanches.
-  const { error: problemsDeleteError } = await supabase
-    .from('avalanche_problems')
-    .delete()
-    .eq('forecast_id', forecast.id)
-
-  handleSupabaseError(problemsDeleteError)
-
-  const { error: avalanchesDeleteError } = await supabase
-    .from('recent_avalanches')
-    .delete()
-    .eq('forecast_id', forecast.id)
-
-  handleSupabaseError(avalanchesDeleteError)
+  await detachDetailsFromForecast('avalanche_problems', forecast.id)
+  await detachDetailsFromForecast('recent_avalanches', forecast.id)
 
   // Insert new avalanche problems and recent avalanches
   if (avalancheProblems.length) {
-    const formattedProblems = avalancheProblems.map((item) => ({
-      ...convertCamelToSnake(item),
-      forecast_id: forecast.id,
-    }))
-
-    const { error: problemsInsertError } = await supabase
-      .from('avalanche_problems')
-      .insert(formattedProblems)
-
-    handleSupabaseError(problemsInsertError)
+    await attachDetailsToForecast('avalanche_problems', forecast.id, avalancheProblems)
   }
 
   if (recentAvalanches.length) {
-    const formattedAvalanches = recentAvalanches.map((item) => ({
-      ...convertCamelToSnake(item),
-      forecast_id: forecast.id,
-    }))
-
-    const { error: avalanchesInsertError } = await supabase
-      .from('recent_avalanches')
-      .insert(formattedAvalanches)
-
-    handleSupabaseError(avalanchesInsertError)
+    await attachDetailsToForecast('recent_avalanches', forecast.id, recentAvalanches)
   }
 }
 

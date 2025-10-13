@@ -1,1 +1,2 @@
-export { default as attachItemsToForecast } from './insertItemsToForecast'
+export { default as attachDetailsToForecast } from './attachDetailsToForecast'
+export { default as detachDetailsFromForecast } from './detachDetailsFromForecast'
