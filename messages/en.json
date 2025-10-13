@@ -23,6 +23,7 @@
     "messages": {
       "error": "Something went wrong. Please try again later.",
       "success": "Success."
+
     },
 
     "elevationZones": {
@@ -180,6 +181,11 @@
       "deleteForecastModal":  {
         "title": "Delete Forecast?",
         "description": "Do you want to permanently delete the forecast for the period"
+      },
+
+      "messages": {
+        "published": "Forecast is now published.",
+        "unpublished": "Forecast is now unpublished."
       }
     },
     "forecast": {

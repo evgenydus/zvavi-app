@@ -26,7 +26,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
     ${t('common.words.from').toLowerCase()} ${formattedCreationDate}
     ${t('common.words.to').toLowerCase()} ${formattedValidUntilDate}`
 
-  const { toastError } = useToast()
+  const { toastError, toastSuccess } = useToast()
 
   const handleDelete = async () => {
     try {
@@ -46,6 +46,8 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
       })
     } catch (error) {
       toastError('ForecastItem | handleStatusToggle', { error })
+    } finally {
+      toastSuccess(t(`admin.forecasts.messages.${isPublished ? 'unpublished' : 'published'}`))
     }
   }
 
