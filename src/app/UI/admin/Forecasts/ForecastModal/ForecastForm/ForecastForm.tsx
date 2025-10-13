@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useForecastCreate } from '@/data/hooks/forecasts'
+import { useToast } from '@/UI/hooks'
 import { initialFormData } from './constants'
 
 import { Button, TextInput } from '@/UI/components/inputs'
@@ -22,11 +23,13 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   const t = useTranslations()
   const tForecast = useTranslations('admin.forecast')
 
+  const { toastError } = useToast()
+
   const [formData, setFormData] = useState<ForecastFormData>(initialFormData)
   const [problems, setProblems] = useState<Problem[]>([])
   const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>([])
 
-  const { error, mutate: createForecast } = useForecastCreate()
+  const { mutate: createForecast } = useForecastCreate()
 
   const handleTextFieldChange = useCallback(
     (fieldName: keyof ForecastFormData) =>
@@ -60,11 +63,10 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
     try {
       await createForecast(payload)
       onClose()
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      console.error(error)
+    } catch (error) {
+      toastError('ForecastForm | handleSubmit', { error })
     }
-  }, [formData, problems, recentAvalanches, createForecast, onClose, error])
+  }, [formData, problems, recentAvalanches, createForecast, onClose, toastError])
 
   return (
     <>
