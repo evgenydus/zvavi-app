@@ -15,3 +15,8 @@ export type ForecastCreatePayload = {
 }
 
 export type GetForecastQueryVariables = { forecastId: Forecast['id'] }
+
+export type ForecastStatusToggleVariables = {
+  forecastId: Forecast['id']
+  status: Forecast['status']
+}
