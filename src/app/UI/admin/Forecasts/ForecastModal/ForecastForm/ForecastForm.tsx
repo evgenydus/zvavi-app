@@ -29,7 +29,7 @@ const ForecastForm = ({ onClose }: { onClose: () => void }) => {
   const [problems, setProblems] = useState<Problem[]>([])
   const [recentAvalanches, setRecentAvalanches] = useState<Avalanche[]>([])
 
-  const { mutate: createForecast } = useForecastCreate()
+  const { mutateAsync: createForecast } = useForecastCreate()
 
   const handleTextFieldChange = useCallback(
     (fieldName: keyof ForecastFormData) =>
