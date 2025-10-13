@@ -19,7 +19,7 @@ const updateForecast = async ({
 
   if (!forecast.id) throw new Error('Failed to update forecast')
 
-  // On this stage (MVP) we re-create all problems and avalanches intentionally
+  // At this stage (MVP) we re-create all problems and avalanches intentionally
   // Delete old avalanche problems and recent avalanches.
   const { error: problemsDeleteError } = await supabase
     .from('avalanche_problems')
