@@ -7,9 +7,9 @@ import { supabase } from '@/data'
 import { forecastsKeys } from '@/data/query-keys'
 
 const deleteForecast = async (id: Forecast['id']) => {
-  const { error: forecastError } = await supabase.from('forecasts').delete().eq('id', id)
+  const { error } = await supabase.from('forecasts').delete().eq('id', id)
 
-  handleSupabaseError(forecastError)
+  handleSupabaseError(error)
 }
 
 const useForecastDelete = () => {

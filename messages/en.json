@@ -20,6 +20,11 @@
       "validUntil": "Valid Until"
     },
 
+    "messages": {
+      "error": "Something went wrong. Please try again later.",
+      "success": "Success."
+    },
+
     "elevationZones": {
       "highAlpine": "High Alpine",
       "alpine": "Alpine",

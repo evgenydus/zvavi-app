@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 
 import { dateFormat } from '@/business/constants'
 import { useForecastDelete } from '@/data/hooks/forecasts'
-import { useBoolean } from '@/UI/hooks'
+import { useBoolean, useToast } from '@/UI/hooks'
 
 import { IconButton } from '@/UI/components'
 import { ConfirmationDialog } from '@/UI/components/ConfirmationDialog'
@@ -14,26 +14,26 @@ import Column from './Column'
 import type { Forecast } from '@/business/types'
 
 const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
-  const tWords = useTranslations('common.words')
-  const tForecasts = useTranslations('admin.forecasts')
-  const { error, mutateAsync: deleteForecast } = useForecastDelete()
+  const t = useTranslations()
+  const { mutateAsync: deleteForecast } = useForecastDelete()
   const [isDeletionDialogOpen, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
     useBoolean(false)
 
   const formattedCreationDate = format(forecast.createdAt, dateFormat)
   const formattedValidUntilDate = format(forecast.validUntil, dateFormat)
   const deleteForecastModalDescription = `
-    ${tForecasts('deleteForecastModal.description')}
-    ${tWords('from').toLowerCase()} ${formattedCreationDate}
-    ${tWords('to').toLowerCase()} ${formattedValidUntilDate}?
+    ${t('admin.forecasts.deleteForecastModal.description')}
+    ${t('common.words.from').toLowerCase()} ${formattedCreationDate}
+    ${t('common.words.to').toLowerCase()} ${formattedValidUntilDate}?
   `
+
+  const { toastError } = useToast()
 
   const handleDelete = async () => {
     try {
       await deleteForecast(forecast.id)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      console.error(error)
+    } catch (error) {
+      toastError('ForecastItem | handleDelete', { error })
     }
   }
 
@@ -59,7 +59,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
         isOpen={isDeletionDialogOpen}
         onClose={closeDeletionDialog}
         onConfirm={handleDelete}
-        title={tForecasts('deleteForecastModal.title')}
+        title={t('admin.forecasts.deleteForecastModal.title')}
         variant="delete"
       />
     </>

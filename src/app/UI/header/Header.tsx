@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { routes } from '@/UI/header/NavMenu/constants'
-import { useAuth } from '@/UI/hooks'
+import { useAuth, useToast } from '@/UI/hooks'
 
 import Logo from '@/assets/images/logo.png'
 import { Button } from '@/UI/components/inputs'
@@ -19,15 +19,16 @@ const Header = () => {
   const router = useRouter()
   const t = useTranslations()
   const { isAuthenticated } = useAuth()
+  const { toastError } = useToast()
 
   const handleLogOutClick = useCallback(async () => {
     try {
       await supabase.auth.signOut()
       router.push(routes.login)
     } catch (error) {
-      console.error('Error logging out: ', error)
+      toastError('Header | handleLogOutClick', { error, message: 'Error logging out' })
     }
-  }, [router])
+  }, [router, toastError])
 
   return (
     <header className="flex items-center justify-between gap-2 p-4">
