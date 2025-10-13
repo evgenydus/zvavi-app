@@ -9,14 +9,18 @@ import { ConfirmationDialog } from '@/UI/components/ConfirmationDialog'
 import ActionButtons from './ActionButtons'
 import Column from './Column'
 
-import type { Forecast } from '@/business/types'
+import type { FullForecast } from '@/business/types'
 
-const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
+type ForecastItemProps = {
+  forecast: FullForecast
+  onEdit: (forecast: FullForecast) => void
+}
+
+const ForecastItem = ({ forecast, onEdit }: ForecastItemProps) => {
   const t = useTranslations()
 
   const { mutateAsync: deleteForecast } = useForecastDelete()
   const { mutateAsync: toggleStatus } = useForecastStatusToggle()
-
   const [isDeletionDialogOpen, { setFalse: closeDeletionDialog, setTrue: openDeletionDialog }] =
     useBoolean(false)
 
@@ -53,6 +57,10 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
     }
   }
 
+  const handleEdit = () => {
+    onEdit(forecast)
+  }
+
   return (
     <>
       <div className="flex items-center gap-4 px-4 py-1">
@@ -65,6 +73,7 @@ const ForecastItem = ({ forecast }: { forecast: Forecast }) => {
             isPublished={isPublished}
             onDelete={openDeletionDialog}
             onStatusToggle={handleStatusToggle}
+            onEdit={handleEdit}
           />
         </Column>
       </div>

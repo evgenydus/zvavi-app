@@ -34,7 +34,7 @@ export type Forecast = {
   createdAt: string
   forecaster: string
   hazardLevels: HazardLevels
-  id: string
+  id: number
   snowpack: string
   status: 'draft' | 'published'
   summary: string
@@ -47,6 +47,7 @@ export type Problem = {
   aspects: Aspects
   avalancheSize: AvalancheSize
   confidence: Confidence
+  createdAt?: string
   description: string
   distribution: Distribution
   isAllDay: boolean
@@ -56,25 +57,34 @@ export type Problem = {
   type: AvalancheProblemTypes
 }
 
-export type ForecastFormData = {
+export type Avalanche = {
+  id?: string
+  aspects: Aspects
+  createdAt?: string
+  date: Date | null
+  description: string
+  size: AvalancheSize
+}
+
+export type ForecastDetails = {
+  avalancheProblems: Problem[]
+  recentAvalanches: Avalanche[]
+}
+
+export type BaseFormData = {
+  id?: number
+  additionalHazards: string
   forecaster: string
   hazardLevels: HazardLevels
-  additionalHazards: string
   snowpack: string
   summary: string
   validUntil: Date | null
   weather: string
 }
 
-export type Avalanche = {
-  id?: string
-  aspects: Aspects
-  date: Date | null
-  description: string
-  size: AvalancheSize
+export type ForecastFormData = {
+  baseFormData: BaseFormData
+  forecastDetails: ForecastDetails
 }
 
-export type FullForecast = Forecast & {
-  problems: Problem[]
-  recentAvalanches: Avalanche[]
-}
+export type FullForecast = Forecast & ForecastDetails

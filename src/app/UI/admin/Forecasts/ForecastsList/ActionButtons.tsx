@@ -1,14 +1,15 @@
-import { EyeIcon, EyeSlashIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { EyeIcon, EyeSlashIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 import { IconButton } from '@/UI/components'
 
 type ActionButtonsProps = {
   isPublished: boolean
   onDelete: VoidFunction
+  onEdit: VoidFunction
   onStatusToggle: VoidFunction
 }
 
-const ActionButtons = ({ isPublished, onDelete, onStatusToggle }: ActionButtonsProps) => (
+const ActionButtons = ({ isPublished, onDelete, onEdit, onStatusToggle }: ActionButtonsProps) => (
   <div className="flex items-center justify-end gap-2">
     <IconButton
       className="inline-flex size-7"
@@ -20,6 +21,12 @@ const ActionButtons = ({ isPublished, onDelete, onStatusToggle }: ActionButtonsP
         )
       }
       onClick={onStatusToggle}
+    />
+
+    <IconButton
+      className="inline-flex size-7"
+      icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
+      onClick={onEdit}
     />
 
     <IconButton

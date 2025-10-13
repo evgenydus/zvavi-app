@@ -52,7 +52,7 @@ const fetchForecast = async ({ queryKey }: QueryFunctionContext<QueryKey>): Prom
 
   return convertSnakeToCamel({
     ...forecastData,
-    problems: problems ?? [],
+    avalancheProblems: problems ?? [],
     recentAvalanches: recentAvalanches ?? [],
   }) as Response
 }

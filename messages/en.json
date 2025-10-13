@@ -188,7 +188,10 @@
       }
     },
     "forecast": {
-      "title": "Create New Forecast",
+      "title": {
+        "create": "Create Forecast",
+        "edit": "Edit Forecast"
+      },
       "form": {
         "general": {
           "title": "General Info",

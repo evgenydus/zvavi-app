@@ -3,13 +3,13 @@ import { useQuery } from '@/tanstack-query/hooks'
 import { convertSnakeToCamel } from '../../helpers'
 import { forecastsKeys } from '../../query-keys'
 
-import type { Forecast } from '@/business/types'
+import type { FullForecast } from '@/business/types'
 import { supabase } from '@/data'
 
-const fetchForecasts = async (): Promise<Forecast[]> => {
+const fetchForecasts = async (): Promise<FullForecast[]> => {
   const { data, error } = await supabase
     .from('forecasts')
-    .select()
+    .select('*, avalanche_problems(*), recent_avalanches(*)')
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -18,14 +18,14 @@ const fetchForecasts = async (): Promise<Forecast[]> => {
 
   if (!data) return []
 
-  return convertSnakeToCamel(data) as Forecast[]
+  return convertSnakeToCamel(data) as FullForecast[]
 }
 
-const useGetForecasts = () => {
-  return useQuery<Forecast[], Error>({
+const useForecastsQuery = () => {
+  return useQuery<FullForecast[], Error>({
     queryFn: fetchForecasts,
     queryKey: forecastsKeys.list(),
   })
 }
 
-export default useGetForecasts
+export default useForecastsQuery

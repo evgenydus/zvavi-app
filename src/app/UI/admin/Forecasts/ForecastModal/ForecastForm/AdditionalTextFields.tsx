@@ -1,11 +1,11 @@
 import TextAreaField from './TextAreaField'
 
-import type { ForecastFormData } from '@/business/types'
+import type { BaseFormData } from '@/business/types'
 
 type AdditionalTextFieldsProps = {
-  formData: ForecastFormData
+  formData: BaseFormData
   onChange: (
-    fieldName: keyof ForecastFormData,
+    fieldName: keyof BaseFormData,
   ) => (value: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 

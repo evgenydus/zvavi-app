@@ -4,11 +4,11 @@ import { useTranslations } from 'next-intl'
 import { DatePicker } from '@/UI/components/inputs'
 import { InputBlock } from './common'
 
-import type { ForecastFormData } from '@/business/types'
+import type { BaseFormData } from '@/business/types'
 
 type ValidUntilProps = {
-  formData: ForecastFormData
-  setFormData: (value: React.SetStateAction<ForecastFormData>) => void
+  formData: BaseFormData
+  setFormData: (value: React.SetStateAction<BaseFormData>) => void
 }
 
 const ValidUntil = ({ formData, setFormData }: ValidUntilProps) => {

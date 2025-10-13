@@ -2,10 +2,10 @@ import { useTranslations } from 'next-intl'
 
 import { Textarea } from '@/UI/components/inputs'
 
-import type { ForecastFormData } from '@/business/types'
+import type { BaseFormData } from '@/business/types'
 
 type TextAreaFieldProps = {
-  formData: ForecastFormData
+  formData: BaseFormData
   onChange: (value: React.ChangeEvent<HTMLTextAreaElement>) => void
   type: 'additionalHazards' | 'snowpack' | 'summary' | 'weather'
 }

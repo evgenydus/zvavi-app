@@ -1,31 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import type { ForecastCreatePayload } from './types'
+import { attachItemsToForecast } from '@/data/hooks/forecasts/helpers'
+
+import type { ForecastFormPayload } from './types'
 import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
 import { forecastsKeys } from '../../query-keys'
 
 import { supabase } from '@/data'
 
-const attachItemsToForecast = async <T>(
-  tableName: string,
-  forecastId: number,
-  items: T[],
-): Promise<void> => {
-  const formattedItems = items.map((item) => ({
-    ...convertCamelToSnake(item),
-    forecast_id: forecastId,
-  }))
-
-  const { error } = await supabase.from(tableName).insert(formattedItems)
-
-  handleSupabaseError(error)
-}
-
 const createForecast = async ({
+  avalancheProblems,
   forecast,
-  problems,
   recentAvalanches,
-}: ForecastCreatePayload): Promise<void> => {
+}: ForecastFormPayload): Promise<void> => {
   const { data: forecastData, error: forecastError } = await supabase
     .from('forecasts')
     .insert(convertCamelToSnake(forecast))
@@ -37,8 +24,8 @@ const createForecast = async ({
 
   if (!forecastId) throw new Error('Failed to create forecast')
 
-  if (problems.length) {
-    await attachItemsToForecast('avalanche_problems', forecastId, problems)
+  if (avalancheProblems.length) {
+    await attachItemsToForecast('avalanche_problems', forecastId, avalancheProblems)
   }
 
   if (recentAvalanches.length) {
@@ -49,7 +36,7 @@ const createForecast = async ({
 const useForecastCreate = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<void, Error, ForecastCreatePayload>({
+  return useMutation<void, Error, ForecastFormPayload>({
     mutationFn: createForecast,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: forecastsKeys.list() })

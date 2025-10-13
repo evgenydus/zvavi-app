@@ -1,18 +1,24 @@
 import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
 
-export const initialFormData: ForecastFormData = {
-  additionalHazards: '',
-  forecaster: '',
-  hazardLevels: {
-    alpine: '1',
-    highAlpine: '1',
-    overall: '1',
-    subAlpine: '1',
+export const defaultFormData: ForecastFormData = {
+  baseFormData: {
+    additionalHazards: '',
+    forecaster: '',
+    hazardLevels: {
+      alpine: '1',
+      highAlpine: '1',
+      overall: '1',
+      subAlpine: '1',
+    },
+    snowpack: '',
+    summary: '',
+    validUntil: null,
+    weather: '',
   },
-  snowpack: '',
-  summary: '',
-  validUntil: null,
-  weather: '',
+  forecastDetails: {
+    avalancheProblems: [],
+    recentAvalanches: [],
+  },
 }
 
 export const initialProblemData: Problem = {
