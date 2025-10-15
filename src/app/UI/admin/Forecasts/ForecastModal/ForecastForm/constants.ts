@@ -1,4 +1,6 @@
-import type { Avalanche, ForecastFormData, Problem } from '@/business/types'
+import type { ProblemFormData } from './ProblemsSection/ProblemForm'
+
+import type { Avalanche, ForecastFormData } from '@/business/types'
 
 export const defaultFormData: ForecastFormData = {
   baseFormData: {
@@ -21,7 +23,7 @@ export const defaultFormData: ForecastFormData = {
   },
 }
 
-export const initialProblemData: Problem = {
+export const initialProblemData: ProblemFormData = {
   aspects: {
     alpine: [],
     highAlpine: [],
@@ -35,7 +37,7 @@ export const initialProblemData: Problem = {
   sensitivity: 'reactive',
   timeOfDay: { end: null, start: null },
   trend: 'deteriorating',
-  type: 'persistentSlab',
+  type: undefined,
 }
 
 export const initialAvalancheData: Avalanche = {

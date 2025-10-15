@@ -2,12 +2,11 @@ import { useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Checkbox, DatePicker } from '@/UI/components/inputs'
-
-import type { Problem } from '@/business/types'
+import type { ProblemFormData } from '../ProblemForm'
 
 type TimeOfDayProps = {
-  onTimeChange: (value: React.SetStateAction<Problem>) => void
-  problemData: Problem
+  onTimeChange: (value: React.SetStateAction<ProblemFormData>) => void
+  problemData: ProblemFormData
 }
 
 const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {

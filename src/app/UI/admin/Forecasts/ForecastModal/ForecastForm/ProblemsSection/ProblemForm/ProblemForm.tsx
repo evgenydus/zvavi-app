@@ -4,18 +4,20 @@ import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Textarea } from '@/UI/components/inputs'
+import type { ProblemTypeProps } from './ProblemType'
 import ProblemType from './ProblemType'
 import { PropertiesSection } from './PropertiesSection'
 import { Aspects, AvalancheSize, Footer, type SetAspectsData } from '../../common'
 
 import type { AvalancheProblemTypes, Problem } from '@/business/types'
 
+export type ProblemFormData = Omit<Problem, 'type'> & { type?: AvalancheProblemTypes }
+
 export type ProblemFormProps = {
   onClose: VoidFunction
   onSave: (data: Problem) => void
-  problemData: Problem
-  selectedProblemTypes: AvalancheProblemTypes[]
-}
+  problemData: ProblemFormData
+} & Pick<ProblemTypeProps, 'selectedProblemTypes'>
 
 const ProblemForm = ({ onClose, onSave, problemData, selectedProblemTypes }: ProblemFormProps) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
@@ -43,7 +45,7 @@ const ProblemForm = ({ onClose, onSave, problemData, selectedProblemTypes }: Pro
   )
 
   const handleSave = () => {
-    onSave(data)
+    onSave(data as Problem)
     onClose()
   }
 

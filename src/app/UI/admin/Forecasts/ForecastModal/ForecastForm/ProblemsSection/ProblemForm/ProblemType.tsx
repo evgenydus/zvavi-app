@@ -1,23 +1,24 @@
-import { type Dispatch, type SetStateAction, useCallback, useMemo } from 'react'
+import { type Dispatch, type SetStateAction, useCallback, useEffect, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
-import Select from 'react-select'
+import Select, { type SingleValue } from 'react-select'
 
+import type { ProblemFormData } from './ProblemForm'
 import { InputBlock } from '../../common'
 import { useProblemOptions } from '../../common/hooks'
 
-import type { AvalancheProblemTypes, Problem } from '@/business/types'
+import type { AvalancheProblemTypes } from '@/business/types'
 
-type ProblemTypeProps = {
-  onTypeChange: Dispatch<SetStateAction<Problem>>
-  problemData: Problem
+export type ProblemTypeProps = {
+  onTypeChange: Dispatch<SetStateAction<ProblemFormData>>
+  problemData: ProblemFormData
   selectedProblemTypes: AvalancheProblemTypes[]
 }
 
 const ProblemType = ({ onTypeChange, problemData, selectedProblemTypes }: ProblemTypeProps) => {
-  const tProblems = useTranslations('admin.forecast.form.problems')
+  const t = useTranslations()
   const { problemTypeOptions } = useProblemOptions()
 
-  const filteredProblemTypeOptions = useMemo(() => {
+  const availableOptions = useMemo(() => {
     const selectedTypes = new Set(selectedProblemTypes.filter(Boolean))
 
     if (problemData.type) {
@@ -28,7 +29,7 @@ const ProblemType = ({ onTypeChange, problemData, selectedProblemTypes }: Proble
   }, [problemTypeOptions, selectedProblemTypes, problemData.type])
 
   const handleTypeChange = useCallback(
-    (value: { value: AvalancheProblemTypes } | null) => {
+    (value: SingleValue<{ value: AvalancheProblemTypes; label: string }>) => {
       onTypeChange((prev) => ({
         ...prev,
         type: value?.value as AvalancheProblemTypes,
@@ -37,19 +38,27 @@ const ProblemType = ({ onTypeChange, problemData, selectedProblemTypes }: Proble
     [onTypeChange],
   )
 
-  const problemTypeValue = problemData.type
-    ? {
-        label: tProblems(`options.problemType.${problemData.type}`),
-        value: problemData.type,
-      }
-    : null
+  useEffect(() => {
+    if (!problemData.type && availableOptions.length > 0) {
+      onTypeChange((prev) => ({
+        ...prev,
+        type: availableOptions[0].value,
+      }))
+    }
+  }, [problemData.type, availableOptions, onTypeChange])
+
+  const problemTypeValue = useMemo(
+    () =>
+      availableOptions.find((option) => option.value === problemData.type) ?? availableOptions[0],
+    [availableOptions, problemData.type],
+  )
 
   return (
-    <InputBlock label={tProblems('labels.problemType')} labelClassName="w-32">
+    <InputBlock label={t('admin.forecast.form.problems.labels.problemType')} labelClassName="w-32">
       <Select
         className="flex-1"
         onChange={handleTypeChange}
-        options={filteredProblemTypeOptions}
+        options={availableOptions}
         value={problemTypeValue}
       />
     </InputBlock>
