@@ -1,10 +1,14 @@
 import type { StaticImageData } from 'next/image'
 
-import glide from '@/assets/icons/avalancheProblems/glide.jpg'
-import looseWet from '@/assets/icons/avalancheProblems/looseWet.jpg'
-import persistentSlab from '@/assets/icons/avalancheProblems/persistentSlab.jpg'
-import stormSlab from '@/assets/icons/avalancheProblems/stormSlab.jpg'
-import windSlab from '@/assets/icons/avalancheProblems/windSlab.jpg'
+import cornice from '@/assets/icons/avalancheProblems/cornice.png'
+import deepSlab from '@/assets/icons/avalancheProblems/deepSlab.png'
+import glide from '@/assets/icons/avalancheProblems/glide.png'
+import looseDry from '@/assets/icons/avalancheProblems/looseDry.png'
+import looseWet from '@/assets/icons/avalancheProblems/looseWet.png'
+import persistentSlab from '@/assets/icons/avalancheProblems/persistentSlab.png'
+import stormSlab from '@/assets/icons/avalancheProblems/stormSlab.png'
+import wetSlab from '@/assets/icons/avalancheProblems/wetSlab.png'
+import windSlab from '@/assets/icons/avalancheProblems/windSlab.png'
 import considerable from '@/assets/icons/hazardLevel/considerable.svg'
 import high from '@/assets/icons/hazardLevel/high.svg'
 import low from '@/assets/icons/hazardLevel/low.svg'
@@ -22,18 +26,15 @@ export const hazardIcons: HazardIcons = {
   5: high,
 }
 
-// TODO: Update icons here https://app.asana.com/0/1208747689500826/1209939328004606/f
-export type ExistingIcons = Extract<
-  AvalancheProblemTypes,
-  'glide' | 'looseWet' | 'persistentSlab' | 'stormSlab' | 'windSlab'
->
-type ProblemIcons = Record<ExistingIcons, StaticImageData>
-
-export const problemIcons: ProblemIcons = {
+export const problemIcons: Record<AvalancheProblemTypes, StaticImageData> = {
+  cornice,
+  deepSlab,
   glide,
+  looseDry,
   looseWet,
   persistentSlab,
   stormSlab,
+  wetSlab,
   windSlab,
 }
 
