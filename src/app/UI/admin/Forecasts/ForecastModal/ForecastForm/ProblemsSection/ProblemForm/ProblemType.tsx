@@ -1,4 +1,4 @@
-import { type Dispatch, type SetStateAction, useCallback } from 'react'
+import { type Dispatch, type SetStateAction, useCallback, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import Select from 'react-select'
 
@@ -10,11 +10,22 @@ import type { AvalancheProblemTypes, Problem } from '@/business/types'
 type ProblemTypeProps = {
   onTypeChange: Dispatch<SetStateAction<Problem>>
   problemData: Problem
+  selectedProblemTypes: AvalancheProblemTypes[]
 }
 
-const ProblemType = ({ onTypeChange, problemData }: ProblemTypeProps) => {
+const ProblemType = ({ onTypeChange, problemData, selectedProblemTypes }: ProblemTypeProps) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
   const { problemTypeOptions } = useProblemOptions()
+
+  const filteredProblemTypeOptions = useMemo(() => {
+    const selectedTypes = new Set(selectedProblemTypes.filter(Boolean))
+
+    if (problemData.type) {
+      selectedTypes.delete(problemData.type)
+    }
+
+    return problemTypeOptions.filter((option) => !selectedTypes.has(option.value))
+  }, [problemTypeOptions, selectedProblemTypes, problemData.type])
 
   const handleTypeChange = useCallback(
     (value: { value: AvalancheProblemTypes } | null) => {
@@ -38,7 +49,7 @@ const ProblemType = ({ onTypeChange, problemData }: ProblemTypeProps) => {
       <Select
         className="flex-1"
         onChange={handleTypeChange}
-        options={problemTypeOptions}
+        options={filteredProblemTypeOptions}
         value={problemTypeValue}
       />
     </InputBlock>

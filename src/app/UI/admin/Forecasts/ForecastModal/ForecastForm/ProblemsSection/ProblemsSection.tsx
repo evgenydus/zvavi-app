@@ -1,7 +1,9 @@
-import { type Dispatch, type SetStateAction, useCallback, useState } from 'react'
+import { type Dispatch, type SetStateAction, useCallback, useMemo, useState } from 'react'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import _uniqueId from 'lodash/uniqueId'
 import { useTranslations } from 'next-intl'
+
+import { avalancheProblemTypes } from '@/business/constants'
 
 import { Button } from '@/UI/components/inputs'
 import prepareTimeOfDay from './prepareTimeOfDay'
@@ -20,6 +22,7 @@ type ProblemsSectionProps = {
 const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
   const tForecast = useTranslations('admin.forecast')
   const [formState, setFormState] = useState<FormState>(null)
+  const selectedProblemTypes = useMemo(() => problems.map((problem) => problem.type), [problems])
 
   const handleCreateFormOpen = useCallback(() => {
     setFormState({ mode: 'create' })
@@ -52,12 +55,15 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
     [handleFormClose, setProblems],
   )
 
+  const canAddProblem =
+    formState === null && selectedProblemTypes.length < Object.keys(avalancheProblemTypes).length
+
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
-        <Button className="ml-auto" disabled={formState !== null} onClick={handleCreateFormOpen}>
+        <Button className="ml-auto" disabled={!canAddProblem} onClick={handleCreateFormOpen}>
           <PlusIcon className="size-5" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
@@ -68,6 +74,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
           onClose={handleFormClose}
           onSave={handleSubmit}
           problemData={initialProblemData}
+          selectedProblemTypes={selectedProblemTypes}
         />
       )}
 
@@ -78,6 +85,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
         onFormOpen={setFormState}
         onFormSave={handleSubmit}
         problems={problems}
+        selectedProblemTypes={selectedProblemTypes}
       />
     </section>
   )
