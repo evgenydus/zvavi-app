@@ -9,7 +9,7 @@ import type { Locale } from '../config'
 
 import { SupabaseContextProvider } from '@/business/context'
 import { QueryClientProvider } from '@/data'
-import { ubuntuSans } from '@/fonts'
+import { inter } from '@/fonts'
 import { Header } from '@/UI/header'
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ const Layout = async (props: Readonly<LayoutProps>) => {
 
   return (
     <html lang={locale}>
-      <body className={`${ubuntuSans.className} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <QueryClientProvider>
             <SupabaseContextProvider>
