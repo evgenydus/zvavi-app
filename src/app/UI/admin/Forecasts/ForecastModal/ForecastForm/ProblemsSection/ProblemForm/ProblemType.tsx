@@ -45,7 +45,7 @@ const ProblemType = ({ onTypeChange, problemData, selectedProblemTypes }: Proble
         type: availableOptions[0].value,
       }))
     }
-  }, [problemData.type, availableOptions, onTypeChange])
+  }, [problemData.type, availableOptions.length, availableOptions[0]?.value, onTypeChange]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const problemTypeValue = useMemo(
     () =>
