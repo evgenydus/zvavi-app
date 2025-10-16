@@ -31,7 +31,7 @@ const HazardLevelBanner = ({ forecast }: { forecast: Forecast }) => {
             isExtremeRisk ? 'text-white' : 'text-black',
           )}
         >
-          <p className="text-sm font-semibold">{t('common.labels.overallRiskLevel')}</p>
+          <p className="text-sm font-semibold">{`${t('common.labels.overallRiskLevel')} - ${hazardLevels.overall}`}</p>
           <h4 className="text-3xl font-semibold">{title}</h4>
         </div>
 

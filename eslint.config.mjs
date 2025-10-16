@@ -131,6 +131,7 @@ export default [
       'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: true }],
       'sort-keys': ['error', 'asc'],
       'sort-keys-fix/sort-keys-fix': 'error',
+      'tailwindcss/classnames-order': 'error',
       'tailwindcss/no-custom-classname': 'off',
     },
   },

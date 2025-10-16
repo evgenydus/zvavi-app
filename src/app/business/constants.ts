@@ -2,6 +2,7 @@ import type { Aspect, HazardLevel, HazardLevelScale } from './types'
 
 export const hazardLevels: Record<HazardLevel, string> = {
   considerable: 'Considerable',
+  extreme: 'Extreme',
   high: 'High',
   low: 'Low',
   moderate: 'Moderate',
@@ -12,7 +13,7 @@ export const hazardLevelsByScale: Record<HazardLevelScale, string> = {
   2: hazardLevels.moderate,
   3: hazardLevels.considerable,
   4: hazardLevels.high,
-  5: hazardLevels.high,
+  5: hazardLevels.extreme,
 }
 
 export const avalancheProblemTypes = {

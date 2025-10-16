@@ -14,7 +14,7 @@
     "labels": {
       "email": "Email",
       "forecaster": "Forecaster",
-      "issued": "Issued",
+      "issuedAt": "Issued at",
       "overallRiskLevel": "Overall risk level",
       "summary": "Summary",
       "validUntil": "Valid Until"
