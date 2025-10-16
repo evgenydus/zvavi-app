@@ -23,17 +23,17 @@ const ForecastMeta = ({ forecast, isExtremeRisk }: ForecastMetaProps) => {
       )}
     >
       <div className="flex flex-1 flex-col">
-        <span className="font-medium">{t('common.labels.forecaster')}: </span>
+        <span className="font-semibold">{t('common.labels.forecaster')}: </span>
         <span>{forecaster}</span>
       </div>
 
       <div className="flex-none text-right">
         <div>
-          <span className="font-medium">{t('common.labels.issued')}: </span>
+          <span className="font-semibold">{t('common.labels.issued')}: </span>
           <span>{format(createdAt, dateFormat)}</span>
         </div>
         <div>
-          <span className="font-medium">{t('common.labels.validUntil')}: </span>
+          <span className="font-semibold">{t('common.labels.validUntil')}: </span>
           <span>{format(validUntil, dateFormat)}</span>
         </div>
       </div>

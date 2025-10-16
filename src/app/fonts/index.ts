@@ -1,7 +1,7 @@
-import { Ubuntu_Sans_Mono as UbuntuSansMono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
-export const ubuntuSans = UbuntuSansMono({
-  display: 'swap',
+export const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-ubuntu-sans',
+  variable: '--font-inter',
+  weight: ['400', '500', '600'],
 })
