@@ -4,19 +4,22 @@ import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Textarea } from '@/UI/components/inputs'
+import type { ProblemTypeProps } from './ProblemType'
 import ProblemType from './ProblemType'
 import { PropertiesSection } from './PropertiesSection'
 import { Aspects, AvalancheSize, Footer, type SetAspectsData } from '../../common'
 
-import type { Problem } from '@/business/types'
+import type { AvalancheProblemTypes, Problem } from '@/business/types'
+
+export type ProblemFormData = Omit<Problem, 'type'> & { type?: AvalancheProblemTypes }
 
 export type ProblemFormProps = {
   onClose: VoidFunction
   onSave: (data: Problem) => void
-  problemData: Problem
-}
+  problemData: ProblemFormData
+} & Pick<ProblemTypeProps, 'selectedProblemTypes'>
 
-const ProblemForm = ({ onClose, onSave, problemData }: ProblemFormProps) => {
+const ProblemForm = ({ onClose, onSave, problemData, selectedProblemTypes }: ProblemFormProps) => {
   const tProblems = useTranslations('admin.forecast.form.problems')
 
   const [data, setData] = useState(problemData)
@@ -42,7 +45,7 @@ const ProblemForm = ({ onClose, onSave, problemData }: ProblemFormProps) => {
   )
 
   const handleSave = () => {
-    onSave(data)
+    onSave(data as Problem)
     onClose()
   }
 
@@ -50,7 +53,11 @@ const ProblemForm = ({ onClose, onSave, problemData }: ProblemFormProps) => {
     <div className="flex flex-col gap-10 rounded border p-3">
       <section className="grid grid-cols-2 items-start gap-x-6">
         <div className="flex flex-col gap-3">
-          <ProblemType onTypeChange={setData} problemData={data} />
+          <ProblemType
+            onTypeChange={setData}
+            problemData={data}
+            selectedProblemTypes={selectedProblemTypes}
+          />
           <AvalancheSize onChange={handleRadioChange('avalancheSize')} value={data.avalancheSize} />
         </div>
 

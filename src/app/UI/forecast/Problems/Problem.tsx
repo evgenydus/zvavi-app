@@ -2,7 +2,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import { type ExistingIcons, problemIcons } from '@/UI/constants'
+import { problemIcons } from '@/UI/constants'
 import { useBoolean } from '@/UI/hooks'
 
 import { ProblemModal } from './ProblemModal'
@@ -13,8 +13,7 @@ const Problem = ({ problem }: { problem: ProblemType }) => {
   const t = useTranslations()
   const [isModalOpen, { setFalse: closeModal, setTrue: openModal }] = useBoolean(false)
 
-  // TODO: Update icons here https://app.asana.com/0/1208747689500826/1209939328004606/f
-  const icon = problemIcons[problem.type as ExistingIcons]
+  const icon = problemIcons[problem.type]
 
   return (
     <>

@@ -5,7 +5,7 @@ import { ProblemItem } from './ProblemItem'
 import type { FormState } from '../../common'
 import { ProblemForm, type ProblemFormProps } from '../ProblemForm'
 
-import type { Problem } from '@/business/types'
+import type { AvalancheProblemTypes, Problem } from '@/business/types'
 
 type ProblemsListProps = {
   formState: FormState
@@ -14,6 +14,7 @@ type ProblemsListProps = {
   onFormOpen: (state: { mode: 'edit'; id: string }) => void
   onFormSave: ProblemFormProps['onSave']
   problems: Problem[]
+  selectedProblemTypes: AvalancheProblemTypes[]
 }
 
 const ProblemList = ({
@@ -23,6 +24,7 @@ const ProblemList = ({
   onFormOpen,
   onFormSave,
   problems,
+  selectedProblemTypes,
 }: ProblemsListProps) => {
   const t = useTranslations()
 
@@ -49,9 +51,14 @@ const ProblemList = ({
   return (
     <ul className="space-y-4">
       {problems.map((problem) => (
-        <li key={problem.type}>
+        <li key={problem.id}>
           {formState?.mode === 'edit' && formState.id === problem.id ? (
-            <ProblemForm onClose={onFormClose} onSave={onFormSave} problemData={problem} />
+            <ProblemForm
+              onClose={onFormClose}
+              onSave={onFormSave}
+              problemData={problem}
+              selectedProblemTypes={selectedProblemTypes}
+            />
           ) : (
             <ProblemItem
               canEdit={formState === null}

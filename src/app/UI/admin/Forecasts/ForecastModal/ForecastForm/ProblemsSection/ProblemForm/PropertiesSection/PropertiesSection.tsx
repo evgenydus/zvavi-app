@@ -3,13 +3,14 @@ import { useTranslations } from 'next-intl'
 import { RadioGroup } from '@/UI/components/inputs'
 import TimeOfDay from './TimeOfDay'
 import { InputBlock, useProblemOptions } from '../../../common'
+import type { ProblemFormData } from '../ProblemForm'
 
 import type { Problem } from '@/business/types'
 
 type PropsSectionProps = {
   onRadioChange: (field: keyof Problem) => (value: string | number) => void
-  problemData: Problem
-  setProblemData: (value: React.SetStateAction<Problem>) => void
+  problemData: ProblemFormData
+  setProblemData: (value: React.SetStateAction<ProblemFormData>) => void
 }
 
 const PropertiesSection = ({ onRadioChange, problemData, setProblemData }: PropsSectionProps) => {
