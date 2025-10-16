@@ -9,11 +9,11 @@ type ForecastMetaProps = {
   isExtremeRisk: boolean
 }
 
-const dateFormat = 'dd MMM yy'
+const dateFormat = 'dd MMM yy, HH:mm'
 
 const ForecastMeta = ({ forecast, isExtremeRisk }: ForecastMetaProps) => {
   const t = useTranslations()
-  const { createdAt, forecaster, validUntil } = forecast
+  const { forecaster, publishedAt, validUntil } = forecast
 
   return (
     <div
@@ -28,10 +28,12 @@ const ForecastMeta = ({ forecast, isExtremeRisk }: ForecastMetaProps) => {
       </div>
 
       <div className="flex-none text-right">
-        <div>
-          <span className="font-semibold">{t('common.labels.issued')}: </span>
-          <span>{format(createdAt, dateFormat)}</span>
-        </div>
+        {publishedAt && (
+          <div>
+            <span className="font-semibold">{t('common.labels.issuedAt')}: </span>
+            <span>{format(publishedAt, dateFormat)}</span>
+          </div>
+        )}
         <div>
           <span className="font-semibold">{t('common.labels.validUntil')}: </span>
           <span>{format(validUntil, dateFormat)}</span>

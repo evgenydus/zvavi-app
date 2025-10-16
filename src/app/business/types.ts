@@ -7,7 +7,7 @@ import type {
   trends,
 } from '@/business/constants'
 
-export type HazardLevel = 'low' | 'moderate' | 'considerable' | 'high'
+export type HazardLevel = 'low' | 'moderate' | 'considerable' | 'high' | 'extreme'
 
 export type HazardLevelScale = '1' | '2' | '3' | '4' | '5'
 export type ElevationZone = 'highAlpine' | 'alpine' | 'subAlpine'
@@ -35,6 +35,7 @@ export type Forecast = {
   forecaster: string
   hazardLevels: HazardLevels
   id: number
+  publishedAt: string | null
   snowpack: string
   status: 'draft' | 'published'
   summary: string
