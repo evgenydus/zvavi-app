@@ -5,21 +5,21 @@ import looseWet from '@/assets/icons/avalancheProblems/looseWet.jpg'
 import persistentSlab from '@/assets/icons/avalancheProblems/persistentSlab.jpg'
 import stormSlab from '@/assets/icons/avalancheProblems/stormSlab.jpg'
 import windSlab from '@/assets/icons/avalancheProblems/windSlab.jpg'
-import drySnow1 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-1.png'
-import drySnow2 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-2.png'
-import drySnow3 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-3.png'
-import drySnow45 from '@/assets/icons/snowRating/hazardLevelDry/dry-snow-4-5.png'
+import considerable from '@/assets/icons/hazardLevel/considerable.svg'
+import high from '@/assets/icons/hazardLevel/high.svg'
+import low from '@/assets/icons/hazardLevel/low.svg'
+import moderate from '@/assets/icons/hazardLevel/moderate.svg'
 
 import type { AvalancheProblemTypes, HazardLevelScale } from '@/business/types'
 
 type HazardIcons = Record<HazardLevelScale, StaticImageData>
 
 export const hazardIcons: HazardIcons = {
-  1: drySnow1,
-  2: drySnow2,
-  3: drySnow3,
-  4: drySnow45,
-  5: drySnow45,
+  1: low,
+  2: moderate,
+  3: considerable,
+  4: high,
+  5: high,
 }
 
 // TODO: Update icons here https://app.asana.com/0/1208747689500826/1209939328004606/f
