@@ -1,5 +1,6 @@
-import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { useTranslations } from 'next-intl'
+
+import { Icon } from '@/UI/components'
 
 type PropertyTileProps = {
   children: React.ReactNode
@@ -17,7 +18,7 @@ const PropertyTile = ({ children, property }: PropertyTileProps) => {
           {t(`forecast.sections.avalancheProblems.modal.labels.${name}`)}
         </h5>
         {/* TODO: Add info tooltip */}
-        {info && <InformationCircleIcon className="size-4 text-gray-500" />}
+        {info && <Icon className="stroke-gray-400" icon="info" size="sm" />}
       </div>
       {children}
     </div>

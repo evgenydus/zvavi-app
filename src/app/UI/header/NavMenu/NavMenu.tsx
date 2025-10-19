@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { Menu, MenuButton, MenuItems } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import classnames from 'classnames'
 
 import { navMenuItems } from './constants'
 
+import { Icon } from '@/UI/components'
 import MenuItem from './MenuItem'
 
 const NavMenu = () => (
@@ -15,17 +15,21 @@ const NavMenu = () => (
       <MenuButton as={React.Fragment}>
         {({ open: isOpen }) => (
           <div className="relative size-6 cursor-pointer">
-            <Bars3Icon
+            <Icon
               className={classnames(
                 'absolute inset-0 size-6 transition-[opacity,transform] duration-200 ease-in-out',
                 isOpen ? 'scale-90 opacity-0 delay-0' : 'scale-100 opacity-100 delay-100',
               )}
+              icon="menu"
+              size="lg"
             />
-            <XMarkIcon
+            <Icon
               className={classnames(
-                'absolute inset-0 size-6 transition-[opacity,transform] duration-200 ease-in-out',
+                'absolute inset-0 transition-[opacity,transform] duration-200 ease-in-out',
                 isOpen ? 'scale-100 opacity-100 delay-100' : 'scale-90 opacity-0 delay-0',
               )}
+              icon="xMark"
+              size="lg"
             />
           </div>
         )}

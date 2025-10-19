@@ -64,7 +64,7 @@ const ForecastItem = ({ forecast, onEdit }: ForecastItemProps) => {
 
   return (
     <>
-      <div className="flex items-center gap-4 px-4 py-1">
+      <div className="flex h-12 items-center gap-4 px-4">
         <Column>{forecast.forecaster}</Column>
         <Column>{formattedCreationDate}</Column>
         <Column>{formattedValidUntilDate}</Column>

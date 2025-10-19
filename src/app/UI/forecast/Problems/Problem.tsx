@@ -1,10 +1,10 @@
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { problemIcons } from '@/UI/constants'
 import { useBoolean } from '@/UI/hooks'
 
+import { Icon } from '@/UI/components'
 import { ProblemModal } from './ProblemModal'
 
 import type { Problem as ProblemType } from '@/business/types'
@@ -33,7 +33,7 @@ const Problem = ({ problem }: { problem: ProblemType }) => {
           </h3>
         </div>
 
-        <ChevronDownIcon className="size-5 -rotate-90" />
+        <Icon icon="chevronRight" />
       </button>
 
       <ProblemModal isOpen={isModalOpen} onClose={closeModal} problem={problem} />

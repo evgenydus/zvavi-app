@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { PlusIcon } from '@heroicons/react/20/solid'
 import { useTranslations } from 'next-intl'
 
 import { useBoolean } from '@/UI/hooks'
 
+import { Icon } from '@/UI/components'
 import { Button } from '@/UI/components/inputs'
 import Column from './Column'
 import ForecastItem from './ForecastItem'
@@ -29,7 +29,7 @@ const ForecastsList = ({ forecasts }: { forecasts: FullForecast[] }) => {
   return (
     <>
       <Button className="my-4 ml-auto" onClick={openModal}>
-        <PlusIcon className="size-5" />
+        <Icon icon="plus" size="sm" />
         {tAdmin('forecast.title.create')}
       </Button>
 

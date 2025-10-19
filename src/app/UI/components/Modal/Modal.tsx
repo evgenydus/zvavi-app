@@ -1,5 +1,4 @@
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/solid'
 import classnames from 'classnames'
 
 import { IconButton } from '@/UI/components'
@@ -35,10 +34,7 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
               )}
 
               <CloseButton as="div">
-                <IconButton
-                  className="ml-auto flex size-7"
-                  icon={<XMarkIcon className="size-5 fill-inherit" />}
-                />
+                <IconButton className="ml-auto" iconProps={{ icon: 'xMark' }} size="lg" />
               </CloseButton>
             </header>
 

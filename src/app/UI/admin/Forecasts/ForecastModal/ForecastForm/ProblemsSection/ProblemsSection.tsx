@@ -1,10 +1,10 @@
 import { type Dispatch, type SetStateAction, useCallback, useMemo, useState } from 'react'
-import { PlusIcon } from '@heroicons/react/20/solid'
 import _uniqueId from 'lodash/uniqueId'
 import { useTranslations } from 'next-intl'
 
 import { avalancheProblemTypes } from '@/business/constants'
 
+import { Icon } from '@/UI/components'
 import { Button } from '@/UI/components/inputs'
 import prepareTimeOfDay from './prepareTimeOfDay'
 import { ProblemForm } from './ProblemForm'
@@ -64,7 +64,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
         <Button className="ml-auto" disabled={!canAddProblem} onClick={handleCreateFormOpen}>
-          <PlusIcon className="size-5" />
+          <Icon icon="plus" size="sm" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
       </div>

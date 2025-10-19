@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
-import { PlusIcon } from '@heroicons/react/20/solid'
 import _uniqueId from 'lodash/uniqueId'
 import { useTranslations } from 'next-intl'
 
+import { Icon } from '@/UI/components'
 import { Button } from '@/UI/components/inputs'
 import { AvalancheForm } from './AvalancheForm'
 import { AvalanchesList } from './AvalanchesList'
@@ -57,7 +57,7 @@ const RecentAvalanchesSection = ({ avalanches, setAvalanches }: RecentAvalanches
         <h3 className="text-xl font-semibold">{tAvalanches('title')}</h3>
 
         <Button className="ml-auto" disabled={formState !== null} onClick={handleCreateFormOpen}>
-          <PlusIcon className="size-5" />
+          <Icon icon="plus" size="sm" />
           {tAvalanches('labels.addAvalanche')}
         </Button>
       </div>

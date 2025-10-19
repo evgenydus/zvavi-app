@@ -1,34 +1,17 @@
 'use client'
 
 import { MenuItem as Item } from '@headlessui/react'
-import {
-  EnvelopeIcon,
-  HomeIcon,
-  StarIcon,
-  UserGroupIcon,
-  UserPlusIcon,
-} from '@heroicons/react/20/solid'
 import classnames from 'classnames'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
+import { Icon } from '@/UI/components'
 import type { NavMenuItem } from './types'
-
-import type { HeroIcon } from '@/types'
-
-const iconRenderers: Record<string, HeroIcon> = {
-  envelope: EnvelopeIcon,
-  home: HomeIcon,
-  star: StarIcon,
-  userGroup: UserGroupIcon,
-  userPlus: UserPlusIcon,
-}
 
 const MenuItem = ({ item }: { item: NavMenuItem }) => {
   const { icon, path, titleId } = item
   const t = useTranslations()
-  const IconRenderer = iconRenderers[icon]
   const pathname = usePathname()
   const isActive = pathname.replace(/^\/[a-z]{2}/, '') === (path === '/' ? '' : path)
 
@@ -43,7 +26,7 @@ const MenuItem = ({ item }: { item: NavMenuItem }) => {
           onClick={close}
         >
           <div className="flex items-center gap-2">
-            <IconRenderer className="size-5" />
+            <Icon icon={icon} />
             <p>{t(titleId)}</p>
           </div>
         </Link>
