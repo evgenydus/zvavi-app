@@ -1,4 +1,4 @@
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { Pencil, Trash } from 'lucide-react'
 
 import { IconButton } from '@/UI/components'
 
@@ -13,15 +13,11 @@ const ActionButtons = ({ canEdit = true, onDelete, onEdit }: ActionButtonsProps)
     <IconButton
       className="inline-flex size-7"
       disabled={!canEdit}
-      icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
+      iconProps={{ icon: Pencil }}
       onClick={onEdit}
     />
 
-    <IconButton
-      className="inline-flex size-7"
-      icon={<TrashIcon className="size-5 stroke-inherit" />}
-      onClick={onDelete}
-    />
+    <IconButton className="inline-flex size-7" iconProps={{ icon: Trash }} onClick={onDelete} />
   </div>
 )
 

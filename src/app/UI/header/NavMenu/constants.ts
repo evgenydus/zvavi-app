@@ -15,19 +15,19 @@ export const routes = {
 
 export const navMenuItems: NavMenuItem[] = [
   {
-    icon: 'home',
+    icon: 'house',
     id: 'home',
     path: '/',
     titleId: 'navigation.home',
   },
   {
-    icon: 'star',
+    icon: 'handshake',
     id: 'partners',
     path: routes.partners,
     titleId: 'navigation.partners',
   },
   {
-    icon: 'userGroup',
+    icon: 'users',
     id: 'about',
     path: routes.about,
     titleId: 'navigation.about',
@@ -39,7 +39,7 @@ export const navMenuItems: NavMenuItem[] = [
     titleId: 'navigation.joinUs',
   },
   {
-    icon: 'envelope',
+    icon: 'mail',
     id: 'contact',
     isHidden: true,
     path: routes.contact,

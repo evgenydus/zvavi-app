@@ -1,4 +1,4 @@
-import { EyeIcon, EyeSlashIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { Eye, EyeOff, Pencil, Trash } from 'lucide-react'
 
 import { IconButton } from '@/UI/components'
 
@@ -13,27 +13,11 @@ const ActionButtons = ({ isPublished, onDelete, onEdit, onStatusToggle }: Action
   <div className="flex items-center justify-end gap-2">
     <IconButton
       className="inline-flex size-7"
-      icon={
-        isPublished ? (
-          <EyeSlashIcon className="size-5 stroke-inherit" />
-        ) : (
-          <EyeIcon className="size-5 stroke-inherit" />
-        )
-      }
+      iconProps={{ icon: isPublished ? EyeOff : Eye }}
       onClick={onStatusToggle}
     />
-
-    <IconButton
-      className="inline-flex size-7"
-      icon={<PencilSquareIcon className="size-5 stroke-inherit" />}
-      onClick={onEdit}
-    />
-
-    <IconButton
-      className="inline-flex size-7"
-      icon={<TrashIcon className="size-5 stroke-inherit" />}
-      onClick={onDelete}
-    />
+    <IconButton className="inline-flex size-7" iconProps={{ icon: Pencil }} onClick={onEdit} />
+    <IconButton className="inline-flex size-7" iconProps={{ icon: Trash }} onClick={onDelete} />
   </div>
 )
 

@@ -31,6 +31,7 @@
     "eslint-plugin-sort-destructure-keys": "^2.0.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.546.0",
     "next": "15.0.3",
     "next-intl": "^3.25.0",
     "prettier": "^3.3.3",
