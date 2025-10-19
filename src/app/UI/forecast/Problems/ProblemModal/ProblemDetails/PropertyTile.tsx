@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { InfoIcon } from '@/UI/icons'
+import { Icon } from '@/UI/components'
 
 type PropertyTileProps = {
   children: React.ReactNode
@@ -18,7 +18,7 @@ const PropertyTile = ({ children, property }: PropertyTileProps) => {
           {t(`forecast.sections.avalancheProblems.modal.labels.${name}`)}
         </h5>
         {/* TODO: Add info tooltip */}
-        {info && <InfoIcon className="stroke-gray-400" size={16} />}
+        {info && <Icon className="stroke-gray-400" icon="info" size="sm" />}
       </div>
       {children}
     </div>

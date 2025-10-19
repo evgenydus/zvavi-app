@@ -1,5 +1,7 @@
+import type { IconName } from '@/UI/components/icons'
+
 export type NavMenuItem = {
-  icon: string
+  icon: IconName
   id: string
   isHidden?: boolean
   path: string

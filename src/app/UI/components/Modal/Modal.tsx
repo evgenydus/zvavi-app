@@ -3,8 +3,6 @@ import classnames from 'classnames'
 
 import { IconButton } from '@/UI/components'
 
-import { XIcon } from '@/UI/icons'
-
 export type ModalProps = {
   children: React.ReactNode
   className?: string
@@ -36,7 +34,7 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
               )}
 
               <CloseButton as="div">
-                <IconButton className="ml-auto flex size-7" iconProps={{ icon: XIcon }} />
+                <IconButton className="ml-auto" iconProps={{ icon: 'xMark' }} size="lg" />
               </CloseButton>
             </header>
 

@@ -6,9 +6,8 @@ import classnames from 'classnames'
 
 import { navMenuItems } from './constants'
 
+import { Icon } from '@/UI/components'
 import MenuItem from './MenuItem'
-
-import { MenuIcon, XIcon } from '@/UI/icons'
 
 const NavMenu = () => (
   <nav className="relative">
@@ -16,17 +15,21 @@ const NavMenu = () => (
       <MenuButton as={React.Fragment}>
         {({ open: isOpen }) => (
           <div className="relative size-6 cursor-pointer">
-            <MenuIcon
+            <Icon
               className={classnames(
                 'absolute inset-0 size-6 transition-[opacity,transform] duration-200 ease-in-out',
                 isOpen ? 'scale-90 opacity-0 delay-0' : 'scale-100 opacity-100 delay-100',
               )}
+              icon="menu"
+              size="lg"
             />
-            <XIcon
+            <Icon
               className={classnames(
-                'absolute inset-0 size-6 transition-[opacity,transform] duration-200 ease-in-out',
+                'absolute inset-0 transition-[opacity,transform] duration-200 ease-in-out',
                 isOpen ? 'scale-100 opacity-100 delay-100' : 'scale-90 opacity-0 delay-0',
               )}
+              icon="xMark"
+              size="lg"
             />
           </div>
         )}

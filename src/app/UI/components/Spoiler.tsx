@@ -1,6 +1,6 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Transition } from '@headlessui/react'
 
-import { ChevronDownIcon } from '@/UI/icons'
+import { Icon } from '@/UI/components'
 
 type SpoilerProps = {
   isInitiallyOpen?: boolean
@@ -14,9 +14,9 @@ const Spoiler = ({ children, isInitiallyOpen, title }: SpoilerProps) => (
       <>
         <DisclosureButton className="group flex w-full items-center justify-between p-4">
           <span className="text-sm">{title}</span>
-          <ChevronDownIcon
+          <Icon
             className="transition duration-200 group-data-[open]:rotate-180"
-            size={20}
+            icon="chevronDown"
           />
         </DisclosureButton>
         <Transition

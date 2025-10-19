@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import _uniqueId from 'lodash/uniqueId'
 import { useTranslations } from 'next-intl'
 
+import { Icon } from '@/UI/components'
 import { Button } from '@/UI/components/inputs'
 import { AvalancheForm } from './AvalancheForm'
 import { AvalanchesList } from './AvalanchesList'
@@ -9,7 +10,6 @@ import type { FormState } from '../common'
 import { initialAvalancheData } from '../constants'
 
 import type { Avalanche } from '@/business/types'
-import { PlusIcon } from '@/UI/icons'
 
 type RecentAvalanchesSectionProps = {
   avalanches: Avalanche[]
@@ -57,7 +57,7 @@ const RecentAvalanchesSection = ({ avalanches, setAvalanches }: RecentAvalanches
         <h3 className="text-xl font-semibold">{tAvalanches('title')}</h3>
 
         <Button className="ml-auto" disabled={formState !== null} onClick={handleCreateFormOpen}>
-          <PlusIcon size={20} />
+          <Icon icon="plus" size="sm" />
           {tAvalanches('labels.addAvalanche')}
         </Button>
       </div>

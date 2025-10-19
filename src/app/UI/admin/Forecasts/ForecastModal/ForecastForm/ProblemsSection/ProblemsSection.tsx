@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 
 import { avalancheProblemTypes } from '@/business/constants'
 
+import { Icon } from '@/UI/components'
 import { Button } from '@/UI/components/inputs'
 import prepareTimeOfDay from './prepareTimeOfDay'
 import { ProblemForm } from './ProblemForm'
@@ -12,7 +13,6 @@ import type { FormState } from '../common'
 import { initialProblemData } from '../constants'
 
 import type { Problem } from '@/business/types'
-import { PlusIcon } from '@/UI/icons'
 
 type ProblemsSectionProps = {
   problems: Problem[]
@@ -64,7 +64,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
         <Button className="ml-auto" disabled={!canAddProblem} onClick={handleCreateFormOpen}>
-          <PlusIcon size={20} />
+          <Icon icon="plus" size="sm" />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
       </div>

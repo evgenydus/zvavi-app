@@ -3,13 +3,13 @@ import { useTranslations } from 'next-intl'
 
 import { useBoolean } from '@/UI/hooks'
 
+import { Icon } from '@/UI/components'
 import { Button } from '@/UI/components/inputs'
 import Column from './Column'
 import ForecastItem from './ForecastItem'
 import { ForecastModal } from '../ForecastModal'
 
 import type { FullForecast } from '@/business/types'
-import { PlusIcon } from '@/UI/icons'
 
 const ForecastsList = ({ forecasts }: { forecasts: FullForecast[] }) => {
   const tAdmin = useTranslations('admin')
@@ -29,7 +29,7 @@ const ForecastsList = ({ forecasts }: { forecasts: FullForecast[] }) => {
   return (
     <>
       <Button className="my-4 ml-auto" onClick={openModal}>
-        <PlusIcon size={20} />
+        <Icon icon="plus" size="sm" />
         {tAdmin('forecast.title.create')}
       </Button>
 

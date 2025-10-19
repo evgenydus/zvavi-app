@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl'
 import { problemIcons } from '@/UI/constants'
 import { useBoolean } from '@/UI/hooks'
 
+import { Icon } from '@/UI/components'
 import { ProblemModal } from './ProblemModal'
 
 import type { Problem as ProblemType } from '@/business/types'
-import { ChevronRightIcon } from '@/UI/icons'
 
 const Problem = ({ problem }: { problem: ProblemType }) => {
   const t = useTranslations()
@@ -33,7 +33,7 @@ const Problem = ({ problem }: { problem: ProblemType }) => {
           </h3>
         </div>
 
-        <ChevronRightIcon size={20} />
+        <Icon icon="chevronRight" />
       </button>
 
       <ProblemModal isOpen={isModalOpen} onClose={closeModal} problem={problem} />
