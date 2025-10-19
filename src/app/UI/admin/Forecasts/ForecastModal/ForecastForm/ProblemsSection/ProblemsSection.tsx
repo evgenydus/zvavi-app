@@ -1,5 +1,4 @@
 import { type Dispatch, type SetStateAction, useCallback, useMemo, useState } from 'react'
-import { PlusIcon } from '@heroicons/react/20/solid'
 import _uniqueId from 'lodash/uniqueId'
 import { useTranslations } from 'next-intl'
 
@@ -13,6 +12,7 @@ import type { FormState } from '../common'
 import { initialProblemData } from '../constants'
 
 import type { Problem } from '@/business/types'
+import { PlusIcon } from '@/UI/icons'
 
 type ProblemsSectionProps = {
   problems: Problem[]
@@ -64,7 +64,7 @@ const ProblemsSection = ({ problems, setProblems }: ProblemsSectionProps) => {
         <h3 className="text-xl font-semibold">{tForecast('form.problems.title')}</h3>
 
         <Button className="ml-auto" disabled={!canAddProblem} onClick={handleCreateFormOpen}>
-          <PlusIcon className="size-5" />
+          <PlusIcon size={20} />
           {tForecast('form.problems.labels.addProblem')}
         </Button>
       </div>

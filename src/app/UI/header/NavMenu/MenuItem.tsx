@@ -2,19 +2,21 @@
 
 import { MenuItem as Item } from '@headlessui/react'
 import classnames from 'classnames'
-import { Handshake, House, type LucideIcon, Mail, UserPlus, Users } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import type { NavMenuItem } from './types'
 
+import { HandshakeIcon, HouseIcon, MailIcon, UserPlusIcon, UsersIcon } from '@/UI/icons'
+
 const iconRenderers: Record<string, LucideIcon> = {
-  handshake: Handshake,
-  house: House,
-  mail: Mail,
-  userPlus: UserPlus,
-  users: Users,
+  handshake: HandshakeIcon,
+  house: HouseIcon,
+  mail: MailIcon,
+  userPlus: UserPlusIcon,
+  users: UsersIcon,
 }
 
 const MenuItem = ({ item }: { item: NavMenuItem }) => {

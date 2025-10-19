@@ -1,6 +1,7 @@
 import { Checkbox as HeadlessUICheckbox, Field, Label } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/16/solid'
 import classnames from 'classnames'
+
+import { CheckIcon } from '@/UI/icons'
 
 type CheckboxProps = {
   className?: string
@@ -24,7 +25,7 @@ const Checkbox = ({ className, isChecked, label, onChange }: CheckboxProps) => (
       )}
       onChange={onChange}
     >
-      <CheckIcon className="hidden size-4 fill-white group-data-[checked]:block" />
+      <CheckIcon className="hidden stroke-white group-data-[checked]:block" size={16} />
     </HeadlessUICheckbox>
   </Field>
 )

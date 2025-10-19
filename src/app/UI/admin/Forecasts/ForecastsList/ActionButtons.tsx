@@ -1,6 +1,6 @@
-import { Eye, EyeOff, Pencil, Trash } from 'lucide-react'
-
 import { IconButton } from '@/UI/components'
+
+import { EyeIcon, EyeOffIcon, PencilIcon, TrashIcon } from '@/UI/icons'
 
 type ActionButtonsProps = {
   isPublished: boolean
@@ -13,11 +13,11 @@ const ActionButtons = ({ isPublished, onDelete, onEdit, onStatusToggle }: Action
   <div className="flex items-center justify-end gap-2">
     <IconButton
       className="inline-flex size-7"
-      iconProps={{ icon: isPublished ? EyeOff : Eye }}
+      iconProps={{ icon: isPublished ? EyeOffIcon : EyeIcon }}
       onClick={onStatusToggle}
     />
-    <IconButton className="inline-flex size-7" iconProps={{ icon: Pencil }} onClick={onEdit} />
-    <IconButton className="inline-flex size-7" iconProps={{ icon: Trash }} onClick={onDelete} />
+    <IconButton className="inline-flex size-7" iconProps={{ icon: PencilIcon }} onClick={onEdit} />
+    <IconButton className="inline-flex size-7" iconProps={{ icon: TrashIcon }} onClick={onDelete} />
   </div>
 )
 

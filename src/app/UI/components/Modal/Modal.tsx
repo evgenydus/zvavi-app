@@ -1,8 +1,9 @@
 import { CloseButton, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import classnames from 'classnames'
-import { X } from 'lucide-react'
 
 import { IconButton } from '@/UI/components'
+
+import { XIcon } from '@/UI/icons'
 
 export type ModalProps = {
   children: React.ReactNode
@@ -35,7 +36,7 @@ const Modal = ({ children, className, isOpen, onClose, title }: ModalProps) => {
               )}
 
               <CloseButton as="div">
-                <IconButton className="ml-auto flex size-7" iconProps={{ icon: X }} />
+                <IconButton className="ml-auto flex size-7" iconProps={{ icon: XIcon }} />
               </CloseButton>
             </header>
 

@@ -1,6 +1,6 @@
-import { Pencil, Trash } from 'lucide-react'
-
 import { IconButton } from '@/UI/components'
+
+import { PencilIcon, TrashIcon } from '@/UI/icons'
 
 type ActionButtonsProps = {
   canEdit?: boolean
@@ -13,11 +13,11 @@ const ActionButtons = ({ canEdit = true, onDelete, onEdit }: ActionButtonsProps)
     <IconButton
       className="inline-flex size-7"
       disabled={!canEdit}
-      iconProps={{ icon: Pencil }}
+      iconProps={{ icon: PencilIcon }}
       onClick={onEdit}
     />
 
-    <IconButton className="inline-flex size-7" iconProps={{ icon: Trash }} onClick={onDelete} />
+    <IconButton className="inline-flex size-7" iconProps={{ icon: TrashIcon }} onClick={onDelete} />
   </div>
 )
 
