@@ -12,11 +12,7 @@ import PropertyTile from './PropertyTile'
 
 import type { Problem } from '@/business/types'
 
-export type ProblemDetailsProps = {
-  problem: Problem
-}
-
-const ProblemDetails = ({ problem }: ProblemDetailsProps) => {
+const ProblemDetails = ({ problem }: { problem: Problem }) => {
   const t = useTranslations()
   const {
     aspects,
@@ -40,7 +36,7 @@ const ProblemDetails = ({ problem }: ProblemDetailsProps) => {
           }}
         >
           <div className="relative flex flex-1 items-end justify-end">
-            <p className="absolute left-0 top-0 text-3xl font-semibold">D{avalancheSize}</p>
+            <p className="absolute left-0 top-0 text-3xl font-semibold">{avalancheSize}</p>
             <SizeScale size={avalancheSize} />
           </div>
         </PropertyTile>
