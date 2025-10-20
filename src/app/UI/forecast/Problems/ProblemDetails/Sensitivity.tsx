@@ -21,7 +21,7 @@ const Sensitivity = ({ sensitivity }: { sensitivity: Sensitivity }) => {
           {t(`admin.forecast.form.problems.options.sensitivityLevel.${sensitivity}`)}
         </p>
         <SensitivityGauge
-          className="ml-auto w-24"
+          className="ml-auto w-28"
           diameter={85}
           strokeWidth={14}
           value={sensitivity}

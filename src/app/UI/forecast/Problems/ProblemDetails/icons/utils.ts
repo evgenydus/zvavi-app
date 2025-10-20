@@ -1,4 +1,4 @@
-export const size = 64
+export const size = 72
 export const center = size / 2
 const strokeWidth = 9
 const innerRadius = (size - strokeWidth) / 2

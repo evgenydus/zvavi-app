@@ -34,9 +34,9 @@ const AvalancheSize = ({ avalancheSize }: AvalancheSizeProps) => (
       value: avalancheSize,
     }}
   >
-    <div className="relative flex flex-1 items-end justify-end">
-      <p className="absolute left-0 top-0 text-3xl font-semibold">{avalancheSize}</p>
-      <SizeScale size={avalancheSize} />
+    <div className="relative flex h-full flex-col justify-end">
+      <p className=" absolute left-1 top-0 text-3xl font-semibold">{avalancheSize}</p>
+      <SizeScale className="ml-auto w-24" size={avalancheSize} />
     </div>
   </PropertyTile>
 )

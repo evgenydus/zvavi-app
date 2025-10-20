@@ -7,9 +7,9 @@ const TrendIcon = ({ value }: { value: Trend }) => {
     return (
       <svg
         className="fill-violet-600"
-        height="52"
+        height="64"
         viewBox="0 0 52 52"
-        width="52"
+        width="64"
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect height="9" width="52" x="0" y="14" />
@@ -23,9 +23,9 @@ const TrendIcon = ({ value }: { value: Trend }) => {
   return (
     <svg
       className={classnames('fill-violet-600', rotationClass)}
-      height="52"
+      height="64"
       viewBox="0 0 52 52"
-      width="52"
+      width="64"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M27.73 6.93 L45.07 6.93 L45.07 25.07 H52 V0 H25.07 V6.93 Z" />

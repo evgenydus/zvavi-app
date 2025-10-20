@@ -16,9 +16,11 @@ const Trend = ({ trend }: { trend: Trend }) => {
         value: t(`admin.forecast.form.problems.options.trend.${trend}`),
       }}
     >
-      <p className="font-semibold">{t(`admin.forecast.form.problems.options.trend.${trend}`)}</p>
-      <div className="ml-auto">
-        <TrendIcon value={trend} />
+      <div className="flex h-full flex-col justify-between">
+        <p className="font-semibold">{t(`admin.forecast.form.problems.options.trend.${trend}`)}</p>
+        <div className="ml-auto w-16">
+          <TrendIcon value={trend} />
+        </div>
       </div>
     </PropertyTile>
   )

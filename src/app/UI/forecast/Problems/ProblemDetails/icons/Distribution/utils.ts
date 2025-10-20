@@ -40,10 +40,10 @@ export const getFilledDots = (distribution: Distribution): Set<number> => {
   }
 }
 
-export const dotSize = 4
+export const dotSize = 5
 export const columns = 6
 export const rows = 4
-export const spacing = 14
+export const spacing = 16
 export const width = (columns - 1) * spacing + dotSize * 2
 export const height = (rows - 1) * spacing + dotSize * 2
 

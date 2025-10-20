@@ -16,8 +16,8 @@ const PropertyTile = ({ children, property }: PropertyTileProps) => {
   const infoTitle = value ? `${propertyName}: ${value}` : propertyName
 
   return (
-    <div className="flex h-32 w-full max-w-36 flex-col gap-2 rounded-lg border-2 bg-gray-100 p-2">
-      <div className="flex justify-between">
+    <div className="flex h-36 w-full max-w-36 flex-col rounded-lg border-2 bg-gray-100 p-2">
+      <div className="flex h-6 flex-none items-center justify-between">
         <h5 className="text-xs text-gray-500">{propertyName}</h5>
         {info && (
           <Drawer content={info} title={infoTitle}>

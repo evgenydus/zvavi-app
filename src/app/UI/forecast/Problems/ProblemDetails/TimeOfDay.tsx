@@ -21,14 +21,14 @@ const TimeOfDay = ({ isAllDay, timeOfDay }: TimeOfDayProps) => {
 
   return (
     <PropertyTile property={{ name: 'timeOfDay' }}>
-      <div className="flex flex-col gap-1">
-        <p className="font-semibold leading-none">
+      <div className="flex h-full flex-col justify-between">
+        <p className="font-semibold">
           {isAllDay
             ? t('admin.forecast.form.problems.labels.allDay')
             : `${formattedStartTime}-${formattedEndTime}`}
         </p>
 
-        <div className="ml-auto w-16 flex-1">
+        <div className="ml-auto">
           <TimeOfDayIcon
             isAllDay={isAllDay}
             timeOfDay={{ end: formattedEndTime, start: formattedStartTime }}

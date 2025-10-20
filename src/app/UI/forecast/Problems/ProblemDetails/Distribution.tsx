@@ -16,12 +16,14 @@ const Distribution = ({ distribution }: { distribution: Distribution }) => {
         value: t(`admin.forecast.form.problems.options.distribution.${distribution}`),
       }}
     >
-      <p className="font-semibold">
-        {t(`admin.forecast.form.problems.options.distribution.${distribution}`)}
-      </p>
+      <div className="flex h-full flex-col justify-between">
+        <p className="font-semibold">
+          {t(`admin.forecast.form.problems.options.distribution.${distribution}`)}
+        </p>
 
-      <div className="ml-auto">
-        <DistributionIcon distribution={distribution} />
+        <div className="ml-auto">
+          <DistributionIcon distribution={distribution} />
+        </div>
       </div>
     </PropertyTile>
   )
