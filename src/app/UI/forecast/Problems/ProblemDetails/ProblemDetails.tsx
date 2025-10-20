@@ -1,13 +1,7 @@
 import { useTranslations } from 'next-intl'
 
-import {
-  AspectRose,
-  DistributionIcon,
-  SensitivityGauge,
-  SizeScale,
-  TimeOfDay,
-  Trend,
-} from './Icons'
+import AvalancheSize from './AvalancheSize'
+import { AspectRose, DistributionIcon, SensitivityGauge, TimeOfDay, Trend } from './Icons'
 import PropertyTile from './PropertyTile'
 
 import type { Problem } from '@/business/types'
@@ -29,17 +23,7 @@ const ProblemDetails = ({ problem }: { problem: Problem }) => {
     <div>
       {description && <p className="mb-4 text-justify text-sm">{description}</p>}
       <div className="grid grid-cols-2 justify-items-center gap-2">
-        <PropertyTile
-          property={{
-            info: t(`forecast.sections.avalancheProblems.modal.info.size.${avalancheSize}`),
-            name: 'size',
-          }}
-        >
-          <div className="relative flex flex-1 items-end justify-end">
-            <p className="absolute left-0 top-0 text-3xl font-semibold">{avalancheSize}</p>
-            <SizeScale size={avalancheSize} />
-          </div>
-        </PropertyTile>
+        <AvalancheSize avalancheSize={avalancheSize} />
 
         <PropertyTile
           property={{
@@ -54,6 +38,7 @@ const ProblemDetails = ({ problem }: { problem: Problem }) => {
           property={{
             info: t(`forecast.sections.avalancheProblems.modal.info.sensitivity.${sensitivity}`),
             name: 'sensitivity',
+            value: t(`admin.forecast.form.problems.options.sensitivityLevel.${sensitivity}`),
           }}
         >
           <div className="flex h-full flex-col justify-between">
@@ -73,6 +58,7 @@ const ProblemDetails = ({ problem }: { problem: Problem }) => {
           property={{
             info: t(`forecast.sections.avalancheProblems.modal.info.distribution.${distribution}`),
             name: 'distribution',
+            value: t(`admin.forecast.form.problems.options.distribution.${distribution}`),
           }}
         >
           <p className="font-semibold">
@@ -84,7 +70,13 @@ const ProblemDetails = ({ problem }: { problem: Problem }) => {
           </div>
         </PropertyTile>
 
-        <PropertyTile property={{ name: 'trend' }}>
+        <PropertyTile
+          property={{
+            info: t(`forecast.sections.avalancheProblems.modal.info.trend.${trend}`),
+            name: 'trend',
+            value: t(`admin.forecast.form.problems.options.trend.${trend}`),
+          }}
+        >
           <p className="font-semibold">
             {t(`admin.forecast.form.problems.options.trend.${trend}`)}
           </p>
