@@ -27,7 +27,7 @@ export type Trend = keyof typeof trends
 export type Aspect = keyof typeof aspects
 export type ElevationKey = ElevationZone | 'overall'
 export type HazardLevels = Record<ElevationKey, HazardLevelScale>
-type Aspects = Record<ElevationZone, Aspect[]>
+export type Aspects = Record<ElevationZone, Aspect[]>
 
 export type Forecast = {
   additionalHazards: string

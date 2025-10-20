@@ -13,7 +13,7 @@ const PropertyTile = ({ children, property }: PropertyTileProps) => {
   const { info, name, value } = property
 
   const propertyName = t(`forecast.sections.avalancheProblems.modal.labels.${name}`)
-  const infoTitle = value ? `${propertyName} - ${value}` : propertyName
+  const infoTitle = value ? `${propertyName}: ${value}` : propertyName
 
   return (
     <div className="flex h-32 w-full max-w-36 flex-col gap-2 rounded-lg border-2 bg-gray-100 p-2">

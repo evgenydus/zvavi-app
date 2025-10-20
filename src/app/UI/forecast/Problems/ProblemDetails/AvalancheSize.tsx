@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { SizeScale } from './Icons'
+import { SizeScale } from './icons'
 import PropertyTile from './PropertyTile'
 
 import type { AvalancheSize } from '@/business/types'
