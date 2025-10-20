@@ -30,7 +30,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   if (files.length === 0) return notFound()
 
-  let messages: AbstractIntlMessages = {}
+  const messages: AbstractIntlMessages = {}
 
   const parsedList = (
     await Promise.all(
@@ -42,27 +42,24 @@ export default getRequestConfig(async ({ requestLocale }) => {
           const parsed = YAML.parse(content)
 
           if (!isPlainObject(parsed)) {
-            console.warn(`Invalid YAML structure in ${fileName}, skipping.`)
+            console.warn(`Invalid YAML structure in ${filePath}, skipping.`)
 
             return null
           }
 
           return parsed as AbstractIntlMessages
         } catch (err) {
-          console.warn(`Failed to read/parse ${fileName}:`, err)
+          console.warn(`Failed to read/parse ${filePath}:`, err)
 
           return null
         }
       }),
     )
-  ).filter(Boolean) as AbstractIntlMessages[]
+  ).filter(Boolean)
 
   // eslint-disable-next-line no-restricted-syntax
   for (const parsed of parsedList) {
-    messages = {
-      ...messages,
-      ...parsed,
-    }
+    Object.assign(messages, parsed)
   }
 
   return {
