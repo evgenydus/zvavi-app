@@ -1,7 +1,8 @@
+import { isPlainObject } from 'lodash'
 import { notFound } from 'next/navigation'
 import type { AbstractIntlMessages } from 'next-intl'
 import { getRequestConfig } from 'next-intl/server'
-import fs from 'node:fs'
+import fs from 'node:fs/promises'
 import path from 'node:path'
 import YAML from 'yaml'
 
@@ -19,23 +20,48 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   const messagesDir = path.join(process.cwd(), 'messages', locale)
 
-  if (!fs.existsSync(messagesDir)) return notFound()
+  try {
+    await fs.access(messagesDir)
+  } catch {
+    return notFound()
+  }
 
-  const files = fs.readdirSync(messagesDir).filter((file) => file.endsWith('.yml'))
+  const files = (await fs.readdir(messagesDir)).filter((file) => file.endsWith('.yml'))
 
   if (files.length === 0) return notFound()
 
   let messages: AbstractIntlMessages = {}
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const fileName of files) {
-    const filePath = path.join(messagesDir, fileName)
-    const content = fs.readFileSync(filePath, 'utf8')
-    const parsed = YAML.parse(content)
+  const parsedList = (
+    await Promise.all(
+      files.map(async (fileName) => {
+        const filePath = path.join(messagesDir, fileName)
 
+        try {
+          const content = await fs.readFile(filePath, 'utf8')
+          const parsed = YAML.parse(content)
+
+          if (!isPlainObject(parsed)) {
+            console.warn(`Invalid YAML structure in ${fileName}, skipping.`)
+
+            return null
+          }
+
+          return parsed as AbstractIntlMessages
+        } catch (err) {
+          console.warn(`Failed to read/parse ${fileName}:`, err)
+
+          return null
+        }
+      }),
+    )
+  ).filter(Boolean) as AbstractIntlMessages[]
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const parsed of parsedList) {
     messages = {
       ...messages,
-      ...parsed, // можно сделать deepMerge, если нужно
+      ...parsed,
     }
   }
 
