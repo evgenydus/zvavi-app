@@ -20,8 +20,10 @@ const ProblemDetails = ({ problem }: { problem: Problem }) => {
   } = problem
 
   return (
-    <div>
-      {description && <p className="mb-4 text-justify text-sm">{description}</p>}
+    <>
+      {description && (
+        <p className="mb-4 whitespace-pre-line text-justify text-sm">{description}</p>
+      )}
       <div className="grid grid-cols-2 justify-items-center gap-2">
         <AvalancheSize avalancheSize={avalancheSize} />
         <Aspects aspects={aspects} />
@@ -30,7 +32,7 @@ const ProblemDetails = ({ problem }: { problem: Problem }) => {
         <Trend trend={trend} />
         <TimeOfDay isAllDay={isAllDay} timeOfDay={timeOfDay} />
       </div>
-    </div>
+    </>
   )
 }
 
