@@ -53,36 +53,44 @@ const LoginPage = () => {
   )
 
   return (
-    <>
-      <form className="w-full max-w-lg px-4" onSubmit={handleSignIn}>
+    <div className="relative flex w-full flex-col items-center justify-center">
+      <form className="w-full max-w-sm px-4" onSubmit={handleSignIn}>
         <Fieldset className="space-y-6 rounded p-6 dark:text-white sm:p-10">
           <Legend className="text-center text-2xl font-semibold ">{t('auth.login.title')}</Legend>
 
           <Field>
-            <Label className="text-sm/6">{t('common.labels.email')}</Label>
-            <TextInput onChange={handleEmailChange} required type="email" />
+            <Label className="block text-sm/6">{t('common.labels.email')}</Label>
+            <TextInput className="w-full" onChange={handleEmailChange} required type="email" />
           </Field>
 
           <Field>
-            <Label className="text-sm/6">{t('auth.labels.password')}</Label>
-            <TextInput onChange={handlePasswordChange} required type="password" />
+            <Label className="flex justify-between text-sm/6">
+              {t('auth.labels.password')}
+              <Link
+                className="self-center text-xs text-primary hover:underline"
+                href={routes.forgotPassword}
+              >
+                {t('auth.login.forgotPassword')}
+              </Link>
+            </Label>
+
+            <TextInput
+              className="w-full"
+              onChange={handlePasswordChange}
+              required
+              type="password"
+            />
           </Field>
 
           {/* TODO: Add loader */}
-          <Button className="ml-auto" type="submit">
-            {t('auth.login.signIn')}
+          <Button className="w-full text-center" type="submit">
+            <span className="w-full">{t('auth.login.signIn')}</span>
           </Button>
         </Fieldset>
 
         {errorMessage && <p className="mt-4 text-center text-red-500">{errorMessage}</p>}
       </form>
-
-      <div className="text-center">
-        <Link className="text-sm text-primary underline" href={routes.forgotPassword}>
-          {t('auth.login.forgotPassword')}
-        </Link>
-      </div>
-    </>
+    </div>
   )
 }
 
