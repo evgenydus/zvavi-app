@@ -59,7 +59,7 @@ const LoginPage = () => {
           <Legend className="text-center text-2xl font-semibold ">{t('auth.login.title')}</Legend>
 
           <Field>
-            <Label className="block text-sm/6">{t('common.labels.email')}</Label>
+            <Label className="text-sm/6">{t('common.labels.email')}</Label>
             <TextInput className="w-full" onChange={handleEmailChange} required type="email" />
           </Field>
 
