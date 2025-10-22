@@ -53,7 +53,7 @@ const LoginPage = () => {
   )
 
   return (
-    <div className="relative flex w-full flex-col items-center justify-center">
+    <div className="flex w-full flex-col items-center justify-center">
       <form className="w-full max-w-sm px-4" onSubmit={handleSignIn}>
         <Fieldset className="space-y-6 rounded p-6 dark:text-white sm:p-10">
           <Legend className="text-center text-2xl font-semibold ">{t('auth.login.title')}</Legend>
