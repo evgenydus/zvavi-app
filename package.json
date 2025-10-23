@@ -11,11 +11,8 @@
     "convert-messages": "node scripts/convert-messages.js"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
     "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
       "prettier --write"
     ]
   },
