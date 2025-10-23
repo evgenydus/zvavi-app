@@ -6,10 +6,10 @@ import { routing } from './routing'
 import { type Locale, locales } from '../config'
 
 // Whitelist of message file imports to prevent path traversal
-const messageFiles: Record<Locale, () => Promise<{ default: AbstractIntlMessages }>> = {
+const messageFiles = {
   en: () => import('../../messages/en.json'),
   ka: () => import('../../messages/ka.json'),
-}
+} as const
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale
@@ -21,7 +21,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   if (!locales.includes(locale as Locale)) return notFound()
 
   try {
-    const messages = (await messageFiles[locale as Locale]()).default
+    const messages = (await messageFiles[locale as Locale]()).default as AbstractIntlMessages
 
     return {
       messages,
