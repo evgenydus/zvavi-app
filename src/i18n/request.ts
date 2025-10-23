@@ -20,13 +20,19 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   const messagesDir = path.join(process.cwd(), 'messages', locale)
 
+  console.log('Messages dir path:', messagesDir)
+
   try {
     await fs.access(messagesDir)
   } catch {
+    console.log('FS access Failed ')
+
     return notFound()
   }
 
   const files = (await fs.readdir(messagesDir)).filter((file) => file.endsWith('.yml'))
+
+  console.log('Files found:', files)
 
   if (files.length === 0) return notFound()
 

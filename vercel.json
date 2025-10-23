@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "src/i18n/request.ts": {
+      "includeFiles": "messages/**"
+    }
+  }
+}
