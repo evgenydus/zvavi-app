@@ -7,19 +7,18 @@ import type { Distribution } from '@/business/types'
 
 const Distribution = ({ distribution }: { distribution: Distribution }) => {
   const t = useTranslations()
+  const valueText = t(`admin.forecast.form.problems.options.distribution.${distribution}`)
 
   return (
     <PropertyTile
       property={{
         info: t(`forecast.sections.avalancheProblems.modal.info.distribution.${distribution}`),
         name: 'distribution',
-        value: t(`admin.forecast.form.problems.options.distribution.${distribution}`),
+        value: valueText,
       }}
     >
       <div className="flex h-full flex-col justify-between">
-        <p className="font-semibold">
-          {t(`admin.forecast.form.problems.options.distribution.${distribution}`)}
-        </p>
+        <p className="font-semibold">{valueText}</p>
 
         <div className="ml-auto">
           <DistributionIcon distribution={distribution} />

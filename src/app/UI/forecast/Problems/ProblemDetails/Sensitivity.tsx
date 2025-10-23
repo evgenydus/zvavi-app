@@ -7,19 +7,18 @@ import type { Sensitivity } from '@/business/types'
 
 const Sensitivity = ({ sensitivity }: { sensitivity: Sensitivity }) => {
   const t = useTranslations()
+  const valueText = t(`admin.forecast.form.problems.options.sensitivityLevel.${sensitivity}`)
 
   return (
     <PropertyTile
       property={{
         info: t(`forecast.sections.avalancheProblems.modal.info.sensitivity.${sensitivity}`),
         name: 'sensitivity',
-        value: t(`admin.forecast.form.problems.options.sensitivityLevel.${sensitivity}`),
+        value: valueText,
       }}
     >
       <div className="flex h-full flex-col justify-between">
-        <p className="font-semibold">
-          {t(`admin.forecast.form.problems.options.sensitivityLevel.${sensitivity}`)}
-        </p>
+        <p className="font-semibold">{valueText}</p>
         <SensitivityGauge
           className="ml-auto w-28"
           diameter={85}
