@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Скрипт для автоматической конвертации YAML файлов переводов в JSON
- * Запускается автоматически перед сборкой проекта
+ * Converts YAML translation files to JSON for production builds.
+ * Runs automatically before Next.js build process.
  */
 
 import fs from 'node:fs'
@@ -24,14 +24,12 @@ let hasErrors = false
 LOCALES.forEach((locale) => {
   const localeDir = path.join(MESSAGES_DIR, locale)
 
-  // Проверяем существование директории
   if (!fs.existsSync(localeDir)) {
     // eslint-disable-next-line no-console
     console.warn(`⚠️  Warning: Directory not found: ${localeDir}`)
     return
   }
 
-  // Читаем все YAML файлы
   const files = fs.readdirSync(localeDir).filter((file) => file.endsWith('.yml'))
 
   if (files.length === 0) {
@@ -42,7 +40,6 @@ LOCALES.forEach((locale) => {
 
   const combined = {}
 
-  // Объединяем все YAML файлы в один объект
   files.forEach((file) => {
     const filePath = path.join(localeDir, file)
 
@@ -67,7 +64,6 @@ LOCALES.forEach((locale) => {
     }
   })
 
-  // Сохраняем объединенный JSON файл
   const outputPath = path.join(MESSAGES_DIR, `${locale}.json`)
 
   try {

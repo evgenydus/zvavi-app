@@ -14,7 +14,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   if (!locales.includes(locale as Locale)) return notFound()
 
-  // Динамический импорт JSON файлов, сгенерированных из YAML
+  // Import JSON files generated from YAML during build
   let messages: AbstractIntlMessages
 
   try {
