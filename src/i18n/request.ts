@@ -5,6 +5,12 @@ import { getRequestConfig } from 'next-intl/server'
 import { routing } from './routing'
 import { type Locale, locales } from '../config'
 
+// Whitelist of message file imports to prevent path traversal
+const messageFiles: Record<Locale, () => Promise<{ default: AbstractIntlMessages }>> = {
+  en: () => import('../../messages/en.json'),
+  ka: () => import('../../messages/ka.json'),
+}
+
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale
 
@@ -14,17 +20,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   if (!locales.includes(locale as Locale)) return notFound()
 
-  // Import JSON files generated from YAML during build
-  let messages: AbstractIntlMessages
-
   try {
-    messages = (await import(`../../messages/${locale}.json`)).default
+    const messages = (await messageFiles[locale as Locale]()).default
+
+    return {
+      messages,
+      timeZone: 'Asia/Tbilisi',
+    }
   } catch {
     return notFound()
-  }
-
-  return {
-    messages,
-    timeZone: 'Asia/Tbilisi',
   }
 })

@@ -47,7 +47,7 @@ LOCALES.forEach((locale) => {
       const content = fs.readFileSync(filePath, 'utf8')
       const parsed = YAML.parse(content)
 
-      if (typeof parsed !== 'object' || parsed === null) {
+      if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
         // eslint-disable-next-line no-console
         console.error(`❌ Error: Invalid YAML structure in ${filePath}`)
         hasErrors = true
