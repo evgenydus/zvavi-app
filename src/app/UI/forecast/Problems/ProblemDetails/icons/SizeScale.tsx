@@ -2,11 +2,11 @@ import classnames from 'classnames'
 
 import type { AvalancheSize } from '@/business/types'
 
-const SizeScale = ({ size }: { size: AvalancheSize }) => {
+const SizeScale = ({ className, size }: { size: AvalancheSize; className?: string }) => {
   const barHeights = [24, 36, 48, 60, 72]
 
   return (
-    <div className="flex items-end gap-1">
+    <div className={classnames('flex items-end gap-1', className)}>
       {barHeights.map((height, i) => {
         const isActive = i < size
 

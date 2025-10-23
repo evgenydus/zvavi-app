@@ -34,7 +34,6 @@ const SensitivityGauge = ({
   return (
     <div className={className}>
       <svg
-        height="auto"
         preserveAspectRatio="xMidYMid meet"
         viewBox={`0 0 ${diameter} ${svgHeight}`}
         width="100%"

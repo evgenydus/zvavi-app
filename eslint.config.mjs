@@ -105,12 +105,6 @@ export default [
         },
       ],
       'react/jsx-uses-react': 'off',
-      'react/no-multi-comp': [
-        'error',
-        {
-          ignoreStateless: false,
-        },
-      ],
       'react/react-in-jsx-scope': 'off',
       'react/require-default-props': 'off',
       semi: ['error', 'never'],
