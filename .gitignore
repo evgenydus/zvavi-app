@@ -42,3 +42,5 @@ next-env.d.ts
 
 # other
 .idea/
+# Auto-generated translation files (generated from YAML)
+/messages/*.json
