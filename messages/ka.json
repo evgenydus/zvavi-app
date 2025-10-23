@@ -1,0 +1,28 @@
+{
+  "common": {
+    "labels": {
+      "description": "აღწერა",
+      "email": "ელ. ფოსტა",
+      "password": "პაროლი",
+      "confirmPassword": "პაროლის დადასტურება"
+    }
+  },
+  "home": {
+    "title": "მოგესალმებით!",
+    "currentForecast": {
+      "title": "მიმდინარე პროგნოზი"
+    }
+  },
+  "navigation": {
+    "contact": "კონტაქტები",
+    "home": "მთავარი",
+    "sponsors": "სპონსორები"
+  },
+  "login": {
+    "title": "შესვლა",
+    "signIn": "შესვლა",
+    "forgotPassword": "პაროლის დავიწყება?",
+    "resetPassword": "პაროლის გადაყვანა",
+    "sendResetLink": "გაგზავნეთ გადატვირთვის ბმული"
+  }
+}
