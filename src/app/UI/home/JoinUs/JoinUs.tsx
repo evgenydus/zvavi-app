@@ -8,12 +8,12 @@ const JoinUs = () => {
   const t = useTranslations()
 
   return (
-    <PageSection title={t('joinUs.title')}>
+    <PageSection title={t('joinUs.main.title')}>
       <div className="flex flex-col gap-4">
-        <p>{t('joinUs.section.main.description')}</p>
-        <p>{t('joinUs.section.main.description2')}</p>
+        <p>{t('joinUs.main.section.description')}</p>
+        <p>{t('joinUs.main.section.description2')}</p>
 
-        <ButtonLink href={routes.joinUs}>{t('joinUs.section.main.learnHowToHelp')}</ButtonLink>
+        <ButtonLink href={routes.joinUs}>{t('joinUs.main.section.learnHowToHelp')}</ButtonLink>
       </div>
     </PageSection>
   )

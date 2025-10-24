@@ -45,3 +45,6 @@ export const backgroundColorByHazardLevel = {
   4: 'bg-hazard-4',
   5: 'bg-hazard-5',
 }
+
+export const patreonURL = 'https://www.patreon.com/AvalancheGeorgia'
+export const wiseURL = 'https://wise.com/pay/business/avalanchegeorgia'

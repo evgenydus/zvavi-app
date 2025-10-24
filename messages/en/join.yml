@@ -1,0 +1,37 @@
+joinUs:
+  main:
+    title: 'Join Us'
+    section:
+      description: 'Avalanche safety is a community effort. You can support our work by donating or contributing your skills — whether in forecasting, development, or outreach.'
+      description2: 'Join us in making the mountains safer!'
+      learnHowToHelp: 'Learn How to Help'
+
+  page:
+    description: 'Avalanche Georgia is a volunteer-driven, community-supported project. If you believe in safer mountain travel and want to help, there are many ways you can contribute.'
+    volunteer:
+      title: 'Volunteer Your Time and Skills'
+      descriptionPre: 'We welcome volunteers with diverse skills, especially in these areas:'
+      descriptionPost: 'Whether you’re a seasoned expert or just passionate about mountain safety, we’d love to hear from you.'
+      options:
+        - 'Avalanche forecasting & observation (with appropriate training)'
+        - 'Software development (React, TypeScript, mapping tools, etc.)'
+        - 'Design, writing & communications'
+        - 'Translation & localization (Georgian / English)'
+        - 'Fundraising & community outreach'
+
+    financialSupport:
+      title: 'Support Financially'
+      description: 'Even small donations go a long way to cover server costs, observation equipment, and course materials.'
+      options:
+        patreon: 'Donate via <a>Patreon</a>'
+        wise: 'Donate via <a>Wise</a>'
+        bank: 'Or make a bank transfer'
+
+    educate:
+      title: 'Educate and Advocate'
+      descriptionPre: 'Help us spread avalanche awareness by:'
+      descriptionPost: 'We offer avalanche safety courses and are developing free educational materials to support safer decision-making in Georgia’s backcountry.'
+      options:
+        - 'Sharing our bulletins and safety content'
+        - 'Encouraging others to take avalanche courses'
+        - 'Hosting or assisting in local events'
