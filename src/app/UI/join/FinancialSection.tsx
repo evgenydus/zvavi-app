@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
-import { patreonURL, wiseURL } from '@/UI/constants'
+import { links } from '@/UI/constants'
 import { routes } from '@/UI/header/NavMenu/constants'
 
 import { HTMLContainer } from '@/UI/components'
@@ -19,14 +19,14 @@ const FinancialSection = () => {
             component="li"
             content={t.rich('joinUs.page.financialSupport.options.patreon', {
               a: (chunks) =>
-                `<a class="text-primary underline" href="${patreonURL}" rel="noreferrer" target="_blank">${chunks}</a>`,
+                `<a class="text-primary underline" href="${links.patreon}" rel="noreferrer" target="_blank">${chunks}</a>`,
             })}
           />
           <HTMLContainer
             component="li"
             content={t.rich('joinUs.page.financialSupport.options.wise', {
               a: (chunks) =>
-                `<a class="text-primary underline" href="${wiseURL}" rel="noreferrer" target="_blank">${chunks}</a>`,
+                `<a class="text-primary underline" href="${links.wise}" rel="noreferrer" target="_blank">${chunks}</a>`,
             })}
           />
           <li>

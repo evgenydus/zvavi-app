@@ -1,4 +1,12 @@
 contact:
+  title: 'We’d love to hear from you!'
+  description: 'Whether you have questions, ideas, want to collaborate, or report an issue — don’t hesitate to reach out.'
+
+  links:
+    email: 'Email'
+    facebook: 'Facebook'
+    instagram: 'Instagram'
+
   bank:
     title: 'You can support us via bank transfer:'
     labels:

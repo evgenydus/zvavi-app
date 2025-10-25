@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { courseFormURL } from '@/UI/constants'
+import { links } from '@/UI/constants'
 
 import { HTMLContainer } from '@/UI/components'
 
@@ -18,7 +18,7 @@ const EducateSection = () => {
             component="li"
             content={t.rich('joinUs.page.educate.options.courses', {
               a: (chunks) =>
-                `<a class="text-primary underline" href="${courseFormURL}" rel="noreferrer" target="_blank">${chunks}</a>`,
+                `<a class="text-primary underline" href="${links.courseForm}" rel="noreferrer" target="_blank">${chunks}</a>`,
             })}
           />
 

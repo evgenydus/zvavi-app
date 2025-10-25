@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { memberFormURL } from '@/UI/constants'
+import { links } from '@/UI/constants'
 
 import { HTMLContainer } from '@/UI/components'
 
@@ -25,7 +25,7 @@ const VolunteerSection = () => {
         component="p"
         content={t.rich('joinUs.page.volunteer.becomeAMember', {
           a: (chunks) =>
-            `<a class="text-primary underline" href="${memberFormURL}" rel="noreferrer" target="_blank">${chunks}</a>`,
+            `<a class="text-primary underline" href="${links.memberForm}" rel="noreferrer" target="_blank">${chunks}</a>`,
         })}
       />
     </section>

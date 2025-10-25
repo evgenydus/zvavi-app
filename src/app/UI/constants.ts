@@ -46,10 +46,15 @@ export const backgroundColorByHazardLevel = {
   5: 'bg-hazard-5',
 }
 
-export const patreonURL = 'https://www.patreon.com/AvalancheGeorgia'
-export const wiseURL = 'https://wise.com/pay/business/avalanchegeorgia'
-export const memberFormURL = 'https://forms.gle/3adsnWwxdvgtEhoJ6'
-export const courseFormURL = 'https://forms.gle/NGN3TP8uR3rWqHV97'
+export const links = {
+  courseForm: 'https://forms.gle/NGN3TP8uR3rWqHV97',
+  email: 'zvavisaqartvelo@gmail.com',
+  facebook: 'https://www.facebook.com/avalanche.ge',
+  instagram: 'https://www.instagram.com/avalanche.ge/',
+  memberForm: 'https://forms.gle/3adsnWwxdvgtEhoJ6',
+  patreon: 'https://www.patreon.com/AvalancheGeorgia',
+  wise: 'https://wise.com/pay/business/avalanchegeorgia',
+}
 
 export const bankDetailsGEL = {
   account: 'GE39TB7640836020100012',
