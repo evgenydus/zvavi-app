@@ -110,6 +110,10 @@ auth:
   forgotPassword:
     title: 'Forgot Your Password?'
     sendResetLink: 'Send Reset Link'
+    messages: {
+      sendFailed: 'Failed to send reset link. Please try again later.'
+      sentSuccessfully: 'Reset link sent successfully. Please check your email.'
+    }
   setNewPassword:
     title: 'Set New Password'
     setPassword: 'Set Password'
