@@ -50,7 +50,7 @@ export const links = {
   courseForm: 'https://forms.gle/NGN3TP8uR3rWqHV97',
   email: 'zvavisaqartvelo@gmail.com',
   facebook: 'https://www.facebook.com/avalanche.ge',
-  instagram: 'https://www.instagram.com/avalanche.ge/',
+  instagram: 'https://www.instagram.com/avalanche.ge',
   memberForm: 'https://forms.gle/3adsnWwxdvgtEhoJ6',
   patreon: 'https://www.patreon.com/AvalancheGeorgia',
   wise: 'https://wise.com/pay/business/avalanchegeorgia',
