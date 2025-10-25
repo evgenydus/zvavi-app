@@ -48,3 +48,15 @@ export const backgroundColorByHazardLevel = {
 
 export const patreonURL = 'https://www.patreon.com/AvalancheGeorgia'
 export const wiseURL = 'https://wise.com/pay/business/avalanchegeorgia'
+
+export const bankDetailsGEL = {
+  account: 'GE39TB7640836020100012',
+  code: 'TBCBGE 22',
+  name: 'Avalanche Georgia',
+}
+
+export const bankDetailsUSDEUR = {
+  account: 'GE78TB7640836120100005',
+  address: '5 Luarsab Sharashidze Street, Tbilisi 0108, Georgia',
+  code: 'TBCBGE 22',
+}

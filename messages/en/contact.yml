@@ -1,0 +1,11 @@
+contact:
+  bank:
+    title: 'You can support us via bank transfer:'
+    labels:
+      account: 'Account'
+      address: 'Address'
+      code: 'Bank Code'
+      name: 'Name of Beneficiary'
+      swift: 'Bank Code (SWIFT Code)'
+    GEL: 'For transfer in GEL:'
+    USDEUR: 'For transfer in USD or EUR:'

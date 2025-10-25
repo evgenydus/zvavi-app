@@ -25,7 +25,9 @@ joinUs:
       options:
         patreon: 'Donate via <a>Patreon</a>'
         wise: 'Donate via <a>Wise</a>'
-        bank: 'Or make a bank transfer'
+        bank:
+          title: 'Or make a bank transfer -> '
+          link: 'See contact page'
 
     educate:
       title: 'Educate and Advocate'

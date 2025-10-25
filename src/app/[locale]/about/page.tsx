@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 
 import { HTMLContainer } from '@/UI/components'
 
-import { PageWrapper } from '@/UI/containers/PageWrapper'
+import { PageWrapper } from '@/UI/containers'
 
 const Page = () => {
   const t = useTranslations()

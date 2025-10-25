@@ -14,7 +14,7 @@ const EducateSection = () => {
             ?.map((option: string) => <li key={option}>{option}</li>)}
         </ul>
       </div>
-      <p>{t('joinUs.page.educate.descriptionPost')}</p>
+      <p className="text-justify">{t('joinUs.page.educate.descriptionPost')}</p>
     </section>
   )
 }

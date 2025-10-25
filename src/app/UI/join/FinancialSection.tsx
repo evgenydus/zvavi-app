@@ -1,6 +1,8 @@
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 import { patreonURL, wiseURL } from '@/UI/constants'
+import { routes } from '@/UI/header/NavMenu/constants'
 
 import { HTMLContainer } from '@/UI/components'
 
@@ -27,6 +29,12 @@ const FinancialSection = () => {
                 `<a class="text-primary underline" href="${wiseURL}" rel="noreferrer" target="_blank">${chunks}</a>`,
             })}
           />
+          <li>
+            <span>{t('joinUs.page.financialSupport.options.bank.title')}</span>
+            <Link className="inline text-primary underline" href={routes.contact}>
+              {t('joinUs.page.financialSupport.options.bank.link')}
+            </Link>
+          </li>
         </ul>
       </div>
     </section>
