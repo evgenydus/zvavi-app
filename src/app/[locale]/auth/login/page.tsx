@@ -88,7 +88,7 @@ const LoginPage = () => {
           </Button>
         </Fieldset>
 
-        {errorMessage && <p className="mt-4 text-center text-red-500">{errorMessage}</p>}
+        {errorMessage && <p className="mt-4 text-center text-sm text-red-500">{errorMessage}</p>}
       </form>
     </div>
   )
