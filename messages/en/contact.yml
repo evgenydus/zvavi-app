@@ -17,3 +17,7 @@ contact:
       swift: 'Bank Code (SWIFT Code)'
     GEL: 'For transfer in GEL:'
     USDEUR: 'For transfer in USD or EUR:'
+
+  emergencyDisclaimer:
+    title: '⚠️ Emergency Disclaimer'
+    description: '<u>Please note:</u> <strong>We do not provide emergency rescue services.</strong> In case of an avalanche or any other accident, call local emergency number immediately - 112.'
