@@ -4,6 +4,11 @@ import EducateSection from './EducateSection'
 import FinancialSection from './FinancialSection'
 import VolunteerSection from './VolunteerSection'
 
+/* TODO:
+    - Revise everything
+    - Add contact info
+*/
+
 const PageContent = () => {
   const t = useTranslations()
 

@@ -48,6 +48,8 @@ export const backgroundColorByHazardLevel = {
 
 export const patreonURL = 'https://www.patreon.com/AvalancheGeorgia'
 export const wiseURL = 'https://wise.com/pay/business/avalanchegeorgia'
+export const memberFormURL = 'https://forms.gle/3adsnWwxdvgtEhoJ6'
+export const courseFormURL = 'https://forms.gle/NGN3TP8uR3rWqHV97'
 
 export const bankDetailsGEL = {
   account: 'GE39TB7640836020100012',

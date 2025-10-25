@@ -12,6 +12,7 @@ joinUs:
       title: 'Volunteer Your Time and Skills'
       descriptionPre: 'We welcome volunteers with diverse skills, especially in these areas:'
       descriptionPost: 'Whether you’re a seasoned expert or just passionate about mountain safety, we’d love to hear from you.'
+      becomeAMember: 'Also consider <a>becoming a member</a> of our committee'
       options:
         - 'Avalanche forecasting & observation (with appropriate training)'
         - 'Software development (React, TypeScript, mapping tools, etc.)'
@@ -34,6 +35,6 @@ joinUs:
       descriptionPre: 'Help us spread avalanche awareness by:'
       descriptionPost: 'We offer avalanche safety courses and are developing free educational materials to support safer decision-making in Georgia’s backcountry.'
       options:
-        - 'Sharing our bulletins and safety content'
-        - 'Encouraging others to take avalanche courses'
-        - 'Hosting or assisting in local events'
+        share: 'Sharing our bulletins and safety content'
+        courses: 'Sign up and encouraging others to take <a>Avalanche Awareness Course</a>'
+        events: 'Hosting or assisting in local events'

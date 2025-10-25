@@ -1,5 +1,9 @@
 import { useTranslations } from 'next-intl'
 
+import { memberFormURL } from '@/UI/constants'
+
+import { HTMLContainer } from '@/UI/components'
+
 const VolunteerSection = () => {
   const t = useTranslations()
 
@@ -14,7 +18,16 @@ const VolunteerSection = () => {
             ?.map((option: string) => <li key={option}>{option}</li>)}
         </ul>
       </div>
+
       <p>{t('joinUs.page.volunteer.descriptionPost')}</p>
+
+      <HTMLContainer
+        component="p"
+        content={t.rich('joinUs.page.volunteer.becomeAMember', {
+          a: (chunks) =>
+            `<a class="text-primary underline" href="${memberFormURL}" rel="noreferrer" target="_blank">${chunks}</a>`,
+        })}
+      />
     </section>
   )
 }
