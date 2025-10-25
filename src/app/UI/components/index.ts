@@ -1,4 +1,5 @@
 export { default as ButtonLink } from './ButtonLink'
+export { default as HTMLContainer } from './HTMLContainer'
 export { IconButton } from './IconButton'
 export { Icon } from './icons'
 export { default as Loader } from './Loader'
