@@ -8,6 +8,7 @@ common:
     readFullForecast: 'Read Full Forecast'
     save: 'Save'
     submit: 'Submit'
+    seeContactPage: 'See Contact Page'
 
   labels:
     email: 'Email'

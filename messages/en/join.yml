@@ -11,7 +11,7 @@ joinUs:
     volunteer:
       title: 'Volunteer Your Time and Skills'
       descriptionPre: 'We welcome volunteers with diverse skills, especially in these areas:'
-      descriptionPost: 'Whether you’re a seasoned expert or just passionate about mountain safety, we’d love to hear from you.'
+      descriptionPost: 'Whether you’re a seasoned expert or just passionate about mountain safety, we’d love to hear from you. -> '
       becomeAMember: 'Also consider <a>becoming a member</a> of our committee'
       options:
         - 'Avalanche forecasting & observation (with appropriate training)'
@@ -26,10 +26,7 @@ joinUs:
       options:
         patreon: 'Donate via <a>Patreon</a>'
         wise: 'Donate via <a>Wise</a>'
-        bank:
-          title: 'Or make a bank transfer -> '
-          link: 'See contact page'
-
+        bank: 'Or make a bank transfer -> '
     educate:
       title: 'Educate and Advocate'
       descriptionPre: 'Help us spread avalanche awareness by:'

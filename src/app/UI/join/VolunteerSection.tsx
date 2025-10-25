@@ -1,6 +1,8 @@
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 import { links } from '@/UI/constants'
+import { routes } from '@/UI/header/NavMenu/constants'
 
 import { HTMLContainer } from '@/UI/components'
 
@@ -19,7 +21,12 @@ const VolunteerSection = () => {
         </ul>
       </div>
 
-      <p>{t('joinUs.page.volunteer.descriptionPost')}</p>
+      <div>
+        <span className="text-justify">{t('joinUs.page.volunteer.descriptionPost')}</span>
+        <Link className="text-primary underline" href={routes.contact}>
+          {t('common.actions.seeContactPage')}
+        </Link>
+      </div>
 
       <HTMLContainer
         component="p"
