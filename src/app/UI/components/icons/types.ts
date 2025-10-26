@@ -14,6 +14,7 @@ export type IconName =
   | 'menu'
   | 'pencil'
   | 'plus'
+  | 'snowflake'
   | 'trash'
   | 'userPlus'
   | 'users'

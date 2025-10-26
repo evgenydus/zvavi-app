@@ -1,33 +1,85 @@
+import type { QueryFunctionContext, UseQueryOptions } from '@tanstack/react-query'
+
 import { useQuery } from '@/tanstack-query/hooks'
 
 import { convertSnakeToCamel } from '../../helpers'
 import { forecastsKeys } from '../../query-keys'
 
-import type { Forecast } from '@/business/types'
+import type { Forecast, FullForecast } from '@/business/types'
 import { supabase } from '@/data'
 
-const fetchCurrentForecast = async (): Promise<Forecast | null> => {
+type QueryKey = ReturnType<typeof forecastsKeys.current>
+type Response = Forecast | FullForecast | undefined
+
+const fetchCurrentForecast = async ({
+  queryKey,
+}: QueryFunctionContext<QueryKey>): Promise<Response> => {
+  const [, , variables] = queryKey
+
   // Get latest published forecast
-  const { data, error } = await supabase
+  const { data: forecastData, error: forecastError } = await supabase
     .from('forecasts')
     .select()
     .eq('status', 'published')
     .order('created_at', { ascending: false })
     .limit(1)
 
-  if (error) {
-    throw new Error(error.message)
+  if (forecastError) {
+    throw new Error(forecastError.message)
   }
 
-  if (!data || data.length === 0) return null
+  if (!forecastData || forecastData.length === 0) return undefined
 
-  return convertSnakeToCamel(data[0]) as Forecast
+  const currentForecast = forecastData[0]
+
+  if (variables.isShort) {
+    return convertSnakeToCamel(currentForecast) as Forecast
+  }
+
+  const { data: recentAvalanches, error: avalanchesError } = await supabase
+    .from('recent_avalanches')
+    .select()
+    .match({ forecast_id: currentForecast.id })
+    .order('date', { ascending: false })
+
+  if (avalanchesError) {
+    throw new Error(avalanchesError.message)
+  }
+
+  const { data: problems, error: problemsError } = await supabase
+    .from('avalanche_problems')
+    .select()
+    .match({ forecast_id: currentForecast.id })
+
+  if (problemsError) {
+    throw new Error(problemsError.message)
+  }
+
+  return convertSnakeToCamel({
+    ...currentForecast,
+    avalancheProblems: problems ?? [],
+    recentAvalanches: recentAvalanches ?? [],
+  }) as Response
 }
 
-const useGetCurrentForecast = () => {
-  return useQuery<Forecast | null, Error>({
+type QueryOptions = Omit<
+  UseQueryOptions<Response, unknown, Response, QueryKey>,
+  'queryKey' | 'queryFn'
+> & { isShort?: boolean }
+
+function useGetCurrentForecast(
+  options: { isShort: true } & Partial<QueryOptions>,
+): ReturnType<typeof useQuery<Forecast | undefined>>
+
+function useGetCurrentForecast(
+  options?: { isShort?: false } & Partial<QueryOptions>,
+): ReturnType<typeof useQuery<FullForecast | undefined>>
+
+function useGetCurrentForecast({ isShort = false, ...options }: Partial<QueryOptions> = {}) {
+  return useQuery({
     queryFn: fetchCurrentForecast,
-    queryKey: forecastsKeys.current(),
+    queryKey: forecastsKeys.current({ isShort }),
+    ...options,
   })
 }
 

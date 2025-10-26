@@ -10,7 +10,7 @@ import CurrentForecast from './CurrentForecast'
 import type { Forecast } from '@/business/types'
 
 const CurrentForecastContainer = () => {
-  const { data: forecast, isPending } = useGetCurrentForecast()
+  const { data: forecast, isPending } = useGetCurrentForecast({ isShort: true })
   const [currentForecast, setCurrentForecast] = useState<Forecast>()
 
   useEffect(() => {
