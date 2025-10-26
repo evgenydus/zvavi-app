@@ -4,12 +4,13 @@ common:
     cancel: 'Cancel'
     confirm: 'Confirm'
     delete: 'Delete'
-    visitWebsite: 'Visit Website'
+    getInTouch: 'Get in Touch'
     learnMore: 'Learn More'
     readFullForecast: 'Read Full Forecast'
     save: 'Save'
     seeContactPage: 'See Contact Page'
     submit: 'Submit'
+    visitWebsite: 'Visit Website'
 
   labels:
     email: 'Email'

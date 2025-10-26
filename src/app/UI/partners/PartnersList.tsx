@@ -3,6 +3,8 @@ import { useTranslations } from 'next-intl'
 
 import { partners } from '@/data/constants/partners'
 
+import { Icon } from '@/UI/components'
+
 const PartnersList = () => {
   const t = useTranslations()
 
@@ -26,12 +28,13 @@ const PartnersList = () => {
               {infoKey && <p className="mt-1 text-sm text-gray-700">{t(infoKey)}</p>}
               {url && (
                 <a
-                  className="mt-2 inline-block font-medium text-primary transition hover:underline"
+                  className="mt-2 inline-flex items-center gap-1 font-medium text-primary transition hover:underline"
                   href={url}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  {t('common.actions.visitWebsite')} →
+                  <span>{t('common.actions.visitWebsite')}</span>
+                  <Icon icon="externalLink" size="sm" />
                 </a>
               )}
             </div>
