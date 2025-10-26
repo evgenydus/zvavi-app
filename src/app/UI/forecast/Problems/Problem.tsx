@@ -18,7 +18,7 @@ const Problem = ({ problem }: { problem: ProblemType }) => {
       title={t(`admin.forecast.form.problems.options.problemType.${problem.type}`)}
     >
       <button
-        className="flex w-full items-center justify-between gap-2 rounded-2xl bg-black/5 p-3 shadow-md"
+        className="flex w-full items-center justify-between gap-2 rounded-2xl bg-gray-100 p-3 shadow-md"
         type="button"
       >
         <div className="flex items-center gap-3">

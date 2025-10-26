@@ -34,7 +34,7 @@ const ForecastsList = ({ forecasts }: { forecasts: FullForecast[] }) => {
       </Button>
 
       <div className="w-full">
-        <div className="flex w-full items-center gap-4 rounded-t bg-black/5 px-4 py-1.5">
+        <div className="flex w-full items-center gap-4 rounded-t bg-gray-100 px-4 py-1.5">
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.forecaster')}</Column>
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.createdAt')}</Column>
           <Column className="font-semibold">{tAdmin('forecasts.list.columns.validUntil')}</Column>

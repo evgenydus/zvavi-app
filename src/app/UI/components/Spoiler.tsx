@@ -9,7 +9,7 @@ type SpoilerProps = {
 }
 
 const Spoiler = ({ children, isInitiallyOpen, title }: SpoilerProps) => (
-  <Disclosure as="div" className="rounded-2xl bg-black/5" defaultOpen={isInitiallyOpen}>
+  <Disclosure as="div" className="rounded-2xl bg-gray-100" defaultOpen={isInitiallyOpen}>
     {({ open: isOpen }) => (
       <>
         <DisclosureButton className="group flex w-full items-center justify-between p-4">
