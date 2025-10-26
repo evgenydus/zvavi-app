@@ -15,7 +15,7 @@ const Partners = () => {
         {partners.map((partner) => {
           if (partner.isHidden) return null
 
-          return <PartnerBadge key={partner.name} partner={partner} />
+          return <PartnerBadge key={partner.id} partner={partner} />
         })}
       </div>
 

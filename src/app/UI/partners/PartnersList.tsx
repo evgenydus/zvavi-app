@@ -11,13 +11,13 @@ const PartnersList = () => {
   return (
     <div className="space-y-6">
       {partners.map((partner) => {
-        const { infoKey, isHidden, logo, name, url } = partner
+        const { id, infoKey, isHidden, logo, name, url } = partner
 
         if (isHidden) return null
 
         return (
           <div
-            key={name}
+            key={id}
             className="flex flex-col items-center justify-center gap-4 rounded-2xl border bg-gray-100 p-4 sm:flex-row sm:items-start sm:gap-6"
           >
             <div className="flex w-40 items-center justify-center">
