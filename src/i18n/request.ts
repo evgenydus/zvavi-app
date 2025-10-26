@@ -24,6 +24,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     const messages = (await messageFiles[locale as Locale]()).default as AbstractIntlMessages
 
     return {
+      locale,
       messages,
       timeZone: 'Asia/Tbilisi',
     }

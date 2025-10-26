@@ -10,11 +10,29 @@ const intlMiddleware = createMiddleware({
   locales,
 })
 
+// Files that must stay at the root and should not be locale-prefixed
+const PUBLIC_ROOT_FILES = new Set(['/favicon.ico', '/icon.png', '/apple-icon.png'])
+
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Skip static and API routes
-  if (pathname.startsWith('/_next/static') || pathname.startsWith('/api')) {
+  // If someone requests a locale-prefixed metadata file, redirect to the root one
+  const localePattern = locales.join('|')
+  const localeFileRegex = new RegExp(
+    `^\\/(${localePattern})\\/(favicon\\.ico|icon\\.png|apple-icon\\.png)$`,
+  )
+  const localeFileMatch = pathname.match(localeFileRegex)
+
+  if (localeFileMatch) {
+    return NextResponse.redirect(new URL(`/${localeFileMatch[1]}`, request.url))
+  }
+
+  // Skip Next.js internals, API routes and root public metadata files
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    PUBLIC_ROOT_FILES.has(pathname)
+  ) {
     return NextResponse.next()
   }
 
