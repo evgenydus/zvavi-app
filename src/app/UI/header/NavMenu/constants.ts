@@ -5,6 +5,7 @@ export const routes = {
   admin: '/admin',
   adminForecasts: '/admin/forecasts',
   contact: '/contact',
+  currentForecast: '/forecasts/current',
   forecasts: '/forecasts',
   forgotPassword: '/auth/forgot-password',
   joinUs: '/join-us',
@@ -19,6 +20,12 @@ export const navMenuItems: NavMenuItem[] = [
     id: 'home',
     path: '/',
     titleId: 'navigation.home',
+  },
+  {
+    icon: 'snowflake',
+    id: 'currentForecast',
+    path: routes.currentForecast,
+    titleId: 'navigation.currentForecast',
   },
   {
     icon: 'handshake',

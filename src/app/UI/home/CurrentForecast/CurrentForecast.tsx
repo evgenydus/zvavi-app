@@ -8,7 +8,7 @@ import { HazardLevelBanner } from '@/UI/components/HazardLevelBanner'
 import type { Forecast } from '@/business/types'
 
 const CurrentForecast = ({ forecast }: { forecast: Forecast }) => {
-  const { id, summary } = forecast
+  const { summary } = forecast
   const t = useTranslations()
 
   return (
@@ -17,9 +17,7 @@ const CurrentForecast = ({ forecast }: { forecast: Forecast }) => {
       <Spoiler isInitiallyOpen title={t('common.labels.summary')}>
         <p className="text-justify">{summary}</p>
       </Spoiler>
-      <ButtonLink href={`${routes.forecasts}/${id}`}>
-        {t('common.actions.readFullForecast')}
-      </ButtonLink>
+      <ButtonLink href={routes.currentForecast}>{t('common.actions.readFullForecast')}</ButtonLink>
     </section>
   )
 }
