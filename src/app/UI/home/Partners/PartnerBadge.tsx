@@ -11,7 +11,7 @@ const PartnerBadge = ({ partner }: { partner: Partner }) => {
   const { infoKey, logo, name, url } = partner
   const hasInfo = Boolean(infoKey)
 
-  const Logo = <Image alt={name} height={80} id={name} src={logo} />
+  const Logo = <Image alt={name} height={80} src={logo} />
 
   if (!hasInfo) {
     return (

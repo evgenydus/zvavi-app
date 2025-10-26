@@ -21,7 +21,7 @@ const PartnersList = () => {
             className="flex flex-col items-center justify-center gap-4 rounded-2xl border bg-gray-100 p-4 sm:flex-row sm:items-start sm:gap-6"
           >
             <div className="flex w-40 items-center justify-center">
-              <Image alt={name} className="max-w-[160px]" height={96} id={name} src={logo} />
+              <Image alt={name} className="max-w-[160px]" height={96} src={logo} />
             </div>
             <div className="text-center sm:flex-1 sm:text-left">
               <h4 className="font-semibold">{name}</h4>
