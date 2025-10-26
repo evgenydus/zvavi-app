@@ -1,16 +1,16 @@
 import { useTranslations } from 'next-intl'
 
+import { PageContent } from '@/UI/contact'
 import { PageWrapper } from '@/UI/containers'
-import { PageContent } from '@/UI/join'
 
-const JoinUsPage = () => {
+const ContactPage = () => {
   const t = useTranslations()
 
   return (
-    <PageWrapper title={t('navigation.joinUs')}>
+    <PageWrapper title={t('navigation.contact')}>
       <PageContent />
     </PageWrapper>
   )
 }
 
-export default JoinUsPage
+export default ContactPage

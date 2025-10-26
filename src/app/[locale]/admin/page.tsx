@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 
 import { routes } from '@/UI/header/NavMenu/constants'
 
-import { PageWrapper } from '@/UI/containers/PageWrapper'
+import { PageWrapper } from '@/UI/containers'
 
 const AdminPage = () => {
   const t = useTranslations()

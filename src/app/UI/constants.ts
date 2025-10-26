@@ -45,3 +45,25 @@ export const backgroundColorByHazardLevel = {
   4: 'bg-hazard-4',
   5: 'bg-hazard-5',
 }
+
+export const links = {
+  courseForm: 'https://forms.gle/NGN3TP8uR3rWqHV97',
+  email: 'zvavisaqartvelo@gmail.com',
+  facebook: 'https://www.facebook.com/avalanche.ge',
+  instagram: 'https://www.instagram.com/avalanche.ge',
+  memberForm: 'https://forms.gle/3adsnWwxdvgtEhoJ6',
+  patreon: 'https://www.patreon.com/AvalancheGeorgia',
+  wise: 'https://wise.com/pay/business/avalanchegeorgia',
+}
+
+export const bankDetailsGEL = {
+  account: 'GE39TB7640836020100012',
+  code: 'TBCBGE 22',
+  name: 'Avalanche Georgia',
+}
+
+export const bankDetailsUSDEUR = {
+  account: 'GE78TB7640836120100005',
+  address: '5 Luarsab Sharashidze Street, Tbilisi 0108, Georgia',
+  code: 'TBCBGE 22',
+}

@@ -9,7 +9,7 @@ type HTMLContainerProps<T extends React.ElementType = 'div'> = {
 } & Omit<React.ComponentPropsWithoutRef<T>, 'children' | 'dangerouslySetInnerHTML'>
 
 const HTMLContainer = React.forwardRef(
-  <T extends React.ElementType = 'div'>(props: HTMLContainerProps<T>, ref: React.Ref<never>) => {
+  <T extends React.ElementType = 'div'>(props: HTMLContainerProps<T>, ref: React.Ref<Element>) => {
     const { component, content, ...restProps } = props
 
     if (!content) return null
@@ -20,7 +20,7 @@ const HTMLContainer = React.forwardRef(
       <Component
         ref={ref}
         dangerouslySetInnerHTML={{ __html: content }}
-        {...(restProps as Record<string, unknown>)} // eslint-disable-line react/jsx-props-no-spreading
+        {...restProps} // eslint-disable-line react/jsx-props-no-spreading
       />
     )
   },
