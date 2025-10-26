@@ -6,7 +6,6 @@ import { useGetCurrentForecast } from '@/data/hooks/forecasts'
 
 import { Loader } from '@/UI/components'
 
-import type { FullForecast } from '@/business/types'
 import { PageWrapper } from '@/UI/containers'
 import Forecast from '@/UI/forecast/Forecast'
 
@@ -19,7 +18,7 @@ const CurrentForecastPage = () => {
 
   return (
     <PageWrapper>
-      <Forecast forecast={forecast as FullForecast} />
+      <Forecast forecast={forecast} />
     </PageWrapper>
   )
 }

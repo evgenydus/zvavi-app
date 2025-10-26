@@ -9,7 +9,7 @@ import type { Forecast, FullForecast } from '@/business/types'
 import { supabase } from '@/data'
 
 type QueryKey = ReturnType<typeof forecastsKeys.current>
-type Response = Forecast | FullForecast | null | undefined
+type Response = Forecast | FullForecast | undefined
 
 const fetchCurrentForecast = async ({
   queryKey,
@@ -28,7 +28,7 @@ const fetchCurrentForecast = async ({
     throw new Error(forecastError.message)
   }
 
-  if (!forecastData || forecastData.length === 0) return null
+  if (!forecastData || forecastData.length === 0) return undefined
 
   const currentForecast = forecastData[0]
 
@@ -65,9 +65,17 @@ const fetchCurrentForecast = async ({
 type QueryOptions = Omit<
   UseQueryOptions<Response, unknown, Response, QueryKey>,
   'queryKey' | 'queryFn'
-> & { isShort: boolean }
+> & { isShort?: boolean }
 
-const useGetCurrentForecast = ({ isShort = false, ...options }: Partial<QueryOptions> = {}) => {
+function useGetCurrentForecast(
+  options: { isShort: true } & Partial<QueryOptions>,
+): ReturnType<typeof useQuery<Forecast | undefined>>
+
+function useGetCurrentForecast(
+  options?: { isShort?: false } & Partial<QueryOptions>,
+): ReturnType<typeof useQuery<FullForecast | undefined>>
+
+function useGetCurrentForecast({ isShort = false, ...options }: Partial<QueryOptions> = {}) {
   return useQuery({
     queryFn: fetchCurrentForecast,
     queryKey: forecastsKeys.current({ isShort }),
