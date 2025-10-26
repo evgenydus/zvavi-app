@@ -17,7 +17,7 @@ const RadioGroup = ({ name, onChange, options, value }: RadioGroupProps) => {
 
   return (
     <HeadlessUIRadioGroup
-      className={classnames('flex items-center rounded bg-black/5 p-1 text-sm dark:bg-white/5')}
+      className={classnames('flex items-center rounded bg-gray-100 p-1 text-sm dark:bg-white/5')}
       name={name}
       onChange={handleChange}
       value={value}

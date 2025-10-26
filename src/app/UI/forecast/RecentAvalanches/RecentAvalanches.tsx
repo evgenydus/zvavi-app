@@ -10,7 +10,7 @@ const RecentAvalanches = ({ avalanches }: { avalanches: Avalanche[] }) => {
 
   if (avalanches.length === 0) {
     return (
-      <div className="flex items-center justify-between rounded-2xl bg-black/5 p-4">
+      <div className="flex items-center justify-between rounded-2xl bg-gray-100 p-4">
         <h4 className="text-sm">{t('forecast.sections.recentAvalanches.title')}</h4>
         <p className="text-center text-xs text-gray-500">
           {t('forecast.sections.recentAvalanches.noAvalanches')}

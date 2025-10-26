@@ -27,7 +27,7 @@ const ValidUntil = ({ formData, setFormData }: ValidUntilProps) => {
   return (
     <InputBlock label={tForecast('form.general.labels.validUntil')}>
       <DatePicker
-        className="h-8 rounded bg-black/5 px-2"
+        className="h-8 rounded bg-gray-100 px-2"
         dateFormat="dd.MM.yyyy HH:mm"
         onChange={handleValidUntilChange}
         selected={formData.validUntil}

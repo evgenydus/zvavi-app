@@ -54,7 +54,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
       <h4 className="w-28 flex-none font-semibold">{tProblems('labels.timeOfDay')}</h4>
       <div className="flex flex-1 items-center justify-between gap-4">
         <Checkbox
-          className="bg-black/5"
+          className="bg-gray-100"
           isChecked={problemData.isAllDay}
           label={tProblems('labels.allDay')}
           onChange={handleCheckboxChange}
@@ -64,7 +64,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
           <div className="flex items-center gap-1">
             <div>
               <DatePicker
-                className="w-20 rounded bg-black/5 px-2"
+                className="w-20 rounded bg-gray-100 px-2"
                 dateFormat="HH:mm"
                 isClearable
                 onChange={handleStartTimeChange}
@@ -78,7 +78,7 @@ const TimeOfDay = ({ onTimeChange, problemData }: TimeOfDayProps) => {
             —
             <div>
               <DatePicker
-                className="w-20 rounded bg-black/5 px-2"
+                className="w-20 rounded bg-gray-100 px-2"
                 dateFormat="HH:mm"
                 isClearable
                 onChange={handleEndTimeChange}

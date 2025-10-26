@@ -58,7 +58,7 @@ const AvalancheForm = ({ avalancheData, onClose, onSave }: AvalancheFormProps) =
         <div className="flex flex-col gap-3">
           <InputBlock label={tForm('recentAvalanches.labels.date')} labelClassName="w-32">
             <DatePicker
-              className="h-8 rounded bg-black/5 px-2"
+              className="h-8 rounded bg-gray-100 px-2"
               dateFormat="dd.MM.yyyy HH:mm"
               onChange={handleDateChange}
               selected={data.date}

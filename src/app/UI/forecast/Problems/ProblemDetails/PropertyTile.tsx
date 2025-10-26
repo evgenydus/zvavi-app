@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl'
 
-import { IconButton } from '@/UI/components'
-import { Drawer } from '@/UI/components/Drawer'
+import { Drawer, IconButton } from '@/UI/components'
 
 type PropertyTileProps = {
   children: React.ReactNode

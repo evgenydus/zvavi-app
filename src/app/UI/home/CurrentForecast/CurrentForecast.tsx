@@ -15,7 +15,7 @@ const CurrentForecast = ({ forecast }: { forecast: Forecast }) => {
     <section className="space-y-4">
       <HazardLevelBanner forecast={forecast} />
       <Spoiler isInitiallyOpen title={t('common.labels.summary')}>
-        {summary}
+        <p className="text-justify">{summary}</p>
       </Spoiler>
       <ButtonLink href={`${routes.forecasts}/${id}`}>
         {t('common.actions.readFullForecast')}
