@@ -10,7 +10,7 @@ const Partners = () => {
   const t = useTranslations()
 
   return (
-    <PageSection title={t('partners.title')}>
+    <PageSection title={t('partners.main.title')}>
       <div className="flex gap-2 overflow-x-auto scrollbar-hide">
         {partners.map((partner) => {
           if (partner.isHidden) return null

@@ -4,7 +4,7 @@ common:
     cancel: 'Cancel'
     confirm: 'Confirm'
     delete: 'Delete'
-    goToWebsite: 'Go to Website'
+    visitWebsite: 'Visit Website'
     learnMore: 'Learn More'
     readFullForecast: 'Read Full Forecast'
     save: 'Save'

@@ -64,12 +64,9 @@ const LoginPage = () => {
           </Field>
 
           <Field>
-            <Label className="flex justify-between text-sm/6">
+            <Label className="flex items-center justify-between text-sm/6">
               {t('auth.labels.password')}
-              <Link
-                className="self-center text-xs text-primary hover:underline"
-                href={routes.forgotPassword}
-              >
+              <Link className="text-xs text-primary hover:underline" href={routes.forgotPassword}>
                 {t('auth.login.forgotPassword')}
               </Link>
             </Label>

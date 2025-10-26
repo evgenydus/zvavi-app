@@ -1,10 +1,10 @@
 import { type StaticImageData } from 'next/image'
 
-import adrenalineLogo from '@/assets/images/partnersLogo/adrenaline.png'
-import buruSportsLogo from '@/assets/images/partnersLogo/burusports.svg'
-import drunkCherryLogo from '@/assets/images/partnersLogo/drunkcherry.png'
-import snowLabLogo from '@/assets/images/partnersLogo/snowlab.png'
-import vagabondLogo from '@/assets/images/partnersLogo/vagabond.png'
+import adrenalineLogo from '@/assets/images/partnerLogos/adrenaline.png'
+import buruSportsLogo from '@/assets/images/partnerLogos/burusports.svg'
+import drunkCherryLogo from '@/assets/images/partnerLogos/drunkcherry.png'
+import snowLabLogo from '@/assets/images/partnerLogos/snowlab.png'
+import vagabondLogo from '@/assets/images/partnerLogos/vagabond.png'
 
 export type Partner = {
   isHidden?: boolean

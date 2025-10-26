@@ -13,7 +13,7 @@ const PartnerInfo = ({ partner }: { partner: Partner }) => {
     <div className="flex flex-col gap-4">
       <p className="text-justify">{t(infoKey)}</p>
       <ButtonLink className="ml-auto" href={url} isExternal rel="noreferrer" target="_blank">
-        {t('common.actions.goToWebsite')}
+        {t('common.actions.visitWebsite')}
       </ButtonLink>
     </div>
   )
