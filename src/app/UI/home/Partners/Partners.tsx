@@ -12,9 +12,11 @@ const Partners = () => {
   return (
     <PageSection title={t('partners.title')}>
       <div className="flex gap-2 overflow-x-auto scrollbar-hide">
-        {partners.map((partner) => (
-          <PartnerBadge key={partner.name} partner={partner} />
-        ))}
+        {partners.map((partner) => {
+          if (partner.isHidden) return null
+
+          return <PartnerBadge key={partner.name} partner={partner} />
+        })}
       </div>
     </PageSection>
   )

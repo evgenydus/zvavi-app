@@ -3,8 +3,7 @@ import { useTranslations } from 'next-intl'
 
 import { problemIcons } from '@/UI/constants'
 
-import { Icon } from '@/UI/components'
-import { Drawer } from '@/UI/components/Drawer'
+import { Drawer, Icon } from '@/UI/components'
 import { ProblemDetails } from './ProblemDetails'
 
 import type { Problem as ProblemType } from '@/business/types'

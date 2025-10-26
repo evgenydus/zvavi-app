@@ -1,14 +1,15 @@
 common:
   actions:
     add: 'Add'
-    confirm: 'Confirm'
     cancel: 'Cancel'
+    confirm: 'Confirm'
     delete: 'Delete'
+    goToWebsite: 'Go to Website'
     learnMore: 'Learn More'
     readFullForecast: 'Read Full Forecast'
     save: 'Save'
-    submit: 'Submit'
     seeContactPage: 'See Contact Page'
+    submit: 'Submit'
 
   labels:
     email: 'Email'

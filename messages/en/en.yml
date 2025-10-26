@@ -78,9 +78,6 @@ forecast:
     weather:
       title: 'Weather'
 
-partners:
-  title: 'Our Partners'
-
 auth:
   errors:
     invalidSession: 'Invalid or expired session. Please request a new password reset link.'
