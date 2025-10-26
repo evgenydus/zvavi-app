@@ -15,7 +15,7 @@ import { Header } from '@/UI/header'
 export const metadata: Metadata = {
   description:
     'Avalanche forecast and weather information for the backcountry skier and snowboarder.',
-  title: 'Zvavi App',
+  title: 'Avalanche Georgia',
 }
 
 type LayoutProps = {
