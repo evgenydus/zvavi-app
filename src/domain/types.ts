@@ -1,5 +1,7 @@
 import type {
   aspects,
+  avalancheSources,
+  avalancheStatuses,
   avalancheTriggers,
   avalancheTypes,
   confidenceLevels,
@@ -47,6 +49,8 @@ export type AvalancheSize = 1 | 2 | 3 | 4 | 5
 export type AvalancheType = keyof typeof avalancheTypes
 export type AvalancheTrigger = keyof typeof avalancheTriggers
 export type AvalancheProblemType = AvalancheType
+export type AvalancheSource = keyof typeof avalancheSources
+export type AvalancheStatus = keyof typeof avalancheStatuses
 export type Confidence = keyof typeof confidenceLevels
 export type Distribution = keyof typeof distributionTypes
 export type Sensitivity = keyof typeof sensitivityLevels
@@ -91,6 +95,7 @@ export type Avalanche = {
   id?: number
   aspects: Aspects
   createdAt?: string
+  createdByUserId?: string | null
   date: Date | string | null
   description: string
   involvement: string | null
@@ -98,10 +103,16 @@ export type Avalanche = {
   latitude: number | null
   location: string | null
   longitude: number | null
+  photoKeys?: string[] | null
   quantity: number
   regionId: RegionId
   size: AvalancheSize
   slabDepth: number | null
+  source?: AvalancheSource
+  status?: AvalancheStatus
+  submitterContact?: string | null
+  submitterEducation?: string | null
+  submitterName?: string | null
   trigger: AvalancheTrigger
   type: AvalancheType | 'unknown'
   width: number | null
@@ -117,10 +128,16 @@ export type AvalancheFormData = {
   latitude: number | null
   location: string | null
   longitude: number | null
+  photoKeys?: string[] | null
   quantity: number
   regionId?: RegionId
   size: AvalancheSize
   slabDepth: number | null
+  source?: AvalancheSource
+  status?: AvalancheStatus
+  submitterContact?: string | null
+  submitterEducation?: string | null
+  submitterName?: string | null
   trigger: AvalancheTrigger | null
   type: AvalancheType | 'unknown' | null
   width: number | null

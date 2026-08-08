@@ -32,6 +32,17 @@ export const avalancheTypes = {
 
 export const avalancheProblemTypes = avalancheTypes
 
+export const avalancheSources = {
+  external: 'external',
+  team: 'team',
+} as const
+
+export const avalancheStatuses = {
+  archived: 'archived',
+  draft: 'draft',
+  published: 'published',
+} as const
+
 export const avalancheTriggers = {
   explosives: 'explosives',
   natural: 'natural',

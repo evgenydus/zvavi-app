@@ -7,7 +7,16 @@ import { convertCamelToSnake, handleSupabaseError } from '../../helpers'
 
 const createRecentAvalanche = async (formData: AvalancheFormData): Promise<void> => {
   if (!formData.regionId) throw new Error('regionId is required to create a recent avalanche')
-  const { error } = await supabase.from('recent_avalanches').insert(convertCamelToSnake(formData))
+
+  const { data: authData } = await supabase.auth.getUser()
+
+  const { error } = await supabase.from('recent_avalanches').insert(
+    convertCamelToSnake({
+      ...formData,
+      createdByUserId: authData.user?.id ?? null,
+      source: 'team',
+    }),
+  )
 
   handleSupabaseError(error)
 }
