@@ -1,4 +1,11 @@
-import type { Aspect, HazardLevel, HazardLevelScale, MemberStatus } from './types'
+import type {
+  Aspect,
+  AvalancheSource,
+  AvalancheStatus,
+  HazardLevel,
+  HazardLevelScale,
+  MemberStatus,
+} from './types'
 
 export const hazardLevelNames: Record<HazardLevel, string> = {
   considerable: 'forecast.hazardLevels.considerable',
@@ -32,16 +39,16 @@ export const avalancheTypes = {
 
 export const avalancheProblemTypes = avalancheTypes
 
-export const avalancheSources = {
+export const avalancheSources: Record<AvalancheSource, AvalancheSource> = {
   external: 'external',
   team: 'team',
-} as const
+}
 
-export const avalancheStatuses = {
+export const avalancheStatuses: Record<AvalancheStatus, AvalancheStatus> = {
   archived: 'archived',
   draft: 'draft',
   published: 'published',
-} as const
+}
 
 export const avalancheTriggers = {
   explosives: 'explosives',

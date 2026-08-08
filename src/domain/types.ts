@@ -1,7 +1,5 @@
 import type {
   aspects,
-  avalancheSources,
-  avalancheStatuses,
   avalancheTriggers,
   avalancheTypes,
   confidenceLevels,
@@ -49,8 +47,8 @@ export type AvalancheSize = 1 | 2 | 3 | 4 | 5
 export type AvalancheType = keyof typeof avalancheTypes
 export type AvalancheTrigger = keyof typeof avalancheTriggers
 export type AvalancheProblemType = AvalancheType
-export type AvalancheSource = keyof typeof avalancheSources
-export type AvalancheStatus = keyof typeof avalancheStatuses
+export type AvalancheSource = Enums<'avalanche_source'>
+export type AvalancheStatus = Enums<'avalanche_status'>
 export type Confidence = keyof typeof confidenceLevels
 export type Distribution = keyof typeof distributionTypes
 export type Sensitivity = keyof typeof sensitivityLevels
